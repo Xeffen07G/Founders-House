@@ -1,0 +1,16 @@
+# Agent / System directories
+.agent/
+.agents/
+.gemini/
+.gsd/
+adapters/
+scripts/
+model_capabilities.yaml
+VERSION
+GSD-STYLE.md
+PROJECT_RULES.md
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.log

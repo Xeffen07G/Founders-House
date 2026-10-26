@@ -1,0 +1,8 @@
+# Founders' House Website
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# TODO: Replace YOUR_SITE_URL with actual deployed URL
+Sitemap: YOUR_SITE_URL/sitemap.xml
