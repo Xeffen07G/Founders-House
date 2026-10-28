@@ -1,10 +1,12 @@
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 /**
- * SectionHeader Component (Convergence 1.0 exact structure)
+ * SectionHeader Component (Convergence 1.0 exact structure with scroll-triggered pop-up)
  * - Small pill tag
  * - Huge Bebas Neue display heading with colored emphasis line
  * - Optional descriptive subtitle / badge
+ * - Animates smoothly as you scroll down and stays visible permanently
  */
 export const SectionHeader = ({
   pill,
@@ -14,10 +16,10 @@ export const SectionHeader = ({
   description
 }) => {
   return (
-    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+    <ScrollReveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C0509] border border-[#E11D48]/60 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-[2px_2px_0px_#000]">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping"></span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1C0509] border border-[#E11D48]/60 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-[2px_2px_0px_#000]">
+          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping" />
           {pill}
         </div>
 
@@ -34,6 +36,6 @@ export const SectionHeader = ({
           {description}
         </div>
       )}
-    </div>
+    </ScrollReveal>
   );
 };
