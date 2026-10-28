@@ -54,8 +54,8 @@ export const content = {
     pill: "THE ADDA",
     headingLine1: "WELCOME TO",
     headingLine2: "THE ADDA.",
-    desc: "Set inside AIC Techno India University, right in the heart of Sector V — Kolkata's roaring silicon corridor and the IT-ITeS powerhouse of Eastern India. Minutes from the Sector V tech campus strip, surrounded by the same streets where yellow Ambassador taxis weave past hand-pulled rickshaws and heritage trams rattle along their century-old tracks. 24x7 high-speed fiber, hardware bays, sleeping pods, and endless earthen kulhads of steaming Kolkata chai — the same brew that fuels the legendary coffee house addas of College Street.",
-    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to Sector V\'s glass towers — now we bring the code."'
+    desc: "Set inside AIC Techno (Atal Incubation Centre), right in the heart of Sector V — Kolkata's roaring silicon corridor and the IT-ITeS powerhouse of Eastern India. Minutes from the Sector V tech campus strip, surrounded by the same streets where yellow Ambassador taxis weave past hand-pulled rickshaws and heritage trams rattle along their century-old tracks. 24x7 high-speed fiber, hardware bays, sleeping pods, and endless earthen kulhads of steaming Kolkata chai — the same brew that fuels the legendary coffee house addas of College Street.",
+    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to Sector V\'s glass towers — now we bring the code to AIC Techno."'
   },
 
   about: {
@@ -72,13 +72,13 @@ export const content = {
     hosts: [
       {
         role: "HOST INCUBATOR",
-        name: "AIC Techno India University",
-        desc: "Supported by Atal Innovation Mission, NITI Aayog — Eastern India's vanguard tech incubation centre with deep labs and venture networks."
+        name: "AIC Techno (Atal Incubation Centre)",
+        desc: "Supported by Atal Innovation Mission, NITI Aayog — Eastern India's vanguard tech incubation centre with deep labs and venture networks. Venue host for Founders' House."
       },
       {
         role: "ORGANIZING CHAPTER",
-        name: "Hult Prize at TIU",
-        desc: "The student-led engine transforming campus builders into impact entrepreneurs on the international stage."
+        name: "Hult Prize at Techno India University",
+        desc: "The student-led entrepreneurial engine at TIU organizing and running the sprint, transforming campus builders into impact founders."
       }
     ]
   },
@@ -352,7 +352,7 @@ export const content = {
       },
       {
         q: "Is this event in-person or virtual?",
-        a: "Founders' House is 100% in-person and fully residential for 72 continuous hours at AIC Techno India University campus in Salt Lake Sector V, Kolkata."
+        a: "Founders' House is 100% in-person and fully residential for 72 continuous hours at AIC Techno (Atal Incubation Centre) campus in Salt Lake Sector V, Kolkata."
       },
       {
         q: "What should we bring to the hackathon?",
