@@ -14,3 +14,9 @@ PROJECT_RULES.md
 .DS_Store
 Thumbs.db
 *.log
+
+# Node & Build artifacts
+node_modules/
+dist/
+scratch/
+

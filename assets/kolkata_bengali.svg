@@ -1,0 +1,25 @@
+<svg width="181" height="180" viewBox="0 0 181 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Exact HH Goa emblem composition: bold stylized yellow letterform with hot-pink stroke and vintage stamp feel -->
+  <style>
+    @font-face {
+      font-family: 'Anek Bangla';
+      font-style: normal;
+      font-weight: 800;
+      src: url('https://fonts.gstatic.com/s/anekbangla/v4/6xKvdStWYn-da5b00cK1C7k.woff2') format('woff2');
+    }
+    .bengali-lettering {
+      font-family: 'Anek Bangla', 'Hind Siliguri', 'Galada', sans-serif;
+      font-weight: 800;
+      font-size: 58px;
+      fill: #FEE101;
+      stroke: #FF0080;
+      stroke-width: 5px;
+      paint-order: stroke fill;
+      stroke-linejoin: round;
+      letter-spacing: 0.04em;
+    }
+  </style>
+  <g transform="rotate(-6 90 95)">
+    <text x="90" y="112" text-anchor="middle" class="bengali-lettering">কলকাতা</text>
+  </g>
+</svg>

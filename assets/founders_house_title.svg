@@ -1,0 +1,19 @@
+<svg width="1162" height="251" viewBox="0 0 1162 251" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @font-face {
+      font-family: 'Imbue';
+      font-style: normal;
+      font-weight: 700;
+      src: url('_next/static/media/11d07749a96308ac-s.p.1pby6vc151-5p.woff2') format('woff2');
+    }
+    .main-title {
+      font-family: 'Imbue', Georgia, 'Times New Roman', serif;
+      font-size: 215px;
+      font-weight: 700;
+      fill: #FFFFFF;
+      letter-spacing: -0.01em;
+      text-transform: capitalize;
+    }
+  </style>
+  <text x="581" y="195" text-anchor="middle" class="main-title">Founders' House</text>
+</svg>

@@ -1,38 +1,17 @@
 /* ============================================
    FOUNDERS' HOUSE — JavaScript
    Countdown, scroll animations, FAQ accordion,
-   tabs, sticky navbar, and back-to-top.
+   sticky navbar, and back-to-top.
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- Sticky Navbar ----
   initNavbar();
-
-  // ---- Mobile Menu ----
   initMobileMenu();
-
-  // ---- Countdown Timer ----
   initCountdown();
-
-  // ---- Scroll Reveal Animations ----
   initScrollReveal();
-
-  // ---- Day Tabs ----
-  initDayTabs();
-
-  // ---- People Tabs ----
-  initPeopleTabs();
-
-  // ---- FAQ Accordion ----
   initFAQ();
-
-  // ---- Back to Top ----
   initBackToTop();
-
-  // ---- Smooth scroll for nav links ----
   initSmoothScroll();
-
-  // ---- Contact Form ----
   initContactForm();
 });
 
@@ -151,57 +130,13 @@ function initScrollReveal() {
 }
 
 
-/* ===== Day Tabs ===== */
-function initDayTabs() {
-  const tabs = document.querySelectorAll('.days__tab');
-  const panels = document.querySelectorAll('.days__panel');
-
-  if (!tabs.length) return;
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.day;
-
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-
-      tab.classList.add('active');
-      const panel = document.getElementById(target);
-      if (panel) panel.classList.add('active');
-    });
-  });
-}
-
-
-/* ===== People Tabs ===== */
-function initPeopleTabs() {
-  const tabs = document.querySelectorAll('.people__tab');
-  const panels = document.querySelectorAll('.people__panel');
-
-  if (!tabs.length) return;
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.panel;
-
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-
-      tab.classList.add('active');
-      const panel = document.getElementById(target);
-      if (panel) panel.classList.add('active');
-    });
-  });
-}
-
-
 /* ===== FAQ Accordion ===== */
 function initFAQ() {
   const items = document.querySelectorAll('.faq-item');
 
   items.forEach(item => {
-    const btn = item.querySelector('.faq-item__question');
-    const answer = item.querySelector('.faq-item__answer');
+    const btn = item.querySelector('.faq-item__q');
+    const answer = item.querySelector('.faq-item__a');
 
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
@@ -209,7 +144,7 @@ function initFAQ() {
       // Close all
       items.forEach(i => {
         i.classList.remove('open');
-        i.querySelector('.faq-item__answer').style.maxHeight = null;
+        i.querySelector('.faq-item__a').style.maxHeight = null;
       });
 
       // Open clicked one (if it wasn't already open)

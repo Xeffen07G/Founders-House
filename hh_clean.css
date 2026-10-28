@@ -1,0 +1,1006 @@
+/* ==========================================================================
+   FOUNDERS' HOUSE — Clean HH Goa Responsive Design System
+   Exact visual match to https://hhgoa.com/ without brittle absolute positioning.
+   Uses authentic HH Goa typography, colors, borders, cards, and ornaments.
+   ========================================================================== */
+
+:root {
+  --bg-primary: #121214; /* Deep rich ink charcoal/black for editorial elegance */
+  --bg-hero: #0e0e10;
+  --color-accent: #E10A17; /* I Am Kolkata Signature Crimson Red */
+  --color-accent-gold: #C40812; /* Deep Ruby / Crimson accent */
+  --color-pink: #E10A17; /* Vibrant TOI / Kolkata Red */
+  --color-cream: #F5EFE0; /* Warm Vintage Bengal Parchment / Newspaper Paper */
+  --color-parchment-border: #D8CEB9;
+  --color-dark: #12131A;
+  --color-white: #FFFFFF;
+  --color-text-dim: #D5CEBE;
+  
+  --font-mono: "Victor Mono", monospace;
+  --font-serif: "Imbue", "Playfair Display", Georgia, serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+.hh-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+}
+
+.hh-nav__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 8px 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.hh-nav__logo:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.hh-nav__brand-img {
+  height: 38px;
+  width: auto;
+  max-width: 420px;
+  object-fit: contain;
+  display: block;
+}
+
+.hh-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.hh-nav__link {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.hh-nav__link:hover {
+  color: var(--color-accent);
+}
+
+.hh-btn-apply {
+  position: relative;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding: 8px 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(225, 10, 23, 0.35);
+  border-radius: 4px;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hh-btn-apply:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(225, 10, 23, 0.5);
+}
+
+.hh-btn-apply::before,
+.hh-btn-apply::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-repeat: repeat-x;
+  background-size: 101px 6px;
+  pointer-events: none;
+}
+
+.hh-btn-apply::before {
+  top: 0;
+  background-image: url('assets/002-group-54-14.svg');
+}
+
+.hh-btn-apply::after {
+  bottom: 0;
+  background-image: url('assets/008-group-54-324.svg');
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hh-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px 60px;
+  text-align: center;
+  background-image: linear-gradient(180deg, rgba(18, 18, 20, 0.45) 0%, rgba(18, 18, 20, 0.85) 100%), url('assets/Sun rise.png');
+  background-size: cover;
+  background-position: center top;
+}
+
+.hh-hero__title-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1162px;
+  margin: 0 auto 24px;
+}
+
+.hh-hero__title-svg {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  display: block;
+}
+
+.hh-hero__title-text-svg {
+  font-family: 'Imbue', 'Playfair Display', Georgia, serif;
+  font-size: 195px;
+  font-weight: 700;
+  fill: var(--color-accent); /* I Am Kolkata Crimson Red */
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.hh-hero__bengali-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  font-family: 'Anek Bangla', 'Galada', 'Hind Siliguri', sans-serif;
+  font-size: clamp(38px, 5.5vw, 76px);
+  font-weight: 800;
+  color: #FFFFFF;
+  -webkit-text-stroke: 4px var(--color-accent);
+  paint-order: stroke fill;
+  pointer-events: none;
+  z-index: 5;
+  letter-spacing: 0.04em;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+
+.hh-hero__meta-strip {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 16px;
+}
+
+/* ==========================================================================
+   NOTICE BOARD
+   ========================================================================== */
+.hh-notice {
+  padding: 80px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hh-section-tag {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.hh-section-tag--pink {
+  color: var(--color-pink);
+}
+
+.hh-section-title {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: 28px;
+}
+
+.hh-notice__box {
+  width: 100%;
+  max-width: 440px;
+  height: 160px;
+  border: 2px dashed rgba(255, 251, 232, 0.35);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-notice__text {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: rgba(255, 251, 232, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   STATS SECTION (INSIDE FOUNDERS' HOUSE)
+   ========================================================================== */
+.hh-stats-section {
+  padding: 80px 24px 100px;
+  position: relative;
+  text-align: center;
+  background-image: url('assets/details.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.hh-stats-title {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 110px);
+  color: var(--color-white);
+  text-transform: capitalize;
+  line-height: 1.05;
+  margin-bottom: 60px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hh-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 36px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.hh-stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.hh-stat-card__num {
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 5vw, 76px);
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.hh-stat-card__num--green {
+  color: var(--color-accent);
+  text-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+.hh-stat-card__num--gold {
+  color: var(--color-accent-gold);
+}
+
+.hh-stat-card__label {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.hh-stat-card__label--green {
+  color: #12131A;
+}
+
+.hh-stat-card__label--gold {
+  color: var(--color-accent-gold);
+}
+
+/* ==========================================================================
+   SCHEDULE SECTION (INSIDE THE ROOM)
+   ========================================================================== */
+.hh-schedule-section {
+  padding: 100px 24px;
+  position: relative;
+  text-align: center;
+  background-image: url('assets/agenda.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.hh-schedule__tag {
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 2.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.hh-schedule__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 105px);
+  color: var(--color-white);
+  line-height: 1.05;
+  text-transform: capitalize;
+  margin-bottom: 60px;
+}
+
+.hh-schedule__ribbon {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto 50px;
+  display: block;
+}
+
+.hh-schedule__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hh-schedule-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 28px 20px;
+  backdrop-filter: blur(4px);
+}
+
+.hh-schedule-card__day {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.hh-schedule-card__theme {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   TASKS SECTION
+   ========================================================================== */
+.hh-tasks-section {
+  padding: 100px 24px;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hh-tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 860px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.hh-task-card {
+  position: relative;
+  background: var(--color-cream);
+  border-radius: 12px;
+  padding: 40px;
+  display: flex;
+  gap: 36px;
+  box-shadow: 8px 10px 0 rgba(0, 0, 0, 0.25);
+  color: #14130f;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hh-task-card {
+    flex-direction: column;
+    padding: 28px 20px;
+    text-align: center;
+  }
+}
+
+.hh-task-card__icon-box {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.hh-task-card__circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px dashed var(--color-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.hh-task-card__badge {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  width: 36px;
+  height: 36px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+}
+
+.hh-task-card__sub-badge {
+  position: absolute;
+  bottom: -6px;
+  left: -12px;
+  background: var(--color-white);
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-pink);
+}
+
+.hh-task-card__content {
+  flex: 1;
+  text-align: left;
+}
+
+.hh-task-card__tag {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.hh-task-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--bg-primary);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.hh-task-card__desc {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.hh-task-card__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.hh-task-card__list li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  gap: 8px;
+}
+
+.hh-task-card__list span {
+  color: var(--color-pink);
+}
+
+.hh-task-card__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hh-btn-pink {
+  background: var(--color-pink);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.hh-btn-pink:hover {
+  opacity: 0.9;
+}
+
+.hh-btn-outline-pink {
+  border: 1px solid var(--color-pink);
+  color: var(--color-pink);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 999px;
+  transition: all 0.15s;
+}
+
+.hh-btn-outline-pink:hover {
+  background: var(--color-pink);
+  color: var(--color-white);
+}
+
+.hh-btn-gold {
+  background: var(--color-accent);
+  color: var(--bg-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 999px;
+  transition: opacity 0.15s;
+}
+
+.hh-btn-gold:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   PARTNERS SECTION
+   ========================================================================== */
+.hh-partners-section {
+  padding: 90px 24px;
+  background: linear-gradient(180deg, #F5EFE0 0%, #EBE3D1 55%, #DCD1BA 100%);
+  color: #12131A;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hh-partners-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.hh-partners-title {
+  font-family: var(--font-serif);
+  font-size: clamp(44px, 6vw, 68px);
+  font-weight: 700;
+  color: #000;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.hh-partners-desc {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: rgba(0,0,0,0.7);
+  max-width: 540px;
+  margin: 0 auto 40px;
+}
+
+.hh-marquee-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.hh-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.hh-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hh-partner-card {
+  width: 290px;
+  margin-right: 24px;
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.8);
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: transform 0.2s;
+}
+
+.hh-partner-card:hover {
+  transform: translateY(-4px);
+}
+
+.hh-partner-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hh-partner-card__tag {
+  background: rgba(0,0,0,0.06);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.7);
+}
+
+.hh-partner-card__arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-partner-card__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 0;
+  height: 120px;
+}
+
+.hh-partner-card__logo-wrap img {
+  max-height: 80px;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+.hh-partner-card__text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(0,0,0,0.55);
+}
+
+/* ==========================================================================
+   MANIFESTO / LESS NOISE MORE SIGNAL
+   ========================================================================== */
+.hh-manifesto-section {
+  padding: 100px 24px;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+}
+
+.hh-manifesto-inner {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+@media (max-width: 860px) {
+  .hh-manifesto-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+.hh-manifesto__headline {
+  flex: 1;
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 6vw, 76px);
+  color: var(--color-white);
+  line-height: 1.05;
+  text-transform: capitalize;
+}
+
+.hh-manifesto__content {
+  flex: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hh-manifesto__p {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--color-cream);
+  line-height: 1.5;
+  text-transform: none;
+}
+
+/* ==========================================================================
+   GHOOMI GHOOMI / VENUE DIRECTIONS
+   ========================================================================== */
+.hh-ghoomi-section {
+  padding: 100px 24px;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hh-ghoomi__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1050px;
+  width: 100%;
+  margin: 36px auto 28px;
+}
+
+.hh-ghoomi-card {
+  background: var(--color-cream);
+  border-radius: 8px;
+  padding: 24px 28px;
+  text-align: left;
+  box-shadow: 6px 8px 0 rgba(0,0,0,0.25);
+  color: #000;
+}
+
+.hh-ghoomi-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hh-ghoomi-card__desc {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: rgba(0,0,0,0.75);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   FAQS
+   ========================================================================== */
+.hh-faq-section {
+  padding: 100px 24px;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hh-faq-list {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.hh-faq-item {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 24px;
+}
+
+.hh-faq-item__btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 0;
+  gap: 16px;
+}
+
+.hh-faq-item__q {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--color-white);
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+.hh-faq-item__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.hh-faq-item__a {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-cream);
+  margin-top: 14px;
+  line-height: 1.45;
+  display: none;
+}
+
+.hh-faq-item.is-open .hh-faq-item__a {
+  display: block;
+}
+
+.hh-faq-item.is-open .hh-faq-item__icon {
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.hh-footer {
+  padding: 100px 24px 60px;
+  background-image: url('assets/footer trees.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hh-footer__logo-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 28px;
+}
+
+.hh-footer__meta {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hh-footer__links {
+  display: flex;
+  gap: 24px;
+  margin: 28px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hh-footer__link {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-white);
+  transition: color 0.15s;
+}
+
+.hh-footer__link:hover {
+  color: var(--color-accent);
+}
+
+.hh-footer__socials {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hh-footer__social-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-white);
+  font-size: 15px;
+}
+
+.hh-footer__copy {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}

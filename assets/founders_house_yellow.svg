@@ -1,0 +1,16 @@
+<svg width="1162" height="251" viewBox="0 0 1162 251" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Use local font-face for Imbue loaded by the browser -->
+    <style>
+      .fh-title {
+        font-family: 'Imbue', 'Playfair Display', Georgia, serif;
+        font-size: 210px;
+        font-weight: 700;
+        fill: #FEE101; /* signature HH Goa yellow */
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+      }
+    </style>
+  </defs>
+  <text x="581" y="195" text-anchor="middle" class="fh-title">FOUNDERS' HOUSE</text>
+</svg>

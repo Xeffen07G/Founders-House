@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Bebas Neue", "Poppins", sans-serif;
+  --font-round: "Poppins", sans-serif;
+  --font-comic: "Comic Neue", "Comic Sans MS", cursive, sans-serif;
+  --font-bangers: "Bangers", system-ui, cursive;
+  --font-graffiti: "Rubik Wet Paint", cursive;
+
+  --dark-bg: #120205;
+  --card-bg: #1C0509;
+  --kolkata-red: #E11D48;
+  --kolkata-crimson: #BE123C;
+  --terracotta: #D94826;
+  --cyan-neon: #19D3F3;
+  --yellow-neon: #FFC800;
+  --pink-neon: #E11D48;
+  --lime-neon: #7CFF3A;
+  --purple-neon: #9B5CFF;
+  --cream-text: #FFF9F2;
+  --white-pure: #FFFFFF;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--cream-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle Kolkata Alpona / Grid Pattern Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(rgba(225, 29, 72, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 29, 72, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Convergence Massive Bebas Display Headings */
+.heading-bebas {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+}
+
+/* Comic Speech Bubble / Character Dialogue Strip with Comic Neue */
+.comic-speech-bubble {
+  position: relative;
+  background: #1C0509;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px #E11D48;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-comic);
+}
+
+/* Bangers Badge utility for punchy action labels */
+.badge-bangers {
+  font-family: var(--font-bangers);
+  letter-spacing: 0.05em;
+}
+
+/* Comic Cut Cards with offset shadows */
+.comic-card {
+  background: #1C0509;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 14px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.comic-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px #E11D48;
+  border-color: #000000;
+}
+
+.comic-card-cyan:hover {
+  box-shadow: 6px 6px 0px #19D3F3;
+}
+.comic-card-pink:hover {
+  box-shadow: 6px 6px 0px #FF2E93;
+}
+.comic-card-lime:hover {
+  box-shadow: 6px 6px 0px #7CFF3A;
+}
+
+/* Convergence Button Styles */
+.btn-convergence-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #FFE600;
+  color: #05040A;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+.btn-convergence-yellow:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000, 0 0 20px rgba(255, 230, 0, 0.5);
+}
+
+.btn-convergence-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #F4F0FF;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  border: 2px solid #19D3F3;
+  box-shadow: 4px 4px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+.btn-convergence-outline:hover {
+  background: rgba(25, 211, 243, 0.15);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000, 0 0 20px rgba(25, 211, 243, 0.5);
+}
+
+/* Animations */
+@keyframes bobSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.mascot-bob {
+  animation: bobSlow 3.2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.glow-pulse {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Taxi Scroller Animation (Left to Right) */
+@keyframes taxiScroll {
+  0% { transform: translateX(-80px); }
+  100% { transform: translateX(calc(100vw + 80px)); }
+}
+.taxi-scroller {
+  animation: taxiScroll 12s linear infinite;
+}
+
+/* Rickshaw Scroller Animation (Right to Left) */
+@keyframes rickshawScroll {
+  0% { transform: translateX(80px); }
+  100% { transform: translateX(calc(-100vw - 80px)); }
+}
+.rickshaw-scroller {
+  animation: rickshawScroll 18s linear infinite;
+  animation-delay: 3s;
+}
+
+/* Tram Scroller Animation (Slow, Left to Right) */
+@keyframes tramScroll {
+  0% { transform: translateX(-120px); }
+  100% { transform: translateX(calc(100vw + 120px)); }
+}
+.tram-scroller {
+  animation: tramScroll 25s linear infinite;
+  animation-delay: 6s;
+}
+
+/* Kolkata Glass Card */
+.glass-card {
+  background: rgba(28, 5, 9, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+/* Shadow Sticker effects */
+.shadow-sticker {
+  box-shadow: 4px 4px 0px #000000;
+}
+.shadow-sticker-lg {
+  box-shadow: 6px 6px 0px #000000;
+}
+
+/* Evidence Board */
+.evidence-board {
+  background: #1C0509;
+  border: 2px solid #000000;
+  border-radius: 16px;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+/* HUD Box */
+.hud-box {
+  background: linear-gradient(135deg, #1C0509 0%, #2E070F 100%);
+  border: 2px solid #E11D48;
+  padding: 2rem;
+  box-shadow: 5px 5px 0px #000000;
+}
+
+/* Cartoon button styles */
+.btn-cartoon-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #FFE600;
+  color: #05040A;
+  font-family: var(--font-display, "Bebas Neue", sans-serif);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+.btn-cartoon-yellow:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #000000, 0 0 20px rgba(255, 230, 0, 0.5);
+}
+
+.btn-cartoon-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #F4F0FF;
+  font-family: var(--font-display, "Bebas Neue", sans-serif);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  border: 2px solid #19D3F3;
+  box-shadow: 3px 3px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+.btn-cartoon-outline:hover {
+  background: rgba(25, 211, 243, 0.15);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #000000, 0 0 20px rgba(25, 211, 243, 0.5);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Neon color utility classes */
+.bg-neonYellow { background-color: #FFE600; }
+.bg-neonCyan { background-color: #19D3F3; }
+.bg-neonPink { background-color: #FF2E93; }
+.bg-neonLime { background-color: #7CFF3A; }
+.bg-neonPurple { background-color: #9B5CFF; }
+.text-neonYellow { color: #FFE600; }
+.text-neonCyan { color: #19D3F3; }
+.text-neonPink { color: #FF2E93; }
+.text-neonLime { color: #7CFF3A; }
+.text-neonPurple { color: #9B5CFF; }
+.border-neonYellow { border-color: #FFE600; }
+.border-neonCyan { border-color: #19D3F3; }
+.border-neonPink { border-color: #FF2E93; }
+.border-neonLime { border-color: #7CFF3A; }
