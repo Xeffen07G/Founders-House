@@ -290,13 +290,63 @@ body::before {
   animation: mapDrift 20s ease-in-out infinite;
 }
 
+/* Cartoon Map Driving Animations */
+@keyframes driveTaxiNorth {
+  0% { transform: translateY(600px) rotate(-12deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-300px) rotate(-12deg); opacity: 0; }
+}
+.animate-drive-taxi {
+  animation: driveTaxiNorth 14s linear infinite;
+}
+
+@keyframes driveAutoEast {
+  0% { transform: translateX(-400px) rotate(15deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(1200px) rotate(15deg); opacity: 0; }
+}
+.animate-drive-auto {
+  animation: driveAutoEast 18s linear infinite;
+  animation-delay: 4s;
+}
+
+@keyframes driveRickshawWest {
+  0% { transform: translateX(1200px) rotate(-8deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(-400px) rotate(-8deg); opacity: 0; }
+}
+.animate-drive-rickshaw {
+  animation: driveRickshawWest 24s linear infinite;
+  animation-delay: 2s;
+}
+
+@keyframes tramGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px #FFC800); }
+  50% { filter: drop-shadow(0 0 16px #E11D48); }
+}
+.animate-tram-glow {
+  animation: tramGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes targetPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+.animate-target-pulse {
+  animation: targetPulse 2s ease-in-out infinite;
+}
+
 @keyframes radarSweep {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 .animate-radar-sweep {
   transform-origin: center;
-  animation: radarSweep 6s linear infinite;
+  animation: radarSweep 8s linear infinite;
 }
 
 @keyframes sonarPing {
