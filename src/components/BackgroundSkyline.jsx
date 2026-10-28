@@ -8,29 +8,29 @@ export const BackgroundSkyline = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#090103] via-[#120205] to-[#0A0103]" />
       
       {/* Ambient Crimson Sky Haze */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-gradient-to-b from-[#E11D48]/15 via-[#881337]/10 to-transparent rounded-full blur-[140px]" />
-      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#FFC800]/5 rounded-full blur-[150px]" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-gradient-to-b from-[#E11D48]/20 via-[#881337]/15 to-transparent rounded-full blur-[140px]" />
+      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#FFC800]/10 rounded-full blur-[150px]" />
 
-      {/* 2. HOWRAH BRIDGE BACKGROUND (Increased Transparency, Screen Blended & Subtle Ambient Watermark) */}
-      <div className="absolute top-[28%] sm:top-[20%] inset-x-0 w-full h-[55vh] sm:h-[65vh] flex items-center justify-center pointer-events-none opacity-[0.14] sm:opacity-[0.18] mix-blend-screen overflow-hidden">
+      {/* 2. HOWRAH BRIDGE BACKGROUND (Brighter & Luminous Screen Blended Transparency) */}
+      <div className="absolute top-[24%] sm:top-[16%] inset-x-0 w-full h-[60vh] sm:h-[72vh] flex items-center justify-center pointer-events-none opacity-30 sm:opacity-40 mix-blend-screen overflow-hidden">
         <img
           src="/howrah_bridge_bg.jpg"
           alt="Howrah Bridge Comic Silhouette"
-          className="w-full h-full object-cover object-center filter contrast-125 brightness-110"
+          className="w-full h-full object-cover object-center filter contrast-125 brightness-150"
           style={{
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 75%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 75%, transparent 100%)'
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
           }}
         />
       </div>
 
-      {/* 3. Subtle Vector Suspension Lights along Bridge Span */}
-      <div className="absolute top-[48%] inset-x-0 w-full h-12 flex justify-around items-center opacity-25 pointer-events-none">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#FFC800] animate-ping" />
-        <span className="w-1 h-1 rounded-full bg-[#E11D48] animate-pulse" />
-        <span className="w-2 h-2 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '1.2s' }} />
-        <span className="w-1 h-1 rounded-full bg-[#19D3F3] animate-pulse" style={{ animationDelay: '0.6s' }} />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '2s' }} />
+      {/* 3. Luminous Vector Suspension Lights along Bridge Span */}
+      <div className="absolute top-[48%] inset-x-0 w-full h-12 flex justify-around items-center opacity-40 pointer-events-none">
+        <span className="w-2 h-2 rounded-full bg-[#FFC800] animate-ping" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '1.2s' }} />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#19D3F3] animate-pulse" style={{ animationDelay: '0.6s' }} />
+        <span className="w-2 h-2 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '2s' }} />
       </div>
 
       {/* 4. Delicate Kolkata Tech Grid Overlay */}
