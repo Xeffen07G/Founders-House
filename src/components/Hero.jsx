@@ -51,10 +51,6 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Bengali subtitle */}
-        <div className="text-sm sm:text-base font-mono text-[#E11D48] font-bold mb-3 tracking-wider">
-          ফাউন্ডার্স হাউস · লাল-সাদা কলকাতা সংস্করণ
-        </div>
 
         {/* Subtitle / Tagline */}
         <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-8">
