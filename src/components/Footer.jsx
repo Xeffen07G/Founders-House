@@ -126,8 +126,8 @@ export const Footer = () => {
           </h5>
           <ul className="flex flex-col gap-2 text-xs font-mono text-creamText/80">
             <li>✦ Organized by Hult Prize at TIU</li>
-            <li>✦ Venue Host: AIC Techno</li>
-            <li>✦ EM-4, Sector V, Salt Lake, Kolkata</li>
+            <li>✦ Venue: AIC Techno (Offbeat CCU)</li>
+            <li>✦ 36F, Topsia Road, Kolkata 700039</li>
             <li>✦ 18–20 December 2026</li>
           </ul>
 

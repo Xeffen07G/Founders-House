@@ -76,15 +76,15 @@ export const Venue = () => {
           </div>
         </div>
 
-        {/* Lightweight SVG Cyber Map Vector of Salt Lake Sector V */}
+        {/* Lightweight SVG Cyber Map Vector of Topsia Road & EM Bypass Corridor */}
         <div className="lg:col-span-7 relative">
           <div className="rounded-2xl border-4 border-black overflow-hidden shadow-sticker-lg bg-[#070B1A] relative h-[360px] sm:h-[420px] flex items-center justify-center p-6">
             
-            {/* Sector V Map Grid */}
+            {/* Topsia / EM Bypass Map Grid */}
             <svg viewBox="0 0 600 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Radial Glow on Sector V */}
+              {/* Radial Glow on Topsia & Offbeat CCU Area */}
               <circle cx="340" cy="210" r="140" fill="#3B1A7A" fillOpacity="0.4" />
-              <circle cx="340" cy="210" r="70" fill="#19D3F3" fillOpacity="0.1" />
+              <circle cx="340" cy="210" r="70" fill="#E11D48" fillOpacity="0.15" />
 
               {/* Grid Lines */}
               <line x1="40" y1="80" x2="560" y2="80" stroke="#162344" strokeWidth="1.5" strokeDasharray="4 4"/>
@@ -107,39 +107,33 @@ export const Venue = () => {
               <path d="M120 320 Q280 280 540 210" stroke="#2B3A67" strokeWidth="12" strokeLinecap="round" />
               <text x="210" y="325" fill="#F4F0FF" opacity="0.6" fontSize="10" fontFamily="monospace">MAA FLYOVER</text>
 
-              {/* Salt Lake Sector V Ring */}
-              <rect x="250" y="130" width="180" height="150" rx="20" fill="#0E1A38" stroke="#19D3F3" strokeWidth="2" />
-              <text x="270" y="160" fill="#19D3F3" fontSize="11" fontWeight="bold" fontFamily="monospace">SALT LAKE SECTOR V</text>
-              <text x="270" y="178" fill="#F4F0FF" opacity="0.7" fontSize="9" fontFamily="monospace">TECH EMBASSY ZONE</text>
+              {/* Topsia Road Axis */}
+              <path d="M220 120 L460 260" stroke="#374151" strokeWidth="10" strokeLinecap="round"/>
+              <text x="260" y="150" fill="#19D3F3" opacity="0.75" fontSize="9" fontFamily="monospace">TOPSIA ROAD</text>
 
-              {/* AIC Techno Campus Compound */}
-              <rect x="290" y="195" width="100" height="65" rx="10" fill="#FFE600" fillOpacity="0.15" stroke="#FFE600" strokeWidth="2.5" />
-              
-              {/* Metro Line & Stations */}
-              <path d="M50 200 L250 200 L440 170 L550 170" stroke="#7CFF3A" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 4"/>
-              <circle cx="250" cy="200" r="5" fill="#7CFF3A" stroke="#000000" strokeWidth="2"/>
-              <text x="210" y="222" fill="#7CFF3A" fontSize="9" fontFamily="monospace">SEALDAH METRO LINK</text>
-              <circle cx="440" cy="170" r="5" fill="#7CFF3A" stroke="#000000" strokeWidth="2"/>
-              <text x="445" y="162" fill="#7CFF3A" fontSize="9" fontFamily="monospace">SECTOR V STN</text>
+              {/* Offbeat CCU Compound */}
+              <rect x="290" y="180" width="130" height="75" rx="12" fill="#E11D48" fillOpacity="0.15" stroke="#E11D48" strokeWidth="2.5" />
+              <text x="305" y="205" fill="#FFFFFF" fontSize="11" fontWeight="bold" fontFamily="monospace">OFFBEAT CCU</text>
+              <text x="305" y="222" fill="#FFC800" fontSize="9" fontFamily="monospace">36F TOPSIA ROAD</text>
 
-              {/* Tram route */}
-              <path d="M100 300 Q200 290 350 260" stroke="#19D3F3" strokeWidth="2" strokeDasharray="4 3" opacity="0.5"/>
-              <text x="105" y="312" fill="#19D3F3" fontSize="8" fontFamily="monospace" opacity="0.5">TRAM LINE</text>
+              {/* Science City landmark nearby */}
+              <circle cx="210" cy="270" r="14" fill="#0E1A38" stroke="#19D3F3" strokeWidth="2"/>
+              <text x="180" y="298" fill="#19D3F3" fontSize="9" fontFamily="monospace">SCIENCE CITY</text>
 
               {/* Iconic Taxi on EM Bypass */}
               <rect x="148" y="240" width="18" height="10" rx="3" fill="#FFE600" stroke="#000000" strokeWidth="1.5" />
 
               {/* Howrah Bridge indicator */}
-              <text x="60" y="365" fill="#FF2E93" fontSize="8" fontFamily="monospace" opacity="0.6">← HOWRAH BRIDGE 8km</text>
+              <text x="60" y="365" fill="#FF2E93" fontSize="8" fontFamily="monospace" opacity="0.6">← HOWRAH BRIDGE 7km</text>
 
-              {/* Victoria Memorial indicator */}
-              <text x="400" y="365" fill="#9B5CFF" fontSize="8" fontFamily="monospace" opacity="0.6">VICTORIA MEMORIAL →</text>
+              {/* Park Circus indicator */}
+              <text x="380" y="365" fill="#9B5CFF" fontSize="8" fontFamily="monospace" opacity="0.6">PARK CIRCUS 2km →</text>
             </svg>
 
             {/* Glowing Custom Mascot Pin Over Map */}
-            <div className="absolute top-[52%] left-[57%] -translate-x-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center">
+            <div className="absolute top-[50%] left-[58%] -translate-x-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center">
               <div className="px-3 py-1 bg-neonYellow border-2 border-black rounded-full font-display text-[10px] text-black shadow-sticker mb-1 font-bold animate-bounce">
-                📍 AIC TECHNO HQ
+                📍 AIC TECHNO @ OFFBEAT CCU
               </div>
               <div className="w-7 h-7 rounded-full bg-neonPink border-2 border-black shadow-[0_0_25px_#FF2E93] flex items-center justify-center animate-pulse">
                 <span className="w-2.5 h-2.5 rounded-full bg-white"></span>
@@ -148,7 +142,7 @@ export const Venue = () => {
 
             {/* Live GPS Coordinates Overlay */}
             <div className="absolute bottom-3 right-4 px-2.5 py-1 rounded bg-black/80 border border-neonCyan/40 font-mono text-[10px] text-neonCyan">
-              GPS: 22.5768° N, 88.4312° E · SECTOR V
+              GPS: 22.5415° N, 88.3888° E · TOPSIA
             </div>
 
             {/* Kolkata badge */}

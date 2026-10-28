@@ -10,9 +10,9 @@ export const content = {
     tagline: "Build. Validate. Launch.",
     subline: "From Idea to Investment in Three Days",
     dates: "18-20 December 2026",
-    venueName: "AIC Techno, Kolkata",
-    venueAddress: "EM-4, Salt Lake Sector V, Bidhannagar, Kolkata 700091",
-    venueNote: "[TODO: Confirm exact AIC Techno hall / gate number]",
+    venueName: "AIC Techno (Atal Incubation Centre)",
+    venueAddress: "Offbeat CCU, 36F, Topsia Road, Kolkata, West Bengal 700039",
+    venueNote: "Located at Offbeat CCU, near EM Bypass & Science City",
     organizers: "Organized by Hult Prize at Techno India University in collaboration with AIC Techno",
     admission: "Free to apply · Open to students across India · Teams of 3-5",
     topTeams: "Top 10 teams selected for the 3-day residential sprint",
@@ -54,8 +54,8 @@ export const content = {
     pill: "THE ADDA",
     headingLine1: "WELCOME TO",
     headingLine2: "THE ADDA.",
-    desc: "Set inside AIC Techno (Atal Incubation Centre), right in the heart of Sector V — Kolkata's roaring silicon corridor and the IT-ITeS powerhouse of Eastern India. Minutes from the Sector V tech campus strip, surrounded by the same streets where yellow Ambassador taxis weave past hand-pulled rickshaws and heritage trams rattle along their century-old tracks. 24x7 high-speed fiber, hardware bays, sleeping pods, and endless earthen kulhads of steaming Kolkata chai — the same brew that fuels the legendary coffee house addas of College Street.",
-    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to Sector V\'s glass towers — now we bring the code to AIC Techno."'
+    desc: "Set inside AIC Techno (Atal Incubation Centre) at Offbeat CCU, 36F Topsia Road — Kolkata's vibrant experiential creative and startup hub right along the EM Bypass corridor. Surrounded by the pulse of Kolkata where yellow Ambassador taxis cruise down the bypass, minutes from Science City and Park Circus. 24x7 high-speed fiber, hardware labs, maker spaces, and endless earthen kulhads of steaming Kolkata chai.",
+    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to EM Bypass — now we bring the code to AIC Techno."'
   },
 
   about: {
@@ -352,7 +352,7 @@ export const content = {
       },
       {
         q: "Is this event in-person or virtual?",
-        a: "Founders' House is 100% in-person and fully residential for 72 continuous hours at AIC Techno (Atal Incubation Centre) campus in Salt Lake Sector V, Kolkata."
+        a: "Founders' House is 100% in-person and fully residential for 72 continuous hours at AIC Techno (Atal Incubation Centre), Offbeat CCU, 36F Topsia Road (near EM Bypass), Kolkata."
       },
       {
         q: "What should we bring to the hackathon?",
