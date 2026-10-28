@@ -343,7 +343,7 @@ export const Venue = () => {
             </svg>
           </div>
 
-          {/* THE BOUNCING TITAN-STYLE LOCATION PIN (Exact convergence1.tech signature, centered over Offbeat CCU) */}
+          {/* THE BOUNCING TITAN-STYLE LOCATION PIN (Pointed directly at Offbeat CCU) */}
           <div className="absolute top-[48%] left-[54%] transform -translate-x-1/2 -translate-y-16 sm:-translate-y-24 md:-translate-y-28 flex flex-col items-center pointer-events-none z-30 animate-bounce">
             
             {/* Concentric Sonar Ring Waves */}
@@ -366,12 +366,12 @@ export const Venue = () => {
             <div className="mt-1 px-4 py-1.5 bg-[#120205] border-2 border-black rounded-full shadow-[4px_4px_0px_#000] flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48] animate-ping" />
               <span className="font-bebas text-xs sm:text-base font-bold tracking-[0.2em] text-white uppercase whitespace-nowrap">
-                AIC TECHNO (OFFBEAT CCU HQ)
+                OFFBEAT CCU
               </span>
             </div>
 
             <span className="font-mono text-[9px] sm:text-[11px] text-[#FFC800] font-bold tracking-widest mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] uppercase">
-              36F TOPSIA ROAD · EM BYPASS CORRIDOR
+              36F TOPSIA ROAD · KOLKATA 700039
             </span>
           </div>
 
