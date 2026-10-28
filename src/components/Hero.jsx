@@ -33,13 +33,13 @@ export const Hero = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         
         {/* Pill Tag (Kolkata Red & White style) */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C0509] border border-[#E11D48]/80 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-6 shadow-[3px_3px_0px_#000]">
+        <div className="animate-pop-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C0509] border border-[#E11D48]/80 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-6 shadow-[3px_3px_0px_#000]">
           <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-pulse" />
           KOLKATA'S PREMIER 72-HOUR RESIDENTIAL HACKATHON
         </div>
 
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
-        <div className="relative mb-3 inline-block">
+        <div className="animate-pop-2 relative mb-3 inline-block">
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-bebas uppercase tracking-wide text-[#FFFFFF] select-none drop-shadow-[5px_5px_0px_#000000] leading-[0.9]">
             FOUNDERS'{" "}
             <span className="text-[#E11D48]">HOUSE</span>
@@ -51,14 +51,13 @@ export const Hero = () => {
           </div>
         </div>
 
-
         {/* Subtitle / Tagline */}
-        <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-8">
+        <p className="animate-pop-3 max-w-2xl mx-auto text-base sm:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-8">
           Kolkata's most relentless 72-hour startup sprint. 10 elite squads live on-site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
         </p>
 
         {/* Live Countdown Timer in Red, White & Gold */}
-        <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-8">
+        <div className="animate-pop-4 inline-flex items-center justify-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-8">
           <div className="flex flex-col items-center">
             <span className="font-bebas text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
               {String(timeLeft.days).padStart(2, '0')}

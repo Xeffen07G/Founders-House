@@ -13,6 +13,7 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { SoundToggle } from './components/SoundToggle';
 import { ScoreboardPage } from './pages/ScoreboardPage';
+import { BackgroundSkyline } from './components/BackgroundSkyline';
 
 export default function App() {
   const [route, setRoute] = useState(() => {
@@ -44,7 +45,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#120205] text-[#FFF9F2] font-body selection:bg-[#E11D48] selection:text-white">
+    <div className="min-h-screen bg-[#120205] text-[#FFF9F2] font-body selection:bg-[#E11D48] selection:text-white relative">
+      {/* Ambient Cartoon Howrah Bridge & Drifting Clouds Background */}
+      <BackgroundSkyline />
+
       {/* Floating Pill Sticky Navbar */}
       <Navbar currentRoute={route} onNavigate={(r) => setRoute(r)} />
 

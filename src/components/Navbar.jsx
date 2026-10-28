@@ -33,74 +33,75 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         </div>
 
         {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
-        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-6 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-7 py-2.5 shadow-[4px_4px_0px_#000]">
+        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             VENUE
           </a>
           <a
             href="#about"
             onClick={(e) => handleLinkClick(e, '#about')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             ABOUT
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleLinkClick(e, '#tracks')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             TRACKS
           </a>
           <a
             href="#route"
             onClick={(e) => handleLinkClick(e, '#route')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             TIMELINE
           </a>
 
-          {/* DEDICATED SCOREBOARD LINK */}
+          {/* DEDICATED SCOREBOARD LINK (Strictly single-line, horizontally aligned) */}
           <a
             href="#/scoreboard"
             onClick={(e) => handleLinkClick(e, '#/scoreboard')}
-            className={`px-3 py-1 rounded-full text-xs font-mono font-extrabold tracking-wider transition-all border-2 border-black ${
+            className={`px-3 py-1 rounded-full text-xs font-mono font-extrabold tracking-wider transition-all border-2 border-black flex-shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 leading-none ${
               currentRoute === 'scoreboard'
                 ? 'bg-[#FFC800] text-black shadow-[2px_2px_0px_#000]'
                 : 'bg-[#2A080E] text-[#FFC800] hover:bg-[#E11D48] hover:text-white'
             }`}
           >
-            ✦ SCOREBOARD
+            <span className="text-[10px] leading-none">✦</span>
+            <span className="leading-none">SCOREBOARD</span>
           </a>
 
           <a
             href="#awards"
             onClick={(e) => handleLinkClick(e, '#awards')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             PRIZES
           </a>
           <a
             href="#squad"
             onClick={(e) => handleLinkClick(e, '#squad')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             MENTORS
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleLinkClick(e, '#sponsors')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             SPONSORS
           </a>
           <a
             href="#faq"
             onClick={(e) => handleLinkClick(e, '#faq')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors"
+            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
             FAQ
           </a>
