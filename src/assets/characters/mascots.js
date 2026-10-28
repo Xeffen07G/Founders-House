@@ -391,5 +391,83 @@ export const mascots = {
       <rect x="108" y="74" width="16" height="24" rx="4" fill="#F4F0FF" stroke="#000000" stroke-width="2.5"/>
       <line x1="120" y1="84" x2="132" y2="78" stroke="#FAD1A7" stroke-width="3.5" stroke-linecap="round"/>
     </svg>
+  `,
+
+  // 12. Kolkata Heritage Tram (Classic Green & Cream Streetcar)
+  tramCar: (size = 160) => `
+    <svg width="${size}" height="${size * 0.6}" viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
+      <!-- Shadow -->
+      <ellipse cx="110" cy="124" rx="100" ry="5" fill="#000000" opacity="0.45"/>
+
+      <!-- Tram Overhead Pantograph / Pole -->
+      <path d="M110 32 L120 10 L135 10 L145 32" stroke="#000000" stroke-width="3" fill="none"/>
+      <line x1="115" y1="8" x2="140" y2="8" stroke="#FFE600" stroke-width="3.5" stroke-linecap="round"/>
+
+      <!-- Tram Body: Top Half Cream/White, Bottom Half Vintage Green/Teal -->
+      <rect x="20" y="32" width="180" height="74" rx="8" fill="#1B5E3F" stroke="#000000" stroke-width="3.5"/>
+      <rect x="20" y="32" width="180" height="38" rx="6" fill="#F4F0FF" stroke="#000000" stroke-width="3.5"/>
+
+      <!-- Yellow Route Plate -->
+      <rect x="75" y="24" width="70" height="12" rx="3" fill="#FFE600" stroke="#000000" stroke-width="2"/>
+      <text x="82" y="33" font-size="7" font-family="monospace" font-weight="900" fill="#000000">#26 ESPLANADE</text>
+
+      <!-- Windows Strip -->
+      <rect x="30" y="40" width="18" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+      <rect x="54" y="40" width="22" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+      <rect x="82" y="40" width="22" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+      <rect x="116" y="40" width="22" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+      <rect x="144" y="40" width="22" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+      <rect x="172" y="40" width="18" height="24" rx="2" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+
+      <!-- Center Entrance Door -->
+      <rect x="100" y="40" width="14" height="60" rx="1" fill="#2A7A55" stroke="#000000" stroke-width="2"/>
+      <line x1="107" y1="40" x2="107" y2="100" stroke="#000000" stroke-width="2"/>
+
+      <!-- Red Accent Belt Line -->
+      <line x1="20" y1="70" x2="200" y2="70" stroke="#E11D48" stroke-width="3"/>
+
+      <!-- Headlight on front & back -->
+      <circle cx="24" cy="84" r="5" fill="#FFE600" stroke="#000000" stroke-width="2"/>
+      <circle cx="196" cy="84" r="5" fill="#FFE600" stroke="#000000" stroke-width="2"/>
+
+      <!-- Steel Rail Wheels & Under-carriage -->
+      <rect x="40" y="106" width="34" height="12" rx="2" fill="#0B0A16" stroke="#000000" stroke-width="2.5"/>
+      <circle cx="48" cy="116" r="7" fill="#8C8C8C" stroke="#000000" stroke-width="2"/>
+      <circle cx="66" cy="116" r="7" fill="#8C8C8C" stroke="#000000" stroke-width="2"/>
+
+      <rect x="146" y="106" width="34" height="12" rx="2" fill="#0B0A16" stroke="#000000" stroke-width="2.5"/>
+      <circle cx="154" cy="116" r="7" fill="#8C8C8C" stroke="#000000" stroke-width="2"/>
+      <circle cx="172" cy="116" r="7" fill="#8C8C8C" stroke="#000000" stroke-width="2"/>
+    </svg>
+  `,
+
+  // 13. Kolkata Auto-Rickshaw (Classic Green & Yellow 3-Wheeler)
+  autoRickshaw: (size = 140) => `
+    <svg width="${size}" height="${size * 0.7}" viewBox="0 0 170 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
+      <!-- Shadow -->
+      <ellipse cx="85" cy="112" rx="72" ry="5" fill="#000000" opacity="0.45"/>
+
+      <!-- Rear Wheel -->
+      <circle cx="46" cy="98" r="14" fill="#0B0A16" stroke="#000000" stroke-width="3"/>
+      <circle cx="46" cy="98" r="5" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+
+      <!-- Front Wheel -->
+      <circle cx="132" cy="98" r="12" fill="#0B0A16" stroke="#000000" stroke-width="3"/>
+      <circle cx="132" cy="98" r="4" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+
+      <!-- Auto Body: Yellow Canopy on Top, Green Bottom -->
+      <path d="M25 80 L32 40 L65 30 L115 30 L135 60 L145 80 L140 92 L25 92 Z" fill="#1B5E3F" stroke="#000000" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M30 46 L65 32 L115 32 L132 58 L85 58 L30 58 Z" fill="#FFC800" stroke="#000000" stroke-width="3"/>
+
+      <!-- Front Windshield -->
+      <polygon points="105,36 128,58 98,58 92,36" fill="#19D3F3" fill-opacity="0.4" stroke="#000000" stroke-width="2"/>
+
+      <!-- Passenger Open Window Cutout -->
+      <rect x="42" y="46" width="38" height="24" rx="4" fill="#0B0A16" stroke="#000000" stroke-width="2"/>
+
+      <!-- Front Headlight & Mudguard -->
+      <circle cx="146" cy="74" r="5" fill="#FFE600" stroke="#000000" stroke-width="2"/>
+      <path d="M120 86 Q135 78 144 86" stroke="#000000" stroke-width="3.5" fill="none"/>
+    </svg>
   `
 };

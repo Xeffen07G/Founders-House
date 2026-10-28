@@ -154,24 +154,103 @@ export const Hero = () => {
       <div className="relative z-10 w-full max-w-6xl mx-auto mt-12 px-4">
         <div className="relative h-60 sm:h-72 border-b-4 border-black overflow-hidden flex items-end justify-between">
           
-          {/* Howrah Bridge Silhouette Background */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[650px] sm:w-[850px] h-44 pointer-events-none opacity-85">
-            <svg viewBox="0 0 800 180" className="w-full h-full fill-none stroke-[#19D3F3]" strokeWidth="2.5">
-              {/* Bridge trusses */}
-              <path d="M50 140 L180 30 L240 140 H560 L620 30 L750 140" stroke="#19D3F3" strokeWidth="3"/>
-              {/* Catenary curve */}
-              <path d="M50 140 Q400 60 750 140" stroke="#FFE600" strokeWidth="3"/>
-              {/* Roadway */}
-              <line x1="50" y1="140" x2="750" y2="140" stroke="#000000" strokeWidth="6"/>
-              {/* Bridge lights */}
-              <circle cx="180" cy="30" r="3" fill="#FFE600"/>
-              <circle cx="280" cy="65" r="2.5" fill="#FF2E93"/>
-              <circle cx="400" cy="85" r="3" fill="#FFE600"/>
-              <circle cx="520" cy="65" r="2.5" fill="#7CFF3A"/>
-              <circle cx="620" cy="30" r="3" fill="#FFE600"/>
-              {/* Victoria Memorial dome silhouette in background */}
-              <path d="M350 145 Q380 115 410 145" stroke="#9B5CFF" strokeWidth="1.5" opacity="0.4" fill="none"/>
-              <line x1="380" y1="115" x2="380" y2="105" stroke="#9B5CFF" strokeWidth="1" opacity="0.4"/>
+          {/* Realistic Silhouette & Detailed Steel Truss of Howrah Bridge */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-48 pointer-events-none opacity-90 overflow-hidden">
+            <svg viewBox="0 0 1000 240" className="w-full h-full fill-none" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="bridgeSteel" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#19D3F3" stopOpacity="0.8"/>
+                  <stop offset="100%" stopColor="#E11D48" stopOpacity="0.6"/>
+                </linearGradient>
+                <linearGradient id="waterReflection" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#1C0509" stopOpacity="0.8"/>
+                  <stop offset="100%" stopColor="#0B0204" stopOpacity="1"/>
+                </linearGradient>
+              </defs>
+
+              {/* Water base line representing the Hooghly River */}
+              <rect x="0" y="200" width="1000" height="40" fill="url(#waterReflection)"/>
+              <line x1="0" y1="200" x2="1000" y2="200" stroke="#E11D48" strokeWidth="2" strokeDasharray="8 6" opacity="0.6"/>
+
+              {/* Distant Kolkata Skyline & Victoria Memorial Dome in Background */}
+              <path d="M470 200 L470 185 Q500 155 530 185 L530 200 Z" fill="#2E070F" stroke="#E11D48" strokeWidth="1" opacity="0.5"/>
+              <line x1="500" y1="155" x2="500" y2="142" stroke="#FFC800" strokeWidth="1.5" opacity="0.6"/>
+              {/* Church of St. Paul spire silhouette */}
+              <polygon points="445,200 450,165 455,200" fill="#2E070F" opacity="0.4"/>
+
+              {/* MAIN CANTILEVER TOWERS (Realistic Double Portal Structure) */}
+              {/* West Cantilever Tower (Howrah Side) */}
+              <path d="M150 200 L180 30 L220 30 L250 200" stroke="url(#bridgeSteel)" strokeWidth="3.5" fill="none"/>
+              <line x1="160" y1="140" x2="240" y2="140" stroke="#19D3F3" strokeWidth="2"/>
+              <line x1="170" y1="90" x2="230" y2="90" stroke="#19D3F3" strokeWidth="2"/>
+              <line x1="180" y1="30" x2="220" y2="30" stroke="#FFC800" strokeWidth="3"/>
+              {/* Internal Cross Lattice Bracing on West Tower */}
+              <line x1="160" y1="140" x2="230" y2="90" stroke="#19D3F3" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.8"/>
+              <line x1="240" y1="140" x2="170" y2="90" stroke="#19D3F3" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.8"/>
+              <line x1="170" y1="90" x2="220" y2="30" stroke="#19D3F3" strokeWidth="1.5" opacity="0.8"/>
+              <line x1="230" y1="90" x2="180" y2="30" stroke="#19D3F3" strokeWidth="1.5" opacity="0.8"/>
+              <line x1="150" y1="200" x2="240" y2="140" stroke="#19D3F3" strokeWidth="1.5" opacity="0.5"/>
+              <line x1="250" y1="200" x2="160" y2="140" stroke="#19D3F3" strokeWidth="1.5" opacity="0.5"/>
+
+              {/* East Cantilever Tower (Kolkata Side) */}
+              <path d="M750 200 L780 30 L820 30 L850 200" stroke="url(#bridgeSteel)" strokeWidth="3.5" fill="none"/>
+              <line x1="760" y1="140" x2="840" y2="140" stroke="#19D3F3" strokeWidth="2"/>
+              <line x1="770" y1="90" x2="830" y2="90" stroke="#19D3F3" strokeWidth="2"/>
+              <line x1="780" y1="30" x2="820" y2="30" stroke="#FFC800" strokeWidth="3"/>
+              {/* Internal Cross Lattice on East Tower */}
+              <line x1="760" y1="140" x2="830" y2="90" stroke="#19D3F3" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.8"/>
+              <line x1="840" y1="140" x2="770" y2="90" stroke="#19D3F3" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.8"/>
+              <line x1="770" y1="90" x2="820" y2="30" stroke="#19D3F3" strokeWidth="1.5" opacity="0.8"/>
+              <line x1="830" y1="90" x2="780" y2="30" stroke="#19D3F3" strokeWidth="1.5" opacity="0.8"/>
+              <line x1="750" y1="200" x2="840" y2="140" stroke="#19D3F3" strokeWidth="1.5" opacity="0.5"/>
+              <line x1="850" y1="200" x2="760" y2="140" stroke="#19D3F3" strokeWidth="1.5" opacity="0.5"/>
+
+              {/* SUSPENDED MAIN SPAN (The iconic parabolic steel arch) */}
+              <path d="M220 30 C340 70, 420 115, 500 120 C580 115, 660 70, 780 30" stroke="#FFFFFF" strokeWidth="3" fill="none"/>
+              {/* Anchor Backstays */}
+              <path d="M180 30 L60 200" stroke="url(#bridgeSteel)" strokeWidth="3"/>
+              <path d="M820 30 L940 200" stroke="url(#bridgeSteel)" strokeWidth="3"/>
+
+              {/* Steel Webbing & Vertical Suspender Cables */}
+              {[
+                { x1: 260, y1: 52, y2: 200 },
+                { x1: 300, y1: 72, y2: 200 },
+                { x1: 340, y1: 90, y2: 200 },
+                { x1: 380, y1: 104, y2: 200 },
+                { x1: 420, y1: 114, y2: 200 },
+                { x1: 460, y1: 119, y2: 200 },
+                { x1: 500, y1: 120, y2: 200 },
+                { x1: 540, y1: 119, y2: 200 },
+                { x1: 580, y1: 114, y2: 200 },
+                { x1: 620, y1: 104, y2: 200 },
+                { x1: 660, y1: 90, y2: 200 },
+                { x1: 700, y1: 72, y2: 200 },
+                { x1: 740, y1: 52, y2: 200 },
+              ].map((c, i) => (
+                <g key={i}>
+                  <line x1={c.x1} y1={c.y1} x2={c.x1} y2={c.y2} stroke="#19D3F3" strokeWidth="1.5" opacity="0.75"/>
+                  {i % 2 === 0 && (
+                    <line x1={c.x1} y1={c.y1} x2={c.x1 + 40} y2={c.y2} stroke="#E11D48" strokeWidth="1" strokeDasharray="2 2" opacity="0.6"/>
+                  )}
+                </g>
+              ))}
+
+              {/* Anchor Spans Diagonal Lattice */}
+              <line x1="140" y1="100" x2="100" y2="200" stroke="#19D3F3" strokeWidth="1.2" opacity="0.6"/>
+              <line x1="860" y1="100" x2="900" y2="200" stroke="#19D3F3" strokeWidth="1.2" opacity="0.6"/>
+
+              {/* Continuous Roadway Deck */}
+              <line x1="40" y1="200" x2="960" y2="200" stroke="#FFFFFF" strokeWidth="4"/>
+              <line x1="40" y1="205" x2="960" y2="205" stroke="#000000" strokeWidth="6"/>
+
+              {/* Glowing Bridge Streetlights along the Arch & Towers */}
+              <circle cx="180" cy="30" r="4" fill="#FFC800" className="animate-pulse"/>
+              <circle cx="220" cy="30" r="4" fill="#FFC800" className="animate-pulse"/>
+              <circle cx="340" cy="90" r="3" fill="#E11D48"/>
+              <circle cx="500" cy="120" r="4.5" fill="#FFC800" className="animate-pulse"/>
+              <circle cx="660" cy="90" r="3" fill="#E11D48"/>
+              <circle cx="780" cy="30" r="4" fill="#FFC800" className="animate-pulse"/>
+              <circle cx="820" cy="30" r="4" fill="#FFC800" className="animate-pulse"/>
             </svg>
           </div>
 
@@ -234,31 +313,43 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Animated Kolkata Street Scene — Yellow Taxi + Cycle Rickshaw */}
-        <div className="relative h-10 w-full overflow-hidden">
-          {/* Yellow Taxi scrolling left to right */}
+        {/* Animated Kolkata Street Parade — Rich Cartoon SVG Taxi, Rickshaw, Tram & Auto */}
+        <div className="relative h-16 w-full overflow-hidden border-t-2 border-black bg-[#120205]/60">
+          
+          {/* Animated Kolkata Yellow Taxi (Left to Right) */}
           <div className="absolute bottom-1 left-0 taxi-scroller">
-            <div className="flex items-center gap-1">
-              <div className="w-16 h-7 bg-[#FFE600] border-2 border-black rounded flex items-center justify-center font-bebas text-xs text-black font-extrabold shadow-[2px_2px_0px_#000]">
-                TAXI
-              </div>
-            </div>
+            <div
+              className="transform hover:scale-110 transition-transform cursor-pointer"
+              dangerouslySetInnerHTML={{ __html: mascots.yellowTaxi ? mascots.yellowTaxi(110) : '' }}
+              title="Classic Kolkata Ambassador Yellow Taxi"
+            />
           </div>
-          {/* Rickshaw scrolling right to left (delayed) */}
+
+          {/* Animated Kolkata Cycle Rickshaw (Right to Left) */}
           <div className="absolute bottom-1 right-0 rickshaw-scroller hidden sm:block">
-            <div className="flex items-center gap-1">
-              <div className="w-14 h-7 bg-[#7CFF3A] border-2 border-black rounded flex items-center justify-center font-bebas text-[10px] text-black font-extrabold shadow-[2px_2px_0px_#000]">
-                🛺 AUTO
-              </div>
-            </div>
+            <div
+              className="transform hover:scale-110 transition-transform cursor-pointer"
+              dangerouslySetInnerHTML={{ __html: mascots.cycleRickshaw ? mascots.cycleRickshaw(100) : '' }}
+              title="Authentic Kolkata Cycle Rickshaw"
+            />
           </div>
-          {/* Tram scrolling slowly */}
-          <div className="absolute bottom-1 left-1/3 tram-scroller hidden md:block">
-            <div className="flex items-center gap-1">
-              <div className="w-20 h-7 bg-[#19D3F3] border-2 border-black rounded flex items-center justify-center font-bebas text-[10px] text-black font-extrabold shadow-[2px_2px_0px_#000]">
-                🚊 TRAM #26
-              </div>
-            </div>
+
+          {/* Animated Kolkata Auto-Rickshaw (Right to Left with offset) */}
+          <div className="absolute bottom-1 right-1/4 rickshaw-scroller hidden md:block" style={{ animationDelay: '9s' }}>
+            <div
+              className="transform hover:scale-110 transition-transform cursor-pointer"
+              dangerouslySetInnerHTML={{ __html: mascots.autoRickshaw ? mascots.autoRickshaw(95) : '' }}
+              title="Kolkata Green & Yellow Auto-Rickshaw"
+            />
+          </div>
+
+          {/* Animated Kolkata Heritage Tram #26 (Gentle slow scroll across the bottom) */}
+          <div className="absolute bottom-1 left-1/3 tram-scroller hidden lg:block">
+            <div
+              className="transform hover:scale-105 transition-transform cursor-pointer"
+              dangerouslySetInnerHTML={{ __html: mascots.tramCar ? mascots.tramCar(135) : '' }}
+              title="Kolkata Heritage Tramway #26"
+            />
           </div>
         </div>
       </div>
