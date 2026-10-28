@@ -9,26 +9,26 @@ export const Route = () => {
   const stops = content.route.stops;
 
   return (
-    <section id="route" className="py-20 px-4 max-w-6xl mx-auto">
+    <section id="route" className="py-28 sm:py-36 px-4 max-w-7xl mx-auto">
       <SectionHeader
         pill="SCHEDULE & TIMELINE"
         line1="THE SPRINT"
         line2="ROUTE & TIMELINE."
-        accentColor="text-[#19D3F3]"
+        accentColor="text-[#E11D48]"
         description="From your initial team dossier submission to the Sunday Demo Day jury presentation. Follow the 5-stage roadmap."
       />
 
       {/* Tram Line Track */}
-      <div className="relative my-8">
-        <div className="hidden lg:block absolute top-10 left-8 right-8 h-2.5 bg-[#121124] border-y-2 border-black rounded-full z-0">
+      <div className="relative my-10">
+        <div className="hidden lg:block absolute top-12 left-8 right-8 h-3 bg-[#1C0509] border-y-2 border-black rounded-full z-0">
           <div
-            className="h-full bg-[#FFE600] transition-all duration-500 rounded-full"
+            className="h-full bg-[#FFC800] transition-all duration-500 rounded-full"
             style={{ width: `${(activeStop / (stops.length - 1)) * 100}%` }}
-          ></div>
+          />
         </div>
 
         {/* 5 Stops Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 relative z-10 pt-4 lg:pt-14">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 relative z-10 pt-4 lg:pt-16">
           {stops.map((stop, idx) => {
             const isDayCard = stop.activities && stop.activities.length > 0;
             const isExpanded = expandedDay === stop.id;
@@ -43,34 +43,34 @@ export const Route = () => {
                     setExpandedDay(isExpanded ? null : stop.id);
                   }
                 }}
-                className={`comic-card p-5 cursor-pointer transition-all ${
+                className={`comic-card p-6 cursor-pointer bg-[#1C0509] transition-all ${
                   activeStop === idx
-                    ? 'border-[#FFE600] shadow-comic-yellow -translate-y-2'
+                    ? 'border-[#FFC800] shadow-[6px_6px_0px_#FFC800] -translate-y-2'
                     : 'hover:-translate-y-1'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-black/80 text-[#19D3F3]">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-black/80 text-[#FFC800] border border-[#FFC800]/30">
                     {stop.number}
                   </span>
-                  <span className="text-[10px] font-mono text-[#FFE600] font-bold">
+                  <span className="text-xs font-mono text-white/70 font-bold">
                     {stop.date}
                   </span>
                 </div>
 
-                <h4 className="font-bebas text-xl text-[#F4F0FF] mb-0.5 tracking-wide">
+                <h4 className="font-bebas text-xl sm:text-2xl text-white mb-0.5 tracking-wide">
                   {stop.name}
                 </h4>
-                <div className="font-mono text-xs text-[#FF2E93] mb-3">
+                <div className="font-mono text-xs text-[#E11D48] font-bold mb-3">
                   {stop.bengali}
                 </div>
 
-                <p className="text-xs font-poppins text-[#F4F0FF]/75 leading-relaxed mb-4">
+                <p className="text-xs font-poppins text-white/75 leading-relaxed mb-4">
                   {stop.desc}
                 </p>
 
                 {isLocked && (
-                  <div className="p-2 rounded bg-black/80 border border-[#FF2E93]/40 text-center font-mono text-xs text-[#FF2E93] animate-pulse">
+                  <div className="p-2 rounded-lg bg-black/80 border border-[#E11D48]/40 text-center font-mono text-xs text-[#E11D48] animate-pulse">
                     🔒 DOSSIER SEALED
                   </div>
                 )}
@@ -79,17 +79,17 @@ export const Route = () => {
                   <div>
                     <button
                       type="button"
-                      className="w-full py-1.5 px-3 rounded-lg bg-[#19D3F3]/20 hover:bg-[#19D3F3]/30 border border-[#19D3F3] text-[10px] font-mono font-bold text-[#19D3F3] flex items-center justify-between transition-colors"
+                      className="w-full py-1.5 px-3 rounded-lg bg-[#E11D48]/20 hover:bg-[#E11D48]/30 border border-[#E11D48] text-[11px] font-mono font-bold text-white flex items-center justify-between transition-colors"
                     >
                       <span>{isExpanded ? "HIDE ACTIVITIES" : "VIEW ACTIVITIES"}</span>
                       <span>{isExpanded ? "▲" : "▼"}</span>
                     </button>
 
                     {isExpanded && (
-                      <ul className="mt-3 pt-3 border-t border-white/10 flex flex-col gap-1.5 text-xs font-poppins text-[#F4F0FF]/85 font-medium">
+                      <ul className="mt-3 pt-3 border-t border-white/10 flex flex-col gap-2 text-xs font-poppins text-white/90">
                         {stop.activities.map((act, aIdx) => (
                           <li key={aIdx} className="flex items-start gap-1.5">
-                            <span className="text-[#FFE600]">✦</span>
+                            <span className="text-[#FFC800]">✦</span>
                             <span>{act}</span>
                           </li>
                         ))}
@@ -104,10 +104,10 @@ export const Route = () => {
       </div>
 
       {/* Jatayu Comic Bubble */}
-      <div className="comic-speech-bubble flex items-center gap-3 mt-6">
-        <span className="text-2xl flex-shrink-0">🚖</span>
-        <div className="text-xs sm:text-sm font-poppins text-[#F4F0FF]">
-          <span className="text-[#FFE600] font-bold">JATAYU'S WARNING: </span>
+      <div className="comic-card p-6 bg-[#1C0509] border-2 border-black flex items-center gap-4 mt-8 shadow-[4px_4px_0px_#000]">
+        <span className="text-3xl flex-shrink-0">🚖</span>
+        <div className="text-xs sm:text-sm font-poppins text-white">
+          <span className="text-[#FFC800] font-bold font-mono tracking-wider">JATAYU'S WARNING: </span>
           "Day 2 midnight is when true thriller begins! Sleep is temporary, shipping production code is forever."
         </div>
       </div>

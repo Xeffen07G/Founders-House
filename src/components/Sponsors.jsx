@@ -4,30 +4,32 @@ import { SectionHeader } from './SectionHeader';
 
 export const Sponsors = () => {
   return (
-    <section id="sponsors" className="py-20 px-4 max-w-6xl mx-auto">
+    <section id="sponsors" className="py-28 sm:py-36 px-4 max-w-7xl mx-auto">
       <SectionHeader
         pill={content.sponsors.pill}
         line1={content.sponsors.headingLine1}
         line2={content.sponsors.headingLine2}
-        accentColor="text-neonLime"
+        accentColor="text-[#FFC800]"
         description={content.sponsors.desc}
       />
 
       {/* Gold, Silver, Bronze Tiers */}
-      <div className="flex flex-col gap-8 mb-12">
+      <div className="flex flex-col gap-10 mb-16">
         {content.sponsors.tiers.map((tier, tIdx) => (
-          <div key={tIdx} className="p-6 rounded-2xl bg-[#080E21] border-2 border-black shadow-sticker">
-            <div className={`font-display text-sm tracking-wider mb-4 ${tier.color}`}>
+          <div key={tIdx} className="p-8 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[6px_6px_0px_#000]">
+            <div className={`font-bebas text-lg sm:text-xl tracking-wider mb-6 ${
+              tIdx === 0 ? 'text-[#FFC800]' : tIdx === 1 ? 'text-[#19D3F3]' : 'text-[#E11D48]'
+            }`}>
               ✦ {tier.name}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {Array.from({ length: tier.count }).map((_, sIdx) => (
                 <div
                   key={sIdx}
-                  className="h-20 rounded-xl bg-[#0F1733] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-neonYellow transition-colors"
+                  className="h-24 rounded-xl bg-[#120205] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-[#FFC800] transition-colors"
                 >
-                  <span className="font-mono text-[10px] text-creamText/50 font-bold uppercase group-hover:text-neonYellow">
+                  <span className="font-mono text-[11px] text-white/50 font-bold uppercase group-hover:text-[#FFC800]">
                     PARTNER SLOT #{sIdx + 1}
                   </span>
                 </div>
@@ -38,13 +40,13 @@ export const Sponsors = () => {
       </div>
 
       {/* HUD Panel: WANT YOUR LOGO HERE? */}
-      <div className="hud-box rounded-2xl">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="p-8 sm:p-10 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[6px_6px_0px_#000]">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="max-w-xl">
-            <h4 className="font-display text-xl sm:text-2xl text-neonYellow mb-2">
+            <h4 className="font-bebas text-2xl sm:text-3xl text-[#FFC800] mb-3">
               {content.sponsors.hud.title}
             </h4>
-            <p className="text-sm text-creamText/80 leading-relaxed font-medium">
+            <p className="text-sm font-poppins text-white/80 leading-relaxed">
               {content.sponsors.hud.desc}
             </p>
           </div>
@@ -52,16 +54,16 @@ export const Sponsors = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href={`mailto:${content.event.email}?subject=Partnership%20Inquiry%20-%20Founders%20House`}
-              className="btn-cartoon-yellow"
+              className="px-6 py-3 rounded-full bg-[#FFC800] border-2 border-black text-black font-bebas text-base tracking-wider hover:bg-[#FFE600] shadow-[3px_3px_0px_#000] transition-all"
             >
               {content.sponsors.hud.ctaPartner}
             </a>
 
             <a
-              href="#brochure"
-              className="btn-cartoon-outline text-xs"
+              href={content.sponsors.hud.brochureUrl}
+              className="px-6 py-3 rounded-full bg-[#120205] border-2 border-white/20 text-white font-bebas text-base tracking-wider hover:border-[#E11D48] transition-all"
             >
-              {content.sponsors.hud.ctaBrochure}
+              {content.sponsors.hud.ctaDeck}
             </a>
           </div>
         </div>

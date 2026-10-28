@@ -4,28 +4,28 @@ import { SectionHeader } from './SectionHeader';
 
 export const Archives = () => {
   return (
-    <section id="archives" className="py-20 px-4 max-w-6xl mx-auto">
+    <section id="archives" className="py-28 sm:py-36 px-4 max-w-7xl mx-auto">
       <SectionHeader
         pill={content.archives.pill}
         line1={content.archives.headingLine1}
         line2={content.archives.headingLine2}
-        accentColor="text-neonPink"
+        accentColor="text-[#E11D48]"
         description={content.archives.desc}
       />
 
       {/* Auto-scrolling photo strip */}
-      <div className="relative overflow-hidden py-4 border-y-2 border-black bg-[#050814] mb-8">
-        <div className="flex gap-6 animate-marquee whitespace-nowrap">
+      <div className="relative overflow-hidden py-6 border-y-2 border-black bg-[#1C0509] mb-12 shadow-[4px_4px_0px_#000]">
+        <div className="flex gap-8 animate-marquee whitespace-nowrap">
           {Array.from({ length: 6 }).map((_, idx) => (
             <div
               key={idx}
-              className="w-72 h-48 rounded-xl bg-[#0D152D] border-2 border-black shadow-sticker flex-shrink-0 flex flex-col items-center justify-center p-4 text-center group hover:border-neonCyan transition-colors"
+              className="w-80 h-52 rounded-xl bg-[#120205] border-2 border-black shadow-[3px_3px_0px_#000] flex-shrink-0 flex flex-col items-center justify-center p-6 text-center group hover:border-[#FFC800] transition-colors"
             >
-              <div className="text-3xl mb-2">📸</div>
-              <span className="font-display text-xs text-creamText">
-                HULT PRIZE SPRINT PHOTO #{idx + 1}
+              <div className="text-4xl mb-3">📸</div>
+              <span className="font-bebas text-base text-white">
+                HULT PRIZE SPRINT ARCHIVE #{idx + 1}
               </span>
-              <span className="font-mono text-[10px] text-neonPink mt-1">
+              <span className="font-mono text-xs text-[#FFC800] mt-1 tracking-wider uppercase">
                 KOLKATA BUILDERS IN ACTION
               </span>
             </div>
@@ -38,7 +38,7 @@ export const Archives = () => {
           href={content.event.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-cartoon-outline text-xs"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1C0509] border-2 border-black text-[#FFC800] hover:text-white hover:bg-[#E11D48] transition-all font-mono text-xs font-bold tracking-wider shadow-[3px_3px_0px_#000]"
         >
           {content.archives.cta} ↗
         </a>

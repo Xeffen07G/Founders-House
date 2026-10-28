@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Venue } from './components/Venue';
 import { About } from './components/About';
 import { Tracks } from './components/Tracks';
 import { Route } from './components/Route';
-import { Scoreboard } from './components/Scoreboard';
 import { Awards } from './components/Awards';
 import { Squad } from './components/Squad';
 import { Sponsors } from './components/Sponsors';
@@ -13,49 +12,81 @@ import { Archives } from './components/Archives';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { SoundToggle } from './components/SoundToggle';
+import { ScoreboardPage } from './pages/ScoreboardPage';
 
 export default function App() {
+  const [route, setRoute] = useState(() => {
+    const hash = window.location.hash;
+    return (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard')
+      ? 'scoreboard'
+      : 'home';
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard') {
+        setRoute('scoreboard');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setRoute('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleBackToBase = () => {
+    window.location.hash = '#hero';
+    setRoute('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#120205] text-[#FFF9F2] font-body selection:bg-[#E11D48] selection:text-white">
       {/* Floating Pill Sticky Navbar */}
-      <Navbar />
+      <Navbar currentRoute={route} onNavigate={(r) => setRoute(r)} />
 
-      <main>
-        {/* 1. Hero Section */}
-        <Hero />
+      {route === 'scoreboard' ? (
+        /* DEDICATED SCOREBOARD PAGE (Moved off the front page) */
+        <ScoreboardPage onBack={handleBackToBase} />
+      ) : (
+        /* SPACIOUS LANDING PAGE (Free of heavy scoreboard clutter) */
+        <main className="space-y-12 sm:space-y-20">
+          {/* 1. Hero Section */}
+          <Hero />
 
-        {/* 2. The Venue (The Adda) */}
-        <Venue />
+          {/* 2. The Venue (The Adda at Offbeat CCU) */}
+          <Venue />
 
-        {/* 3. About (The Origin Story) */}
-        <About />
+          {/* 3. About (The Origin Story with Seated Feluda Mascot) */}
+          <About />
 
-        {/* 4. Tracks (Mission Tracks) */}
-        <Tracks />
+          {/* 4. Tracks (Curated Problem Tracks) */}
+          <Tracks />
 
-        {/* 5. The Route (Roadmap / Tram Line) */}
-        <Route />
+          {/* 5. The Route (Kolkata Tram Roadmap) */}
+          <Route />
 
-        {/* 6. Scoreboard (Founder Points / Stock Exchange) */}
-        <Scoreboard />
+          {/* 6. Awards (Awesome Prizes & Grants) */}
+          <Awards />
 
-        {/* 7. Awards (Awesome Prizes / Josh Awards) */}
-        <Awards />
+          {/* 7. The Squad (Mentors, Jury, Organizers) */}
+          <Squad />
 
-        {/* 8. The Squad (Mentors, Jury, Organizers) */}
-        <Squad />
+          {/* 8. Sponsors (Backed By Industry Leaders) */}
+          <Sponsors />
 
-        {/* 9. Sponsors (Powered By Great Teams) */}
-        <Sponsors />
+          {/* 9. Archives (The Kolkata Energy) */}
+          <Archives />
 
-        {/* 10. Archives (The Energy) */}
-        <Archives />
+          {/* 10. FAQ (Common Queries) */}
+          <FAQ />
+        </main>
+      )}
 
-        {/* 11. FAQ (Ask The Adda) */}
-        <FAQ />
-      </main>
-
-      {/* 12. Footer */}
+      {/* Footer */}
       <Footer />
 
       {/* Floating Yellow Sound Toggle (Bottom-Right) */}
