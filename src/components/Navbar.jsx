@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { content } from '../content';
 
 export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -14,25 +13,27 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   };
 
   return (
-    <nav className="fixed top-4 left-0 right-0 z-50 px-4">
-      <div className="max-w-6xl mx-auto bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-5 py-2.5 flex items-center justify-between shadow-[4px_4px_0px_#000]">
+    <nav className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 pointer-events-none">
+      <div className="relative max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Brand / Logo */}
-        <a
-          href="#hero"
-          onClick={(e) => handleLinkClick(e, '#hero')}
-          className="flex items-center gap-2.5 group"
-        >
-          <span className="w-8 h-8 rounded-full bg-[#E11D48] border-2 border-black flex items-center justify-center font-bebas text-white text-base font-bold shadow-[2px_2px_0px_#000] group-hover:bg-[#FFC800] group-hover:text-black transition-colors">
-            FH
-          </span>
-          <span className="font-bebas text-xl tracking-wider text-[#FFFFFF] drop-shadow-[2px_2px_0px_#000]">
-            FOUNDERS' <span className="text-[#E11D48]">HOUSE</span>
-          </span>
-        </a>
+        {/* 1. ISOLATED BRAND / LOGO CAPSULE (Left) */}
+        <div className="pointer-events-auto">
+          <a
+            href="#hero"
+            onClick={(e) => handleLinkClick(e, '#hero')}
+            className="inline-flex items-center gap-2.5 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-4 py-2 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] transition-all group"
+          >
+            <span className="w-8 h-8 rounded-full bg-[#E11D48] border-2 border-black flex items-center justify-center font-bebas text-white text-base font-bold shadow-[2px_2px_0px_#000] group-hover:bg-[#FFC800] group-hover:text-black transition-colors">
+              FH
+            </span>
+            <span className="font-bebas text-xl tracking-wider text-[#FFFFFF] drop-shadow-[2px_2px_0px_#000]">
+              FOUNDERS' <span className="text-[#E11D48]">HOUSE</span>
+            </span>
+          </a>
+        </div>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-6">
+        {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
+        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-6 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-7 py-2.5 shadow-[4px_4px_0px_#000]">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
@@ -105,21 +106,11 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           </a>
         </div>
 
-        {/* Red & Gold Apply Pill */}
-        <div className="flex items-center gap-3">
-          <a
-            href={content.event.applyLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-1.5 rounded-full bg-[#E11D48] border-2 border-black text-white font-poppins text-xs tracking-wider font-extrabold shadow-[2px_2px_0px_#000] hover:bg-[#BE123C] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
-          >
-            REGISTER NOW
-          </a>
-
-          {/* Hamburger for Mobile */}
+        {/* 3. MOBILE HAMBURGER BUTTON (Right side on small screens) */}
+        <div className="pointer-events-auto lg:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg bg-[#2A080E] border-2 border-black text-white hover:text-[#FFC800]"
+            className="p-2.5 rounded-full bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black text-white hover:text-[#FFC800] shadow-[3px_3px_0px_#000]"
             aria-label="Toggle Navigation Menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +127,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileOpen && (
-        <div className="lg:hidden mt-3 max-w-6xl mx-auto bg-[#1C0509] border-2 border-black rounded-2xl p-5 shadow-[6px_6px_0px_#000] flex flex-col gap-3.5">
+        <div className="pointer-events-auto lg:hidden mt-3 max-w-sm mx-auto bg-[#1C0509] border-2 border-black rounded-2xl p-5 shadow-[6px_6px_0px_#000] flex flex-col gap-3.5">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
