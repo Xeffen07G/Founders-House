@@ -75,11 +75,15 @@ body::before {
 
 /* Comic Cut Cards with offset shadows */
 .comic-card {
+  position: relative;
   background: #1C0509;
   border: 2px solid #000000;
   box-shadow: 4px 4px 0px #000000;
   border-radius: 14px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 .comic-card:hover {
   transform: translate(-3px, -3px);
@@ -410,54 +414,6 @@ body::before {
   animation: bounceSubtle 3s ease-in-out infinite;
 }
 
-/* Comic Drifting Clouds */
-@keyframes driftCloudsSlow {
-  0% { transform: translateX(-6%); }
-  50% { transform: translateX(6%); }
-  100% { transform: translateX(-6%); }
-}
-.animate-drift-slow {
-  animation: driftCloudsSlow 45s ease-in-out infinite;
-}
 
-@keyframes driftCloudsFast {
-  0% { transform: translateX(-12%); }
-  50% { transform: translateX(12%); }
-  100% { transform: translateX(-12%); }
-}
-.animate-drift-fast {
-  animation: driftCloudsFast 28s ease-in-out infinite;
-}
-
-/* Convergence Text Pop-In & Spring Animations */
-@keyframes comicPopIn {
-  0% {
-    opacity: 0;
-    transform: translateY(28px) scale(0.95);
-  }
-  70% {
-    opacity: 1;
-    transform: translateY(-3px) scale(1.01);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px) scale(1);
-  }
-}
-.animate-pop-1 {
-  animation: comicPopIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-}
-.animate-pop-2 {
-  animation: comicPopIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
-}
-.animate-pop-3 {
-  animation: comicPopIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
-}
-.animate-pop-4 {
-  animation: comicPopIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
-}
-.animate-pop-5 {
-  animation: comicPopIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
-}
 
 

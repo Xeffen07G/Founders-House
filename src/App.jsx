@@ -57,7 +57,7 @@ export default function App() {
         <ScoreboardPage onBack={handleBackToBase} />
       ) : (
         /* SPACIOUS LANDING PAGE (Free of heavy scoreboard clutter) */
-        <main className="space-y-12 sm:space-y-20">
+        <main className="relative z-10 space-y-12 sm:space-y-20">
           {/* 1. Hero Section */}
           <Hero />
 

@@ -11,15 +11,15 @@ export const BackgroundSkyline = () => {
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-gradient-to-b from-[#E11D48]/20 via-[#881337]/15 to-transparent rounded-full blur-[140px]" />
       <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#FFC800]/10 rounded-full blur-[150px]" />
 
-      {/* 2. HOWRAH BRIDGE BACKGROUND (Brighter & Luminous Screen Blended Transparency) */}
-      <div className="absolute top-[24%] sm:top-[16%] inset-x-0 w-full h-[60vh] sm:h-[72vh] flex items-center justify-center pointer-events-none opacity-30 sm:opacity-40 mix-blend-screen overflow-hidden">
+      {/* 2. HOWRAH BRIDGE BACKGROUND (Brighter & Luminous Transparency without blend-mode compositing stalls) */}
+      <div className="absolute top-[24%] sm:top-[16%] inset-x-0 w-full h-[60vh] sm:h-[72vh] flex items-center justify-center pointer-events-none opacity-25 sm:opacity-35 overflow-hidden">
         <img
           src="/howrah_bridge_bg.jpg"
           alt="Howrah Bridge Comic Silhouette"
-          className="w-full h-full object-cover object-center filter contrast-125 brightness-150"
+          className="w-full h-full object-cover object-center filter contrast-125 brightness-135"
           style={{
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
           }}
         />
       </div>
