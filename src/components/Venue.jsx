@@ -80,10 +80,10 @@ export const Venue = () => {
 
         {/* Dynamic & Immersive Map Container */}
         <div className="lg:col-span-7 relative">
-          <div className="rounded-2xl border-4 border-black overflow-hidden shadow-sticker-lg bg-[#070B1A] relative h-[420px] sm:h-[460px] flex flex-col justify-between">
+          <div className="rounded-2xl border-4 border-black overflow-hidden shadow-sticker-lg bg-[#070B1A] relative h-[420px] sm:h-[480px] flex flex-col justify-between group">
             
             {/* Top Interactive Controls Bar */}
-            <div className="relative z-20 flex items-center justify-between p-3.5 bg-[#0B0204]/90 backdrop-blur-md border-b-2 border-black">
+            <div className="relative z-30 flex items-center justify-between p-3.5 bg-[#0B0204]/90 backdrop-blur-md border-b-2 border-black">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48] animate-ping"></span>
                 <span className="font-mono text-xs text-white font-extrabold tracking-wider">
@@ -122,45 +122,109 @@ export const Venue = () => {
             <div className="relative w-full h-full overflow-hidden">
               
               {mapMode === 'satellite' ? (
-                /* LIVE INTERACTIVE SATELLITE / TERRAIN VIEW WITH ANIMATED RADAR SCANNER */
-                <div className="relative w-full h-full">
-                  <iframe
-                    title="AIC Techno Offbeat CCU Satellite Location"
-                    className="w-full h-full border-0 filter contrast-125 saturate-110"
-                    src="https://maps.google.com/maps?q=Offbeat%20CCU%2C%2036%20F%2C%20Topsia%20Rd%2C%20Kolkata%2C%20700039&t=k&z=17&ie=UTF8&iwloc=&output=embed"
-                    loading="lazy"
+                /* ANIMATED SATELLITE RADAR VIEW (Matching convergence1.tech style with immersive satellite imagery) */
+                <a
+                  href="https://maps.google.com/?q=Offbeat+CCU+36F+Topsia+Road+Kolkata"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative w-full h-full overflow-hidden cursor-pointer"
+                >
+                  {/* High-res Satellite Texture with Smooth Drift Animation */}
+                  <div
+                    className="absolute -inset-6 bg-cover bg-center animate-map-drift transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-125 brightness-90"
+                    style={{
+                      backgroundImage: `url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=80')`
+                    }}
                   />
 
-                  {/* High-Tech Tactical HUD Overlay on Satellite View */}
+                  {/* Dark Vignette Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#120205] via-[#120205]/40 to-[#120205]/70 group-hover:via-[#120205]/20 transition-colors duration-500" />
+
+                  {/* Satellite Grid Scanlines Overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-25"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(225, 29, 72, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 29, 72, 0.2) 1px, transparent 1px)`,
+                      backgroundSize: '24px 24px'
+                    }}
+                  />
+
+                  {/* Glowing Laser Scanline Sweeping Vertically */}
+                  <div className="absolute left-0 right-0 h-16 bg-gradient-to-b from-transparent via-[#E11D48]/40 to-transparent pointer-events-none animate-map-scan" />
+
+                  {/* Animated Radar Sweep Overlay */}
+                  <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                    <svg className="w-96 h-96 opacity-60 animate-radar-sweep" viewBox="0 0 200 200">
+                      <defs>
+                        <linearGradient id="sweepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#E11D48" stopOpacity="0.7"/>
+                          <stop offset="100%" stopColor="#E11D48" stopOpacity="0"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M100 100 L100 0 A100 100 0 0 1 180 40 Z" fill="url(#sweepGrad)"/>
+                    </svg>
+                  </div>
+
+                  {/* High-Tech Tactical HUD Overlay */}
                   <div className="absolute inset-0 pointer-events-none">
                     {/* Corner Crosshairs */}
-                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-[#E11D48]"></div>
-                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-[#E11D48]"></div>
-                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-[#E11D48]"></div>
-                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-[#E11D48]"></div>
+                    <div className="absolute top-4 left-4 w-7 h-7 border-t-2 border-l-2 border-[#E11D48]"></div>
+                    <div className="absolute top-4 right-4 w-7 h-7 border-t-2 border-r-2 border-[#E11D48]"></div>
+                    <div className="absolute bottom-4 left-4 w-7 h-7 border-b-2 border-l-2 border-[#E11D48]"></div>
+                    <div className="absolute bottom-4 right-4 w-7 h-7 border-b-2 border-r-2 border-[#E11D48]"></div>
 
-                    {/* Scanning Line Sweep Effect */}
-                    <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#E11D48] to-transparent animate-pulse opacity-75"></div>
+                    {/* Compass North Indicator */}
+                    <div className="absolute top-4 right-14 px-2 py-0.5 rounded bg-black/80 border border-white/20 font-mono text-[9px] text-[#FFC800] font-bold">
+                      ▲ N · HDG 018°
+                    </div>
 
-                    {/* Animated Target Reticle Pinpoint */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                      {/* Pulse concentric rings */}
+                    {/* Central Animated Target Pinpoint (Matching Convergence 1.0 bounce & sonar pulse) */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                      
+                      {/* Concentric Sonar Rings */}
                       <div className="relative flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full border border-[#E11D48] animate-ping opacity-60"></div>
-                        <div className="absolute w-12 h-12 rounded-full border-2 border-dashed border-[#FFC800] animate-spin"></div>
-                        <div className="absolute w-4 h-4 rounded-full bg-[#E11D48] shadow-[0_0_20px_#E11D48] border-2 border-white"></div>
+                        <div className="w-24 h-24 rounded-full border-2 border-[#E11D48] animate-sonar-ping"></div>
+                        <div className="absolute w-16 h-16 rounded-full border border-dashed border-[#FFC800] animate-spin"></div>
+                        <div className="absolute w-8 h-8 rounded-full bg-[#E11D48]/30 border border-[#E11D48] flex items-center justify-center">
+                          <div className="w-3 h-3 rounded-full bg-[#FFC800] animate-pulse"></div>
+                        </div>
                       </div>
 
-                      {/* Floating Target Identification Tag */}
-                      <div className="mt-2 px-3 py-1 bg-[#120205] border-2 border-black rounded-lg shadow-sticker flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping"></span>
-                        <span className="font-bebas text-xs text-white tracking-wider">
-                          TARGET: AIC TECHNO (OFFBEAT CCU)
+                      {/* Bouncing Map Pointer Icon (Exact Convergence 1.0 Style) */}
+                      <div className="animate-bounce flex flex-col items-center -mt-6">
+                        <svg
+                          className="w-10 h-10 sm:w-12 sm:h-12 text-[#E11D48] drop-shadow-[0_0_12px_rgba(225,29,72,0.9)]"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+
+                        {/* Floating Identification Pill */}
+                        <div className="mt-1 px-3 py-1 bg-[#120205] border-2 border-black rounded-full shadow-[3px_3px_0px_#000] flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping"></span>
+                          <span className="font-bebas text-xs sm:text-sm font-bold tracking-wider text-white whitespace-nowrap">
+                            AIC TECHNO (OFFBEAT CCU HQ)
+                          </span>
+                        </div>
+
+                        <span className="font-mono text-[10px] text-[#FFC800] font-bold tracking-widest mt-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] uppercase">
+                          36F TOPSIA ROAD · SECTOR EM BYPASS
                         </span>
                       </div>
                     </div>
                   </div>
-                </div>
+
+                  {/* Click to Navigate Callout Banner */}
+                  <div className="absolute bottom-3 left-4 px-3 py-1 rounded-full bg-[#E11D48] text-white font-mono text-[10px] font-bold tracking-wider shadow-[2px_2px_0px_#000] flex items-center gap-1.5 animate-pulse">
+                    <span>⚡ CLICK SATELLITE TO LAUNCH GPS ROUTE</span>
+                    <span>↗</span>
+                  </div>
+                </a>
               ) : (
                 /* CYBER HUD VECTOR RADAR VIEW */
                 <div className="relative w-full h-full bg-[#0B0204] flex items-center justify-center p-4">
