@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FoundersHouseIcon } from './BrandLogo';
 
 export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -23,9 +24,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
             onClick={(e) => handleLinkClick(e, '#hero')}
             className="inline-flex items-center gap-2.5 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-4 py-2 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] transition-all group"
           >
-            <span className="w-8 h-8 rounded-full bg-[#E11D48] border-2 border-black flex items-center justify-center font-bebas text-white text-base font-bold shadow-[2px_2px_0px_#000] group-hover:bg-[#FFC800] group-hover:text-black transition-colors">
-              FH
-            </span>
+            <FoundersHouseIcon className="w-8 h-8 rounded-lg shadow-[2px_2px_0px_#000] group-hover:scale-105 group-hover:rotate-3 transition-transform flex-shrink-0" />
             <span className="font-bebas text-xl tracking-wider text-[#FFFFFF] drop-shadow-[2px_2px_0px_#000]">
               FOUNDERS' <span className="text-[#E11D48]">HOUSE</span>
             </span>

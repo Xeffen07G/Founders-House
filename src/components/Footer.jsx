@@ -1,5 +1,6 @@
 import React from 'react';
 import { content } from '../content';
+import { FoundersHouseIcon } from './BrandLogo';
 
 export const Footer = () => {
   return (
@@ -10,10 +11,8 @@ export const Footer = () => {
         
         {/* Col 1: Logo & Tagline */}
         <div className="max-w-md">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-9 h-9 rounded-full bg-[#E11D48] border-2 border-black flex items-center justify-center font-bebas text-white text-base font-bold shadow-[2px_2px_0px_#000]">
-              FH
-            </span>
+          <div className="flex items-center gap-2.5 mb-3">
+            <FoundersHouseIcon className="w-9 h-9 rounded-lg shadow-[2px_2px_0px_#000] flex-shrink-0" />
             <span className="font-bebas text-xl tracking-wider text-[#FFFFFF]">
               FOUNDERS' <span className="text-[#E11D48]">HOUSE</span>
             </span>
