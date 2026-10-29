@@ -12,10 +12,11 @@ export const SectionHeader = ({
   line1,
   line2,
   accentColor = "text-[#E11D48]",
-  description
+  description,
+  className = "mb-6 sm:mb-8"
 }) => {
   return (
-    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+    <div className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 ${className}`}>
       <div>
         <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bebas leading-[0.95] tracking-wide uppercase">
           <span className="block text-[#FFFFFF] drop-shadow-[3px_3px_0px_#000]">{line1}</span>
