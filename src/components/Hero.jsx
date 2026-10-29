@@ -37,10 +37,12 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[90vh] sm:min-h-screen pt-20 pb-10 flex flex-col items-center justify-center overflow-hidden">
-      {/* Hero Header Area - Centered in Viewport */}
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between items-center pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 overflow-hidden">
+      {/* Invisible spacer balancing the fixed top navbar to keep the middle block dead-center */}
+      <div className="hidden sm:block h-6 sm:h-10" aria-hidden="true" />
+
+      {/* 1. MIDDLE BLOCK: FOUNDERS' HOUSE & KOLKATA (Placed in the exact middle of the screen) */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center my-auto">
-        
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
         <div className="relative mb-1 sm:mb-2 inline-block">
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-bebas uppercase tracking-wide text-[#FFFFFF] select-none drop-shadow-[5px_5px_0px_#000000] leading-[0.9]">
@@ -55,23 +57,26 @@ export const Hero = () => {
         </div>
 
         {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
-        <div className="flex justify-center mt-1 sm:mt-2 mb-10 sm:mb-14 md:mb-16">
+        <div className="flex justify-center mt-1 sm:mt-2">
           <img
             src="/kolkata_bengali_sticker.webp"
             alt="কলকাতা (Kolkata)"
-            className="h-8 sm:h-10 md:h-12 w-auto object-contain select-none transform -rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
+            className="h-9 sm:h-11 md:h-14 w-auto object-contain select-none transform -rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
             width="376"
             height="102"
           />
         </div>
+      </div>
 
+      {/* 2. LOWER BLOCK: Countdown Timer & CTA Buttons (Brought down lower on the page) */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-end mt-8 sm:mt-12">
         {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) - Clickable to Add to Google Calendar */}
         <a
           href={GOOGLE_CALENDAR_LINK}
           target="_blank"
           rel="noopener noreferrer"
           title="Click to add Founders' House (18–20 Dec 2026) to Google Calendar"
-          className="group relative inline-flex items-center justify-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-[#1C0509] hover:bg-[#25060C] border-2 border-black hover:border-[#FFC800] shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer select-none mb-10 sm:mb-12"
+          className="group relative inline-flex items-center justify-center gap-3 sm:gap-6 p-4 sm:p-5 rounded-2xl bg-[#1C0509] hover:bg-[#25060C] border-2 border-black hover:border-[#FFC800] shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer select-none mb-4 sm:mb-5"
         >
           <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
             <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
