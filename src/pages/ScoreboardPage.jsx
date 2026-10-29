@@ -39,7 +39,7 @@ export const ScoreboardPage = ({ onBack }) => {
             FOUNDERS' <span className="text-[#FFC800]">STOCK EXCHANGE</span>
           </h1>
           <p className="text-sm sm:text-base font-poppins text-[#FFF9F2]/75 leading-relaxed">
-            Real-time evidence board, milestone points, and jury traction scores. Selected teams compete over 72 hours at AIC Techno to reach the final demo day.
+            Real time evidence board, milestone points, and jury traction scores. Selected teams compete over 72 hours at AIC Techno to reach the final demo day.
           </p>
         </div>
 

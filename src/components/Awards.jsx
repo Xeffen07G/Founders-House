@@ -10,7 +10,7 @@ export const Awards = () => {
         line1="THE GRAND"
         line2="JOSH AWARDS."
         accentColor="text-[#FFC800]"
-        description="Over ₹50,00,000+ in pooled seed capital pipeline, AIC Techno incubation fast-track passes, cloud compute credits, and bespoke Kolkata trophies."
+        description="Over ₹50,00,000+ in pooled seed capital pipeline, AIC Techno incubation fast track passes, cloud compute credits, and bespoke Kolkata trophies."
       />
 
       {/* Convergence 1.0 Style Trophy Podiums (2nd, 1st, 3rd) */}
@@ -21,7 +21,7 @@ export const Awards = () => {
           <div className="comic-card p-7 border-2 border-[#19D3F3] bg-[#1C0509] text-center flex flex-col justify-between h-84 shadow-[6px_6px_0px_#000]">
             <div>
               <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-[#19D3F3]/20 text-[#19D3F3] border border-[#19D3F3]">
-                RUNNER-UP PRIZE
+                RUNNER UP PRIZE
               </span>
               <div className="text-5xl my-4">🥈</div>
               <h4 className="font-bebas text-2xl text-white mb-1 tracking-wide">
@@ -32,7 +32,7 @@ export const Awards = () => {
               </div>
             </div>
             <p className="text-xs font-poppins text-white/75 leading-relaxed">
-              For the squad demonstrating the sharpest problem-solving deductions and customer validation evidence.
+              For the squad demonstrating the sharpest problem solving deductions and customer validation evidence.
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export const Awards = () => {
               </div>
             </div>
             <p className="text-xs font-poppins text-white/90 leading-relaxed font-medium">
-              The supreme honor for the overall most venture-ready, technically ambitious, and relentless builder squad.
+              The supreme honor for the overall most venture ready, technically ambitious, and relentless builder squad.
             </p>
           </div>
         </div>
@@ -87,7 +87,7 @@ export const Awards = () => {
           { name: "Phoenix Award", cat: "Sprint Pivot", prize: "Trophy + AWS Credits" },
           { name: "Nari Shakti Award", cat: "Women In Tech", prize: "Trophy + Special Grant" },
           { name: "Innovation Ratan", cat: "Deep Tech & AI", prize: "Trophy + GitHub Enterprise" },
-          { name: "Sustain-o-ward", cat: "SDG & Climate", prize: "Trophy + Impact Pass" },
+          { name: "Sustainability Award", cat: "SDG & Climate", prize: "Trophy + Impact Pass" },
           { name: "Jury's Choice", cat: "Audience Favorite", prize: "Trophy + Hardware Kit" },
         ].map((item, idx) => (
           <div key={idx} className="comic-card p-5 bg-[#1C0509] hover:border-[#FFC800] transition-colors">

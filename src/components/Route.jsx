@@ -98,15 +98,16 @@ export const Route = () => {
 
       if (isMobile) {
         // Smooth gentle curves on mobile
-        const waveX = (i % 2 === 0) ? 44 : 20;
+        const waveX = (i % 2 === 0) ? 46 : 14;
         d += `C ${waveX} ${p1.y + dy * 0.3}, ${waveX} ${p1.y + dy * 0.7}, ${p2.x} ${p2.y} `;
       } else {
-        // Natural Kolkata curved track with gentle lateral sweep
-        const curveBow = (i % 2 === 0) ? 55 : -55;
-        const cp1x = Math.max(35, Math.min(containerW - 35, p1.x + curveBow));
-        const cp1y = p1.y + dy * 0.35;
-        const cp2x = Math.max(35, Math.min(containerW - 35, p2.x - curveBow));
-        const cp2y = p1.y + dy * 0.65;
+        // Pronounced S-type serpentine sweeping curve between stations
+        const isLeftToRight = p2.x > p1.x;
+        const sSwing = isLeftToRight ? 115 : -115;
+        const cp1x = Math.max(35, Math.min(containerW - 35, p1.x + sSwing));
+        const cp1y = p1.y + dy * 0.22;
+        const cp2x = Math.max(35, Math.min(containerW - 35, p2.x - sSwing));
+        const cp2y = p1.y + dy * 0.78;
 
         d += `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y} `;
       }
@@ -207,7 +208,7 @@ export const Route = () => {
         line1="THE SPRINT"
         line2="ROUTE & STATIONS."
         accentColor="text-[#FFC800]"
-        description="Hop onto the Kolkata broad-gauge line. Each station is an authentic cartoon station board on twin striped pillars. Click any station board to pop up its full activities docket and mission briefing."
+        description="Hop onto the Kolkata broad gauge line. Each station is an authentic cartoon station board on twin striped pillars. Click any station board to pop up its full activities docket and mission briefing."
       />
 
       {/* Main Track & Station Boards Container */}

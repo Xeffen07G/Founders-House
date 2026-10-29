@@ -9,9 +9,9 @@ export const About = () => {
       <SectionHeader
         pill="ABOUT THE EVENT"
         line1="MORE THAN A HACKATHON."
-        line2="KOLKATA-LEVEL HUSTLE."
+        line2="KOLKATA LEVEL HUSTLE."
         accentColor="text-[#E11D48]"
-        description="A 72-hour residential sprint designed for serious builders. 10 curated teams live together at AIC Techno (Offbeat CCU), building real software with 24/7 mentorship and pitching to active venture investors."
+        description="A 72 hour residential sprint designed for serious builders. 10 curated teams live together at AIC Techno (Offbeat CCU), building real software with 24/7 mentorship and pitching to active venture investors."
       />
 
       {/* Main 2-Column Showcase: Origin Story (Left) + Seated Feluda Mascot in Armchair (Right) */}
@@ -25,7 +25,7 @@ export const About = () => {
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xl">☕</span>
               <span className="font-bebas text-sm sm:text-base tracking-[0.2em] text-[#FFC800] uppercase">
-                THE 72-HOUR RESIDENTIAL PHILOSOPHY
+                THE 72 HOUR RESIDENTIAL PHILOSOPHY
               </span>
             </div>
             
@@ -34,11 +34,11 @@ export const About = () => {
             </h3>
 
             <p className="font-poppins text-sm sm:text-base text-white/80 leading-relaxed mb-4">
-              Kolkata has always been the intellectual capital, home to Satyajit Ray's timeless detectives, revolutionary writers, and world-class polymaths. <strong className="text-white">Founders' House</strong> channels that deep analytical DNA into high-velocity technology startups.
+              Kolkata has always been the intellectual capital, home to Satyajit Ray's timeless detectives, revolutionary writers, and world class polymaths. <strong className="text-white">Founders' House</strong> channels that deep analytical DNA into high velocity technology startups.
             </p>
 
             <p className="font-poppins text-xs sm:text-sm text-white/70 leading-relaxed">
-              Organized by <strong className="text-[#FFC800]">Hult Prize at TIU</strong> and hosted at the state-of-the-art incubation hub <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, this is not a sleep-deprived gimmick. It is an incubator-grade gauntlet for founders who want to build companies that last.
+              Organized by <strong className="text-[#FFC800]">Hult Prize at TIU</strong> and hosted at the state of the art incubation hub <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, this is not a sleep deprived gimmick. It is an incubator grade gauntlet for founders who want to build companies that last.
             </p>
           </div>
 
@@ -113,8 +113,8 @@ export const About = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
             { icon: "🌉", label: "Howrah Bridge resilience", desc: "Cantilever steel engineering that never bows" },
-            { icon: "🚊", label: "Heritage tram patience", desc: "Zero-emission steady momentum through traffic" },
-            { icon: "☕", label: "Adda debate culture", desc: "Rigorous stress-testing of ideas over chai" },
+            { icon: "🚊", label: "Heritage tram patience", desc: "Zero emission steady momentum through traffic" },
+            { icon: "☕", label: "Adda debate culture", desc: "Rigorous stress testing of ideas over chai" },
             { icon: "🎬", label: "Satyajit Ray aesthetics", desc: "Clarity, proportion, and purposeful storytelling" },
           ].map((item, idx) => (
             <div key={idx} className="p-4 rounded-xl bg-[#120205] border border-black/80">

@@ -35,7 +35,7 @@ export const Hero = () => {
         {/* Pill Tag (Kolkata Red & White style) */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C0509] border border-[#E11D48]/80 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-6 shadow-[3px_3px_0px_#000]">
           <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-pulse" />
-          KOLKATA'S PREMIER 72-HOUR RESIDENTIAL HACKATHON
+          KOLKATA'S PREMIER 72 HOUR RESIDENTIAL HACKATHON
         </div>
 
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
@@ -53,7 +53,7 @@ export const Hero = () => {
 
         {/* Subtitle / Tagline */}
         <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-8">
-          Kolkata's most relentless 72-hour startup sprint. 10 elite squads live on-site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
+          Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
         </p>
 
         {/* Live Countdown Timer in Red, White & Gold */}
@@ -131,7 +131,7 @@ export const Hero = () => {
 
         {/* Event Meta Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-          {["18-20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN-INDIA STUDENTS"].map((chip, idx) => (
+          {["18 TO 20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN INDIA STUDENTS"].map((chip, idx) => (
             <span
               key={idx}
               className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-white/20 text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 shadow-[2px_2px_0px_#000]"
