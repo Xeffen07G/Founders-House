@@ -128,7 +128,6 @@ export const content = {
       {
         id: "stop-1",
         number: "STATION 01",
-        phase: "PHASE_01",
         yard: "YARD 1",
         watermark: "01",
         icon: "⚡",
@@ -146,15 +145,14 @@ export const content = {
           "Rolling review calls"
         ],
         schedule: [
-          { time: "Phase 1", title: "Team Formation Check", detail: "Assemble 3-5 driven student builders across engineering, product & design" },
-          { time: "Phase 2", title: "Deck & Prototype Screening", detail: "Submit your problem proof-of-work, GitHub commits, or initial wireframes" },
-          { time: "Phase 3", title: "Rolling Review Calls", detail: "Short interviews with screening committee on problem clarity" }
+          { time: "Stage 1", title: "Team Formation Check", detail: "Assemble 3-5 driven student builders across engineering, product & design" },
+          { time: "Stage 2", title: "Deck & Prototype Screening", detail: "Submit your problem proof-of-work, GitHub commits, or initial wireframes" },
+          { time: "Stage 3", title: "Rolling Review Calls", detail: "Short interviews with screening committee on problem clarity" }
         ]
       },
       {
         id: "stop-2",
         number: "STATION 02",
-        phase: "PHASE_02",
         yard: "YARD 2",
         watermark: "02",
         icon: "🔍",
@@ -172,16 +170,15 @@ export const content = {
           "Packing checklist & travel assistance"
         ],
         schedule: [
-          { time: "Phase 1", title: "Shortlist Announcement Livestream", detail: "Live unveiling of the elite 10 finalist squads selected across India" },
-          { time: "Phase 2", title: "Pre-Event Briefing & Mentor Pairings", detail: "Orientation pack, encrypted dossier access, and mentor introductions" },
-          { time: "Phase 3", title: "Travel & Boarding Passes Dispatch", detail: "Travel arrangements and residential boarding passes to AIC Techno campus" }
+          { time: "Stage 1", title: "Shortlist Announcement Livestream", detail: "Live unveiling of the elite 10 finalist squads selected across India" },
+          { time: "Stage 2", title: "Pre-Event Briefing & Mentor Pairings", detail: "Orientation pack, encrypted dossier access, and mentor introductions" },
+          { time: "Stage 3", title: "Travel & Boarding Passes Dispatch", detail: "Travel arrangements and residential boarding passes to AIC Techno campus" }
         ]
       },
       {
         id: "stop-3",
         number: "STATION 03 · DAY 1",
-        phase: "PHASE_03",
-        yard: "PLATFORM 1",
+        yard: "DAY 1 PLATFORM",
         watermark: "03",
         icon: "🚀",
         stationName: "Inspire & Form",
@@ -213,8 +210,7 @@ export const content = {
       {
         id: "stop-4",
         number: "STATION 04 · DAY 2",
-        phase: "PHASE_04",
-        yard: "PLATFORM 2",
+        yard: "DAY 2 PLATFORM",
         watermark: "04",
         icon: "🛠️",
         stationName: "Validate & Build",
@@ -249,8 +245,7 @@ export const content = {
       {
         id: "stop-5",
         number: "STATION 05 · DAY 3",
-        phase: "PHASE_05",
-        yard: "PLATFORM 3",
+        yard: "DAY 3 PLATFORM",
         watermark: "05",
         icon: "🏆",
         stationName: "Demo Day & Josh Awards",
