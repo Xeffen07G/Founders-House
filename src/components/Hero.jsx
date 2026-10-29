@@ -55,7 +55,7 @@ export const Hero = () => {
         </div>
 
         {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
-        <div className="flex justify-center -mt-1 sm:-mt-2 mb-6 sm:mb-8">
+        <div className="flex justify-center mt-1 sm:mt-2 mb-10 sm:mb-14 md:mb-16">
           <img
             src="/kolkata_bengali_sticker.webp"
             alt="কলকাতা (Kolkata)"
@@ -71,7 +71,7 @@ export const Hero = () => {
           target="_blank"
           rel="noopener noreferrer"
           title="Click to add Founders' House (18–20 Dec 2026) to Google Calendar"
-          className="group relative inline-flex items-center justify-center gap-3 sm:gap-5 p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] hover:bg-[#25060C] border-2 border-black hover:border-[#FFC800] shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer select-none mb-8 sm:mb-9"
+          className="group relative inline-flex items-center justify-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-[#1C0509] hover:bg-[#25060C] border-2 border-black hover:border-[#FFC800] shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer select-none mb-10 sm:mb-12"
         >
           <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
             <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
