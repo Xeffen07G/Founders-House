@@ -5,13 +5,12 @@ import { FeludaArmchairCartoon } from './FeludaArmchairCartoon';
 
 export const About = () => {
   return (
-    <section id="about" className="py-28 sm:py-36 px-4 max-w-7xl mx-auto">
+    <section id="about" className="pt-36 sm:pt-48 pb-28 sm:pb-36 px-4 max-w-7xl mx-auto">
       <SectionHeader
         pill="ABOUT THE EVENT"
         line1="MORE THAN A HACKATHON."
         line2="KOLKATA LEVEL HUSTLE."
         accentColor="text-[#E11D48]"
-        description="A 72 hour residential sprint designed for serious builders. 10 curated teams live together at AIC Techno (Offbeat CCU), building real software with 24/7 mentorship and pitching to active venture investors."
       />
 
       {/* Main 2-Column Showcase: Origin Story (Left) + Seated Feluda Mascot in Armchair (Right) */}
