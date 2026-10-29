@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Route = () => {
-  const [activeStopIdx, setActiveStopIdx] = useState(2); // Default to Day 1
-  const [popupStop, setPopupStop] = useState(null); // The stop currently opened in the popup modal
+  const [activeStopIdx, setActiveStopIdx] = useState(0);
+  const [popupStop, setPopupStop] = useState(null);
+  const [pathD, setPathD] = useState('');
+  const [trackPoints, setTrackPoints] = useState([]);
+  const [trainState, setTrainState] = useState({ x: 0, y: 0, angle: 90, progress: 0 });
+
+  const containerRef = useRef(null);
+  const pathRef = useRef(null);
+  const cardRefs = useRef([]);
 
   const stops = content.route.stops;
 
-  // Handle escape key to close modal
+  // Handle Escape key to close modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -30,6 +37,134 @@ export const Route = () => {
       document.body.style.overflow = 'unset';
     };
   }, [popupStop]);
+
+  // Compute the dynamic SVG railway track path connecting each station
+  const computeTrackPath = () => {
+    if (!containerRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const isMobile = window.innerWidth < 768;
+
+    const points = [];
+
+    // Calculate station waypoint connection coordinates
+    stops.forEach((_, idx) => {
+      const cardEl = cardRefs.current[idx];
+      if (!cardEl) return;
+      const cardRect = cardEl.getBoundingClientRect();
+
+      let x, y;
+      const centerY = cardRect.top - containerRect.top + cardRect.height * 0.5;
+
+      if (isMobile) {
+        // On mobile, the track snakes along the left side
+        x = 36;
+        y = centerY;
+      } else {
+        // On desktop, zigzag left and right
+        const isLeft = idx % 2 === 0;
+        if (isLeft) {
+          // Connect to the right edge of left cards
+          x = cardRect.right - containerRect.left + 24;
+        } else {
+          // Connect to the left edge of right cards
+          x = cardRect.left - containerRect.left - 24;
+        }
+        y = centerY;
+      }
+
+      points.push({ x, y });
+    });
+
+    if (points.length < 2) return;
+    setTrackPoints(points);
+
+    // Build the serpentine cubic bezier SVG path
+    let d = '';
+    const startY = Math.max(0, points[0].y - 80);
+    const startX = points[0].x;
+
+    d += `M ${startX} ${startY} `;
+    d += `L ${points[0].x} ${points[0].y} `;
+
+    for (let i = 0; i < points.length - 1; i++) {
+      const p1 = points[i];
+      const p2 = points[i + 1];
+      const midY = (p1.y + p2.y) / 2;
+
+      if (isMobile) {
+        // Subtle serpentine curve on mobile
+        const waveX = (i % 2 === 0) ? 54 : 20;
+        d += `C ${waveX} ${p1.y + 40}, ${waveX} ${p2.y - 40}, ${p2.x} ${p2.y} `;
+      } else {
+        // Luxurious wide S-curve on desktop like reference image
+        d += `C ${p1.x} ${midY}, ${p2.x} ${midY}, ${p2.x} ${p2.y} `;
+      }
+    }
+
+    // Extend line past the final station
+    const lastP = points[points.length - 1];
+    d += `L ${lastP.x} ${lastP.y + 90}`;
+
+    setPathD(d);
+  };
+
+  // Recompute path on resize & mount
+  useEffect(() => {
+    // Initial delay to allow layout to settle
+    const timer = setTimeout(() => {
+      computeTrackPath();
+    }, 150);
+
+    const handleResize = () => {
+      computeTrackPath();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Scroll listener to drive the cartoon train along the track
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current || !pathRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start when route section enters middle of screen, finish as it exits
+      const totalTravel = rect.height;
+      const currentScroll = windowHeight * 0.65 - rect.top;
+      const progress = Math.max(0, Math.min(1, currentScroll / totalTravel));
+
+      const totalLength = pathRef.current.getTotalLength();
+      if (!totalLength || isNaN(totalLength) || totalLength <= 0) return;
+
+      const currentDist = progress * totalLength;
+      const pt = pathRef.current.getPointAtLength(currentDist);
+
+      // Tangent for rotation angle
+      const delta = 4;
+      const ptAhead = pathRef.current.getPointAtLength(Math.min(currentDist + delta, totalLength));
+      const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
+
+      setTrainState({ x: pt.x, y: pt.y, angle, progress });
+
+      // Automatically highlight active station based on train progress
+      const stationIndex = Math.min(
+        stops.length - 1,
+        Math.floor(progress * stops.length * 1.05)
+      );
+      setActiveStopIdx(stationIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on load
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathD]);
 
   const openStationPopup = (stop, idx) => {
     setActiveStopIdx(idx);
@@ -57,164 +192,344 @@ export const Route = () => {
   };
 
   return (
-    <section id="route" className="py-24 sm:py-32 px-4 max-w-7xl mx-auto relative">
+    <section id="route" className="py-24 sm:py-36 px-4 max-w-7xl mx-auto relative overflow-hidden">
       <SectionHeader
-        pill="RAILWAY TIMETABLE & SPRINT LINE"
+        pill="RAILWAY SPRINT LINE & TIMETABLE"
         line1="THE SPRINT"
-        line2="STATIONS & TIMELINE."
+        line2="ROUTE & STATIONS."
         accentColor="text-[#FFC800]"
-        description="Step onto the platform. Each sprint day is an authentic Kolkata train station along our 72-hour route. Click any station below to pop up its platform timetable, dossier clues, and full schedule of activities."
+        description="Follow the serpentine broad gauge track as the Kolkata Sprint Express travels through each station. As you scroll, the cartoon train journeys from Yard 1 to Demo Day Platform 3. Click any station to pop up its full activity docket."
       />
 
-      {/* Railway Track & Overhead Wire System */}
-      <div className="relative my-8 lg:my-14">
-        {/* Overhead Catenary Electric Wire */}
-        <div className="hidden lg:block relative mb-3 px-6">
-          <div className="h-[2px] bg-gradient-to-r from-transparent via-[#FFC800]/40 to-transparent w-full" />
-          <div className="flex justify-between items-center text-[10px] font-mono text-[#FFC800]/60 uppercase tracking-widest pt-1 px-4">
-            <span>⚡ 25kV CCU TRAM & SPRINT CATENARY LINE</span>
-            <span>GAUGE: BROAD GAUGE 5FT 6IN</span>
-            <span>SIGNAL STATUS: ALL CLEAR 🟢</span>
-          </div>
-        </div>
+      {/* Main Track & Stations Container */}
+      <div ref={containerRef} className="relative mt-12 sm:mt-20 pb-16">
+        {/* ============================================================== */}
+        {/* SVG CARTOON RAILWAY TRACK & ANIMATED SCROLLING TRAIN           */}
+        {/* ============================================================== */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          style={{ overflow: 'visible' }}
+        >
+          <defs>
+            {/* Front Headlight Light Cone Gradient */}
+            <linearGradient id="trainHeadlight" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stopColor="#FFC800" stopOpacity="0.85" />
+              <stop offset="40%" stopColor="#FFD700" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#FFC800" stopOpacity="0" />
+            </linearGradient>
 
-        {/* Dual Steel Rails & Wooden Sleepers */}
-        <div className="hidden lg:block relative h-14 bg-[#140407] border-2 border-black rounded-xl overflow-hidden shadow-[inset_0_4px_12px_rgba(0,0,0,0.8)]">
-          {/* Wooden Sleepers Pattern */}
-          <div
-            className="absolute inset-0 opacity-40"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(90deg, #3D1E0F 0px, #3D1E0F 12px, transparent 12px, transparent 28px)',
-            }}
-          />
+            {/* Ballast Gravel Pattern Filter */}
+            <filter id="trackGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000000" floodOpacity="0.8" />
+            </filter>
+          </defs>
 
-          {/* Top Steel Rail */}
-          <div className="absolute top-3 left-0 right-0 h-1.5 bg-gradient-to-b from-[#E2E8F0] via-[#94A3B8] to-[#475569] shadow-[0_1px_4px_rgba(255,255,255,0.4)]" />
+          {/* Layer 1: Dark Track Bed / Ballast */}
+          {pathD && (
+            <path
+              d={pathD}
+              fill="none"
+              stroke="#1C0509"
+              strokeWidth="32"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#trackGlow)"
+            />
+          )}
 
-          {/* Bottom Steel Rail */}
-          <div className="absolute bottom-3 left-0 right-0 h-1.5 bg-gradient-to-b from-[#E2E8F0] via-[#94A3B8] to-[#475569] shadow-[0_1px_4px_rgba(255,255,255,0.4)]" />
+          {/* Layer 2: Wooden Sleepers (Rail Ties) */}
+          {pathD && (
+            <path
+              d={pathD}
+              fill="none"
+              stroke="#3D1808"
+              strokeWidth="24"
+              strokeDasharray="4 14"
+              strokeLinecap="butt"
+              opacity="0.9"
+            />
+          )}
 
-          {/* Progress Light Track */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 left-0 h-2 bg-[#FFC800] transition-all duration-700 rounded-full shadow-[0_0_12px_#FFC800]"
-            style={{ width: `${((activeStopIdx + 0.5) / stops.length) * 100}%` }}
-          />
+          {/* Layer 3: Steel Rails Base Outline */}
+          {pathD && (
+            <path
+              d={pathD}
+              fill="none"
+              stroke="#0B0A12"
+              strokeWidth="14"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          )}
 
-          {/* Moving Tram / Train Engine Indicator */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 transition-all duration-700 z-20 flex items-center -ml-7"
-            style={{ left: `${((activeStopIdx + 0.5) / stops.length) * 100}%` }}
-          >
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E11D48] border-2 border-black shadow-[3px_3px_0px_#000] text-white font-mono text-xs font-bold animate-pulse">
-              <span>🚃</span>
-              <span>AT PLATFORM</span>
-            </div>
-          </div>
-        </div>
+          {/* Layer 4: Dual Shiny Steel Rails (cut out center creates two parallel rails!) */}
+          {pathD && (
+            <path
+              d={pathD}
+              fill="none"
+              stroke="#CBD5E1"
+              strokeWidth="11"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          )}
 
-        {/* Station Signal Lights Bar (Desktop) */}
-        <div className="hidden lg:grid grid-cols-5 gap-6 mt-3 px-2">
-          {stops.map((stop, idx) => (
-            <div key={stop.id} className="flex items-center justify-center gap-2">
-              <span
-                className={`w-3 h-3 rounded-full border border-black shadow-[0_0_8px] transition-all ${
-                  idx < activeStopIdx
-                    ? 'bg-[#7CFF3A] shadow-[#7CFF3A]'
-                    : idx === activeStopIdx
-                    ? 'bg-[#FFC800] shadow-[#FFC800] animate-ping'
-                    : 'bg-[#E11D48] shadow-[#E11D48]/50'
-                }`}
+          {/* Layer 5: Inner Ballast Cutout (Leaves two 2.5px polished steel rails) */}
+          {pathD && (
+            <path
+              d={pathD}
+              fill="none"
+              stroke="#140306"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          )}
+
+          {/* Layer 6: Golden Rail Reflection Line */}
+          {pathD && (
+            <path
+              ref={pathRef}
+              d={pathD}
+              fill="none"
+              stroke="#FFC800"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity="0.85"
+            />
+          )}
+
+          {/* Station Waypoint Markers (Platform Junction Hubs) */}
+          {trackPoints.map((pt, pIdx) => {
+            const isPassed = pIdx < activeStopIdx;
+            const isCurrent = pIdx === activeStopIdx;
+
+            return (
+              <g key={pIdx} transform={`translate(${pt.x}, ${pt.y})`}>
+                {/* Station Platform Outer Ring */}
+                <circle
+                  r="16"
+                  fill="#140306"
+                  stroke="#000000"
+                  strokeWidth="3"
+                />
+                <circle
+                  r="13"
+                  fill="#1F070B"
+                  stroke={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
+                  strokeWidth="2.5"
+                />
+                {/* Station Signal Light Indicator */}
+                <circle
+                  r="6"
+                  fill={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
+                  className={isCurrent ? "animate-ping" : ""}
+                />
+                <circle
+                  r="5"
+                  fill={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
+                />
+              </g>
+            );
+          })}
+
+          {/* ============================================================== */}
+          {/* CARTOON ANIMATED TRAIN (Driven by user scroll position)       */}
+          {/* ============================================================== */}
+          {pathD && (
+            <g
+              transform={`translate(${trainState.x}, ${trainState.y}) rotate(${trainState.angle})`}
+              className="transition-transform duration-75 ease-out"
+            >
+              {/* Headlight Beam spreading forward onto the track */}
+              <polygon
+                points="28,-4 85,-24 85,24 28,4"
+                fill="url(#trainHeadlight)"
               />
-              <span className="font-mono text-[10px] text-white/60 tracking-wider">
-                {idx < activeStopIdx ? 'CLEARED' : idx === activeStopIdx ? 'CURRENT STOP' : 'SEALED'}
-              </span>
-            </div>
-          ))}
-        </div>
 
-        {/* 5 Train Stations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10 pt-4 lg:pt-8">
+              {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
+              <circle cx="-32" cy="-8" r="4.5" fill="#FFFFFF" opacity="0.85" />
+              <circle cx="-42" cy="-14" r="6" fill="#FFFFFF" opacity="0.6" />
+              <circle cx="-54" cy="-20" r="7.5" fill="#FFFFFF" opacity="0.35" />
+
+              {/* Train Drop Shadow */}
+              <rect
+                x="-28"
+                y="-13"
+                width="56"
+                height="26"
+                rx="6"
+                fill="#000000"
+                opacity="0.6"
+              />
+
+              {/* Train Main Chassis (Iconic Kolkata Crimson) */}
+              <rect
+                x="-26"
+                y="-14"
+                width="52"
+                height="28"
+                rx="7"
+                fill="#E11D48"
+                stroke="#000000"
+                strokeWidth="2.5"
+              />
+
+              {/* Train Top Cabin (Cream / White vintage streetcar look) */}
+              <rect
+                x="-23"
+                y="-11"
+                width="28"
+                height="22"
+                rx="4"
+                fill="#FFF9F2"
+                stroke="#000000"
+                strokeWidth="2"
+              />
+
+              {/* Front Cowcatcher / Pilot (Golden Taxi Yellow) */}
+              <polygon
+                points="26,-10 33,-5 33,5 26,10"
+                fill="#FFC800"
+                stroke="#000000"
+                strokeWidth="2"
+              />
+
+              {/* Conductor Windshield & Feluda Silhouette */}
+              <rect
+                x="-17"
+                y="-8"
+                width="11"
+                height="16"
+                rx="2"
+                fill="#1E293B"
+                stroke="#000000"
+                strokeWidth="1.5"
+              />
+              <circle cx="-12" cy="0" r="3" fill="#FAD1A7" />
+
+              {/* Side Racing Gold Stripe */}
+              <line
+                x1="-24"
+                y1="0"
+                x2="26"
+                y2="0"
+                stroke="#FFC800"
+                strokeWidth="3"
+              />
+
+              {/* Front Glowing Lantern */}
+              <circle cx="26" cy="0" r="3.5" fill="#FFC800" stroke="#000000" strokeWidth="1.5" />
+              <circle cx="26" cy="0" r="1.5" fill="#FFFFFF" />
+
+              {/* Wheels along the Steel Rail */}
+              <circle cx="-16" cy="-14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+              <circle cx="2" cy="-14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+              <circle cx="16" cy="-14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+
+              <circle cx="-16" cy="14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+              <circle cx="2" cy="14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+              <circle cx="16" cy="14" r="3" fill="#0F172A" stroke="#000" strokeWidth="1" />
+            </g>
+          )}
+        </svg>
+
+        {/* ============================================================== */}
+        {/* 5 ALTERNATING STATION CARDS (ZIGZAG LAYOUT AS IN REFERENCE)   */}
+        {/* ============================================================== */}
+        <div className="space-y-16 sm:space-y-28 relative z-20">
           {stops.map((stop, idx) => {
+            const isLeft = idx % 2 === 0;
             const isSelected = activeStopIdx === idx;
             const isLocked = stop.status === 'COMING SOON';
-            const isDayStation = stop.id.startsWith('stop-3') || stop.id.startsWith('stop-4') || stop.id.startsWith('stop-5');
 
             return (
               <div
                 key={stop.id}
-                onClick={() => openStationPopup(stop, idx)}
-                className={`group relative comic-card p-5 cursor-pointer bg-[#180407] transition-all duration-300 flex flex-col justify-between ${
-                  isSelected
-                    ? 'border-[#FFC800] shadow-[8px_8px_0px_#FFC800] -translate-y-2 ring-2 ring-[#FFC800]/50'
-                    : 'hover:-translate-y-1.5 hover:border-[#FFC800]/60 hover:shadow-[6px_6px_0px_rgba(255,200,0,0.4)]'
-                }`}
+                ref={(el) => (cardRefs.current[idx] = el)}
+                className={`grid grid-cols-1 md:grid-cols-12 items-center`}
               >
-                {/* Station Pole Accent at Top */}
-                <div className="flex items-center justify-between gap-1 mb-3">
-                  <span className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-black text-[#FFC800] border border-[#FFC800]/40">
-                    {stop.platform || `STOP ${idx + 1}`}
-                  </span>
-                  <span className="text-[11px] font-mono text-white/80 font-bold bg-[#E11D48]/30 px-2 py-0.5 rounded border border-[#E11D48]/40">
-                    {stop.date}
-                  </span>
-                </div>
-
-                {/* Classic Indian Railways Station Signboard */}
-                <div className="rounded-lg bg-[#FFC800] border-2 border-black p-3 mb-3 text-center shadow-[3px_3px_0px_#000] group-hover:scale-[1.02] transition-transform">
-                  <div className="font-mono text-[9px] uppercase tracking-widest text-black/70 font-extrabold border-b border-black/30 pb-0.5 mb-1 flex items-center justify-center gap-1">
-                    <span>🚉</span>
-                    <span>{stop.stationCode || `CCU-STN-0${idx + 1}`}</span>
-                  </div>
-                  <h4 className="font-bebas text-xl sm:text-2xl text-black tracking-wide leading-tight uppercase font-black">
-                    {stop.stationName || stop.name}
-                  </h4>
-                  <div className="font-comic text-xs text-[#8C1D03] font-bold mt-0.5">
-                    {stop.bengali}
-                  </div>
-                </div>
-
-                {/* Tag & Summary */}
-                <div className="mb-4 flex-1">
-                  <div className="inline-block font-mono text-[10px] font-bold text-[#7CFF3A] uppercase tracking-wider mb-2">
-                    ✦ {stop.tag || 'SPRINT CHECKPOINT'}
-                  </div>
-                  <p className="text-xs font-poppins text-white/80 leading-relaxed">
-                    {stop.desc}
-                  </p>
-                </div>
-
-                {/* Status or Activities Count */}
-                <div className="pt-3 border-t border-white/10">
-                  {isLocked ? (
-                    <div className="p-2 rounded-lg bg-black/80 border border-[#E11D48]/50 text-center font-mono text-[11px] text-[#E11D48] font-bold flex items-center justify-center gap-1.5">
-                      <span>🔒</span>
-                      <span>DOSSIER SEALED · CLICK TO VIEW</span>
+                {/* Station Card Column (Alternating Left/Right) */}
+                <div
+                  className={`pl-12 md:pl-0 ${
+                    isLeft
+                      ? 'md:col-start-1 md:col-end-7 md:pr-6'
+                      : 'md:col-start-7 md:col-end-13 md:pl-6'
+                  }`}
+                >
+                  <div
+                    onClick={() => openStationPopup(stop, idx)}
+                    className={`group relative rounded-3xl p-6 sm:p-8 cursor-pointer transition-all duration-300 overflow-hidden border ${
+                      isSelected
+                        ? 'bg-[#180407] border-[#FFC800] shadow-[8px_8px_0px_#FFC800] -translate-y-1 ring-2 ring-[#FFC800]/50'
+                        : 'bg-[#120305]/95 border-white/10 hover:border-[#FFC800]/60 hover:shadow-[6px_6px_0px_rgba(255,200,0,0.3)] hover:-translate-y-1'
+                    }`}
+                  >
+                    {/* Giant Faint Watermark Number in Background (As in reference image) */}
+                    <div className="absolute right-4 bottom-2 font-bebas text-8xl sm:text-9xl text-white/[0.05] group-hover:text-[#FFC800]/[0.08] select-none pointer-events-none font-black transition-colors">
+                      {stop.watermark || `0${idx + 1}`}
                     </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between text-[11px] font-mono text-white/70">
-                        <span className="text-[#FFC800] font-bold">
-                          {stop.activities?.length || 0} Activities
-                        </span>
-                        <span>{isDayStation ? '72H Residential' : 'Screening'}</span>
+
+                    {/* Top Row: Squircle Icon Badge & Phase Tag */}
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                      {/* Squircle Icon Badge with Gold Border */}
+                      <div className="w-12 h-12 rounded-2xl bg-black/70 border border-[#FFC800]/40 flex items-center justify-center text-2xl text-[#FFC800] shadow-[2px_2px_0px_#000] group-hover:scale-110 transition-transform">
+                        {stop.icon || '🚉'}
                       </div>
 
-                      {/* Interactive Pop-up Action Button */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openStationPopup(stop, idx);
-                        }}
-                        className="w-full py-2 px-3 rounded-lg bg-[#E11D48] hover:bg-[#F43F5E] text-white font-mono text-xs font-extrabold tracking-wider border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none flex items-center justify-center gap-1.5 transition-all group-hover:bg-[#FFC800] group-hover:text-black"
-                      >
-                        <span>🎫</span>
-                        <span>POP UP ACTIVITIES</span>
-                        <span className="text-sm">↗</span>
-                      </button>
+                      {/* Station Phase Pill & Platform Name */}
+                      <div className="flex flex-col items-end">
+                        <span className="font-mono text-xs font-bold text-[#FFC800] tracking-widest uppercase">
+                          {stop.phase} · {stop.yard}
+                        </span>
+                        <span className="font-mono text-[11px] text-white/60 font-semibold">
+                          {stop.date}
+                        </span>
+                      </div>
                     </div>
-                  )}
+
+                    {/* Station Name Heading */}
+                    <h4 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide leading-tight uppercase font-black group-hover:text-[#FFC800] transition-colors">
+                      {stop.stationName || stop.name}
+                    </h4>
+
+                    {/* Bengali Script Calligraphy Subtitle */}
+                    <div className="font-comic text-xs sm:text-sm text-[#E11D48] font-bold mt-0.5 mb-3">
+                      {stop.bengali} · {stop.platform}
+                    </div>
+
+                    {/* Station Description */}
+                    <p className="font-poppins text-xs sm:text-sm text-white/75 leading-relaxed mb-6 relative z-10">
+                      {stop.desc}
+                    </p>
+
+                    {/* Card Footer: Activities Count & Pop-up Action Button */}
+                    <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 relative z-10">
+                      <div className="flex items-center gap-2 font-mono text-xs text-white/70">
+                        <span className="w-2 h-2 rounded-full bg-[#7CFF3A]" />
+                        <span>{stop.schedule?.length || stop.activities?.length || 0} Platform Events</span>
+                      </div>
+
+                      {isLocked ? (
+                        <div className="px-3 py-1.5 rounded-lg bg-black/80 border border-[#E11D48]/50 text-center font-mono text-xs text-[#E11D48] font-bold">
+                          🔒 DOSSIER SEALED
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openStationPopup(stop, idx);
+                          }}
+                          className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#E11D48] hover:bg-[#FFC800] text-white hover:text-black font-mono text-xs font-black tracking-wider border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none flex items-center justify-center gap-2 transition-all"
+                        >
+                          <span>🎫 POP UP ACTIVITIES</span>
+                          <span className="text-sm">↗</span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             );
@@ -222,15 +537,15 @@ export const Route = () => {
         </div>
       </div>
 
-      {/* Jatayu & Feluda Stationmaster Box */}
-      <div className="comic-card p-6 bg-[#180407] border-2 border-black flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 shadow-[4px_4px_0px_#000]">
+      {/* Station Master Dispatch Box */}
+      <div className="comic-card p-6 bg-[#160408] border-2 border-black flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 shadow-[4px_4px_0px_#000]">
         <div className="flex items-center gap-4">
-          <span className="text-4xl flex-shrink-0 animate-bounce">🚊</span>
+          <span className="text-4xl flex-shrink-0 animate-bounce">🚂</span>
           <div className="text-xs sm:text-sm font-poppins text-white">
             <span className="text-[#FFC800] font-bold font-mono tracking-wider">
-              STATION MASTER DISPATCH:
+              TRAM DIDI STATION DISPATCH:
             </span>{' '}
-            "Tram Didi announces all 3 sprint day platforms are fully wired with high-speed fiber at AIC Techno. Click any station card to inspect the minute-by-minute timetable!"
+            "All 5 stations along the Kolkata Sprint line are live. As you scroll down the page, the animated cartoon train advances along the rails. Click any station card to open the departure docket!"
           </div>
         </div>
 
@@ -239,7 +554,7 @@ export const Route = () => {
           onClick={() => openStationPopup(stops[2], 2)}
           className="flex-shrink-0 px-4 py-2 rounded-lg bg-[#FFC800] hover:bg-[#FFD700] text-black font-mono text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] transition-transform hover:scale-105 active:scale-95"
         >
-          OPEN DAY 1 TIMETABLE ✦
+          POP UP DAY 1 ACTIVITIES ✦
         </button>
       </div>
 
@@ -273,7 +588,7 @@ export const Route = () => {
                 {/* Station Code & Platform Bar */}
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className="font-mono text-xs font-extrabold px-2.5 py-0.5 rounded bg-black text-[#FFC800] border border-[#FFC800]/50">
-                    {popupStop.platform || 'PLATFORM DOCKET'}
+                    {popupStop.phase} · {popupStop.yard}
                   </span>
                   <span className="font-mono text-xs text-white/70">
                     STATION CODE: {popupStop.stationCode || 'CCU-EXP'}
@@ -292,7 +607,7 @@ export const Route = () => {
                     {popupStop.number}: {popupStop.stationName || popupStop.name}
                   </h3>
                   <div className="font-comic text-sm sm:text-base text-[#8C1D03] font-bold mt-1">
-                    {popupStop.bengali}
+                    {popupStop.bengali} · {popupStop.platform}
                   </div>
                 </div>
               </div>
@@ -304,7 +619,7 @@ export const Route = () => {
                   <span className="text-white font-bold">{popupStop.date}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[#7CFF3A]">📍 LOCATION:</span>
+                  <span className="text-[#7CFF3A]">📍 VENUE:</span>
                   <span className="text-white">AIC Techno Campus, Topsia Road, Kolkata</span>
                 </div>
               </div>
