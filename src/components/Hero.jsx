@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { content } from '../content';
+
+// Decoupled critical links to prevent bundling the full below-the-fold content into above-the-fold JS
+const APPLY_LINK = '#apply';
+const INSTAGRAM_LINK = 'https://www.instagram.com/hustlers_tiu/';
 
 export const Hero = () => {
   // Live Countdown targeting 18 Dec 2026 (exact style from convergence1.tech)
@@ -98,7 +101,7 @@ export const Hero = () => {
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <a
-            href={content.event.applyLink}
+            href={APPLY_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[#E11D48] hover:bg-[#BE123C] text-white font-poppins font-extrabold text-sm py-3 px-8 rounded-full border-2 border-black shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
@@ -110,7 +113,7 @@ export const Hero = () => {
           </a>
 
           <a
-            href={content.event.instagram}
+            href={INSTAGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white font-poppins font-bold text-sm py-3 px-8 rounded-full border-2 border-white shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
