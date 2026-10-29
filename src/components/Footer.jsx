@@ -78,9 +78,6 @@ export const Footer = () => {
         <span>
           © 2026 Founders' House · Organized by Hult Prize at TIU & AIC Techno.
         </span>
-        <span className="text-[#FFC800] font-bold">
-          BUILD WITH COURAGE · MAGOJASTRO 72H
-        </span>
       </div>
     </footer>
   );

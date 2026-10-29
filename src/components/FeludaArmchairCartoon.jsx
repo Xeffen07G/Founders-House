@@ -12,11 +12,10 @@ export const FeludaArmchairCartoon = ({
         <p className="font-comic text-xs sm:text-sm font-bold leading-snug">
           "{quote}"
         </p>
-        <div className="flex items-center justify-between mt-2 pt-1 border-t border-black/20">
+        <div className="mt-2 pt-1 border-t border-black/20">
           <span className="font-mono text-[10px] text-[#E11D48] font-extrabold uppercase tracking-wider">
             PRADOSH C. MITTER (FELUDA)
           </span>
-          <span className="text-sm">🕵️‍♂️</span>
         </div>
         {/* Speech bubble pointer notch pointing down towards Feluda */}
         <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 bg-white border-b-3 border-r-3 border-black transform rotate-45" />
@@ -45,12 +44,9 @@ export const FeludaArmchairCartoon = ({
         </div>
 
         {/* Bottom Banner inside the frame */}
-        <div className="px-4 py-2.5 bg-[#120205] border-t-2 border-black flex items-center justify-between">
+        <div className="px-4 py-2.5 bg-[#120205] border-t-2 border-black flex items-center justify-center">
           <span className="font-mono text-[10px] text-white/70 font-bold uppercase tracking-wider">
             21 RAJANI SEN ROAD · BALI
-          </span>
-          <span className="font-mono text-[10px] text-[#FFC800] font-extrabold uppercase">
-            CHARMINAR · 72H
           </span>
         </div>
       </div>

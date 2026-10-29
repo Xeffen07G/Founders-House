@@ -80,30 +80,6 @@ export const Awards = () => {
         </div>
       </div>
 
-      {/* Grid of Category Awards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-12">
-        {[
-          { name: "Chanakya Award", cat: "Unit Economics", prize: "Trophy + Mentorship" },
-          { name: "Phoenix Award", cat: "Sprint Pivot", prize: "Trophy + AWS Credits" },
-          { name: "Nari Shakti Award", cat: "Women In Tech", prize: "Trophy + Special Grant" },
-          { name: "Innovation Ratan", cat: "Deep Tech & AI", prize: "Trophy + GitHub Enterprise" },
-          { name: "Sustainability Award", cat: "SDG & Climate", prize: "Trophy + Impact Pass" },
-          { name: "Jury's Choice", cat: "Audience Favorite", prize: "Trophy + Hardware Kit" },
-        ].map((item, idx) => (
-          <div key={idx} className="comic-card p-5 bg-[#1C0509] hover:border-[#FFC800] transition-colors">
-            <div className="font-bebas text-lg sm:text-xl text-[#FFC800] tracking-wide mb-1">
-              ✦ {item.name}
-            </div>
-            <div className="font-mono text-xs text-white/80 mb-2">
-              {item.cat}
-            </div>
-            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/80 text-[#7CFF3A] border border-[#7CFF3A]/30 font-bold">
-              {item.prize}
-            </span>
-          </div>
-        ))}
-      </div>
-
       {/* Tenida Boisterous Speech Bubble */}
       <div className="comic-card p-6 bg-[#1C0509] border-2 border-black flex items-center gap-4 shadow-[4px_4px_0px_#000]">
         <span className="text-3xl flex-shrink-0">🥟</span>

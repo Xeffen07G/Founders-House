@@ -14,7 +14,6 @@ const Sponsors = lazy(() => import('./components/Sponsors').then(m => ({ default
 const Archives = lazy(() => import('./components/Archives').then(m => ({ default: m.Archives })));
 const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
-const SoundToggle = lazy(() => import('./components/SoundToggle').then(m => ({ default: m.SoundToggle })));
 
 // Code-split dedicated Scoreboard page so it doesn't block the main landing page
 const ScoreboardPage = lazy(() =>
@@ -151,7 +150,6 @@ export default function App() {
       {canLoadBelowFold && (
         <Suspense fallback={null}>
           <Footer />
-          <SoundToggle />
         </Suspense>
       )}
     </div>
