@@ -37,9 +37,9 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[85vh] pt-24 sm:pt-28 pb-12 sm:pb-16 flex flex-col justify-center overflow-hidden">
-      {/* Hero Header Area */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+    <section id="hero" className="relative min-h-[90vh] sm:min-h-screen pt-20 pb-10 flex flex-col items-center justify-center overflow-hidden">
+      {/* Hero Header Area - Centered in Viewport */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center my-auto">
         
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
         <div className="relative mb-1 sm:mb-2 inline-block">
@@ -109,7 +109,7 @@ export const Hero = () => {
         </a>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href={APPLY_LINK}
             target="_blank"
@@ -130,53 +130,6 @@ export const Hero = () => {
           >
             JOIN COMMUNITY ↗
           </a>
-        </div>
-
-        {/* Character Dialogue Box: Feluda speaks */}
-        <div className="max-w-2xl mx-auto comic-speech-bubble flex items-center gap-3.5 text-left mb-4">
-          <span className="text-2xl flex-shrink-0">🔍</span>
-          <div className="text-xs sm:text-sm font-poppins font-medium text-[#FFF9F2]">
-            <span className="text-[#FFC800] font-bold">FELUDA SPEAKS: </span>
-            "No slides without code. At Founders' House, we demand authentic customer proof and working terminals before you face the jury."
-          </div>
-        </div>
-
-        {/* Satyajit Ray dialogue */}
-        <div className="max-w-2xl mx-auto comic-speech-bubble flex items-center gap-3.5 text-left mb-6" style={{ boxShadow: '4px 4px 0px #E11D48' }}>
-          <span className="text-2xl flex-shrink-0">🎬</span>
-          <div className="text-xs sm:text-sm font-poppins font-medium text-[#FFF9F2]">
-            <span className="text-[#E11D48] font-bold">SATYAJIT RAY'S DIRECTION: </span>
-            "Every frame of your pitch must tell a story. The audience should feel your product, not just see it. That is cinema. That is entrepreneurship."
-          </div>
-        </div>
-
-        {/* Event Meta Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-          {["18 TO 20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN INDIA STUDENTS"].map((chip, idx) => {
-            if (chip === "18 TO 20 DEC 2026") {
-              return (
-                <a
-                  key={idx}
-                  href={GOOGLE_CALENDAR_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-[#FFC800]/40 hover:border-[#FFC800] text-xs font-mono font-bold tracking-wider text-[#FFC800] hover:text-white shadow-[2px_2px_0px_#000] transition-all inline-flex items-center gap-1.5 hover:scale-105"
-                  title="Add 18-20 Dec 2026 to Google Calendar"
-                >
-                  <span>📅</span>
-                  <span>{chip}</span>
-                </a>
-              );
-            }
-            return (
-              <span
-                key={idx}
-                className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-white/20 text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 shadow-[2px_2px_0px_#000]"
-              >
-                ✦ {chip}
-              </span>
-            );
-          })}
         </div>
       </div>
     </section>
