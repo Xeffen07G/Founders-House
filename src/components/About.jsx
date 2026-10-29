@@ -88,7 +88,6 @@ export const About = () => {
               <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-black/60 text-[#FFC800] border border-[#FFC800]/30 uppercase tracking-widest">
                 {host.role}
               </span>
-              <span className="text-xl">🤝</span>
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-bebas text-white mb-3 tracking-wide">

@@ -6,10 +6,10 @@ export const Footer = () => {
     <footer className="relative bg-[#0D0103] border-t-4 border-black pt-16 pb-12 overflow-hidden">
       
       {/* Footer Columns */}
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row md:items-start md:justify-between gap-10 pb-12 border-b border-white/10">
         
         {/* Col 1: Logo & Tagline */}
-        <div className="md:col-span-2">
+        <div className="max-w-md">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-9 h-9 rounded-full bg-[#E11D48] border-2 border-black flex items-center justify-center font-bebas text-white text-base font-bold shadow-[2px_2px_0px_#000]">
               FH
@@ -33,30 +33,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Col 2: Organizers & Venue */}
-        <div>
-          <h5 className="font-bebas text-sm text-[#FFC800] uppercase tracking-widest mb-3">
-            COLLABORATION
-          </h5>
-          <ul className="flex flex-col gap-2 text-xs font-mono text-white/80">
-            <li>✦ Organized by Hult Prize at TIU</li>
-            <li>✦ Venue: AIC Techno (Offbeat CCU)</li>
-            <li>✦ 36F, Topsia Road, Kolkata 700039</li>
-            <li>✦ 18 to 20 December 2026</li>
-          </ul>
-
-          <h5 className="font-bebas text-sm text-[#7CFF3A] uppercase tracking-widest mb-3 mt-6">
-            KOLKATA LANDMARKS
-          </h5>
-          <ul className="flex flex-col gap-2 text-xs font-mono text-white/60">
-            <li>🌉 Near Howrah Bridge</li>
-            <li>🚊 Tram Route accessible</li>
-            <li>☕ Indian Coffee House tradition</li>
-            <li>🎬 Satyajit Ray's city</li>
-          </ul>
-        </div>
-
-        {/* Col 3: Contact & Socials */}
+        {/* Col 2: Contact & Socials */}
         <div>
           <h5 className="font-bebas text-sm text-[#E11D48] uppercase tracking-widest mb-3">
             CONNECT

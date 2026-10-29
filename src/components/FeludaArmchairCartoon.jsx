@@ -25,12 +25,6 @@ export const FeludaArmchairCartoon = ({
       {/* 2. MAIN CHARACTER PANEL (Cartoon Illustration) */}
       <div className="relative w-full rounded-2xl overflow-hidden border-4 border-black bg-[#1C0509] shadow-[8px_8px_0px_#000] group">
         
-        {/* Top Comic Corner Badge */}
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#120205]/90 border border-black/80 shadow-[2px_2px_0px_#000] text-[10px] font-mono font-bold tracking-widest text-[#FFC800] uppercase">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
-          <span>MAGOJASTRO COMIC</span>
-        </div>
-
         {/* Cartoon Image Display with WebP */}
         <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full overflow-hidden flex items-center justify-center bg-[#0C0103]">
           <picture className="w-full h-full">
