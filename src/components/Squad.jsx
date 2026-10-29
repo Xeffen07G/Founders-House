@@ -54,7 +54,7 @@ export const Squad = () => {
               <div className="font-bebas text-sm text-white mb-1">
                 DOSSIER #{idx + 1}
               </div>
-              <div className="font-mono text-[10px] text-[#FFC800] font-bold animate-pulse">
+              <div className="font-mono text-[10px] text-[#FFC800] font-bold">
                 CLASSIFIED, REVEALING SOON
               </div>
             </div>

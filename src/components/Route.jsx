@@ -348,15 +348,10 @@ export const Route = () => {
                   r="7"
                   fill="#1F070B"
                   stroke={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
-                  strokeWidth="1.8"
+                  strokeWidth="2"
                 />
                 <circle
                   r="3.5"
-                  fill={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
-                  className={isCurrent ? "animate-ping" : ""}
-                />
-                <circle
-                  r="3"
                   fill={isCurrent ? "#FFC800" : isPassed ? "#7CFF3A" : "#E11D48"}
                 />
               </g>

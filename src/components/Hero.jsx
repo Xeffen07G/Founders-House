@@ -34,7 +34,7 @@ export const Hero = () => {
         
         {/* Pill Tag (Kolkata Red & White style) */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C0509] border border-[#E11D48]/80 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-6 shadow-[3px_3px_0px_#000]">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
           KOLKATA'S PREMIER 72 HOUR RESIDENTIAL HACKATHON
         </div>
 

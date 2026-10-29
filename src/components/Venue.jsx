@@ -364,7 +364,7 @@ export const Venue = () => {
 
             {/* Floating Title Banner */}
             <div className="mt-1 px-4 py-1.5 bg-[#120205] border-2 border-black rounded-full shadow-[4px_4px_0px_#000] flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48] animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48]" />
               <span className="font-bebas text-xs sm:text-base font-bold tracking-[0.2em] text-white uppercase whitespace-nowrap">
                 OFFBEAT CCU
               </span>

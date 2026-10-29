@@ -22,7 +22,7 @@ export const ScoreboardPage = ({ onBack }) => {
         </button>
 
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#7CFF3A] animate-ping" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#7CFF3A]" />
           <span className="font-mono text-xs text-[#7CFF3A] font-bold tracking-widest uppercase">
             LIVE SYNCED · SPRINT IN PROGRESS
           </span>
@@ -85,7 +85,7 @@ export const ScoreboardPage = ({ onBack }) => {
                   EVIDENCE BOARD: LIVE SPRINT METRICS
                 </h2>
               </div>
-              <span className="text-xs font-mono text-[#7CFF3A] font-bold animate-pulse">
+              <span className="text-xs font-mono text-[#7CFF3A] font-bold">
                 ● 10/10 SEATS ACTIVE
               </span>
             </div>

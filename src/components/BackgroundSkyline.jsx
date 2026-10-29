@@ -24,16 +24,7 @@ export const BackgroundSkyline = () => {
         />
       </div>
 
-      {/* 3. Luminous Vector Suspension Lights along Bridge Span */}
-      <div className="absolute top-[48%] inset-x-0 w-full h-12 flex justify-around items-center opacity-40 pointer-events-none">
-        <span className="w-2 h-2 rounded-full bg-[#FFC800] animate-ping" />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '1.2s' }} />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#19D3F3] animate-pulse" style={{ animationDelay: '0.6s' }} />
-        <span className="w-2 h-2 rounded-full bg-[#FFC800] animate-ping" style={{ animationDelay: '2s' }} />
-      </div>
-
-      {/* 4. Delicate Kolkata Tech Grid Overlay */}
+      {/* 3. Delicate Kolkata Tech Grid Overlay */}
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{

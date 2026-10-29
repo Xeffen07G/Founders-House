@@ -18,7 +18,7 @@ export const SectionHeader = ({
     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
       <div>
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1C0509] border border-[#E11D48]/60 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-[2px_2px_0px_#000]">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
           {pill}
         </div>
 

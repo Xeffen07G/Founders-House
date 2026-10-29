@@ -29,7 +29,7 @@ export const FeludaArmchairCartoon = ({
         
         {/* Top Comic Corner Badge */}
         <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#120205]/90 border border-black/80 shadow-[2px_2px_0px_#000] text-[10px] font-mono font-bold tracking-widest text-[#FFC800] uppercase">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
           <span>{activeTab === 'cartoon' ? 'MAGOJASTRO COMIC' : 'RAY ARCHIVE'}</span>
         </div>
 
