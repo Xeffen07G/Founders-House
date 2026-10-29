@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { BackgroundSkyline } from './components/BackgroundSkyline';
+import { StickyMobilePill } from './components/StickyMobilePill';
 
 // Code-split below-the-fold sections to crush Total Blocking Time (TBT) and eliminate DOM bloat on initial load
 const Venue = lazy(() => import('./components/Venue').then(m => ({ default: m.Venue })));
@@ -100,6 +101,9 @@ export default function App() {
 
       {/* Floating Pill Sticky Navbar */}
       <Navbar currentRoute={route} onNavigate={handleNavigate} />
+
+      {/* Floating Sticky Mobile Registration & Google Calendar Pill */}
+      <StickyMobilePill />
 
       {route === 'scoreboard' ? (
         /* DEDICATED SCOREBOARD PAGE (Code-split, loaded on demand) */

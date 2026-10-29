@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // Decoupled critical links to prevent bundling the full below-the-fold content into above-the-fold JS
 const APPLY_LINK = '#apply';
 const INSTAGRAM_LINK = 'https://www.instagram.com/hustlers_tiu/';
+const GOOGLE_CALENDAR_LINK = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Founders%27%20House%20%7C%20Kolkata%20Hackathon&dates=20261218T033000Z/20261220T123000Z&details=Kolkata%27s%20most%20relentless%2072%20hour%20startup%20sprint%20at%20AIC%20Techno%20(Offbeat%20CCU).%20Build%20real%20products%2C%20pitch%20to%20venture%20syndicates.&location=AIC%20Techno%2C%20Offbeat%20CCU%2C%2036F%20Topsia%20Road%2C%20Kolkata%20700039";
 
 export const Hero = () => {
   // Live Countdown targeting 18 Dec 2026 (exact style from convergence1.tech)
@@ -95,6 +96,23 @@ export const Hero = () => {
           </div>
         </div>
 
+        {/* Add to Google Calendar shortcut button under countdown */}
+        <div className="flex justify-center mb-6 sm:mb-7">
+          <a
+            href={GOOGLE_CALENDAR_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1C0509] hover:bg-[#2A080E] border-2 border-black shadow-[3px_3px_0px_#000] text-xs font-mono font-bold text-[#FFC800] hover:text-[#FFFFFF] transition-all hover:-translate-y-0.5 active:translate-y-0"
+            title="Save 18-20 Dec 2026 to your Google Calendar"
+          >
+            <span className="text-sm">📅</span>
+            <span>ADD TO GOOGLE CALENDAR</span>
+            <span className="text-[10px] bg-[#FFC800] text-black font-extrabold px-2 py-0.5 rounded-full ml-1 group-hover:bg-[#FFFFFF]">
+              18–20 DEC 2026
+            </span>
+          </a>
+        </div>
+
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <a
@@ -139,14 +157,31 @@ export const Hero = () => {
 
         {/* Event Meta Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-          {["18 TO 20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN INDIA STUDENTS"].map((chip, idx) => (
-            <span
-              key={idx}
-              className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-white/20 text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 shadow-[2px_2px_0px_#000]"
-            >
-              ✦ {chip}
-            </span>
-          ))}
+          {["18 TO 20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN INDIA STUDENTS"].map((chip, idx) => {
+            if (chip === "18 TO 20 DEC 2026") {
+              return (
+                <a
+                  key={idx}
+                  href={GOOGLE_CALENDAR_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-[#FFC800]/40 hover:border-[#FFC800] text-xs font-mono font-bold tracking-wider text-[#FFC800] hover:text-white shadow-[2px_2px_0px_#000] transition-all inline-flex items-center gap-1.5 hover:scale-105"
+                  title="Add 18-20 Dec 2026 to Google Calendar"
+                >
+                  <span>📅</span>
+                  <span>{chip}</span>
+                </a>
+              );
+            }
+            return (
+              <span
+                key={idx}
+                className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-white/20 text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 shadow-[2px_2px_0px_#000]"
+              >
+                ✦ {chip}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>
