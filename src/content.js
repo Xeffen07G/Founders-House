@@ -1,7 +1,6 @@
 /**
  * FOUNDERS' HOUSE: CENTRAL CONTENT REPOSITORY
  * All copy, event facts, tracks, stops, perks, and FAQ live here.
- * Any unknown detail is tagged with visible TODOs.
  */
 
 export const content = {
@@ -17,14 +16,11 @@ export const content = {
     admission: "Free to apply · Open to students across India · Teams of 3 to 5",
     topTeams: "Top 10 teams selected for the 3 day residential sprint",
     applyLink: "#apply",
-    applyLinkNote: "[TODO: Replace with official Google Form / Devfolio REGISTRATION_LINK]",
     deadline: "30 November 2026",
-    deadlineNote: "[TODO: Confirm final DEADLINE]",
     email: "official.hultprize.tiu@gmail.com",
     instagram: "https://www.instagram.com/hustlers_tiu/",
     linkedin: "https://www.linkedin.com/company/hult-prize-tiu/",
-    prizePool: "₹50,00,000+ in Seed Access, Incubation & Cloud Credits",
-    prizePoolNote: "[TODO: Confirm exact PRIZE_POOL cash breakdown]"
+    prizePool: "₹50,00,000+ in Seed Access, Incubation & Cloud Credits"
   },
 
   nav: [
@@ -402,7 +398,8 @@ export const content = {
       title: "WANT YOUR LOGO HERE?",
       desc: "Partner with Eastern India's most focused residential builder hackathon. Reach 500+ student applicants and the top 10 venture teams.",
       ctaPartner: "INITIATE PARTNERSHIP",
-      ctaBrochure: "SPONSORSHIP BROCHURE [TODO: ADD PDF LINK]"
+      ctaDeck: "SPONSORSHIP BROCHURE",
+      brochureUrl: "mailto:official.hultprize.tiu@gmail.com?subject=Sponsorship%20Brochure%20Request%20-%20Founders%20House"
     }
   },
 
