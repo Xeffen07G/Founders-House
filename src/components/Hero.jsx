@@ -36,7 +36,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[85vh] pt-32 pb-20 flex flex-col justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[85vh] pt-24 sm:pt-28 pb-12 sm:pb-16 flex flex-col justify-center overflow-hidden">
       {/* Background Radial Crimson & Terracotta Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[650px] bg-gradient-to-b from-[#881337]/40 via-[#4C0519]/25 to-transparent rounded-full blur-[130px] pointer-events-none z-0" />
 
@@ -44,7 +44,7 @@ export const Hero = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
-        <div className="relative mb-3 inline-block">
+        <div className="relative mb-1 sm:mb-2 inline-block">
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-bebas uppercase tracking-wide text-[#FFFFFF] select-none drop-shadow-[5px_5px_0px_#000000] leading-[0.9]">
             FOUNDERS'{" "}
             <span className="text-[#E11D48]">HOUSE</span>
@@ -57,23 +57,23 @@ export const Hero = () => {
         </div>
 
         {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
-        <div className="flex justify-center mb-5 sm:mb-6">
+        <div className="flex justify-center -mt-1 sm:-mt-2 mb-4 sm:mb-5">
           <img
             src="/kolkata_bengali_sticker.webp"
             alt="কলকাতা (Kolkata)"
-            className="h-9 sm:h-12 md:h-14 w-auto object-contain select-none transform -rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
+            className="h-8 sm:h-10 md:h-12 w-auto object-contain select-none transform -rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
             width="376"
             height="102"
           />
         </div>
 
         {/* Subtitle / Tagline */}
-        <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-8">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-6 sm:mb-7">
           Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
         </p>
 
         {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) */}
-        <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-8">
+        <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-6 sm:mb-7">
           <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
             <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
               {String(timeLeft.days).padStart(2, '0')}
