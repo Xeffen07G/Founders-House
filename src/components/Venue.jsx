@@ -27,15 +27,8 @@ export const Venue = () => {
           </div>
         </div>
 
-        {/* Right Side: Pill + Massive Heading */}
+        {/* Right Side: Massive Heading */}
         <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col items-start md:items-end text-left md:text-right order-1 md:order-2">
-          {/* Pill Badge */}
-          <div className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-3 sm:px-4 py-1 sm:py-1.5 mb-2 sm:mb-4 backdrop-blur-md">
-            <span className="font-bebas text-sm sm:text-base tracking-widest uppercase text-white">
-              The Arena
-            </span>
-          </div>
-
           {/* Huge Bebas Title */}
           <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl text-white tracking-widest leading-[0.9] uppercase select-none drop-shadow-[4px_4px_0px_#000]">
             <span className="block text-white/90">THE ADDA</span>
