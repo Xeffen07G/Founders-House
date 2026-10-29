@@ -37,8 +37,10 @@ export const Sponsors = () => {
                     <a
                       key={sIdx}
                       href={partner.url || '#'}
+                      target={partner.url?.startsWith('http') ? '_blank' : undefined}
+                      rel={partner.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       title={partner.name}
-                      className="h-28 sm:h-32 rounded-xl bg-white/95 border-2 border-black flex items-center justify-center p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden"
+                      className="h-28 sm:h-32 rounded-xl bg-white border-2 border-black flex items-center justify-center p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden"
                     >
                       <img
                         src={partner.logo}

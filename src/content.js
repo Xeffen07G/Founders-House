@@ -400,6 +400,12 @@ export const content = {
             subtitle: "Incubation & Venue Partner",
             logo: "/aic_techno_logo.webp",
             url: "#venue"
+          },
+          {
+            name: "Techno India University & School of the Future",
+            subtitle: "Academic & University Partner",
+            logo: "/techno_india_university_logo.webp",
+            url: "https://www.technoindiauniversity.ac.in"
           }
         ]
       },
