@@ -120,38 +120,65 @@ export const content = {
   },
 
   route: {
-    pill: "ROADMAP",
-    headingLine1: "THE ROUTE &",
-    headingLine2: "TRAM LINE.",
-    desc: "Hop aboard Tram #26 as Tram Didi guides your venture from classified application screening to investor negotiations.",
+    pill: "SCHEDULE & TIMELINE",
+    headingLine1: "THE SPRINT",
+    headingLine2: "STATIONS & TIMELINE.",
+    desc: "Hop aboard the Kolkata Sprint Express. Each day is an authentic train station along our 72-hour route. Click on any station to pop up its platform timetable and scheduled activities.",
     stops: [
       {
         id: "stop-1",
-        number: "STOP 01",
-        name: "Application Clue Gathering",
+        number: "STATION 01",
+        stationName: "Application Clue Gathering",
+        stationCode: "APPL-CCU",
+        platform: "Yard 01",
         bengali: "দরখাস্ত ও স্ক্রিনিং",
         date: "Open Now",
         status: "ACTIVE",
+        tag: "SCRUTINY YARD",
         desc: "Submit your team dossier, past builds, and founder proof-of-work. Open to all students pan-India.",
-        activities: ["Team formation check (3-5 members)", "Deck & prototype screening", "Rolling review calls"]
+        activities: [
+          "Team formation check (3-5 members)",
+          "Deck & prototype screening",
+          "Rolling review calls"
+        ],
+        schedule: [
+          { time: "Phase 1", title: "Team Formation Check", detail: "Assemble 3-5 driven student builders across engineering, product & design" },
+          { time: "Phase 2", title: "Deck & Prototype Screening", detail: "Submit your problem proof-of-work, GitHub commits, or initial wireframes" },
+          { time: "Phase 3", title: "Rolling Review Calls", detail: "Short interviews with screening committee on problem clarity" }
+        ]
       },
       {
         id: "stop-2",
-        number: "STOP 02",
-        name: "The Top 10 Shortlist Dossier",
+        number: "STATION 02",
+        stationName: "Top 10 Shortlist Dossier",
+        stationCode: "SLIST-CCU",
+        platform: "Junction 02",
         bengali: "সেরা দশ নির্বাচন",
-        date: "05 Dec 2026 [TODO: Confirm]",
+        date: "05 Dec 2026",
         status: "COMING SOON",
+        tag: "INTERCHANGE",
         desc: "Top 10 finalist squads receive encrypted residential boarding passes to AIC Techno campus.",
-        activities: ["Shortlist announcement livestream", "Pre-event briefing & mentor pairings", "Packing checklist & travel assistance"]
+        activities: [
+          "Shortlist announcement livestream",
+          "Pre-event briefing & mentor pairings",
+          "Packing checklist & travel assistance"
+        ],
+        schedule: [
+          { time: "Phase 1", title: "Shortlist Announcement Livestream", detail: "Live unveiling of the elite 10 finalist squads selected across India" },
+          { time: "Phase 2", title: "Pre-Event Briefing & Mentor Pairings", detail: "Orientation pack, encrypted dossier access, and mentor introductions" },
+          { time: "Phase 3", title: "Travel & Boarding Passes Dispatch", detail: "Travel arrangements and residential boarding passes to AIC Techno campus" }
+        ]
       },
       {
         id: "stop-3",
-        number: "STOP 03 · DAY 1",
-        name: "Inspire & Form",
+        number: "STATION 03 · DAY 1",
+        stationName: "Inspire & Form",
+        stationCode: "DAY-01",
+        platform: "Platform 1",
         bengali: "প্রথম দিন · সূত্রপাত",
         date: "18 Dec 2026",
         status: "CLASSIFIED DOSSIER",
+        tag: "SPRINT INCEPTION",
         desc: "Check-in at AIC Techno, unlock confidential problem statements, and kick off the 72-hour lock-in.",
         activities: [
           "Opening Ceremony & Keynote Adda",
@@ -160,15 +187,27 @@ export const content = {
           "Classified Problem Reveal from Mentors",
           "Sprint Kickoff & Terminal Lock-in",
           "Ideation & Customer Discovery War Games"
+        ],
+        schedule: [
+          { time: "09:00 AM", title: "Reporting & Check-in", detail: "Arrival at AIC Techno campus, ID verification & welcome kit dispatch" },
+          { time: "11:00 AM", title: "Opening Ceremony & Keynote Adda", detail: "Welcome address by organizers and inaugural keynote" },
+          { time: "01:00 PM", title: "Founder Talks & Veteran Teardowns", detail: "Real-world tech founder war stories and case breakdowns" },
+          { time: "03:00 PM", title: "Team Introductions & Squad Badging", detail: "Top 10 finalist teams take the stage and receive squad badges" },
+          { time: "05:00 PM", title: "Classified Problem Reveal from Mentors", detail: "Domain mentors reveal confidential market mystery statements" },
+          { time: "07:00 PM", title: "Sprint Kickoff & Terminal Lock-in", detail: "72-hour timer begins, git repos initiated, terminals locked" },
+          { time: "10:00 PM", title: "Ideation & Customer Discovery War Games", detail: "Late-night customer problem validation and hypothesis mapping" }
         ]
       },
       {
         id: "stop-4",
-        number: "STOP 04 · DAY 2",
-        name: "Validate & Build",
+        number: "STATION 04 · DAY 2",
+        stationName: "Validate & Build",
+        stationCode: "DAY-02",
+        platform: "Platform 2",
         bengali: "দ্বিতীয় দিন · কেস ফাইল",
         date: "19 Dec 2026",
         status: "CASE FILES IN ACTION",
+        tag: "CRUCIBLE & CODE",
         desc: "The crucible. 24 hours of customer interviews, raw code pushing, midnight mentor interrogations, and live fire tests.",
         activities: [
           "Business Model Canvas Sprint Race",
@@ -179,15 +218,28 @@ export const content = {
           "Bollywood Pitch Masala Drill",
           "Go-To-Market Game Plan Validation",
           "Midnight Campfire Pitch Round"
+        ],
+        schedule: [
+          { time: "09:00 AM", title: "Business Model Canvas Sprint Race", detail: "Unit economics, ICP definition, and value architecture sprint" },
+          { time: "12:00 PM", title: "MVP Deep Build Blocks", detail: "Intensive 6-hour code sprint across frontend, backend, and AI pipelines" },
+          { time: "04:00 PM", title: "Mentor Office Hours & Architectural Teardowns", detail: "1-on-1 brutal code & product architecture reviews with senior architects" },
+          { time: "07:00 PM", title: "Investor Deck Building Workshop", detail: "Structuring seed-stage investment narrative with VC associates" },
+          { time: "09:00 PM", title: "One Minute CEO Challenge", detail: "60-second elevator pitch gauntlet under pressure" },
+          { time: "10:30 PM", title: "Bollywood Pitch Masala Drill", detail: "Injecting theatrical energy and high-stakes drama into dry slides" },
+          { time: "12:00 AM", title: "Go-To-Market Game Plan Validation", detail: "Midnight channel testing and early traction verification" },
+          { time: "02:30 AM", title: "Midnight Campfire Pitch Round", detail: "Rooftop adda, steaming Kolkata chai, and founder war rooms" }
         ]
       },
       {
         id: "stop-5",
-        number: "STOP 05 · DAY 3",
-        name: "Demo Day & Josh Awards",
+        number: "STATION 05 · DAY 3",
+        stationName: "Demo Day & Josh Awards",
+        stationCode: "DAY-03",
+        platform: "Platform 3",
         bengali: "তৃতীয় দিন · মহাযুদ্ধ",
         date: "20 Dec 2026",
         status: "JUDGMENT & LOOT",
+        tag: "GRAND FINALE",
         desc: "Deploy freeze. Pitch live on the main stage to institutional VCs, angels, and ecosystem leaders.",
         activities: [
           "Morning Feedback Frenzy & Polish",
@@ -197,6 +249,15 @@ export const content = {
           "The Angel Adda (Exclusive Investor Row)",
           "Final Grand Stage Presentations",
           "The Grand Josh Awards Ceremony"
+        ],
+        schedule: [
+          { time: "09:00 AM", title: "Morning Feedback Frenzy & Polish", detail: "Final UI polish, bug squashing, and demo rehearse" },
+          { time: "11:30 AM", title: "Escape Negotiation Roleplay", detail: "High-stress valuation and term sheet roleplay with seasoned negotiators" },
+          { time: "01:30 PM", title: "Mock Investor Pitch Gauntlet", detail: "Trial run with mentor panel to iron out pitch kinks" },
+          { time: "03:30 PM", title: "Investor Speed Dating Rounds", detail: "Fast-track 5-minute pitches with active angel syndicates" },
+          { time: "05:00 PM", title: "The Angel Adda (Exclusive Investor Row)", detail: "Curated networking with East India's premier venture funds" },
+          { time: "06:30 PM", title: "Final Grand Stage Presentations", detail: "Top 10 finalists present live on stage before the grand jury" },
+          { time: "08:30 PM", title: "The Grand Josh Awards Ceremony", detail: "Winners crowned, seed cheques & incubation prizes awarded" }
         ]
       }
     ]
