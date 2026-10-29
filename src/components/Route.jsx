@@ -363,90 +363,89 @@ export const Route = () => {
           {/* ============================================================== */}
           {/* CARTOON KOLKATA HERITAGE TRAM / STREETCAR                      */}
           {/* ============================================================== */}
-          {pathD && (
-            <g
-              transform={`translate(${trainState.x}, ${trainState.y}) rotate(${trainState.angle})`}
-              className="transition-transform duration-75 ease-out"
-            >
-              {/* Headlight Beam spreading forward onto the curvy track */}
-              <polygon
-                points="20,-3 50,-13 50,13 20,3"
-                fill="url(#tramHeadlight)"
-              />
+          {pathD && (() => {
+            const isFlipped = Math.abs(trainState.angle) > 90;
+            return (
+              <g
+                transform={`translate(${trainState.x}, ${trainState.y}) rotate(${trainState.angle}) scale(1, ${isFlipped ? -1 : 1})`}
+                className="transition-transform duration-75 ease-out"
+              >
+                {/* Headlight Beam spreading forward onto the curvy track */}
+                <polygon
+                  points="20,-3 50,-13 50,13 20,3"
+                  fill="url(#tramHeadlight)"
+                />
 
-              {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
-              <circle cx="-22" cy="-6" r="3" fill="#FFFFFF" opacity="0.85" />
-              <circle cx="-30" cy="-10" r="4.2" fill="#FFFFFF" opacity="0.6" />
-              <circle cx="-39" cy="-14" r="5.5" fill="#FFFFFF" opacity="0.35" />
+                {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
+                <circle cx="-22" cy="-6" r="3" fill="#FFFFFF" opacity="0.85" />
+                <circle cx="-30" cy="-10" r="4.2" fill="#FFFFFF" opacity="0.6" />
+                <circle cx="-39" cy="-14" r="5.5" fill="#FFFFFF" opacity="0.35" />
 
-              {/* Tram Drop Shadow */}
-              <rect
-                x="-20"
-                y="-10"
-                width="40"
-                height="20"
-                rx="4"
-                fill="#000000"
-                opacity="0.5"
-              />
+                {/* Tram Drop Shadow */}
+                <rect
+                  x="-20"
+                  y="-10"
+                  width="40"
+                  height="20"
+                  rx="4"
+                  fill="#000000"
+                  opacity="0.5"
+                />
 
-              {/* Tram Main Chassis (Iconic Kolkata Streetcar Green & Crimson) */}
-              <rect
-                x="-19"
-                y="-10"
-                width="38"
-                height="20"
-                rx="4"
-                fill="#1B5E3F"
-                stroke="#000000"
-                strokeWidth="2"
-              />
+                {/* Tram Main Chassis (Iconic Kolkata Streetcar Green & Crimson) */}
+                <rect
+                  x="-19"
+                  y="-10"
+                  width="38"
+                  height="20"
+                  rx="4"
+                  fill="#1B5E3F"
+                  stroke="#000000"
+                  strokeWidth="2"
+                />
 
-              {/* Cream Top Vintage Carriage Half */}
-              <rect
-                x="-19"
-                y="-10"
-                width="38"
-                height="10"
-                rx="3"
-                fill="#FFF9F2"
-                stroke="#000000"
-                strokeWidth="1.5"
-              />
+                {/* Cream Top Vintage Carriage Half */}
+                <rect
+                  x="-19"
+                  y="-10"
+                  width="38"
+                  height="10"
+                  rx="3"
+                  fill="#FFF9F2"
+                  stroke="#000000"
+                  strokeWidth="1.5"
+                />
 
-              {/* Overhead Trolley Pantograph Pole */}
-              <line x1="-8" y1="-10" x2="-2" y2="-17" stroke="#000000" strokeWidth="1.5" />
-              <line x1="-2" y1="-17" x2="6" y2="-10" stroke="#000000" strokeWidth="1.5" />
-              <line x1="-6" y1="-17" x2="4" y2="-17" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
+                {/* Overhead Trolley Pantograph Pole (reaching up to the overhead cable) */}
+                <line x1="-8" y1="-10" x2="-2" y2="-17" stroke="#000000" strokeWidth="1.5" />
+                <line x1="-2" y1="-17" x2="6" y2="-10" stroke="#000000" strokeWidth="1.5" />
+                <line x1="-6" y1="-17" x2="4" y2="-17" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
 
-              {/* Conductor Windows */}
-              <rect x="-14" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-              <rect x="-5" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-              <rect x="4" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-              <rect x="11" y="-8" width="5" height="6" rx="1" fill="#14192C" />
+                {/* Conductor Windows */}
+                <rect x="-14" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+                <rect x="-5" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+                <rect x="4" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+                <rect x="11" y="-8" width="5" height="6" rx="1" fill="#14192C" />
 
-              {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
-              <polygon
-                points="19,-7 24,-4 24,4 19,7"
-                fill="#FFC800"
-                stroke="#000000"
-                strokeWidth="1.5"
-              />
+                {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
+                <polygon
+                  points="19,-7 24,-4 24,4 19,7"
+                  fill="#FFC800"
+                  stroke="#000000"
+                  strokeWidth="1.5"
+                />
 
-              {/* Front Glowing Headlight */}
-              <circle cx="19" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
-              <circle cx="19" cy="0" r="1" fill="#FFFFFF" />
+                {/* Front Glowing Headlight */}
+                <circle cx="19" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
+                <circle cx="19" cy="0" r="1" fill="#FFFFFF" />
 
-              {/* Steel Rail Wheels */}
-              <circle cx="-12" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="2" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="13" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-
-              <circle cx="-12" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="2" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="13" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-            </g>
-          )}
+                {/* Steel Rail Wheels (At bottom on the rails, never on the roof) */}
+                <circle cx="-12" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+                <circle cx="2" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+                <circle cx="13" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              </g>
+            );
+          })()}
         </svg>
 
         {/* ============================================================== */}
