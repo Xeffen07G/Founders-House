@@ -107,8 +107,34 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           </a>
         </div>
 
-        {/* 3. MOBILE HAMBURGER BUTTON (Right side on small screens) */}
-        <div className="pointer-events-auto lg:hidden">
+        {/* 3. PARTNERS LOGO CAPSULE (Top Right on Large Screens) */}
+        <div className="pointer-events-auto hidden lg:flex items-center">
+          <div
+            title="Official Partners: AIC Techno · Techno India University · Hult Prize TIU"
+            className="inline-flex items-center bg-[#FFFFFF]/95 hover:bg-[#FFFFFF] backdrop-blur-xl border-2 border-black rounded-full px-3.5 py-1.5 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] hover:shadow-[5px_5px_0px_#FFC800] transition-all group"
+          >
+            <img
+              src="/header_partners_light.webp"
+              alt="AIC Techno, Techno India University, Hult Prize TIU"
+              width="927"
+              height="154"
+              className="h-6 xl:h-7 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
+              loading="eager"
+            />
+          </div>
+        </div>
+
+        {/* 4. MOBILE HAMBURGER & COMPACT LOGO (Right side on small screens) */}
+        <div className="pointer-events-auto lg:hidden flex items-center gap-2">
+          <div className="hidden sm:inline-flex items-center bg-[#FFFFFF]/95 border-2 border-black rounded-full px-2.5 py-1 shadow-[2px_2px_0px_#000]">
+            <img
+              src="/header_partners_light.webp"
+              alt="AIC Techno, Techno India University, Hult Prize TIU"
+              width="927"
+              height="154"
+              className="h-5 w-auto object-contain"
+            />
+          </div>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2.5 rounded-full bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black text-white hover:text-[#FFC800] shadow-[3px_3px_0px_#000]"
@@ -193,6 +219,20 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           >
             ❓ FAQ
           </a>
+
+          {/* Official Partners Capsule inside Drawer */}
+          <div className="pt-3 border-t border-white/10 flex flex-col items-center gap-1.5">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">Partners & Organizers</span>
+            <div className="inline-flex items-center bg-[#FFFFFF] border-2 border-black rounded-full px-3 py-1.5 shadow-[2px_2px_0px_#000]">
+              <img
+                src="/header_partners_light.webp"
+                alt="AIC Techno, Techno India University, Hult Prize TIU"
+                width="927"
+                height="154"
+                className="h-5 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
       )}
     </nav>
