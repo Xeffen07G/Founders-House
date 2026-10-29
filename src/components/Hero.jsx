@@ -3,7 +3,16 @@ import { content } from '../content';
 
 export const Hero = () => {
   // Live Countdown targeting 18 Dec 2026 (exact style from convergence1.tech)
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const target = new Date('2026-12-18T09:00:00+05:30').getTime();
+    const diff = Math.max(0, target - Date.now());
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      mins: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+      secs: Math.floor((diff % (1000 * 60)) / 1000)
+    };
+  });
 
   useEffect(() => {
     const target = new Date('2026-12-18T09:00:00+05:30').getTime();
@@ -19,7 +28,6 @@ export const Hero = () => {
         });
       }
     };
-    updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, []);

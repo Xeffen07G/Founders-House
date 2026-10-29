@@ -1,18 +1,20 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Venue } from './components/Venue';
-import { About } from './components/About';
-import { Tracks } from './components/Tracks';
-import { Route } from './components/Route';
-import { Awards } from './components/Awards';
-import { Squad } from './components/Squad';
-import { Sponsors } from './components/Sponsors';
-import { Archives } from './components/Archives';
-import { FAQ } from './components/FAQ';
-import { Footer } from './components/Footer';
-import { SoundToggle } from './components/SoundToggle';
 import { BackgroundSkyline } from './components/BackgroundSkyline';
+
+// Code-split below-the-fold sections to crush Total Blocking Time (TBT) and eliminate DOM bloat on initial load
+const Venue = lazy(() => import('./components/Venue').then(m => ({ default: m.Venue })));
+const About = lazy(() => import('./components/About').then(m => ({ default: m.About })));
+const Tracks = lazy(() => import('./components/Tracks').then(m => ({ default: m.Tracks })));
+const Route = lazy(() => import('./components/Route').then(m => ({ default: m.Route })));
+const Awards = lazy(() => import('./components/Awards').then(m => ({ default: m.Awards })));
+const Squad = lazy(() => import('./components/Squad').then(m => ({ default: m.Squad })));
+const Sponsors = lazy(() => import('./components/Sponsors').then(m => ({ default: m.Sponsors })));
+const Archives = lazy(() => import('./components/Archives').then(m => ({ default: m.Archives })));
+const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
+const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
+const SoundToggle = lazy(() => import('./components/SoundToggle').then(m => ({ default: m.SoundToggle })));
 
 // Code-split dedicated Scoreboard page so it doesn't block the main landing page
 const ScoreboardPage = lazy(() =>
@@ -64,43 +66,46 @@ export default function App() {
       ) : (
         /* SPACIOUS LANDING PAGE (Free of heavy scoreboard clutter) */
         <main className="relative z-10 space-y-12 sm:space-y-20">
-          {/* 1. Hero Section */}
+          {/* 1. Hero Section (Above the fold - instant paint, zero blocking) */}
           <Hero />
 
-          {/* 2. The Venue (The Adda at Offbeat CCU) */}
-          <Venue />
+          {/* Below-the-fold sections: Streamed lazily so initial main thread TBT is near 0ms */}
+          <Suspense fallback={<div className="min-h-[400px]" />}>
+            {/* 2. The Venue (The Adda at Offbeat CCU) */}
+            <Venue />
 
-          {/* 3. About (The Origin Story with Seated Feluda Mascot) */}
-          <About />
+            {/* 3. About (The Origin Story with Seated Feluda Mascot) */}
+            <About />
 
-          {/* 4. Tracks (Curated Problem Tracks) */}
-          <Tracks />
+            {/* 4. Tracks (Curated Problem Tracks) */}
+            <Tracks />
 
-          {/* 5. The Route (Kolkata Tram Roadmap) */}
-          <Route />
+            {/* 5. The Route (Kolkata Tram Roadmap) */}
+            <Route />
 
-          {/* 6. Awards (Awesome Prizes & Grants) */}
-          <Awards />
+            {/* 6. Awards (Awesome Prizes & Grants) */}
+            <Awards />
 
-          {/* 7. The Squad (Mentors, Jury, Organizers) */}
-          <Squad />
+            {/* 7. The Squad (Mentors, Jury, Organizers) */}
+            <Squad />
 
-          {/* 8. Sponsors (Backed By Industry Leaders) */}
-          <Sponsors />
+            {/* 8. Sponsors (Backed By Industry Leaders) */}
+            <Sponsors />
 
-          {/* 9. Archives (The Kolkata Energy) */}
-          <Archives />
+            {/* 9. Archives (The Kolkata Energy) */}
+            <Archives />
 
-          {/* 10. FAQ (Common Queries) */}
-          <FAQ />
+            {/* 10. FAQ (Common Queries) */}
+            <FAQ />
+          </Suspense>
         </main>
       )}
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Floating Yellow Sound Toggle (Bottom-Right) */}
-      <SoundToggle />
+      {/* Footer & Floating Controls (Loaded lazily) */}
+      <Suspense fallback={null}>
+        <Footer />
+        <SoundToggle />
+      </Suspense>
     </div>
   );
 }
