@@ -383,20 +383,6 @@ body::before {
 }
 
 /* Radar Scanning & Satellite Map Animations */
-@keyframes mapScan {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(1000%);
-  }
-}
-
-.animate-map-scan {
-  animation: mapScan 4s linear infinite;
-}
-
 @keyframes mapDrift {
   0% {
     transform: scale(1) translate(0, 0);

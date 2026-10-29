@@ -325,11 +325,6 @@ export const Venue = () => {
             />
           </div>
 
-          {/* Scanning Radar Laser Line (Vertical sweep effect across the entire map) */}
-          <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-            <div className="w-full h-12 bg-gradient-to-b from-transparent via-[#E11D48]/30 to-transparent animate-map-scan" />
-          </div>
-
           {/* 360° Rotating Radar Sweep Arc originating from Offbeat CCU */}
           <div className="absolute top-[48%] left-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
             <svg className="w-80 h-80 opacity-40 animate-radar-sweep" viewBox="0 0 200 200">
