@@ -298,6 +298,27 @@ body::before {
   animation-delay: 6s;
 }
 
+/* Smooth Infinite Horizontal Photo Reel */
+@keyframes photoFilmScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-photo-scroll {
+  display: flex;
+  width: max-content;
+  animation: photoFilmScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-photo-scroll:hover {
+  animation-play-state: paused;
+}
+
 /* Kolkata Glass Card */
 .glass-card {
   background: rgba(28, 5, 9, 0.9);
