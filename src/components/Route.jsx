@@ -464,9 +464,9 @@ export const Route = () => {
                       <span>CLICK TO VIEW ACTIVITIES & DETAILS</span>
                     </div>
 
-                    {/* The Yellow Kolkata Railway Stationboard (Image 2 style) */}
+                    {/* The Yellow Railway Stationboard (Clean English: APPLICATION OPEN, DEMO DAY, etc.) */}
                     <div
-                      className={`relative w-[240px] sm:w-[280px] bg-[#FFC800] border-[3.5px] border-black rounded-sm p-3.5 sm:p-4 text-center shadow-[5px_5px_0px_#000] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:shadow-[7px_7px_0px_#E11D48] ${
+                      className={`relative w-[220px] sm:w-[260px] bg-[#FFC800] border-[3.5px] border-black rounded-sm py-4 px-3 sm:px-4 text-center shadow-[5px_5px_0px_#000] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:shadow-[7px_7px_0px_#E11D48] ${
                         isSelected ? 'ring-2 ring-[#FFC800] ring-offset-2 ring-offset-black' : ''
                       }`}
                     >
@@ -476,20 +476,15 @@ export const Route = () => {
                       <span className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 rounded-full bg-black" />
                       <span className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-black" />
 
-                      {/* Top Line: Bold Bengali Script */}
-                      <div className="text-black font-extrabold font-serif text-lg sm:text-xl leading-tight tracking-wide drop-shadow-[0_0.5px_0_rgba(0,0,0,0.4)]">
-                        {stop.boardBengali || stop.bengali}
+                      {/* Station Code / Platform Tag */}
+                      <div className="font-mono text-[9px] uppercase tracking-widest text-black/70 font-black mb-1">
+                        {stop.yard || `JUNCTION 0${idx + 1}`}
                       </div>
 
-                      {/* Middle Line: Hindi Script (Classic Kolkata stationboard look) */}
-                      <div className="text-black font-bold text-xs sm:text-sm leading-tight tracking-widest mt-0.5 opacity-90">
-                        {stop.boardHindi || 'कोलकाता'}
-                      </div>
-
-                      {/* Bottom Line: Bold English Name */}
-                      <div className="text-black font-bebas text-xl sm:text-2xl tracking-wider leading-none font-black uppercase mt-1 border-t-2 border-black/80 pt-1">
+                      {/* Main English Station Name */}
+                      <h4 className="text-black font-bebas text-2xl sm:text-3xl tracking-widest leading-none font-black uppercase">
                         {stop.boardEnglish || stop.stationName}
-                      </div>
+                      </h4>
                     </div>
 
                     {/* Twin Black-and-Yellow Striped Support Posts (Pillars from photo) */}
@@ -597,8 +592,8 @@ export const Route = () => {
                   <h3 className="font-bebas text-2xl sm:text-3xl text-black tracking-wide leading-none font-black uppercase">
                     {popupStop.number}: {popupStop.boardEnglish || popupStop.stationName}
                   </h3>
-                  <div className="font-comic text-xs sm:text-sm text-[#8C1D03] font-bold mt-1">
-                    {popupStop.bengali} · {popupStop.platform}
+                  <div className="font-mono text-xs text-[#8C1D03] font-bold mt-1">
+                    {popupStop.platform}
                   </div>
                 </div>
               </div>

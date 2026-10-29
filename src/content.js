@@ -258,7 +258,7 @@ export const content = {
         id: "stop-5",
         number: "STATION 05 · DAY 3",
         yard: "DAY 3 PLATFORM",
-        boardEnglish: "DAY 3 · DEMO DAY",
+        boardEnglish: "DEMO DAY",
         boardBengali: "তৃতীয় দিন · মহাযুদ্ধ",
         boardHindi: "अंतिम दिन",
         watermark: "05",
