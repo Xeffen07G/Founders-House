@@ -6,19 +6,18 @@ import { FeludaArmchairCartoon } from './FeludaArmchairCartoon';
 export const About = () => {
   return (
     <section id="about" className="pt-16 sm:pt-20 pb-16 sm:pb-24 px-4 max-w-7xl mx-auto">
-      <SectionHeader
-        pill="ABOUT THE EVENT"
-        line1="MORE THAN A HACKATHON."
-        line2="KOLKATA LEVEL HUSTLE."
-        accentColor="text-[#E11D48]"
-        className="mb-4 sm:mb-6"
-      />
-
-      {/* Main 2-Column Showcase: Origin Story (Left) + Seated Feluda Mascot in Armchair (Right) */}
+      {/* Main 2-Column Showcase: Left Column (Heading + Narrative + Stats) + Right Column (Feluda Mascot) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start mb-14">
         
         {/* Left Column: Mission Narrative & Core Stats */}
         <div className="lg:col-span-7 flex flex-col gap-6">
+          <SectionHeader
+            pill="ABOUT THE EVENT"
+            line1="MORE THAN A HACKATHON."
+            line2="KOLKATA LEVEL HUSTLE."
+            accentColor="text-[#E11D48]"
+            className="mb-0"
+          />
           
           {/* Narrative Comic Card */}
           <div className="comic-card p-6 sm:p-8 bg-[#1C0509] border-2 border-black shadow-[6px_6px_0px_#000]">
@@ -67,8 +66,8 @@ export const About = () => {
 
         </div>
 
-        {/* Right Column: Cartoon Illustration of Feluda in Armchair (Convergence Style) */}
-        <div className="lg:col-span-5 flex justify-center items-center">
+        {/* Right Column: Cartoon Illustration of Feluda in Armchair (Aligned with Heading at top level) */}
+        <div className="lg:col-span-5 flex justify-center items-start">
           <FeludaArmchairCartoon
             quote="Bhabte shuru koro. Magojastro holo shobcheye boro weapon."
             className="w-full"

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Rounded Crimson Badge -->
+  <rect width="64" height="64" rx="16" fill="#E11D48" />
+  
+  <!-- Bold Ink Border -->
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#000000" stroke-width="3" />
+  
+  <!-- Architectural Heritage Roofline & House Silhouette -->
+  <path d="M12 34L32 16L52 34H46V52H18V34H12Z" fill="#140306" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Heritage Classical Columns -->
+  <rect x="20" y="34" width="4" height="18" fill="#FFF9F2" />
+  <rect x="40" y="34" width="4" height="18" fill="#FFF9F2" />
+  
+  <!-- Golden Arched Doorway -->
+  <path d="M26 52V38C26 34.69 28.69 32 32 32C35.31 32 38 34.69 38 38V52H26Z" fill="#FFC800" stroke="#000000" stroke-width="2.5"/>
+  <path d="M29 52V40C29 38.34 30.34 37 32 37C33.66 37 35 38.34 35 40V52H29Z" fill="#140306"/>
+  
+  <!-- 4-Point Electric Startup Spark at Apex -->
+  <path d="M32 6L34.5 12.5L41 15L34.5 17.5L32 24L29.5 17.5L23 15L29.5 12.5L32 6Z" fill="#FFC800" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="32" cy="15" r="2.5" fill="#FFFFFF" />
+</svg>
