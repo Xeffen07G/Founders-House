@@ -14,6 +14,7 @@ export const BackgroundSkyline = () => {
       {/* 2. HOWRAH BRIDGE BACKGROUND (Optimized WebP, explicit dimensions, zero CLS) */}
       <div className="absolute top-[24%] sm:top-[16%] inset-x-0 w-full h-[60vh] sm:h-[72vh] flex items-center justify-center pointer-events-none opacity-25 sm:opacity-35 overflow-hidden">
         <picture className="w-full h-full">
+          <source media="(max-width: 768px)" type="image/webp" srcSet="/howrah_bridge_mobile.webp" />
           <source type="image/webp" srcSet="/howrah_bridge_bg.webp" />
           <img
             src="/howrah_bridge_bg.jpg"
