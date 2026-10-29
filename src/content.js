@@ -390,9 +390,21 @@ export const content = {
     headingLine2: "GREAT TEAMS.",
     desc: "Supported by organizations investing in Kolkata's burgeoning startup landscape.",
     tiers: [
-      { name: "GOLD PARTNERS", count: 3, color: "border-neonYellow text-neonYellow" },
-      { name: "SILVER PARTNERS", count: 4, color: "border-neonCyan text-neonCyan" },
-      { name: "BRONZE & COMMUNITY", count: 6, color: "border-neonLime text-neonLime" }
+      {
+        name: "GOLD PARTNERS",
+        count: 3,
+        color: "border-neonYellow text-neonYellow",
+        partners: [
+          {
+            name: "AIC Techno (Atal Incubation Centre)",
+            subtitle: "Incubation & Venue Partner",
+            logo: "/aic_techno_logo.webp",
+            url: "#venue"
+          }
+        ]
+      },
+      { name: "SILVER PARTNERS", count: 4, partners: [], color: "border-neonCyan text-neonCyan" },
+      { name: "BRONZE & COMMUNITY", count: 6, partners: [], color: "border-neonLime text-neonLime" }
     ],
     hud: {
       title: "WANT YOUR LOGO HERE?",

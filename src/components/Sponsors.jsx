@@ -23,17 +23,44 @@ export const Sponsors = () => {
               ✦ {tier.name}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-              {Array.from({ length: tier.count }).map((_, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="h-24 rounded-xl bg-[#120205] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-[#FFC800] transition-colors"
-                >
-                  <span className="font-mono text-[11px] text-white/50 font-bold uppercase group-hover:text-[#FFC800]">
-                    PARTNER SLOT #{sIdx + 1}
-                  </span>
-                </div>
-              ))}
+            <div className={`grid gap-4 sm:gap-6 ${
+              tIdx === 0
+                ? 'grid-cols-1 sm:grid-cols-3'
+                : tIdx === 1
+                ? 'grid-cols-2 sm:grid-cols-4'
+                : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6'
+            }`}>
+              {Array.from({ length: tier.count }).map((_, sIdx) => {
+                const partner = tier.partners && tier.partners[sIdx];
+                if (partner) {
+                  return (
+                    <a
+                      key={sIdx}
+                      href={partner.url || '#'}
+                      title={partner.name}
+                      className="h-28 sm:h-32 rounded-xl bg-white/95 border-2 border-black flex items-center justify-center p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden"
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-20 sm:max-h-24 w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  );
+                }
+                return (
+                  <div
+                    key={sIdx}
+                    className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24'} rounded-xl bg-[#120205] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-[#FFC800] transition-colors`}
+                  >
+                    <span className="font-mono text-[11px] text-white/50 font-bold uppercase group-hover:text-[#FFC800]">
+                      PARTNER SLOT #{sIdx + 1}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         ))}
