@@ -1,18 +1,18 @@
 /**
  * ICONIC KOLKATA LEGENDS & DETECTIVE SQUAD (SVG Cartoon Network Style)
  * Featuring beloved fictional & real Kolkata icons:
- * 1. Feluda (Pradosh C. Mitter) — Charismatic tall sleuth in white kurta with sharp gaze and notebook.
- * 2. Byomkesh Bakshi — The Satyanweshi (Truth-Seeker) in dhoti-kurta, magnifying glass & pipe.
- * 3. Topshe (Tapesh) — Feluda's eager cousin & chronicler with camera/notebook.
- * 4. Jatayu (Lalmohan Ganguly) — Thriller writer in safari suit with green Ambassador taxi miniature.
- * 5. Professor Shonku — Eccentric scientist in lab coat with Annihilin ray gadget.
- * 6. Tenida (Bhadreshwar Sen) — The tall, fearless leader of Potoldanga adda holding a giant samosa.
- * 7. Chai Chintu — Sector V tapri chai master with steaming earthen kulhad.
- * 8. Tram Didi — Confident Kolkata tram conductor steering the route.
+ * 1. Feluda (Pradosh C. Mitter): Charismatic tall sleuth in white kurta with sharp gaze and notebook.
+ * 2. Byomkesh Bakshi: The Satyanweshi (Truth-Seeker) in dhoti-kurta, magnifying glass & pipe.
+ * 3. Topshe (Tapesh): Feluda's eager cousin & chronicler with camera/notebook.
+ * 4. Jatayu (Lalmohan Ganguly): Thriller writer in safari suit with green Ambassador taxi miniature.
+ * 5. Professor Shonku: Eccentric scientist in lab coat with Annihilin ray gadget.
+ * 6. Tenida (Bhadreshwar Sen): The tall, fearless leader of Potoldanga adda holding a giant samosa.
+ * 7. Chai Chintu: Sector V tapri chai master with steaming earthen kulhad.
+ * 8. Tram Didi: Confident Kolkata tram conductor steering the route.
  */
 
 export const mascots = {
-  // 1. Feluda (Pradosh C. Mitter) — Sharp, tall, charismatic sleuth
+  // 1. Feluda (Pradosh C. Mitter): Sharp, tall, charismatic sleuth
   feluda: (size = 140) => `
     <svg width="${size}" height="${size * 1.3}" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="198" rx="42" ry="7" fill="#000000" opacity="0.45"/>
@@ -58,7 +58,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 2. Byomkesh Bakshi — The Satyanweshi (Truth-Seeker) with round glasses & dhoti
+  // 2. Byomkesh Bakshi: The Satyanweshi (Truth-Seeker) with round glasses & dhoti
   byomkesh: (size = 140) => `
     <svg width="${size}" height="${size * 1.3}" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="198" rx="42" ry="7" fill="#000000" opacity="0.45"/>
@@ -105,7 +105,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 3. Topshe (Tapesh) — Feluda's eager cousin & chronicler with camera & pen
+  // 3. Topshe (Tapesh): Feluda's eager cousin & chronicler with camera & pen
   topshe: (size = 120) => `
     <svg width="${size}" height="${size * 1.25}" viewBox="0 0 150 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="75" cy="180" rx="38" ry="7" fill="#000000" opacity="0.45"/>
@@ -141,7 +141,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 4. Jatayu (Lalmohan Ganguly) — Thriller novelist in safari suit with green Ambassador taxi
+  // 4. Jatayu (Lalmohan Ganguly): Thriller novelist in safari suit with green Ambassador taxi
   jatayu: (size = 130) => `
     <svg width="${size}" height="${size * 1.25}" viewBox="0 0 160 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="180" rx="46" ry="7" fill="#000000" opacity="0.45"/>
@@ -174,7 +174,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 5. Professor Shonku — Giridih deep-tech inventor with Annihilin ray gadget
+  // 5. Professor Shonku: Giridih deep-tech inventor with Annihilin ray gadget
   professorShonku: (size = 130) => `
     <svg width="${size}" height="${size * 1.25}" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="186" rx="42" ry="7" fill="#000000" opacity="0.45"/>
@@ -205,7 +205,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 6. Tenida (Bhadreshwar Sen) — Fearless leader of Potoldanga adda holding a giant samosa
+  // 6. Tenida (Bhadreshwar Sen): Fearless leader of Potoldanga adda holding a giant samosa
   tenida: (size = 130) => `
     <svg width="${size}" height="${size * 1.25}" viewBox="0 0 160 195" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="182" rx="44" ry="7" fill="#000000" opacity="0.45"/>
@@ -232,7 +232,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 7. Chai Chintu — Tapri master with steaming earthen kulhad
+  // 7. Chai Chintu: Tapri master with steaming earthen kulhad
   chaiChintu: (size = 120) => `
     <svg width="${size}" height="${size * 1.2}" viewBox="0 0 150 180" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="75" cy="172" rx="38" ry="7" fill="#000000" opacity="0.4"/>
@@ -257,7 +257,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 8. Tram Didi — Confident conductor
+  // 8. Tram Didi: Confident conductor
   tramDidi: (size = 130) => `
     <svg width="${size}" height="${size * 1.25}" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="186" rx="42" ry="7" fill="#000000" opacity="0.4"/>
@@ -279,7 +279,7 @@ export const mascots = {
     </svg>
   `,
 
-  // 9. Satyajit Ray — Master Filmmaker & Visual Storyteller
+  // 9. Satyajit Ray: Master Filmmaker & Visual Storyteller
   satyajitRay: (size = 140) => `
     <svg width="${size}" height="${size * 1.3}" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg" class="filter drop-shadow-sticker">
       <ellipse cx="80" cy="198" rx="44" ry="7" fill="#000000" opacity="0.45"/>

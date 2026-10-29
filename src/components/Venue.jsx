@@ -391,7 +391,7 @@ export const Venue = () => {
       <div className="mt-4 sm:mt-8 flex justify-center px-2 sm:px-4 w-full">
         <p className="font-comic text-[11px] sm:text-base md:text-xl text-[#FFC800] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center">
           "If we get lost along the EM Bypass, I'm blaming Topshe's notebook directions entirely."{" "}
-          <span className="text-[#E11D48] font-bold ml-1 sm:ml-2">— FELUDA</span>
+          <span className="text-[#E11D48] font-bold ml-1 sm:ml-2">· FELUDA</span>
         </p>
       </div>
     </section>

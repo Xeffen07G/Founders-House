@@ -1,5 +1,5 @@
 /**
- * FOUNDERS' HOUSE — CENTRAL CONTENT REPOSITORY
+ * FOUNDERS' HOUSE: CENTRAL CONTENT REPOSITORY
  * All copy, event facts, tracks, stops, perks, and FAQ live here.
  * Any unknown detail is tagged with visible TODOs.
  */
@@ -43,7 +43,7 @@ export const content = {
     badge: "The Ultimate 3-Day Residential Startup Sprint",
     title: "FOUNDERS' HOUSE",
     ribbon: "BUILD. VALIDATE. LAUNCH.",
-    subtext: "Case file unlocked: 10 student founder squads locked into Kolkata's premier incubation arena. Like a Satyajit Ray frame — every scene deliberate, every detail purposeful. Feluda's deduction meets Byomkesh's tenacity in a 72-hour cinematic sprint to crack real-world market mysteries, build production MVPs, and pitch live to top investors under the City of Joy's neon lights.",
+    subtext: "Case file unlocked: 10 student founder squads locked into Kolkata's premier incubation arena. Like a Satyajit Ray frame, every scene deliberate, every detail purposeful. Feluda's deduction meets Byomkesh's tenacity in a 72-hour cinematic sprint to crack real-world market mysteries, build production MVPs, and pitch live to top investors under the City of Joy's neon lights.",
     ctaApply: "APPLY NOW",
     ctaJourney: "FOLLOW THE JOURNEY",
     stamp: "CASE OPEN · SPRINT CONFIRMED",
@@ -54,15 +54,15 @@ export const content = {
     pill: "THE ADDA",
     headingLine1: "WELCOME TO",
     headingLine2: "THE ADDA.",
-    desc: "Set inside AIC Techno (Atal Incubation Centre) at Offbeat CCU, 36F Topsia Road — Kolkata's vibrant experiential creative and startup hub right along the EM Bypass corridor. Surrounded by the pulse of Kolkata where yellow Ambassador taxis cruise down the bypass, minutes from Science City and Park Circus. 24x7 high-speed fiber, hardware labs, maker spaces, and endless earthen kulhads of steaming Kolkata chai.",
-    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to EM Bypass — now we bring the code to AIC Techno."'
+    desc: "Set inside AIC Techno (Atal Incubation Centre) at Offbeat CCU, 36F Topsia Road, Kolkata's vibrant experiential creative and startup hub right along the EM Bypass corridor. Surrounded by the pulse of Kolkata where yellow Ambassador taxis cruise down the bypass, minutes from Science City and Park Circus. 24x7 high-speed fiber, hardware labs, maker spaces, and endless earthen kulhads of steaming Kolkata chai.",
+    quote: '"Kolkata was built on river trade, printing presses, and late-night Coffee House debates on Bankim Chatterjee Street. From Howrah Bridge\'s iron arches to EM Bypass, now we bring the code to AIC Techno."'
   },
 
   about: {
     pill: "THE ORIGIN STORY",
     headingLine1: "MORE THAN A HACKATHON.",
     headingLine2: "KOLKATA-LEVEL HUSTLE.",
-    desc: "Most hackathons end with slides that gather dust. Founders' House is an undercover startup incubator disguised as a 72-hour sprint — born from the same restless adda spirit that powered the Bengal Renaissance. Teams live on-site, receive raw mystery problem statements directly from domain mentors, validate with real users on the street, and pitch to active venture syndicates. This is Kolkata's builder energy — the city that gave the world Bose's radio, Ray's cinema, and Tagore's verse — channeled into venture-grade code.",
+    desc: "Most hackathons end with slides that gather dust. Founders' House is an undercover startup incubator disguised as a 72-hour sprint, born from the same restless adda spirit that powered the Bengal Renaissance. Teams live on-site, receive raw mystery problem statements directly from domain mentors, validate with real users on the street, and pitch to active venture syndicates. This is Kolkata's builder energy, the city that gave the world Bose's radio, Ray's cinema, and Tagore's verse, channeled into venture-grade code.",
     stats: [
       { val: "3", label: "DAYS LOCKED IN" },
       { val: "10", label: "ELITE TEAMS" },
@@ -73,7 +73,7 @@ export const content = {
       {
         role: "HOST INCUBATOR",
         name: "AIC Techno (Atal Incubation Centre)",
-        desc: "Supported by Atal Innovation Mission, NITI Aayog — Eastern India's vanguard tech incubation centre with deep labs and venture networks. Venue host for Founders' House."
+        desc: "Supported by Atal Innovation Mission, NITI Aayog: Eastern India's vanguard tech incubation centre with deep labs and venture networks. Venue host for Founders' House."
       },
       {
         role: "ORGANIZING CHAPTER",
@@ -147,7 +147,7 @@ export const content = {
       },
       {
         id: "stop-3",
-        number: "STOP 03 — DAY 1",
+        number: "STOP 03 · DAY 1",
         name: "Inspire & Form",
         bengali: "প্রথম দিন · সূত্রপাত",
         date: "18 Dec 2026",
@@ -164,7 +164,7 @@ export const content = {
       },
       {
         id: "stop-4",
-        number: "STOP 04 — DAY 2",
+        number: "STOP 04 · DAY 2",
         name: "Validate & Build",
         bengali: "দ্বিতীয় দিন · কেস ফাইল",
         date: "19 Dec 2026",
@@ -183,7 +183,7 @@ export const content = {
       },
       {
         id: "stop-5",
-        number: "STOP 05 — DAY 3",
+        number: "STOP 05 · DAY 3",
         name: "Demo Day & Josh Awards",
         bengali: "তৃতীয় দিন · মহাযুদ্ধ",
         date: "20 Dec 2026",
@@ -374,50 +374,50 @@ export const content = {
       id: "feluda",
       name: "Feluda (Pradosh C. Mitter)",
       role: "Lead Sleuth & Brainpower (Mogojastro)",
-      desc: "Tall, charismatic master sleuth of 21 Rajani Sen Road — the sharp mind who can deduce your TAM from a single customer conversation, the way he'd spot a forged Mughal miniature at a Gariahat stall. Armed with his trusted notebook and Charminar cigarettes, he dissects startup value propositions with the clinical precision of a North Kolkata chess grandmaster.",
+      desc: "Tall, charismatic master sleuth of 21 Rajani Sen Road, the sharp mind who can deduce your TAM from a single customer conversation, the way he'd spot a forged Mughal miniature at a Gariahat stall. Armed with his trusted notebook and Charminar cigarettes, he dissects startup value propositions with the clinical precision of a North Kolkata chess grandmaster.",
       quote: '"Any startup that relies on hype rather than unit economics will crumble at the first inquiry. Jodi bhaalo kaaj na koro, Jatayu-r uponyash-e theke jabe."'
     },
     {
       id: "byomkesh",
       name: "Byomkesh Bakshi",
       role: "The Satyanweshi (Truth-Seeker)",
-      desc: "The legendary dhoti-clad truth-seeker of Harrison Road, now Mahatma Gandhi Road — threading through the narrow gullies of Chinabazar and the old Kolkata neighbourhoods to uncover unvarnished customer reality. Over cups of Ajit's hand-brewed cha, he deduces market mysteries, hidden churn metrics, and the real unit economics behind every glossy pitch deck.",
-      quote: '"I am not a mere investigator, I seek truth. Show me your actual user retention, not projections. Shotti bolun — asol number ta koto?"'
+      desc: "The legendary dhoti-clad truth-seeker of Harrison Road, now Mahatma Gandhi Road, threading through the narrow gullies of Chinabazar and the old Kolkata neighbourhoods to uncover unvarnished customer reality. Over cups of Ajit's hand-brewed cha, he deduces market mysteries, hidden churn metrics, and the real unit economics behind every glossy pitch deck.",
+      quote: '"I am not a mere investigator, I seek truth. Show me your actual user retention, not projections. Shotti bolun: asol number ta koto?"'
     },
     {
       id: "satyajitRay",
       name: "Satyajit Ray",
       role: "Chief Director & Visual Storyteller",
-      desc: "The legendary auteur of Calcutta — master of framing, light, and narrative economy. From the rain-soaked lanes of Pather Panchali to the neon noir of Pratidwandi, Ray understood that every single frame must earn its place. At Founders' House, he scrutinizes your product demos like rushes in an editing room at Tollygunge Studios — cutting filler, amplifying truth, demanding that your MVP tells a story as honest and compelling as an Apu Trilogy sequence.",
-      quote: '"Treat every pitch like a film — frame it beautifully, edit ruthlessly, and never waste your audience\'s time. Ekta kharap frame gota chobi noshto kore dey."'
+      desc: "The legendary auteur of Calcutta, master of framing, light, and narrative economy. From the rain-soaked lanes of Pather Panchali to the neon noir of Pratidwandi, Ray understood that every single frame must earn its place. At Founders' House, he scrutinizes your product demos like rushes in an editing room at Tollygunge Studios, cutting filler, amplifying truth, demanding that your MVP tells a story as honest and compelling as an Apu Trilogy sequence.",
+      quote: '"Treat every pitch like a film: frame it beautifully, edit ruthlessly, and never waste your audience\'s time. Ekta kharap frame gota chobi noshto kore dey."'
     },
     {
       id: "topshe",
       name: "Topshe (Tapesh)",
       role: "Chief Chronicler & Sprint Scribe",
-      desc: "Feluda's eager cousin and faithful chronicler — the one who turns raw chaos into structured case files with the diligence of a Presidency College honours student. He records every commit, mentor teardown, and pivot decision, documenting the sprint's story the way he captures Feluda's adventures from Darjeeling to Varanasi, always with a fresh Natun Golpo notebook in hand.",
-      quote: '"Write down every user interview verbatim before the mentor arrives! Feluda always says — notes-e jodi bhul thake, case-e o bhul thakbe."'
+      desc: "Feluda's eager cousin and faithful chronicler, the one who turns raw chaos into structured case files with the diligence of a Presidency College honours student. He records every commit, mentor teardown, and pivot decision, documenting the sprint's story the way he captures Feluda's adventures from Darjeeling to Varanasi, always with a fresh Natun Golpo notebook in hand.",
+      quote: '"Write down every user interview verbatim before the mentor arrives! Feluda always says: notes-e jodi bhul thake, case-e o bhul thakbe."'
     },
     {
       id: "jatayu",
       name: "Jatayu (Lalmohan Ganguly)",
       role: "Chief Storyteller & Pitch Masala",
-      desc: "Best-selling thriller novelist with a heart of gold and the dramatic flair of a Tollywood matinee idol. Fresh from penning 'Sahare Chupi Chupi' at his Park Street den, Jatayu infuses your pitch decks with the kind of dramatic crescendo that makes investors grip their armrests — part Bangla thriller, part boardroom blockbuster, all goosebumps.",
-      quote: '"A pitch without goosebumps is like a mystery without a murder! Bring the thrill! Bhai, ektu masala dao — investor-ra ghomiye jabe!"'
+      desc: "Best-selling thriller novelist with a heart of gold and the dramatic flair of a Tollywood matinee idol. Fresh from penning 'Sahare Chupi Chupi' at his Park Street den, Jatayu infuses your pitch decks with the kind of dramatic crescendo that makes investors grip their armrests: part Bangla thriller, part boardroom blockbuster, all goosebumps.",
+      quote: '"A pitch without goosebumps is like a mystery without a murder! Bring the thrill! Bhai, ektu masala dao, investor-ra ghomiye jabe!"'
     },
     {
       id: "professor-shonku",
       name: "Professor Shonku",
       role: "Deep-Tech & Algorithmic Vanguard",
-      desc: "The eccentric genius scientist from Giridih, armed with his Annihilin pistol and Miracurall tablets — a polymath who'd feel right at home in Sector V's deepest server rooms. He challenges AI architectures and system designs with the same fearless curiosity that led him from his Giridih laboratory to the pyramids of Egypt, always scribbling in his tattered diary.",
-      quote: '"Miracurall exists only in fiction. In software, you must test every boundary condition. Probondhu Nakur Babu-ke bolechi — shortcut-e kichu hoy na."'
+      desc: "The eccentric genius scientist from Giridih, armed with his Annihilin pistol and Miracurall tablets, a polymath who'd feel right at home in Sector V's deepest server rooms. He challenges AI architectures and system designs with the same fearless curiosity that led him from his Giridih laboratory to the pyramids of Egypt, always scribbling in his tattered diary.",
+      quote: '"Miracurall exists only in fiction. In software, you must test every boundary condition. Probondhu Nakur Babu-ke bolechi: shortcut-e kichu hoy na."'
     },
     {
       id: "tenida",
       name: "Tenida (Bhadreshwar Sen)",
       role: "Potoldanga Adda Master & Morale General",
-      desc: "The fearless, booming leader of the Potoldanga chaatir adda — part street philosopher, part midnight motivational hurricane. With the swagger of a College Street coffee house regular and an insatiable appetite for Golbari-r kosha mangsho and piping hot shingaras at 3 AM, Tenida keeps team spirits soaring when the codebase is burning and the demo is six hours away.",
-      quote: '"Dey shingara! When the bug is stubborn, eat a hot Dacres Lane roll and hit deploy! Ei Palaram-ke bol — chai niye aay!"'
+      desc: "The fearless, booming leader of the Potoldanga chaatir adda, part street philosopher, part midnight motivational hurricane. With the swagger of a College Street coffee house regular and an insatiable appetite for Golbari-r kosha mangsho and piping hot shingaras at 3 AM, Tenida keeps team spirits soaring when the codebase is burning and the demo is six hours away.",
+      quote: '"Dey shingara! When the bug is stubborn, eat a hot Dacres Lane roll and hit deploy! Ei Palaram-ke bol: chai niye aay!"'
     }
   ]
 };

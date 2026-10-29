@@ -111,7 +111,7 @@ export const Hero = () => {
           </a>
         </div>
 
-        {/* Character Dialogue Box — Feluda speaks */}
+        {/* Character Dialogue Box: Feluda speaks */}
         <div className="max-w-2xl mx-auto comic-speech-bubble flex items-center gap-3.5 text-left mb-4">
           <span className="text-2xl flex-shrink-0">🔍</span>
           <div className="text-xs sm:text-sm font-poppins font-medium text-[#FFF9F2]">
@@ -131,7 +131,7 @@ export const Hero = () => {
 
         {/* Event Meta Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-          {["18–20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN-INDIA STUDENTS"].map((chip, idx) => (
+          {["18-20 DEC 2026", "AIC TECHNO (OFFBEAT CCU)", "10 FINALIST TEAMS", "PAN-INDIA STUDENTS"].map((chip, idx) => (
             <span
               key={idx}
               className="px-3.5 py-1.5 rounded-lg bg-[#1C0509] border border-white/20 text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 shadow-[2px_2px_0px_#000]"

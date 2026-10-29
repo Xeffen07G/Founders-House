@@ -34,7 +34,7 @@ export const About = () => {
             </h3>
 
             <p className="font-poppins text-sm sm:text-base text-white/80 leading-relaxed mb-4">
-              Kolkata has always been the intellectual capital — home to Satyajit Ray's timeless detectives, revolutionary writers, and world-class polymaths. <strong className="text-white">Founders' House</strong> channels that deep analytical DNA into high-velocity technology startups.
+              Kolkata has always been the intellectual capital, home to Satyajit Ray's timeless detectives, revolutionary writers, and world-class polymaths. <strong className="text-white">Founders' House</strong> channels that deep analytical DNA into high-velocity technology startups.
             </p>
 
             <p className="font-poppins text-xs sm:text-sm text-white/70 leading-relaxed">
