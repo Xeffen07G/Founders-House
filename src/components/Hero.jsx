@@ -43,10 +43,15 @@ export const Hero = () => {
       {/* Hero Header Area */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         
-        {/* Pill Tag (Kolkata Red & White style) */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C0509] border border-[#E11D48]/80 text-[#FFF9F2] text-xs font-mono font-bold tracking-widest uppercase mb-6 shadow-[3px_3px_0px_#000]">
-          <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
-          KOLKATA'S PREMIER 72 HOUR RESIDENTIAL HACKATHON
+        {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
+        <div className="flex justify-center mb-3 sm:mb-4">
+          <img
+            src="/kolkata_bengali_sticker.webp"
+            alt="কলকাতা (Kolkata)"
+            className="h-9 sm:h-12 md:h-14 w-auto object-contain select-none transform -rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
+            width="376"
+            height="102"
+          />
         </div>
 
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
