@@ -75,7 +75,7 @@
   --font-round: "Poppins", sans-serif;
   --font-comic: "Comic Neue", "Comic Sans MS", cursive, sans-serif;
 
-  --dark-bg: #120205;
+  --dark-bg: #0A0A0A;
   --card-bg: #1C0509;
   --kolkata-red: #E11D48;
   --kolkata-crimson: #BE123C;
@@ -97,7 +97,7 @@ body {
   position: relative;
 }
 
-/* Subtle Kolkata Alpona / Grid Pattern Background */
+/* Subtle Neutral Grid Pattern Background */
 body::before {
   content: '';
   position: fixed;
@@ -106,8 +106,8 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image:
-    linear-gradient(rgba(225, 29, 72, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(225, 29, 72, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;

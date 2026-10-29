@@ -4,7 +4,7 @@ import { FoundersHouseIcon } from './BrandLogo';
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-[#0D0103] border-t-4 border-black pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#0A0A0A] border-t-4 border-black pt-16 pb-12 overflow-hidden">
       
       {/* Footer Columns */}
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row md:items-start md:justify-between gap-10 pb-12 border-b border-white/10">

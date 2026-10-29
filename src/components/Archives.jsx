@@ -27,8 +27,8 @@ export const Archives = () => {
       {/* Infinite Smooth Sideways Auto-Scrolling Photo Track */}
       <div className="relative w-full overflow-hidden py-4 mb-12 select-none">
         {/* Soft atmospheric gradient masks on edges */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-r from-[#120205] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-l from-[#120205] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10" />
 
         {/* Auto-scrolling Reel (Pauses on hover for comfortable viewing) */}
         <div className="animate-photo-scroll flex items-center gap-5 sm:gap-7">

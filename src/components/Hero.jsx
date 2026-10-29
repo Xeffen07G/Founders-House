@@ -37,9 +37,6 @@ export const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-[85vh] pt-24 sm:pt-28 pb-12 sm:pb-16 flex flex-col justify-center overflow-hidden">
-      {/* Background Radial Crimson & Terracotta Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[650px] bg-gradient-to-b from-[#881337]/40 via-[#4C0519]/25 to-transparent rounded-full blur-[130px] pointer-events-none z-0" />
-
       {/* Hero Header Area */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         

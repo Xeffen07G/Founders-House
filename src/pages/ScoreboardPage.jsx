@@ -9,7 +9,7 @@ export const ScoreboardPage = ({ onBack }) => {
     : content.scoreboard.leaderboard.filter(t => t.caseTrack.toUpperCase().includes(selectedTrack));
 
   return (
-    <div className="min-h-screen bg-[#120205] text-[#FFF9F2] pt-24 pb-20 px-4 sm:px-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#FFF9F2] pt-24 pb-20 px-4 sm:px-6">
       
       {/* Top Header / Back Navigation */}
       <div className="max-w-6xl mx-auto mb-10 flex flex-wrap items-center justify-between gap-4 border-b-2 border-black/80 pb-6">
