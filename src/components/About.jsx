@@ -33,6 +33,10 @@ export const About = () => {
               WHERE INTELLECT MEETS RELENTLESS EXECUTION.
             </h3>
 
+            <p className="font-poppins text-sm sm:text-base text-white/90 leading-relaxed mb-4">
+              Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, crack raw mentor problems, build real products, and pitch live to venture syndicates.
+            </p>
+
             <p className="font-poppins text-sm sm:text-base text-white/80 leading-relaxed mb-4">
               Kolkata has always been the intellectual capital, home to Satyajit Ray's timeless detectives, revolutionary writers, and world class polymaths. <strong className="text-white">Founders' House</strong> channels that deep analytical DNA into high velocity technology startups.
             </p>

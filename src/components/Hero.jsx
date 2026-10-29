@@ -54,7 +54,7 @@ export const Hero = () => {
         </div>
 
         {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
-        <div className="flex justify-center -mt-1 sm:-mt-2 mb-4 sm:mb-5">
+        <div className="flex justify-center -mt-1 sm:-mt-2 mb-6 sm:mb-8">
           <img
             src="/kolkata_bengali_sticker.webp"
             alt="কলকাতা (Kolkata)"
@@ -63,11 +63,6 @@ export const Hero = () => {
             height="102"
           />
         </div>
-
-        {/* Subtitle / Tagline */}
-        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-[#FFF9F2]/90 font-poppins font-medium leading-relaxed mb-6 sm:mb-7">
-          Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
-        </p>
 
         {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) */}
         <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-6 sm:mb-7">
