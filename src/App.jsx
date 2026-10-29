@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Venue } from './components/Venue';
@@ -12,8 +12,12 @@ import { Archives } from './components/Archives';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { SoundToggle } from './components/SoundToggle';
-import { ScoreboardPage } from './pages/ScoreboardPage';
 import { BackgroundSkyline } from './components/BackgroundSkyline';
+
+// Code-split dedicated Scoreboard page so it doesn't block the main landing page
+const ScoreboardPage = lazy(() =>
+  import('./pages/ScoreboardPage').then((m) => ({ default: m.ScoreboardPage }))
+);
 
 export default function App() {
   const [route, setRoute] = useState(() => {
@@ -53,8 +57,10 @@ export default function App() {
       <Navbar currentRoute={route} onNavigate={(r) => setRoute(r)} />
 
       {route === 'scoreboard' ? (
-        /* DEDICATED SCOREBOARD PAGE (Moved off the front page) */
-        <ScoreboardPage onBack={handleBackToBase} />
+        /* DEDICATED SCOREBOARD PAGE (Code-split, loaded on demand) */
+        <Suspense fallback={<div className="min-h-screen bg-[#120205]" />}>
+          <ScoreboardPage onBack={handleBackToBase} />
+        </Suspense>
       ) : (
         /* SPACIOUS LANDING PAGE (Free of heavy scoreboard clutter) */
         <main className="relative z-10 space-y-12 sm:space-y-20">

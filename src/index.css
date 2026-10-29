@@ -5,11 +5,9 @@
 :root {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Bebas Neue", "Poppins", sans-serif;
+  --font-display: "Bebas Neue", "Impact", "Arial Black", sans-serif;
   --font-round: "Poppins", sans-serif;
   --font-comic: "Comic Neue", "Comic Sans MS", cursive, sans-serif;
-  --font-bangers: "Bangers", system-ui, cursive;
-  --font-graffiti: "Rubik Wet Paint", cursive;
 
   --dark-bg: #120205;
   --card-bg: #1C0509;

@@ -56,31 +56,31 @@ export const Hero = () => {
           Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.
         </p>
 
-        {/* Live Countdown Timer in Red, White & Gold */}
+        {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) */}
         <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-8">
-          <div className="flex flex-col items-center">
-            <span className="font-bebas text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
+          <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
+            <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
               {String(timeLeft.days).padStart(2, '0')}
             </span>
             <span className="text-[10px] font-mono text-[#FFF9F2]/60 uppercase tracking-widest mt-1">Days</span>
           </div>
-          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3">:</span>
-          <div className="flex flex-col items-center">
-            <span className="font-bebas text-3xl sm:text-5xl text-[#E11D48] leading-none">
+          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3 select-none">:</span>
+          <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
+            <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#E11D48] leading-none">
               {String(timeLeft.hours).padStart(2, '0')}
             </span>
             <span className="text-[10px] font-mono text-[#FFF9F2]/60 uppercase tracking-widest mt-1">Hours</span>
           </div>
-          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3">:</span>
-          <div className="flex flex-col items-center">
-            <span className="font-bebas text-3xl sm:text-5xl text-[#FFC800] leading-none">
+          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3 select-none">:</span>
+          <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
+            <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFC800] leading-none">
               {String(timeLeft.mins).padStart(2, '0')}
             </span>
             <span className="text-[10px] font-mono text-[#FFF9F2]/60 uppercase tracking-widest mt-1">Mins</span>
           </div>
-          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3">:</span>
-          <div className="flex flex-col items-center">
-            <span className="font-bebas text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
+          <span className="font-bebas text-2xl sm:text-3xl text-[#E11D48] mb-3 select-none">:</span>
+          <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
+            <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
               {String(timeLeft.secs).padStart(2, '0')}
             </span>
             <span className="text-[10px] font-mono text-[#FFF9F2]/60 uppercase tracking-widest mt-1">Secs</span>

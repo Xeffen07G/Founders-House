@@ -139,15 +139,17 @@ export const Route = () => {
 
   // Recompute path on resize & mount
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Immediate compute to prevent layout shift
+    computeTrackPath();
+    const rafId = requestAnimationFrame(() => {
       computeTrackPath();
-    }, 150);
+    });
 
     const handleResize = () => {
       computeTrackPath();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     let resizeObserver;
     if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
@@ -158,7 +160,7 @@ export const Route = () => {
     }
 
     return () => {
-      clearTimeout(timer);
+      cancelAnimationFrame(rafId);
       window.removeEventListener('resize', handleResize);
       if (resizeObserver) resizeObserver.disconnect();
     };

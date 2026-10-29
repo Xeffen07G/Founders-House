@@ -38,20 +38,34 @@ export const FeludaArmchairCartoon = ({
           ⚡
         </div>
 
-        {/* Image Display */}
+        {/* Image Display with Next-Gen WebP and explicit aspect ratio */}
         <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full overflow-hidden flex items-center justify-center bg-[#0C0103]">
           {activeTab === 'cartoon' ? (
-            <img
-              src="/feluda_cartoon_armchair.jpg"
-              alt="Cartoon Feluda sitting in vintage armchair with smoking cigarette"
-              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            />
+            <picture className="w-full h-full">
+              <source type="image/webp" srcSet="/feluda_cartoon_armchair.webp" />
+              <img
+                src="/feluda_cartoon_armchair.jpg"
+                alt="Cartoon Feluda sitting in vintage armchair with smoking cigarette"
+                width="896"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+            </picture>
           ) : (
-            <img
-              src="/feluda_armchair_photo.png"
-              alt="Satyajit Ray archive reference of Feluda in armchair"
-              className="w-full h-full object-cover object-top grayscale contrast-125 transition-transform duration-500 group-hover:scale-105"
-            />
+            <picture className="w-full h-full">
+              <source type="image/webp" srcSet="/feluda_armchair_photo.webp" />
+              <img
+                src="/feluda_armchair_photo.png"
+                alt="Satyajit Ray archive reference of Feluda in armchair"
+                width="131"
+                height="192"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover object-top grayscale contrast-125 transition-transform duration-500 group-hover:scale-105"
+              />
+            </picture>
           )}
 
           {/* Bottom subtle gradient overlay */}
