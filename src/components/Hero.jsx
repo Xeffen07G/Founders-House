@@ -65,8 +65,14 @@ export const Hero = () => {
           />
         </div>
 
-        {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) */}
-        <div className="inline-flex items-center justify-center gap-3 sm:gap-5 p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] mb-6 sm:mb-7">
+        {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) - Clickable to Add to Google Calendar */}
+        <a
+          href={GOOGLE_CALENDAR_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Click to add Founders' House (18–20 Dec 2026) to Google Calendar"
+          className="group relative inline-flex items-center justify-center gap-3 sm:gap-5 p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] hover:bg-[#25060C] border-2 border-black hover:border-[#FFC800] shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer select-none mb-8 sm:mb-9"
+        >
           <div className="flex flex-col items-center min-w-[44px] sm:min-w-[60px]">
             <span className="font-bebas tabular-nums text-3xl sm:text-5xl text-[#FFFFFF] leading-none">
               {String(timeLeft.days).padStart(2, '0')}
@@ -94,24 +100,13 @@ export const Hero = () => {
             </span>
             <span className="text-[10px] font-mono text-[#FFF9F2]/60 uppercase tracking-widest mt-1">Secs</span>
           </div>
-        </div>
 
-        {/* Add to Google Calendar shortcut button under countdown */}
-        <div className="flex justify-center mb-6 sm:mb-7">
-          <a
-            href={GOOGLE_CALENDAR_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1C0509] hover:bg-[#2A080E] border-2 border-black shadow-[3px_3px_0px_#000] text-xs font-mono font-bold text-[#FFC800] hover:text-[#FFFFFF] transition-all hover:-translate-y-0.5 active:translate-y-0"
-            title="Save 18-20 Dec 2026 to your Google Calendar"
-          >
-            <span className="text-sm">📅</span>
+          {/* Discreet hover badge: Click to add to Google Calendar */}
+          <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-[#FFC800] text-black font-mono font-extrabold text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full border border-black shadow-[2px_2px_0px_#000] opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none transform group-hover:scale-105">
+            <span>📅</span>
             <span>ADD TO GOOGLE CALENDAR</span>
-            <span className="text-[10px] bg-[#FFC800] text-black font-extrabold px-2 py-0.5 rounded-full ml-1 group-hover:bg-[#FFFFFF]">
-              18–20 DEC 2026
-            </span>
-          </a>
-        </div>
+          </span>
+        </a>
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
