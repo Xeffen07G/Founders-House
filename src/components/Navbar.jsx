@@ -22,7 +22,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="inline-flex items-center gap-2.5 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-4 py-2 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] transition-all group"
+            className="inline-flex items-center gap-2.5 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-4 py-2 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] transition-all group"
           >
             <FoundersHouseIcon className="w-8 h-8 rounded-lg shadow-[2px_2px_0px_#000] group-hover:scale-105 group-hover:rotate-3 transition-transform flex-shrink-0" />
             <span className="font-bebas text-xl tracking-wider text-[#FFFFFF] drop-shadow-[2px_2px_0px_#000]">
@@ -32,7 +32,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         </div>
 
         {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
-        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
+        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
@@ -136,7 +136,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           </div>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2.5 rounded-full bg-[#1C0509]/95 backdrop-blur-xl border-2 border-black text-white hover:text-[#FFC800] shadow-[3px_3px_0px_#000]"
+            className="p-2.5 rounded-full bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black text-white hover:text-[#FFC800] shadow-[3px_3px_0px_#000]"
             aria-label="Toggle Navigation Menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

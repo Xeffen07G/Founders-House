@@ -8,7 +8,7 @@ export const BackgroundSkyline = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#0A0A0A] to-[#050505]" />
 
       {/* 2. HOWRAH BRIDGE BACKGROUND (Optimized WebP, explicit dimensions, zero CLS) */}
-      <div className="absolute top-[20%] sm:top-[12%] inset-x-0 w-full h-[65vh] sm:h-[78vh] flex items-center justify-center pointer-events-none opacity-65 sm:opacity-75 overflow-hidden">
+      <div className="absolute top-[8%] sm:top-[0%] inset-x-0 w-full h-[70vh] sm:h-[84vh] flex items-center justify-center pointer-events-none opacity-70 sm:opacity-80 overflow-hidden">
         <picture className="w-full h-full">
           <source media="(max-width: 768px)" type="image/webp" srcSet="/howrah_bridge_mobile.webp" />
           <source type="image/webp" srcSet="/howrah_bridge_bg.webp" />
@@ -19,10 +19,10 @@ export const BackgroundSkyline = () => {
             height="768"
             fetchpriority="high"
             decoding="async"
-            className="w-full h-full object-cover object-center filter contrast-130 brightness-130"
+            className="w-full h-full object-cover object-center filter contrast-125 brightness-135"
             style={{
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)'
+              maskImage: 'linear-gradient(to bottom, black 0%, black 86%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 86%, transparent 100%)'
             }}
           />
         </picture>
