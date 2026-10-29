@@ -43,17 +43,6 @@ export const Hero = () => {
       {/* Hero Header Area */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         
-        {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
-        <div className="flex justify-center mb-3 sm:mb-4">
-          <img
-            src="/kolkata_bengali_sticker.webp"
-            alt="কলকাতা (Kolkata)"
-            className="h-9 sm:h-12 md:h-14 w-auto object-contain select-none transform -rotate-3 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
-            width="376"
-            height="102"
-          />
-        </div>
-
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
         <div className="relative mb-3 inline-block">
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-bebas uppercase tracking-wide text-[#FFFFFF] select-none drop-shadow-[5px_5px_0px_#000000] leading-[0.9]">
@@ -65,6 +54,17 @@ export const Hero = () => {
           <div className="absolute -top-6 -right-4 sm:-right-10 bg-[#FFC800] text-black font-bebas text-sm sm:text-base px-3 py-1 rounded-full border-2 border-black shadow-[3px_3px_0px_#000] transform rotate-12">
             EDITION 1.0
           </div>
+        </div>
+
+        {/* Kolkata in Bengali Comic Sticker (Goa-style Pop Art) */}
+        <div className="flex justify-center mb-5 sm:mb-6">
+          <img
+            src="/kolkata_bengali_sticker.webp"
+            alt="কলকাতা (Kolkata)"
+            className="h-9 sm:h-12 md:h-14 w-auto object-contain select-none transform -rotate-2 hover:rotate-0 hover:scale-105 transition-transform duration-300 drop-shadow-[3px_3px_0px_#000]"
+            width="376"
+            height="102"
+          />
         </div>
 
         {/* Subtitle / Tagline */}
