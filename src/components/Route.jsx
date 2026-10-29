@@ -38,7 +38,7 @@ export const Route = () => {
     };
   }, [popupStop]);
 
-  // Compute the dynamic SVG railway track path connecting each station safely within page margins
+  // Compute the curvy Kolkata railway / tram track path
   const computeTrackPath = () => {
     if (!containerRef.current) return;
     const containerRect = containerRef.current.getBoundingClientRect();
@@ -54,38 +54,38 @@ export const Route = () => {
       const cardRect = cardEl.getBoundingClientRect();
 
       let x, y;
-      const centerY = cardRect.top - containerRect.top + cardRect.height * 0.5;
+      const centerY = cardRect.top - containerRect.top + cardRect.height * 0.55;
 
       if (isMobile) {
-        // On mobile, the track stays safely on the left track gutter
-        x = 24;
+        // On mobile, the track snakes gently along the left side
+        x = 32;
         y = centerY;
       } else {
-        // On desktop, cards alternate left and right
+        // On desktop, curvy track snakes between the alternating station boards
         const isLeft = idx % 2 === 0;
         if (isLeft) {
-          // Connect to the right side of left cards, bounded near the middle
+          // Connect near the right of left station board, bounded in the central channel
           const rightEdge = cardRect.right - containerRect.left;
-          x = Math.min(containerW * 0.48, Math.max(containerW * 0.38, rightEdge + 12));
+          x = Math.min(containerW * 0.48, Math.max(containerW * 0.35, rightEdge + 24));
         } else {
-          // Connect to the left side of right cards, bounded near the middle
+          // Connect near the left of right station board, bounded in the central channel
           const leftEdge = cardRect.left - containerRect.left;
-          x = Math.max(containerW * 0.52, Math.min(containerW * 0.62, leftEdge - 12));
+          x = Math.max(containerW * 0.52, Math.min(containerW * 0.65, leftEdge - 24));
         }
         y = centerY;
       }
 
-      // Hard clamp x strictly within container margins so track never escapes the page
-      const clampedX = Math.max(20, Math.min(containerW - 20, x));
+      // Hard clamp strictly within container boundaries
+      const clampedX = Math.max(28, Math.min(containerW - 28, x));
       points.push({ x: clampedX, y });
     });
 
     if (points.length < 2) return;
     setTrackPoints(points);
 
-    // Build the serpentine cubic bezier SVG path
+    // Build the curvy serpentine cubic bezier SVG path (like Kolkata tram tracks)
     let d = '';
-    const startY = Math.max(0, points[0].y - 60);
+    const startY = Math.max(0, points[0].y - 80);
     const startX = points[0].x;
 
     d += `M ${startX} ${startY} `;
@@ -94,21 +94,27 @@ export const Route = () => {
     for (let i = 0; i < points.length - 1; i++) {
       const p1 = points[i];
       const p2 = points[i + 1];
-      const midY = (p1.y + p2.y) / 2;
+      const dy = p2.y - p1.y;
 
       if (isMobile) {
-        // Gentle wave on mobile
-        const waveX = (i % 2 === 0) ? 36 : 16;
-        d += `C ${waveX} ${p1.y + 30}, ${waveX} ${p2.y - 30}, ${p2.x} ${p2.y} `;
+        // Smooth gentle curves on mobile
+        const waveX = (i % 2 === 0) ? 44 : 20;
+        d += `C ${waveX} ${p1.y + dy * 0.3}, ${waveX} ${p1.y + dy * 0.7}, ${p2.x} ${p2.y} `;
       } else {
-        // Controlled S-curve strictly bounded between p1 and p2 in the center channel
-        d += `C ${p1.x} ${midY}, ${p2.x} ${midY}, ${p2.x} ${p2.y} `;
+        // Natural Kolkata curved track with gentle lateral sweep
+        const curveBow = (i % 2 === 0) ? 55 : -55;
+        const cp1x = Math.max(35, Math.min(containerW - 35, p1.x + curveBow));
+        const cp1y = p1.y + dy * 0.35;
+        const cp2x = Math.max(35, Math.min(containerW - 35, p2.x - curveBow));
+        const cp2y = p1.y + dy * 0.65;
+
+        d += `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y} `;
       }
     }
 
     // Extend line smoothly past the final station
     const lastP = points[points.length - 1];
-    d += `L ${lastP.x} ${lastP.y + 60}`;
+    d += `L ${lastP.x} ${lastP.y + 70}`;
 
     setPathD(d);
   };
@@ -130,7 +136,7 @@ export const Route = () => {
     };
   }, []);
 
-  // Scroll listener to drive the cartoon train along the track
+  // Scroll listener to drive the cartoon tram/train along the curvy track
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current || !pathRef.current) return;
@@ -149,7 +155,7 @@ export const Route = () => {
       const pt = pathRef.current.getPointAtLength(currentDist);
 
       // Tangent for rotation angle
-      const delta = 3;
+      const delta = 4;
       const ptAhead = pathRef.current.getPointAtLength(Math.min(currentDist + delta, totalLength));
       const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
 
@@ -195,19 +201,19 @@ export const Route = () => {
   };
 
   return (
-    <section id="route" className="py-20 sm:py-28 px-4 max-w-6xl mx-auto relative overflow-hidden">
+    <section id="route" className="py-20 sm:py-28 px-4 max-w-5xl mx-auto relative overflow-hidden">
       <SectionHeader
-        pill="RAILWAY SPRINT LINE & TIMETABLE"
+        pill="KOLKATA RAILWAY SPRINT LINE"
         line1="THE SPRINT"
         line2="ROUTE & STATIONS."
         accentColor="text-[#FFC800]"
-        description="Follow the slim serpentine railway track as the Kolkata Sprint Express travels through each station. As you scroll, the cartoon train journeys from Yard 1 to Demo Day. Click any station card to pop up its full activity docket."
+        description="Hop onto the Kolkata broad-gauge line. Each station is an authentic cartoon station board on twin striped pillars. Click any station board to pop up its full activities docket and mission briefing."
       />
 
-      {/* Main Track & Stations Container */}
-      <div ref={containerRef} className="relative mt-8 sm:mt-14 pb-12">
+      {/* Main Track & Station Boards Container */}
+      <div ref={containerRef} className="relative mt-10 sm:mt-16 pb-12">
         {/* ============================================================== */}
-        {/* SLIM SVG CARTOON RAILWAY TRACK & ANIMATED SCROLLING TRAIN      */}
+        {/* CURVY SVG CARTOON RAILWAY TRACK & ANIMATED SCROLLING TRAM      */}
         {/* ============================================================== */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none z-10"
@@ -215,20 +221,20 @@ export const Route = () => {
         >
           <defs>
             {/* Front Headlight Light Cone Gradient */}
-            <linearGradient id="trainHeadlightSlim" x1="0%" y1="50%" x2="100%" y2="50%">
+            <linearGradient id="tramHeadlight" x1="0%" y1="50%" x2="100%" y2="50%">
               <stop offset="0%" stopColor="#FFC800" stopOpacity="0.85" />
-              <stop offset="40%" stopColor="#FFD700" stopOpacity="0.4" />
+              <stop offset="40%" stopColor="#FFD700" stopOpacity="0.35" />
               <stop offset="100%" stopColor="#FFC800" stopOpacity="0" />
             </linearGradient>
           </defs>
 
-          {/* Layer 1: Dark Gravel Track Bed / Ballast (Slim & refined) */}
+          {/* Layer 1: Dark Gravel Ballast Bed (Smooth Curvy Track) */}
           {pathD && (
             <path
               d={pathD}
               fill="none"
               stroke="#1C0509"
-              strokeWidth="16"
+              strokeWidth="18"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -240,10 +246,10 @@ export const Route = () => {
               d={pathD}
               fill="none"
               stroke="#3D1808"
-              strokeWidth="12"
+              strokeWidth="13"
               strokeDasharray="3 9"
               strokeLinecap="butt"
-              opacity="0.9"
+              opacity="0.95"
             />
           )}
 
@@ -253,47 +259,47 @@ export const Route = () => {
               d={pathD}
               fill="none"
               stroke="#0B0A12"
-              strokeWidth="7"
+              strokeWidth="8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           )}
 
-          {/* Layer 4: Dual Steel Rails (Polished silver) */}
+          {/* Layer 4: Dual Steel Rails (Polished Silver) */}
           {pathD && (
             <path
               d={pathD}
               fill="none"
               stroke="#CBD5E1"
-              strokeWidth="5.5"
+              strokeWidth="6"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           )}
 
-          {/* Layer 5: Inner Ballast Cutout (Produces two crisp 1.5px parallel rails) */}
+          {/* Layer 5: Inner Ballast Cutout (Produces parallel steel rails) */}
           {pathD && (
             <path
               d={pathD}
               fill="none"
               stroke="#140306"
-              strokeWidth="3"
+              strokeWidth="3.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           )}
 
-          {/* Layer 6: Golden Rail Reflection Line */}
+          {/* Layer 6: Golden Tram Rail Glow */}
           {pathD && (
             <path
               ref={pathRef}
               d={pathD}
               fill="none"
               stroke="#FFC800"
-              strokeWidth="0.8"
+              strokeWidth="1"
               strokeLinecap="round"
               strokeLinejoin="round"
-              opacity="0.9"
+              opacity="0.85"
             />
           )}
 
@@ -330,114 +336,101 @@ export const Route = () => {
           })}
 
           {/* ============================================================== */}
-          {/* SLIM CARTOON TRAIN (Compact & perfectly scaled to the track)   */}
+          {/* CARTOON KOLKATA HERITAGE TRAM / STREETCAR                      */}
           {/* ============================================================== */}
           {pathD && (
             <g
               transform={`translate(${trainState.x}, ${trainState.y}) rotate(${trainState.angle})`}
               className="transition-transform duration-75 ease-out"
             >
-              {/* Headlight Beam spreading forward onto the track */}
+              {/* Headlight Beam spreading forward onto the curvy track */}
               <polygon
-                points="18,-2 46,-12 46,12 18,2"
-                fill="url(#trainHeadlightSlim)"
+                points="20,-3 50,-13 50,13 20,3"
+                fill="url(#tramHeadlight)"
               />
 
               {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
-              <circle cx="-20" cy="-5" r="3" fill="#FFFFFF" opacity="0.85" />
-              <circle cx="-28" cy="-8" r="4" fill="#FFFFFF" opacity="0.6" />
-              <circle cx="-36" cy="-12" r="5" fill="#FFFFFF" opacity="0.35" />
+              <circle cx="-22" cy="-6" r="3" fill="#FFFFFF" opacity="0.85" />
+              <circle cx="-30" cy="-10" r="4.2" fill="#FFFFFF" opacity="0.6" />
+              <circle cx="-39" cy="-14" r="5.5" fill="#FFFFFF" opacity="0.35" />
 
-              {/* Train Drop Shadow */}
+              {/* Tram Drop Shadow */}
               <rect
-                x="-18"
-                y="-9"
-                width="36"
-                height="18"
+                x="-20"
+                y="-10"
+                width="40"
+                height="20"
                 rx="4"
                 fill="#000000"
                 opacity="0.5"
               />
 
-              {/* Train Main Chassis (Iconic Kolkata Crimson) */}
+              {/* Tram Main Chassis (Iconic Kolkata Streetcar Green & Crimson) */}
               <rect
-                x="-17"
-                y="-9"
-                width="34"
-                height="18"
+                x="-19"
+                y="-10"
+                width="38"
+                height="20"
                 rx="4"
-                fill="#E11D48"
+                fill="#1B5E3F"
                 stroke="#000000"
-                strokeWidth="1.8"
+                strokeWidth="2"
               />
 
-              {/* Train Top Cabin (Cream / White vintage streetcar look) */}
+              {/* Cream Top Vintage Carriage Half */}
               <rect
-                x="-15"
-                y="-7"
-                width="18"
-                height="14"
-                rx="2"
+                x="-19"
+                y="-10"
+                width="38"
+                height="10"
+                rx="3"
                 fill="#FFF9F2"
                 stroke="#000000"
                 strokeWidth="1.5"
               />
 
-              {/* Front Cowcatcher / Pilot (Golden Taxi Yellow) */}
+              {/* Overhead Trolley Pantograph Pole */}
+              <line x1="-8" y1="-10" x2="-2" y2="-17" stroke="#000000" strokeWidth="1.5" />
+              <line x1="-2" y1="-17" x2="6" y2="-10" stroke="#000000" strokeWidth="1.5" />
+              <line x1="-6" y1="-17" x2="4" y2="-17" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
+
+              {/* Conductor Windows */}
+              <rect x="-14" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="-5" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="4" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="11" y="-8" width="5" height="6" rx="1" fill="#14192C" />
+
+              {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
               <polygon
-                points="17,-6 22,-3 22,3 17,6"
+                points="19,-7 24,-4 24,4 19,7"
                 fill="#FFC800"
                 stroke="#000000"
                 strokeWidth="1.5"
               />
 
-              {/* Conductor Windshield */}
-              <rect
-                x="-11"
-                y="-5"
-                width="7"
-                height="10"
-                rx="1"
-                fill="#1E293B"
-                stroke="#000000"
-                strokeWidth="1"
-              />
-              <circle cx="-8" cy="0" r="2" fill="#FAD1A7" />
+              {/* Front Glowing Headlight */}
+              <circle cx="19" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
+              <circle cx="19" cy="0" r="1" fill="#FFFFFF" />
 
-              {/* Side Racing Gold Stripe */}
-              <line
-                x1="-16"
-                y1="0"
-                x2="17"
-                y2="0"
-                stroke="#FFC800"
-                strokeWidth="2"
-              />
+              {/* Steel Rail Wheels */}
+              <circle cx="-12" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="2" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="13" cy="-10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
 
-              {/* Front Glowing Lantern */}
-              <circle cx="17" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
-              <circle cx="17" cy="0" r="1" fill="#FFFFFF" />
-
-              {/* Wheels */}
-              <circle cx="-10" cy="-9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="2" cy="-9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="11" cy="-9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-
-              <circle cx="-10" cy="9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="2" cy="9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              <circle cx="11" cy="9" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="-12" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="2" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="13" cy="10" r="2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
             </g>
           )}
         </svg>
 
         {/* ============================================================== */}
-        {/* COMPACT ALTERNATING STATION BOXES (SLEEK, TIDY & PROPORTIONAL) */}
+        {/* CARTOON KOLKATA STATION BOARDS (ON TWIN STRIPED PILLARS)       */}
         {/* ============================================================== */}
-        <div className="space-y-8 sm:space-y-12 relative z-20">
+        <div className="space-y-12 sm:space-y-16 relative z-20">
           {stops.map((stop, idx) => {
             const isLeft = idx % 2 === 0;
             const isSelected = activeStopIdx === idx;
-            const isLocked = stop.status === 'COMING SOON';
 
             return (
               <div
@@ -445,81 +438,87 @@ export const Route = () => {
                 ref={(el) => (cardRefs.current[idx] = el)}
                 className="flex items-center w-full"
               >
-                {/* Station Box: Aligns Left or Right on desktop with constrained max width */}
+                {/* Station Board Column: Alternates Left and Right */}
                 <div
-                  className={`w-full pl-10 md:pl-0 flex ${
+                  className={`w-full pl-8 md:pl-0 flex ${
                     isLeft ? 'md:justify-start' : 'md:justify-end'
                   }`}
                 >
+                  {/* The Cartoon Station Board Structure */}
                   <div
                     onClick={() => openStationPopup(stop, idx)}
-                    className={`group relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-300 overflow-hidden border w-full md:max-w-[390px] ${
-                      isSelected
-                        ? 'bg-[#180407] border-[#FFC800] shadow-[6px_6px_0px_#FFC800] -translate-y-1 ring-1 ring-[#FFC800]/50'
-                        : 'bg-[#120305]/95 border-white/10 hover:border-[#FFC800]/60 hover:shadow-[4px_4px_0px_rgba(255,200,0,0.3)] hover:-translate-y-0.5'
-                    }`}
+                    className="group cursor-pointer flex flex-col items-center select-none"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open activities for ${stop.boardEnglish || stop.stationName}`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openStationPopup(stop, idx);
+                      }
+                    }}
                   >
-                    {/* Faint Watermark Number */}
-                    <div className="absolute right-3 bottom-1 font-bebas text-5xl sm:text-6xl text-white/[0.04] group-hover:text-[#FFC800]/[0.07] select-none pointer-events-none font-black transition-colors">
-                      {stop.watermark || `0${idx + 1}`}
+                    {/* Floating Instruction Chip on Hover */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 mb-1.5 px-2.5 py-0.5 rounded-full bg-black/90 border border-[#FFC800] text-[10px] font-mono font-bold text-[#FFC800] tracking-wider shadow-[2px_2px_0px_#000] flex items-center gap-1">
+                      <span>🎫</span>
+                      <span>CLICK TO VIEW ACTIVITIES & DETAILS</span>
                     </div>
 
-                    {/* Top Row: Squircle Icon Badge & Station Yard Tag (No Phase 1 writing!) */}
-                    <div className="flex items-center justify-between gap-3 mb-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-black/70 border border-[#FFC800]/40 flex items-center justify-center text-lg text-[#FFC800] shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform flex-shrink-0">
-                        {stop.icon || '🚉'}
+                    {/* The Yellow Kolkata Railway Stationboard (Image 2 style) */}
+                    <div
+                      className={`relative w-[240px] sm:w-[280px] bg-[#FFC800] border-[3.5px] border-black rounded-sm p-3.5 sm:p-4 text-center shadow-[5px_5px_0px_#000] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:shadow-[7px_7px_0px_#E11D48] ${
+                        isSelected ? 'ring-2 ring-[#FFC800] ring-offset-2 ring-offset-black' : ''
+                      }`}
+                    >
+                      {/* 4 Corner Rivets / Bolts */}
+                      <span className="absolute top-1.5 left-1.5 w-1.5 h-1.5 rounded-full bg-black" />
+                      <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-black" />
+                      <span className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 rounded-full bg-black" />
+                      <span className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-black" />
+
+                      {/* Top Line: Bold Bengali Script */}
+                      <div className="text-black font-extrabold font-serif text-lg sm:text-xl leading-tight tracking-wide drop-shadow-[0_0.5px_0_rgba(0,0,0,0.4)]">
+                        {stop.boardBengali || stop.bengali}
                       </div>
 
-                      {/* Clean Yard Tag without Phase text */}
-                      <div className="flex flex-col items-end">
-                        <span className="font-mono text-[11px] font-bold text-[#FFC800] tracking-wider uppercase">
-                          {stop.yard}
-                        </span>
-                        <span className="font-mono text-[10px] text-white/50 font-semibold">
-                          {stop.date}
-                        </span>
+                      {/* Middle Line: Hindi Script (Classic Kolkata stationboard look) */}
+                      <div className="text-black font-bold text-xs sm:text-sm leading-tight tracking-widest mt-0.5 opacity-90">
+                        {stop.boardHindi || 'कोलकाता'}
+                      </div>
+
+                      {/* Bottom Line: Bold English Name */}
+                      <div className="text-black font-bebas text-xl sm:text-2xl tracking-wider leading-none font-black uppercase mt-1 border-t-2 border-black/80 pt-1">
+                        {stop.boardEnglish || stop.stationName}
                       </div>
                     </div>
 
-                    {/* Station Name Heading (Small, crisp & proportional) */}
-                    <h4 className="font-bebas text-xl sm:text-2xl text-white tracking-wide leading-tight uppercase font-black group-hover:text-[#FFC800] transition-colors">
-                      {stop.stationName || stop.name}
-                    </h4>
-
-                    {/* Bengali Script Calligraphy Subtitle */}
-                    <div className="font-comic text-xs text-[#E11D48] font-bold mt-0.5 mb-2">
-                      {stop.bengali} · {stop.platform}
-                    </div>
-
-                    {/* Station Description (Compact & clean) */}
-                    <p className="font-poppins text-xs text-white/70 leading-relaxed mb-3 relative z-10 line-clamp-2">
-                      {stop.desc}
-                    </p>
-
-                    {/* Card Footer: Activities Count & Compact Action Button */}
-                    <div className="pt-2.5 border-t border-white/10 flex items-center justify-between gap-2 relative z-10">
-                      <div className="flex items-center gap-1.5 font-mono text-[11px] text-white/60">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#7CFF3A]" />
-                        <span>{stop.schedule?.length || stop.activities?.length || 0} Events</span>
-                      </div>
-
-                      {isLocked ? (
-                        <div className="px-2.5 py-1 rounded bg-black/80 border border-[#E11D48]/50 text-center font-mono text-[10px] text-[#E11D48] font-bold">
-                          🔒 SEALED
-                        </div>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            openStationPopup(stop, idx);
+                    {/* Twin Black-and-Yellow Striped Support Posts (Pillars from photo) */}
+                    <div className="w-[200px] sm:w-[240px] flex justify-between px-6 -mt-[1px]">
+                      {/* Left Pillar */}
+                      <div className="flex flex-col items-center">
+                        <div
+                          className="w-2.5 h-9 sm:h-12 border-x-2 border-black"
+                          style={{
+                            background:
+                              'repeating-linear-gradient(180deg, #FFC800 0px, #FFC800 8px, #000000 8px, #000000 16px)',
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-[#E11D48] hover:bg-[#FFC800] text-white hover:text-black font-mono text-[11px] font-bold tracking-wider border border-black shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none flex items-center justify-center gap-1.5 transition-all"
-                        >
-                          <span>🎫 ACTIVITIES</span>
-                          <span className="text-xs">↗</span>
-                        </button>
-                      )}
+                        />
+                        {/* Foundation Footing Base */}
+                        <div className="w-4 h-2 bg-[#475569] border-2 border-black rounded-xs shadow-[1px_1px_0px_#000]" />
+                      </div>
+
+                      {/* Right Pillar */}
+                      <div className="flex flex-col items-center">
+                        <div
+                          className="w-2.5 h-9 sm:h-12 border-x-2 border-black"
+                          style={{
+                            background:
+                              'repeating-linear-gradient(180deg, #FFC800 0px, #FFC800 8px, #000000 8px, #000000 16px)',
+                          }}
+                        />
+                        {/* Foundation Footing Base */}
+                        <div className="w-4 h-2 bg-[#475569] border-2 border-black rounded-xs shadow-[1px_1px_0px_#000]" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -532,21 +531,21 @@ export const Route = () => {
       {/* Station Master Dispatch Box */}
       <div className="comic-card p-5 bg-[#160408] border-2 border-black flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 shadow-[4px_4px_0px_#000]">
         <div className="flex items-center gap-3">
-          <span className="text-3xl flex-shrink-0 animate-bounce">🚂</span>
+          <span className="text-3xl flex-shrink-0 animate-bounce">🚊</span>
           <div className="text-xs sm:text-sm font-poppins text-white">
             <span className="text-[#FFC800] font-bold font-mono tracking-wider">
               TRAM DIDI STATION DISPATCH:
             </span>{' '}
-            "All 5 stations along the Kolkata Sprint line are live. As you scroll, the cartoon train advances along the track. Click any station card to open the departure docket!"
+            "All 5 Kolkata station boards along the route are live. As you scroll, the cartoon tram glides down the curvy track. Click any station board to pop up its mission briefing and schedule of activities!"
           </div>
         </div>
 
         <button
           type="button"
-          onClick={() => openStationPopup(stops[2], 2)}
-          className="flex-shrink-0 px-3.5 py-2 rounded-lg bg-[#FFC800] hover:bg-[#FFD700] text-black font-mono text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] transition-transform hover:scale-105 active:scale-95"
+          onClick={() => openStationPopup(stops[0], 0)}
+          className="flex-shrink-0 px-4 py-2 rounded-lg bg-[#FFC800] hover:bg-[#FFD700] text-black font-mono text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] transition-transform hover:scale-105 active:scale-95"
         >
-          POP UP DAY 1 ACTIVITIES ✦
+          OPEN APPLICATION DETAILS ✦
         </button>
       </div>
 
@@ -577,9 +576,9 @@ export const Route = () => {
               </button>
 
               <div className="pr-10">
-                {/* Station Yard & Platform Bar (No Phase text) */}
+                {/* Station Yard & Status */}
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="font-mono text-xs font-extrabold px-2 py-0.5 rounded bg-black text-[#FFC800] border border-[#FFC800]/50">
+                  <span className="font-mono text-xs font-extrabold px-2.5 py-0.5 rounded bg-black text-[#FFC800] border border-[#FFC800]/50">
                     {popupStop.yard}
                   </span>
                   <span className="font-mono text-[11px] text-white/70">
@@ -590,13 +589,13 @@ export const Route = () => {
                   </span>
                 </div>
 
-                {/* Iconic Indian Railways Enamel Signboard */}
+                {/* Iconic Indian Railways Enamel Signboard in Modal */}
                 <div className="rounded-xl bg-[#FFC800] border-2 border-black p-3 text-center shadow-[3px_3px_0px_#000] mt-1">
                   <div className="font-mono text-[9px] uppercase tracking-widest text-black/70 font-black mb-0.5">
                     KOLKATA SPRINT LINE · ATAL INCUBATION CENTRE (AIC TECHNO)
                   </div>
                   <h3 className="font-bebas text-2xl sm:text-3xl text-black tracking-wide leading-none font-black uppercase">
-                    {popupStop.number}: {popupStop.stationName || popupStop.name}
+                    {popupStop.number}: {popupStop.boardEnglish || popupStop.stationName}
                   </h3>
                   <div className="font-comic text-xs sm:text-sm text-[#8C1D03] font-bold mt-1">
                     {popupStop.bengali} · {popupStop.platform}
@@ -617,13 +616,13 @@ export const Route = () => {
               </div>
             </div>
 
-            {/* Modal Body: Timetable Activities (Scrollable) */}
+            {/* Modal Body: Description & Timetable Activities (Scrollable) */}
             <div className="p-4 sm:p-5 overflow-y-auto space-y-5 flex-1 custom-scrollbar">
-              {/* Station Overview Narrative */}
-              <div className="p-3.5 rounded-xl bg-black/60 border border-white/10">
-                <div className="font-mono text-xs text-[#FFC800] font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              {/* Station Overview Narrative & Description */}
+              <div className="p-4 rounded-xl bg-black/60 border border-white/10">
+                <div className="font-mono text-xs text-[#FFC800] font-bold uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                   <span>🔍</span>
-                  <span>STATION MISSION BRIEFING:</span>
+                  <span>STATION MISSION & DESCRIPTION:</span>
                 </div>
                 <p className="text-xs sm:text-sm font-poppins text-white/90 leading-relaxed">
                   {popupStop.desc}
@@ -635,7 +634,7 @@ export const Route = () => {
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-bebas text-lg sm:text-xl text-white tracking-wide flex items-center gap-1.5">
                     <span className="text-[#FFC800]">✦</span>
-                    <span>PLATFORM ACTIVITIES & SCHEDULE</span>
+                    <span>SCHEDULED ACTIVITIES & EVENTS</span>
                   </h4>
                   <span className="font-mono text-xs text-white/60">
                     {popupStop.schedule?.length || popupStop.activities?.length || 0} TOTAL EVENTS
@@ -659,7 +658,7 @@ export const Route = () => {
                               ⏰ {item.time}
                             </span>
                             <span className="font-mono text-[10px] text-white/50 uppercase">
-                              ACTIVITY #{sIdx + 1}
+                              EVENT #{sIdx + 1}
                             </span>
                           </div>
 
@@ -676,7 +675,7 @@ export const Route = () => {
                       </div>
                     ))
                   ) : (
-                    /* Fallback to simple activities list */
+                    /* Fallback to activities list */
                     popupStop.activities?.map((act, aIdx) => (
                       <div key={aIdx} className="relative pl-8">
                         <div className="absolute left-2 top-2.5 -translate-x-1/2 w-3 h-3 rounded-full bg-[#FFC800] border-2 border-black" />
