@@ -38,7 +38,7 @@ export const Route = () => {
     };
   }, [popupStop]);
 
-  // Compute the curvy Kolkata railway / tram track path
+  // Compute the curvy Kolkata railway / tram track path (authentic wide S-curve connecting the stations)
   const computeTrackPath = () => {
     if (!containerRef.current) return;
     const containerRect = containerRef.current.getBoundingClientRect();
@@ -47,75 +47,92 @@ export const Route = () => {
 
     const points = [];
 
-    // Calculate station waypoint connection coordinates
+    // Calculate station waypoint connection coordinates directly from each station board
     stops.forEach((_, idx) => {
       const cardEl = cardRefs.current[idx];
       if (!cardEl) return;
       const cardRect = cardEl.getBoundingClientRect();
 
       let x, y;
-      const centerY = cardRect.top - containerRect.top + cardRect.height * 0.55;
+      const boardCenterX = cardRect.left - containerRect.left + cardRect.width * 0.5;
+      const boardBaseY = cardRect.top - containerRect.top + cardRect.height - 4;
 
       if (isMobile) {
-        // On mobile, the track snakes gently along the left side
-        x = 32;
-        y = centerY;
+        // On mobile, waypoints are at the station platform track
+        x = Math.max(28, Math.min(containerW - 28, cardRect.left - containerRect.left + 24));
+        y = cardRect.top - containerRect.top + cardRect.height * 0.55;
       } else {
-        // On desktop, curvy track snakes between the alternating station boards
-        const isLeft = idx % 2 === 0;
-        if (isLeft) {
-          // Connect near the right of left station board, bounded in the central channel
-          const rightEdge = cardRect.right - containerRect.left;
-          x = Math.min(containerW * 0.48, Math.max(containerW * 0.35, rightEdge + 24));
-        } else {
-          // Connect near the left of right station board, bounded in the central channel
-          const leftEdge = cardRect.left - containerRect.left;
-          x = Math.max(containerW * 0.52, Math.min(containerW * 0.65, leftEdge - 24));
-        }
-        y = centerY;
+        // On desktop, waypoints are directly at the station platform base of each alternating station
+        x = Math.max(35, Math.min(containerW - 35, boardCenterX));
+        y = boardBaseY;
       }
 
-      // Hard clamp strictly within container boundaries
-      const clampedX = Math.max(28, Math.min(containerW - 28, x));
-      points.push({ x: clampedX, y });
+      points.push({ x, y });
     });
 
     if (points.length < 2) return;
     setTrackPoints(points);
 
-    // Build the curvy serpentine cubic bezier SVG path (like Kolkata tram tracks)
+    // Build the grand serpentine S-Curve starting ON Station 0 (Application Open)
+    // with turns ON Shortlist Dossier (Turn 1), Day 1 (Turn 2), Day 2 (Turn 3), and Demo Day (Turn 4)
     let d = '';
-    const startY = Math.max(0, points[0].y - 80);
-    const startX = points[0].x;
 
-    d += `M ${startX} ${startY} `;
-    d += `L ${points[0].x} ${points[0].y} `;
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const p1 = points[i];
-      const p2 = points[i + 1];
-      const dy = p2.y - p1.y;
-
-      if (isMobile) {
-        // Smooth gentle curves on mobile
-        const waveX = (i % 2 === 0) ? 46 : 14;
-        d += `C ${waveX} ${p1.y + dy * 0.3}, ${waveX} ${p1.y + dy * 0.7}, ${p2.x} ${p2.y} `;
-      } else {
-        // Pronounced S-type serpentine sweeping curve between stations
-        const isLeftToRight = p2.x > p1.x;
-        const sSwing = isLeftToRight ? 115 : -115;
-        const cp1x = Math.max(35, Math.min(containerW - 35, p1.x + sSwing));
-        const cp1y = p1.y + dy * 0.22;
-        const cp2x = Math.max(35, Math.min(containerW - 35, p2.x - sSwing));
-        const cp2y = p1.y + dy * 0.78;
-
-        d += `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y} `;
+    if (isMobile) {
+      // Mobile smooth snaking path
+      d += `M ${points[0].x} ${points[0].y - 20} `;
+      d += `L ${points[0].x} ${points[0].y} `;
+      for (let i = 0; i < points.length - 1; i++) {
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const dy = p2.y - p1.y;
+        const wave = (i % 2 === 0) ? 28 : -14;
+        d += `C ${p1.x + wave} ${p1.y + dy * 0.35}, ${p2.x + wave} ${p1.y + dy * 0.65}, ${p2.x} ${p2.y} `;
       }
-    }
+      const lastP = points[points.length - 1];
+      d += `L ${lastP.x} ${lastP.y + 40}`;
+    } else {
+      // DESKTOP S-CURVE:
+      // Start of the S on Application Open (Station 0)
+      const p0 = points[0];
+      d += `M ${p0.x} ${p0.y} `;
 
-    // Extend line smoothly past the final station
-    const lastP = points[points.length - 1];
-    d += `L ${lastP.x} ${lastP.y + 70}`;
+      for (let i = 0; i < points.length - 1; i++) {
+        const pCurr = points[i];
+        const pNext = points[i + 1];
+        const dy = pNext.y - pCurr.y;
+        const isGoingRight = pNext.x > pCurr.x;
+
+        if (i === 0) {
+          // From Station 0 (Application Open, left) to Station 1 (Shortlist Dossier, right):
+          // First turn is on Shortlist Dossier!
+          // Curves gracefully across the screen, swinging smoothly into the turn at Shortlist
+          const cp1x = pCurr.x + (pNext.x - pCurr.x) * 0.45;
+          const cp1y = pCurr.y + dy * 0.08;
+          const cp2x = Math.min(containerW - 20, pNext.x + 35);
+          const cp2y = pCurr.y + dy * 0.55;
+
+          d += `C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${pNext.x.toFixed(1)} ${pNext.y.toFixed(1)} `;
+        } else {
+          // Subsequent turns:
+          // Turn 2 on Day 1 (left)
+          // Turn 3 on Day 2 (right)
+          // Turn 4 on Demo Day (left)
+          const outSwing = isGoingRight ? -35 : 35;
+          const inSwing = isGoingRight ? 35 : -35;
+
+          const cp1x = Math.max(20, Math.min(containerW - 20, pCurr.x - outSwing));
+          const cp1y = pCurr.y + dy * 0.42;
+          const cp2x = Math.max(20, Math.min(containerW - 20, pNext.x + inSwing));
+          const cp2y = pCurr.y + dy * 0.58;
+
+          d += `C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${pNext.x.toFixed(1)} ${pNext.y.toFixed(1)} `;
+        }
+      }
+
+      // Smooth buffer stop past Demo Day
+      const lastP = points[points.length - 1];
+      d += `L ${lastP.x.toFixed(1)} ${(lastP.y + 45).toFixed(1)}`;
+    }
 
     setPathD(d);
   };
@@ -124,16 +141,26 @@ export const Route = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       computeTrackPath();
-    }, 120);
+    }, 150);
 
     const handleResize = () => {
       computeTrackPath();
     };
 
     window.addEventListener('resize', handleResize);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        computeTrackPath();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', handleResize);
+      if (resizeObserver) resizeObserver.disconnect();
     };
   }, []);
 
@@ -428,7 +455,7 @@ export const Route = () => {
         {/* ============================================================== */}
         {/* CARTOON KOLKATA STATION BOARDS (ON TWIN STRIPED PILLARS)       */}
         {/* ============================================================== */}
-        <div className="space-y-12 sm:space-y-16 relative z-20">
+        <div className="space-y-16 sm:space-y-24 relative z-20">
           {stops.map((stop, idx) => {
             const isLeft = idx % 2 === 0;
             const isSelected = activeStopIdx === idx;
@@ -436,17 +463,17 @@ export const Route = () => {
             return (
               <div
                 key={stop.id}
-                ref={(el) => (cardRefs.current[idx] = el)}
                 className="flex items-center w-full"
               >
                 {/* Station Board Column: Alternates Left and Right */}
                 <div
-                  className={`w-full pl-8 md:pl-0 flex ${
+                  className={`w-full pl-4 md:pl-0 flex ${
                     isLeft ? 'md:justify-start' : 'md:justify-end'
                   }`}
                 >
                   {/* The Cartoon Station Board Structure */}
                   <div
+                    ref={(el) => (cardRefs.current[idx] = el)}
                     onClick={() => openStationPopup(stop, idx)}
                     className="group cursor-pointer flex flex-col items-center select-none"
                     role="button"
