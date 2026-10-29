@@ -1,6 +1,4 @@
 import React from 'react';
-import { content } from '../content';
-import { mascots } from '../assets/characters/mascots';
 
 export const Venue = () => {
   return (
@@ -21,7 +19,7 @@ export const Venue = () => {
                 grounds have been unlocked.
               </span>
               <span className="block text-white/70 text-xs sm:text-base">
-                Navigate the illustrated cartoon satellite territory below to discover where the ultimate 72-hour Kolkata hackathon showdown will take place at Offbeat CCU, 36F Topsia Road!
+                Explore the illustrated animated satellite map below to see exactly where the 72-hour startup sprint takes place at Offbeat CCU, 36F Topsia Road — nestled right between Dhopar Pukur Lake and the EM Bypass!
               </span>
             </p>
           </div>
@@ -37,345 +35,677 @@ export const Venue = () => {
         </div>
       </div>
 
-      {/* Full-width Wide Stylized Animated Cartoon Satellite Map (convergence1.tech Titan Map aesthetic) */}
+      {/* Full-width Wide Animated Isometric Satellite Map (Convergence 1.0 Style) */}
       <div className="w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto">
         <a
           href="https://maps.google.com/?q=Offbeat+CCU+36F+Topsia+Road+Kolkata"
           target="_blank"
           rel="noopener noreferrer"
-          className="block relative w-full aspect-video sm:aspect-[4/3] md:aspect-[21/9] rounded-2xl sm:rounded-[20px] border-2 border-black bg-[#160309] group overflow-hidden cursor-pointer shadow-[6px_6px_0px_#000]"
+          className="block relative w-full aspect-video sm:aspect-[4/3] md:aspect-[21/9] rounded-2xl sm:rounded-[20px] border-2 border-black bg-[#0E061A] group overflow-hidden cursor-pointer shadow-[6px_6px_0px_#000]"
+          title="Click to open live Google Maps directions to AIC Techno (Offbeat CCU)"
         >
-          {/* CARTOON SATELLITE SVG CANVAS */}
+          {/* CSS Animation Keyframes for the Interactive Map */}
+          <style>{`
+            @keyframes carSouth {
+              0% { transform: translate(0, 0); opacity: 0; }
+              5% { opacity: 1; }
+              95% { opacity: 1; }
+              100% { transform: translate(-230px, 660px); opacity: 0; }
+            }
+            @keyframes carNorth {
+              0% { transform: translate(0, 0); opacity: 0; }
+              5% { opacity: 1; }
+              95% { opacity: 1; }
+              100% { transform: translate(230px, -660px); opacity: 0; }
+            }
+            @keyframes metroSlide {
+              0% { transform: translate(0, 0); opacity: 0; }
+              5% { opacity: 1; }
+              95% { opacity: 1; }
+              100% { transform: translate(-220px, 640px); opacity: 0; }
+            }
+            @keyframes waterPulse {
+              0%, 100% { opacity: 0.25; transform: scale(1); }
+              50% { opacity: 0.65; transform: scale(1.02); }
+            }
+            @keyframes pinBob {
+              0%, 100% { transform: translateY(0px); }
+              50% { transform: translateY(-9px); }
+            }
+            @keyframes sonarRing {
+              0% { r: 8px; opacity: 0.9; stroke-width: 2.5px; }
+              100% { r: 75px; opacity: 0; stroke-width: 0.5px; }
+            }
+            @keyframes lightBlink {
+              0%, 100% { opacity: 0.4; }
+              50% { opacity: 0.85; }
+            }
+            .anim-car-south-1 { animation: carSouth 8s linear infinite; }
+            .anim-car-south-2 { animation: carSouth 8s linear infinite; animation-delay: 4s; }
+            .anim-car-north-1 { animation: carNorth 9s linear infinite; }
+            .anim-car-north-2 { animation: carNorth 9s linear infinite; animation-delay: 4.5s; }
+            .anim-metro { animation: metroSlide 11s linear infinite; }
+            .anim-water { animation: waterPulse 4s ease-in-out infinite; transform-origin: 200px 300px; }
+            .anim-pin { animation: pinBob 2.6s ease-in-out infinite; }
+            .anim-sonar-1 { animation: sonarRing 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+            .anim-sonar-2 { animation: sonarRing 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite; animation-delay: 1.3s; }
+            .anim-lights { animation: lightBlink 2.2s ease-in-out infinite; }
+          `}</style>
+
+          {/* SVG Canvas (1400x620) */}
           <div className="absolute inset-0 w-full h-full">
             <svg
-              viewBox="0 0 1400 600"
+              viewBox="0 0 1400 620"
               className="w-full h-full"
               preserveAspectRatio="xMidYMid slice"
             >
               <defs>
-                {/* City Terrain Gradients */}
-                <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#4A0E1A" stopOpacity="0.8"/>
-                  <stop offset="50%" stopColor="#25050C" stopOpacity="0.9"/>
-                  <stop offset="100%" stopColor="#120205" stopOpacity="1"/>
+                {/* Midnight Cyberpunk Gradients */}
+                <radialGradient id="nightBackdrop" cx="50%" cy="50%" r="65%">
+                  <stop offset="0%" stopColor="#1B0C33"/>
+                  <stop offset="50%" stopColor="#120624"/>
+                  <stop offset="100%" stopColor="#080312"/>
                 </radialGradient>
-                <linearGradient id="bypassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#374151"/>
-                  <stop offset="50%" stopColor="#4B5563"/>
-                  <stop offset="100%" stopColor="#1F2937"/>
+
+                {/* Lake Dhopar Pukur Water Gradient */}
+                <linearGradient id="lakeWater" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#06182D"/>
+                  <stop offset="60%" stopColor="#0A2744"/>
+                  <stop offset="100%" stopColor="#0D375C"/>
                 </linearGradient>
-                <linearGradient id="flyoverGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#6B7280"/>
-                  <stop offset="100%" stopColor="#374151"/>
+
+                {/* Lake Shore Glow */}
+                <linearGradient id="shoreGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.4"/>
+                  <stop offset="100%" stopColor="#05D9E8" stopOpacity="0"/>
                 </linearGradient>
-                <pattern id="streetGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E11D48" strokeWidth="0.75" opacity="0.12"/>
-                </pattern>
-                <pattern id="dotMatrix" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.5" fill="#FFC800" opacity="0.12"/>
+
+                {/* Highway Asphalt Gradient */}
+                <linearGradient id="highwayAsphalt" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#170D29"/>
+                  <stop offset="50%" stopColor="#25163D"/>
+                  <stop offset="100%" stopColor="#170D29"/>
+                </linearGradient>
+
+                {/* Metro Viaduct Gradient */}
+                <linearGradient id="metroViaduct" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2E1B4E"/>
+                  <stop offset="50%" stopColor="#4A2B7B"/>
+                  <stop offset="100%" stopColor="#2E1B4E"/>
+                </linearGradient>
+
+                {/* Offbeat CCU Roof Gradient */}
+                <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#E11D48"/>
+                  <stop offset="60%" stopColor="#9F1239"/>
+                  <stop offset="100%" stopColor="#4C0519"/>
+                </linearGradient>
+
+                {/* Streetlight Radial Light Pools */}
+                <radialGradient id="streetGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#FFE600" stopOpacity="0.32"/>
+                  <stop offset="60%" stopColor="#FFE600" stopOpacity="0.12"/>
+                  <stop offset="100%" stopColor="#FFE600" stopOpacity="0"/>
+                </radialGradient>
+
+                {/* Car Headlight Beam */}
+                <linearGradient id="headlightBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFE600" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="#FFE600" stopOpacity="0"/>
+                </linearGradient>
+                <linearGradient id="headlightBeamNorth" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#FFE600" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="#FFE600" stopOpacity="0"/>
+                </linearGradient>
+
+                {/* Subtle City Grid Pattern */}
+                <pattern id="isoGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+                  <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#6D28D9" strokeWidth="0.6" opacity="0.12"/>
                 </pattern>
               </defs>
 
-              {/* Background Earth/Urban Base */}
-              <rect width="1400" height="600" fill="url(#cityGlow)"/>
-              <rect width="1400" height="600" fill="url(#streetGrid)"/>
-              <rect width="1400" height="600" fill="url(#dotMatrix)"/>
+              {/* 1. Base Terrain & Night City Grid */}
+              <rect width="1400" height="620" fill="url(#nightBackdrop)"/>
+              <rect width="1400" height="620" fill="url(#isoGrid)"/>
 
-              {/* Distant River Wetland / Lake Curve (East Kolkata Wetlands area near Topsia) */}
-              <path
-                d="M1000 0 Q1120 180 1200 320 T1400 500 L1400 0 Z"
-                fill="#0A1E2F"
-                opacity="0.65"
-              />
-              <path
-                d="M1000 0 Q1120 180 1200 320 T1400 500"
-                stroke="#19D3F3"
-                strokeWidth="3"
-                fill="none"
-                opacity="0.4"
-                strokeDasharray="8 4"
-              />
-
-              {/* Urban Building Blocks (Isometric Cartoon Style) */}
-              {/* Sector 1: Park Circus Blocks (West) */}
-              <g fill="#2A0812" stroke="#000000" strokeWidth="2" opacity="0.8">
-                <rect x="60" y="80" width="70" height="55" rx="6"/>
-                <rect x="150" y="60" width="85" height="70" rx="6"/>
-                <rect x="70" y="160" width="60" height="80" rx="6"/>
-                <rect x="150" y="150" width="75" height="90" rx="6"/>
-                <rect x="80" y="270" width="90" height="65" rx="6"/>
-                <rect x="190" y="260" width="65" height="75" rx="6"/>
-              </g>
-
-              {/* Sector 2: Science City Complex (South-West) */}
-              <g opacity="0.85">
-                {/* Science City Space Odyssey Geodesic Dome */}
-                <circle cx="340" cy="450" r="48" fill="#1C0509" stroke="#19D3F3" strokeWidth="3"/>
-                <circle cx="340" cy="450" r="32" fill="#E11D48" fillOpacity="0.25" stroke="#FFC800" strokeWidth="2"/>
-                <line x1="292" y1="450" x2="388" y2="450" stroke="#19D3F3" strokeWidth="1.5"/>
-                <line x1="340" y1="402" x2="340" y2="498" stroke="#19D3F3" strokeWidth="1.5"/>
-                <text x="340" y="520" textAnchor="middle" fill="#19D3F3" fontSize="12" fontFamily="monospace" fontWeight="bold">SCIENCE CITY</text>
-              </g>
-
-              {/* Sector 3: Topsia / Tangra Neighborhood Blocks */}
-              <g fill="#1F050C" stroke="#000000" strokeWidth="2" opacity="0.75">
-                <rect x="520" y="60" width="80" height="65" rx="6"/>
-                <rect x="620" y="50" width="90" height="75" rx="6"/>
-                <rect x="500" y="380" width="95" height="80" rx="6"/>
-                <rect x="620" y="390" width="110" height="70" rx="6"/>
-                <rect x="940" y="260" width="85" height="80" rx="6"/>
-                <rect x="1050" y="250" width="95" height="95" rx="6"/>
-              </g>
-
-              {/* MAJOR ARTERIAL ROADS (Cartoon Curved Highway Rails) */}
-              
-              {/* EM BYPASS (High-speed 6-lane North-South Spine) */}
-              <g>
+              {/* 2. DHOPAR PUKUR LAKE (Real Geography: West / North-West Lake) */}
+              <g id="dhopar-pukur-reservoir">
+                {/* Organic Lake Basin matching Google Maps satellite shoreline */}
                 <path
-                  d="M480 -20 Q440 200 420 340 T380 620"
-                  stroke="#1E293B"
-                  strokeWidth="48"
+                  d="M -20 -20 
+                     L 420 -20 
+                     C 400 90, 360 160, 330 220 
+                     C 300 280, 380 320, 420 370 
+                     C 460 420, 390 530, 270 580 
+                     C 190 610, 80 635, -20 640 Z"
+                  fill="url(#lakeWater)"
+                  stroke="#00F0FF"
+                  strokeWidth="2.5"
+                  opacity="0.95"
+                />
+
+                {/* Shoreline wetland green buffer */}
+                <path
+                  d="M 420 -20 C 400 90, 360 160, 330 220 C 300 280, 380 320, 420 370 C 460 420, 390 530, 270 580"
+                  fill="none"
+                  stroke="#10B981"
+                  strokeWidth="6"
+                  opacity="0.35"
+                />
+
+                {/* Animated Shimmering Water Waves */}
+                <g className="anim-water" fill="none" stroke="#00F0FF" strokeWidth="1.5" opacity="0.4" strokeDasharray="16 10">
+                  <path d="M 40 80 Q 140 70 240 85 T 340 75" />
+                  <path d="M 60 160 Q 150 145 220 165 T 300 155" />
+                  <path d="M 30 240 Q 120 230 210 245 T 280 235" />
+                  <path d="M 50 320 Q 150 310 240 330 T 320 315" />
+                  <path d="M 30 400 Q 130 390 220 410 T 310 395" />
+                  <path d="M 20 480 Q 110 470 200 490 T 260 480" />
+                </g>
+
+                {/* Lush Cartoon Tree Clumps along the Lake Bank */}
+                <g fill="#1F1138" stroke="#10B981" strokeWidth="1.5" opacity="0.85">
+                  <circle cx="340" cy="180" r="14"/>
+                  <circle cx="355" cy="195" r="12"/>
+                  <circle cx="320" cy="270" r="13"/>
+                  <circle cx="335" cy="285" r="15"/>
+                  <circle cx="380" cy="335" r="14"/>
+                  <circle cx="410" cy="355" r="13"/>
+                  <circle cx="430" cy="410" r="15"/>
+                  <circle cx="395" cy="470" r="16"/>
+                  <circle cx="350" cy="530" r="17"/>
+                  <circle cx="280" cy="570" r="15"/>
+                </g>
+              </g>
+
+              {/* 3. TOPSIA ROAD & FEEDER STREETS (Connecting into Offbeat Campus) */}
+              <g id="topsia-road-network">
+                {/* Secondary arterial: Topsia Road */}
+                <path
+                  d="M 260 640 Q 420 540 540 450 L 650 380"
+                  stroke="#1E1236"
+                  strokeWidth="32"
                   fill="none"
                   strokeLinecap="round"
                 />
                 <path
-                  d="M480 -20 Q440 200 420 340 T380 620"
-                  stroke="#334155"
-                  strokeWidth="40"
+                  d="M 260 640 Q 420 540 540 450 L 650 380"
+                  stroke="#382061"
+                  strokeWidth="26"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M 260 640 Q 420 540 540 450 L 650 380"
+                  stroke="#00F0FF"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeDasharray="6 6"
+                  opacity="0.6"
+                />
+
+                {/* Streetlight light pools on Topsia Road */}
+                <circle cx="360" cy="570" r="32" fill="url(#streetGlow)" />
+                <circle cx="480" cy="490" r="32" fill="url(#streetGlow)" />
+                <circle cx="580" cy="420" r="32" fill="url(#streetGlow)" />
+              </g>
+
+              {/* 4. BISWA BANGLA SARANI (EM BYPASS - 6-Lane High Speed Spine) */}
+              <g id="em-bypass-highway">
+                {/* Outer Road Bed */}
+                <path
+                  d="M 1080 -30 L 850 650"
+                  stroke="#160B29"
+                  strokeWidth="76"
                   fill="none"
                 />
-                {/* Yellow Center Divider Dashes */}
+                {/* Asphalt Surface */}
                 <path
-                  d="M480 -20 Q440 200 420 340 T380 620"
-                  stroke="#FFC800"
-                  strokeWidth="3.5"
+                  d="M 1080 -30 L 850 650"
+                  stroke="url(#highwayAsphalt)"
+                  strokeWidth="68"
                   fill="none"
-                  strokeDasharray="16 14"
                 />
-                {/* White Shoulder Edges */}
+                {/* Neon Curbs */}
                 <path
-                  d="M480 -20 Q440 200 420 340 T380 620"
+                  d="M 1044 -30 L 814 650"
+                  stroke="#8B5CF6"
+                  strokeWidth="2.5"
+                  fill="none"
+                  opacity="0.7"
+                />
+                <path
+                  d="M 1116 -30 L 886 650"
+                  stroke="#8B5CF6"
+                  strokeWidth="2.5"
+                  fill="none"
+                  opacity="0.7"
+                />
+                {/* Double Yellow Dividing Centerline */}
+                <path
+                  d="M 1079 -30 L 849 650"
+                  stroke="#FFE600"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeDasharray="16 12"
+                />
+                <path
+                  d="M 1082 -30 L 852 650"
+                  stroke="#FFE600"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeDasharray="16 12"
+                />
+                {/* Lane Divider Dashes (White) */}
+                <path
+                  d="M 1062 -30 L 832 650"
                   stroke="#FFFFFF"
                   strokeWidth="1.5"
                   fill="none"
-                  opacity="0.4"
+                  strokeDasharray="12 18"
+                  opacity="0.45"
                 />
-                <text x="460" y="80" fill="#FFC800" fontSize="13" fontFamily="monospace" fontWeight="bold" transform="rotate(-15 460 80)">EM BYPASS (NORTH ➔)</text>
+                <path
+                  d="M 1098 -30 L 868 650"
+                  stroke="#FFFFFF"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeDasharray="12 18"
+                  opacity="0.45"
+                />
+
+                {/* Streetlight light cones along EM Bypass */}
+                <circle cx="1060" cy="50" r="42" fill="url(#streetGlow)" />
+                <circle cx="1010" cy="180" r="42" fill="url(#streetGlow)" />
+                <circle cx="960" cy="310" r="42" fill="url(#streetGlow)" />
+                <circle cx="910" cy="440" r="42" fill="url(#streetGlow)" />
+                <circle cx="860" cy="570" r="42" fill="url(#streetGlow)" />
               </g>
 
-              {/* MAA FLYOVER (Elevated Viaduct Spanning Across East-West) */}
-              <g>
+              {/* 5. RITWIK GHATAK METRO VIADUCT & STATION (Overhead Metro Line) */}
+              <g id="ritwik-ghatak-metro">
+                {/* Elevated Viaduct Track running parallel to EM Bypass */}
                 <path
-                  d="M0 240 Q400 220 720 200 T1400 160"
-                  stroke="#000000"
-                  strokeWidth="36"
-                  fill="none"
-                  strokeLinecap="round"
-                  opacity="0.75"
-                />
-                <path
-                  d="M0 240 Q400 220 720 200 T1400 160"
-                  stroke="url(#flyoverGrad)"
-                  strokeWidth="30"
+                  d="M 1160 -30 L 930 650"
+                  stroke="url(#metroViaduct)"
+                  strokeWidth="28"
                   fill="none"
                 />
+                {/* Dual Metro Steel Rails */}
                 <path
-                  d="M0 240 Q400 220 720 200 T1400 160"
-                  stroke="#E11D48"
+                  d="M 1155 -30 L 925 650"
+                  stroke="#00F0FF"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.8"
+                />
+                <path
+                  d="M 1165 -30 L 935 650"
+                  stroke="#00F0FF"
+                  strokeWidth="2"
+                  fill="none"
+                  opacity="0.8"
+                />
+
+                {/* Viaduct Support Concrete Pillars */}
+                <circle cx="1145" cy="20" r="6" fill="#4C1D95" stroke="#000" strokeWidth="1.5"/>
+                <circle cx="1100" cy="140" r="6" fill="#4C1D95" stroke="#000" strokeWidth="1.5"/>
+                <circle cx="1055" cy="260" r="6" fill="#4C1D95" stroke="#000" strokeWidth="1.5"/>
+                <circle cx="1010" cy="380" r="6" fill="#4C1D95" stroke="#000" strokeWidth="1.5"/>
+                <circle cx="965" cy="500" r="6" fill="#4C1D95" stroke="#000" strokeWidth="1.5"/>
+
+                {/* Ritwik Ghatak Metro Station Platform Structure (M) */}
+                <g transform="translate(1015, 300) rotate(-19)">
+                  {/* Platform Canopy Base */}
+                  <rect x="-18" y="-70" width="36" height="140" rx="8" fill="#1E0E3E" stroke="#00F0FF" strokeWidth="2.5" />
+                  {/* Illuminated Station Skylight Strip */}
+                  <rect x="-8" y="-55" width="16" height="110" rx="4" fill="#00F0FF" opacity="0.65" />
+                  {/* Station Logo Badge */}
+                  <circle cx="0" cy="0" r="14" fill="#000000" stroke="#FFE600" strokeWidth="2" />
+                  <text x="0" y="5" textAnchor="middle" fill="#FFE600" fontSize="13" fontWeight="bold" fontFamily="monospace">M</text>
+                </g>
+              </g>
+
+              {/* 6. SURROUNDING ISOMETRIC NEIGHBORHOODS (Tangra / Topsia / Nirman Plant) */}
+              <g id="surrounding-buildings" opacity="0.85">
+                {/* East side: Nirman Concrete & Industrial District */}
+                <g transform="translate(1200, 160)">
+                  <polygon points="0,30 45,0 90,30 45,60" fill="#2E1B4E" stroke="#000" strokeWidth="2"/>
+                  <polygon points="0,30 45,60 45,110 0,80" fill="#1C0E33" stroke="#000" strokeWidth="2"/>
+                  <polygon points="45,60 90,30 90,80 45,110" fill="#3B2266" stroke="#000" strokeWidth="2"/>
+                  {/* Windows */}
+                  <rect x="55" y="65" width="8" height="8" fill="#FFE600"/>
+                  <rect x="70" y="55" width="8" height="8" fill="#FFE600"/>
+                  <rect x="55" y="85" width="8" height="8" fill="#00F0FF"/>
+                </g>
+
+                <g transform="translate(1220, 320)">
+                  <polygon points="0,25 40,0 80,25 40,50" fill="#24133F" stroke="#000" strokeWidth="2"/>
+                  <polygon points="0,25 40,50 40,90 0,65" fill="#150926" stroke="#000" strokeWidth="2"/>
+                  <polygon points="40,50 80,25 80,65 40,90" fill="#301A52" stroke="#000" strokeWidth="2"/>
+                  <rect x="50" y="55" width="7" height="7" fill="#FF007F"/>
+                  <rect x="65" y="45" width="7" height="7" fill="#00F0FF"/>
+                </g>
+
+                {/* West / Topsia side buildings */}
+                <g transform="translate(480, 520)">
+                  <polygon points="0,20 35,0 70,20 35,40" fill="#2A1647" stroke="#000" strokeWidth="2"/>
+                  <polygon points="0,20 35,40 35,75 0,55" fill="#1A0D2E" stroke="#000" strokeWidth="2"/>
+                  <polygon points="35,40 70,20 70,55 35,75" fill="#371E5C" stroke="#000" strokeWidth="2"/>
+                  <rect x="42" y="45" width="6" height="6" fill="#FFE600"/>
+                </g>
+
+                <g transform="translate(480, 80)">
+                  <polygon points="0,25 40,0 80,25 40,50" fill="#2A1647" stroke="#000" strokeWidth="2"/>
+                  <polygon points="0,25 40,50 40,90 0,65" fill="#1A0D2E" stroke="#000" strokeWidth="2"/>
+                  <polygon points="40,50 80,25 80,65 40,90" fill="#371E5C" stroke="#000" strokeWidth="2"/>
+                  <rect x="50" y="55" width="8" height="8" fill="#00F0FF"/>
+                  <rect x="65" y="45" width="8" height="8" fill="#FFE600"/>
+                </g>
+              </g>
+
+              {/* 7. AIC TECHNO @ OFFBEAT CCU COMPOUND (Main Hero Complex) */}
+              <g id="offbeat-ccu-campus">
+                {/* Compound Paved Ground (Peninsula jutting between Lake and Highway) */}
+                <polygon
+                  points="450,230 690,140 820,290 590,440"
+                  fill="#1C0E33"
+                  stroke="#8B5CF6"
                   strokeWidth="3"
-                  fill="none"
-                  strokeDasharray="12 12"
                 />
-                <text x="140" y="215" fill="#FFFFFF" fontSize="12" fontFamily="monospace" fontWeight="bold">MAA FLYOVER (➔ AIRPORT / SECTOR V)</text>
+
+                {/* Parking stalls with miniature cars parked */}
+                <g opacity="0.8">
+                  <line x1="490" y1="260" x2="520" y2="280" stroke="#00F0FF" strokeWidth="1" strokeDasharray="3 3"/>
+                  <line x1="510" y1="250" x2="540" y2="270" stroke="#00F0FF" strokeWidth="1" strokeDasharray="3 3"/>
+                  <line x1="530" y1="240" x2="560" y2="260" stroke="#00F0FF" strokeWidth="1" strokeDasharray="3 3"/>
+                  {/* Parked miniature cars */}
+                  <rect x="500" y="258" width="14" height="8" rx="2" fill="#FFE600" transform="rotate(30 500 258)"/>
+                  <rect x="520" y="248" width="14" height="8" rx="2" fill="#00F0FF" transform="rotate(30 520 248)"/>
+                  <rect x="540" y="238" width="14" height="8" rx="2" fill="#E11D48" transform="rotate(30 540 238)"/>
+                </g>
+
+                {/* MAIN OFFBEAT CCU 3D ISOMETRIC BUILDING */}
+                <g transform="translate(560, 200)">
+                  {/* Left Facade (Deep Crimson / Maroon) */}
+                  <polygon
+                    points="0,80 120,140 120,220 0,160"
+                    fill="#881337"
+                    stroke="#000000"
+                    strokeWidth="3"
+                  />
+                  {/* Right Facade (Dark Violet Modern Tech Glass) */}
+                  <polygon
+                    points="120,140 230,80 230,160 120,220"
+                    fill="#3B1C5A"
+                    stroke="#000000"
+                    strokeWidth="3"
+                  />
+                  {/* Rooftop Slab (Home of Café Offbeat Up There) */}
+                  <polygon
+                    points="0,80 110,20 230,80 120,140"
+                    fill="url(#roofGrad)"
+                    stroke="#FFC800"
+                    strokeWidth="3"
+                  />
+
+                  {/* Panoramic Illuminated Windows on Left Facade */}
+                  <g fill="#00F0FF" opacity="0.9">
+                    <polygon points="15,100 45,115 45,130 15,115" />
+                    <polygon points="55,120 85,135 85,150 55,135" />
+                    <polygon points="15,125 45,140 45,155 15,140" fill="#FFE600" />
+                    <polygon points="55,145 85,160 85,175 55,160" fill="#FFE600" />
+                  </g>
+
+                  {/* Panoramic Illuminated Windows on Right Facade */}
+                  <g fill="#00F0FF" opacity="0.9">
+                    <polygon points="135,135 170,115 170,130 135,150" />
+                    <polygon points="185,110 215,90 215,105 185,125" />
+                    <polygon points="135,160 170,140 170,155 135,175" fill="#FF2E93" />
+                    <polygon points="185,135 215,115 215,130 185,150" fill="#FF2E93" />
+                  </g>
+
+                  {/* Entrance Door & Lobby Canopy */}
+                  <polygon points="100,210 135,228 135,215 100,197" fill="#00F0FF"/>
+
+                  {/* ROOFTOP: CAFÉ OFFBEAT UP THERE DETAILS */}
+                  {/* String lights along rooftop perimeter */}
+                  <path
+                    d="M 10 75 Q 60 45 110 25 T 220 75"
+                    stroke="#FFE600"
+                    strokeWidth="1.5"
+                    fill="none"
+                    strokeDasharray="4 6"
+                    className="anim-lights"
+                  />
+                  {/* Rooftop Cafe Tables & Umbrellas */}
+                  <circle cx="80" cy="70" r="8" fill="#FFE600" stroke="#000" strokeWidth="1.5"/>
+                  <circle cx="140" cy="75" r="9" fill="#00F0FF" stroke="#000" strokeWidth="1.5"/>
+                  <circle cx="110" cy="95" r="8" fill="#FF007F" stroke="#000" strokeWidth="1.5"/>
+                  <circle cx="165" cy="95" r="8" fill="#FFE600" stroke="#000" strokeWidth="1.5"/>
+
+                  {/* Building Nameplate */}
+                  <rect x="40" y="175" width="130" height="20" rx="4" fill="#000000" stroke="#FFE600" strokeWidth="1.5"/>
+                  <text x="105" y="189" textAnchor="middle" fill="#FFFFFF" fontSize="10" fontWeight="900" fontFamily="monospace" letterSpacing="1">
+                    AIC TECHNO · OFFBEAT
+                  </text>
+                </g>
               </g>
 
-              {/* TOPSIA ROAD (Direct Arterial to Offbeat CCU) */}
-              <g>
-                <path
-                  d="M430 260 L750 340 L880 380"
-                  stroke="#374151"
-                  strokeWidth="24"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M430 260 L750 340 L880 380"
-                  stroke="#E11D48"
-                  strokeWidth="2.5"
-                  fill="none"
-                  strokeDasharray="8 8"
-                />
-                <text x="540" y="325" fill="#19D3F3" fontSize="11" fontFamily="monospace" fontWeight="bold">TOPSIA ROAD</text>
+              {/* 8. ANIMATED CARTOON VEHICLES DRIVING ALONG ROADS */}
+              
+              {/* Car 1: Southbound Yellow Ambassador Taxi along EM Bypass */}
+              <g className="anim-car-south-1" transform="translate(1060, 0)">
+                <g transform="rotate(110)">
+                  {/* Headlight beam casting light ahead */}
+                  <polygon points="-8,16 8,16 22,70 -22,70" fill="url(#headlightBeam)" />
+                  {/* Car body */}
+                  <rect x="-8" y="-14" width="16" height="28" rx="4" fill="#FFE600" stroke="#000" strokeWidth="1.5" />
+                  {/* Windshields */}
+                  <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#00F0FF" />
+                  {/* Headlight bulbs */}
+                  <circle cx="-6" cy="14" r="2" fill="#FFF" />
+                  <circle cx="6" cy="14" r="2" fill="#FFF" />
+                </g>
               </g>
 
-              {/* AIC TECHNO @ OFFBEAT CCU COMPOUND (Hero Target Complex) */}
-              <g id="offbeat-complex">
-                {/* Soft Campus Ambient Glow */}
-                <circle cx="760" cy="310" r="130" fill="#E11D48" fillOpacity="0.22" filter="blur(16px)"/>
-                
-                {/* Outer Compound Ground */}
-                <rect x="660" y="220" width="200" height="150" rx="20" fill="#25050E" stroke="#FFC800" strokeWidth="4"/>
-                
-                {/* Offbeat Building Structure (Main Incubation Block) */}
-                <rect x="680" y="240" width="160" height="90" rx="14" fill="#E11D48" stroke="#000000" strokeWidth="3.5"/>
-                
-                {/* Windows Strip (Cartoon Block Lights) */}
-                <rect x="696" y="255" width="22" height="18" rx="3" fill="#FFC800"/>
-                <rect x="728" y="255" width="22" height="18" rx="3" fill="#FFC800"/>
-                <rect x="760" y="255" width="22" height="18" rx="3" fill="#19D3F3"/>
-                <rect x="792" y="255" width="22" height="18" rx="3" fill="#FFC800"/>
+              {/* Car 2: Southbound Crimson Roadster along EM Bypass */}
+              <g className="anim-car-south-2" transform="translate(1060, 0)">
+                <g transform="rotate(110)">
+                  <polygon points="-7,15 7,15 18,65 -18,65" fill="url(#headlightBeam)" />
+                  <rect x="-7" y="-13" width="14" height="26" rx="4" fill="#E11D48" stroke="#000" strokeWidth="1.5" />
+                  <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#FFF" />
+                  <circle cx="-5" cy="13" r="2" fill="#FFF" />
+                  <circle cx="5" cy="13" r="2" fill="#FFF" />
+                </g>
+              </g>
 
-                <rect x="696" y="285" width="22" height="18" rx="3" fill="#19D3F3"/>
-                <rect x="728" y="285" width="22" height="18" rx="3" fill="#FFC800"/>
-                <rect x="760" y="285" width="22" height="18" rx="3" fill="#FFC800"/>
-                <rect x="792" y="285" width="22" height="18" rx="3" fill="#19D3F3"/>
+              {/* Car 3: Northbound Cyan Cab along EM Bypass */}
+              <g className="anim-car-north-1" transform="translate(860, 620)">
+                <g transform="rotate(-70)">
+                  <polygon points="-8,16 8,16 20,70 -20,70" fill="url(#headlightBeam)" />
+                  <rect x="-8" y="-14" width="16" height="28" rx="4" fill="#00F0FF" stroke="#000" strokeWidth="1.5" />
+                  <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#000" />
+                  <circle cx="-6" cy="14" r="2" fill="#FFF" />
+                  <circle cx="6" cy="14" r="2" fill="#FFF" />
+                </g>
+              </g>
 
-                {/* Building Entrance & Roof Flag */}
-                <rect x="744" y="315" width="32" height="15" rx="3" fill="#000000"/>
-                <polygon points="760,225 785,215 760,205" fill="#FFC800"/>
-                <line x1="760" y1="205" x2="760" y2="240" stroke="#000000" strokeWidth="2.5"/>
+              {/* Car 4: Northbound White Sedan along EM Bypass */}
+              <g className="anim-car-north-2" transform="translate(860, 620)">
+                <g transform="rotate(-70)">
+                  <polygon points="-7,15 7,15 18,65 -18,65" fill="url(#headlightBeam)" />
+                  <rect x="-7" y="-13" width="14" height="26" rx="4" fill="#FFFFFF" stroke="#000" strokeWidth="1.5" />
+                  <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#1E0E3E" />
+                  <circle cx="-5" cy="13" r="2" fill="#FFF" />
+                  <circle cx="5" cy="13" r="2" fill="#FFF" />
+                </g>
+              </g>
 
-                {/* Building Label Plate */}
-                <rect x="675" y="340" width="170" height="22" rx="6" fill="#000000" stroke="#FFC800" strokeWidth="2"/>
-                <text x="760" y="355" textAnchor="middle" fill="#FFFFFF" fontSize="11" fontFamily="monospace" fontWeight="900" letterSpacing="1">
-                  OFFBEAT CCU · 36F
+              {/* Car 5: Yellow Ambassador Taxi turning into Topsia Road */}
+              <g transform="translate(420, 520) rotate(-40)">
+                <polygon points="-7,14 7,14 16,55 -16,55" fill="url(#headlightBeam)" />
+                <rect x="-7" y="-13" width="14" height="26" rx="4" fill="#FFE600" stroke="#000" strokeWidth="1.5" />
+                <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#00F0FF" />
+              </g>
+
+              {/* 9. ANIMATED STREAMLINED METRO TRAIN (Gliding on elevated viaduct) */}
+              <g className="anim-metro" transform="translate(1150, 0)">
+                <g transform="rotate(110)">
+                  {/* Coach 1 (Lead engine) */}
+                  <rect x="-7" y="24" width="14" height="42" rx="5" fill="#E2E8F0" stroke="#4C1D95" strokeWidth="1.5"/>
+                  <rect x="-5" y="52" width="10" height="10" rx="2" fill="#00F0FF"/>
+                  <rect x="-5" y="32" width="10" height="14" rx="2" fill="#00F0FF"/>
+                  {/* Headlight beam */}
+                  <polygon points="-6,66 6,66 18,120 -18,120" fill="url(#headlightBeam)" opacity="0.6"/>
+
+                  {/* Coach 2 (Middle) */}
+                  <rect x="-7" y="-22" width="14" height="42" rx="4" fill="#CBD5E1" stroke="#4C1D95" strokeWidth="1.5"/>
+                  <rect x="-5" y="-14" width="10" height="12" rx="2" fill="#00F0FF"/>
+                  <rect x="-5" y="4" width="10" height="12" rx="2" fill="#00F0FF"/>
+
+                  {/* Coach 3 (Rear) */}
+                  <rect x="-7" y="-68" width="14" height="42" rx="5" fill="#94A3B8" stroke="#4C1D95" strokeWidth="1.5"/>
+                  <rect x="-5" y="-60" width="10" height="12" rx="2" fill="#00F0FF"/>
+                  <rect x="-5" y="-42" width="10" height="12" rx="2" fill="#00F0FF"/>
+                </g>
+              </g>
+
+              {/* 10. GOOGLE MAPS STYLE LANDMARK CALLOUT PILLS (Convergence 1.0 exact look) */}
+              
+              {/* Landmark 1: Dhopar Pukur Lake */}
+              <g transform="translate(170, 240)">
+                <rect x="0" y="0" width="180" height="28" rx="14" fill="#0B132B" stroke="#00F0FF" strokeWidth="1.5" />
+                <circle cx="14" cy="14" r="8" fill="#00F0FF" />
+                <text x="14" y="18" textAnchor="middle" fontSize="10">🌊</text>
+                <text x="30" y="18" fill="#FFF9F2" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
+                  Dhopar Pukur Lake
                 </text>
               </g>
 
-              {/* Kolkata Heritage Tram Route Line (Illustrated Rail with Stops) */}
-              <g opacity="0.85">
-                <path
-                  d="M100 480 Q450 420 850 460 T1400 480"
-                  stroke="#19D3F3"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeDasharray="14 6"
-                />
-                <circle cx="280" cy="452" r="5" fill="#FFC800"/>
-                <circle cx="680" cy="442" r="5" fill="#FFC800"/>
-                <circle cx="1080" cy="468" r="5" fill="#FFC800"/>
-                <text x="140" y="470" fill="#19D3F3" fontSize="10" fontFamily="monospace" fontWeight="bold">TRAM TRACK #26</text>
+              {/* Landmark 2: Café Offbeat Up There (Rooftop) */}
+              <g transform="translate(560, 150)">
+                <rect x="0" y="0" width="200" height="28" rx="14" fill="#1C0A2A" stroke="#FFE600" strokeWidth="1.5" />
+                <circle cx="14" cy="14" r="8" fill="#FFE600" />
+                <text x="14" y="18" textAnchor="middle" fontSize="10">☕</text>
+                <text x="30" y="18" fill="#FFE600" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
+                  Café Offbeat Up There
+                </text>
               </g>
 
-              {/* LANDMARK CALLOUT PINS */}
-              {/* Howrah Bridge Pin (West Direction) */}
-              <g transform="translate(40, 400)">
-                <circle cx="18" cy="18" r="16" fill="#1C0509" stroke="#E11D48" strokeWidth="2"/>
-                <text x="18" y="22" textAnchor="middle" fill="#FFC800" fontSize="12">🌉</text>
-                <text x="42" y="16" fill="#FFF9F2" fontSize="11" fontFamily="monospace" fontWeight="bold">HOWRAH BRIDGE</text>
-                <text x="42" y="28" fill="#E11D48" fontSize="9" fontFamily="monospace">7 KM WEST ➔</text>
+              {/* Landmark 3: Ritwik Ghatak Metro Station */}
+              <g transform="translate(980, 470)">
+                <rect x="0" y="0" width="210" height="28" rx="14" fill="#140A26" stroke="#00F0FF" strokeWidth="1.5" />
+                <circle cx="14" cy="14" r="8" fill="#00F0FF" />
+                <text x="14" y="18" textAnchor="middle" fontSize="10">🚇</text>
+                <text x="30" y="18" fill="#FFF9F2" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
+                  Ritwik Ghatak Metro (M)
+                </text>
               </g>
 
-              {/* Park Circus 7-Point Crossing Pin */}
-              <g transform="translate(60, 20)">
-                <circle cx="18" cy="18" r="14" fill="#1C0509" stroke="#FFC800" strokeWidth="2"/>
-                <text x="18" y="22" textAnchor="middle" fill="#19D3F3" fontSize="11">📍</text>
-                <text x="40" y="16" fill="#FFF9F2" fontSize="10" fontFamily="monospace" fontWeight="bold">PARK CIRCUS</text>
-                <text x="40" y="27" fill="#FFC800" fontSize="8" fontFamily="monospace">2 KM ➔</text>
+              {/* Landmark 4: Biswa Bangla Sarani (EM Bypass) */}
+              <g transform="translate(970, 80) rotate(-19)">
+                <rect x="0" y="0" width="190" height="26" rx="13" fill="#140A26" stroke="#FFE600" strokeWidth="1.5" />
+                <circle cx="13" cy="13" r="7" fill="#FFE600" />
+                <text x="13" y="17" textAnchor="middle" fontSize="9">🛣️</text>
+                <text x="28" y="17" fill="#FFE600" fontSize="10" fontWeight="bold" fontFamily="monospace">
+                  BISWA BANGLA SARANI
+                </text>
               </g>
 
-              {/* Salt Lake Sector V Gateway Pin */}
-              <g transform="translate(1120, 40)">
-                <circle cx="18" cy="18" r="14" fill="#1C0509" stroke="#19D3F3" strokeWidth="2"/>
-                <text x="18" y="22" textAnchor="middle" fill="#19D3F3" fontSize="11">💻</text>
-                <text x="40" y="16" fill="#FFF9F2" fontSize="10" fontFamily="monospace" fontWeight="bold">SECTOR V TECH HUB</text>
-                <text x="40" y="27" fill="#19D3F3" fontSize="8" fontFamily="monospace">IT CORRIDOR ➔</text>
+              {/* Landmark 5: Nirman Concrete & Tech Hub */}
+              <g transform="translate(1190, 270)">
+                <rect x="0" y="0" width="180" height="28" rx="14" fill="#16082B" stroke="#A855F7" strokeWidth="1.5" />
+                <circle cx="14" cy="14" r="8" fill="#A855F7" />
+                <text x="14" y="18" textAnchor="middle" fontSize="10">🏭</text>
+                <text x="30" y="18" fill="#FFF9F2" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
+                  Nirman Industrial Park
+                </text>
               </g>
+
+              {/* Landmark 6: Topsia Road Entrance */}
+              <g transform="translate(290, 520)">
+                <rect x="0" y="0" width="145" height="26" rx="13" fill="#100824" stroke="#00F0FF" strokeWidth="1.5" />
+                <circle cx="13" cy="13" r="7" fill="#00F0FF" />
+                <text x="13" y="17" textAnchor="middle" fontSize="9">📍</text>
+                <text x="28" y="17" fill="#FFF9F2" fontSize="10" fontWeight="bold" fontFamily="sans-serif">
+                  36F Topsia Road
+                </text>
+              </g>
+
+              {/* 11. CENTRAL HERO VENUE PIN (Floating directly over Offbeat CCU) */}
+              <g transform="translate(680, 250)">
+                {/* Expanding Sonar / Radar Rings */}
+                <circle cx="0" cy="0" r="10" fill="none" stroke="#00F0FF" className="anim-sonar-1" />
+                <circle cx="0" cy="0" r="10" fill="none" stroke="#E11D48" className="anim-sonar-2" />
+                <circle cx="0" cy="0" r="8" fill="#00F0FF" />
+
+                {/* Floating Map Pin with gentle bob animation */}
+                <g className="anim-pin" transform="translate(0, -15)">
+                  {/* Glowing Location Pin Shape */}
+                  <path
+                    d="M 0 -70 
+                       C -22 -70, -38 -54, -38 -32 
+                       C -38 -10, 0 0, 0 0 
+                       C 0 0, 38 -10, 38 -32 
+                       C 38 -54, 22 -70, 0 -70 Z"
+                    fill="#00F0FF"
+                    stroke="#000000"
+                    strokeWidth="3.5"
+                    style={{ filter: 'drop-shadow(0 0 16px rgba(0, 240, 255, 0.9))' }}
+                  />
+                  {/* Pin Inner Dot */}
+                  <circle cx="0" cy="-35" r="13" fill="#0E061A" stroke="#FFC800" strokeWidth="2.5" />
+                  <text x="0" y="-30" textAnchor="middle" fill="#FFC800" fontSize="14" fontWeight="bold">✦</text>
+
+                  {/* Main Target Venue Label Box */}
+                  <g transform="translate(0, -82)">
+                    <rect
+                      x="-135"
+                      y="-26"
+                      width="270"
+                      height="32"
+                      rx="8"
+                      fill="#0C0418"
+                      stroke="#00F0FF"
+                      strokeWidth="2.5"
+                      style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.9))' }}
+                    />
+                    <text
+                      x="0"
+                      y="-6"
+                      textAnchor="middle"
+                      fill="#FFFFFF"
+                      fontFamily="monospace"
+                      fontWeight="900"
+                      fontSize="12"
+                      letterSpacing="1"
+                    >
+                      AIC TECHNO @ OFFBEAT CCU
+                    </text>
+                    <polygon points="0,6 -6,0 6,0" fill="#00F0FF" />
+                  </g>
+                </g>
+              </g>
+
             </svg>
-          </div>
-
-          {/* ANIMATED CARTOON VEHICLES DRIVING ALONG THE ROADS */}
-          
-          {/* Animated Kolkata Yellow Ambassador Taxi driving along EM Bypass */}
-          <div className="absolute top-0 left-[28%] pointer-events-none z-10 animate-drive-taxi">
-            <div
-              className="transform scale-75 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
-              dangerouslySetInnerHTML={{ __html: mascots.yellowTaxi ? mascots.yellowTaxi(85) : '' }}
-            />
-          </div>
-
-          {/* Animated Kolkata Auto-Rickshaw on Maa Flyover */}
-          <div className="absolute top-[28%] left-0 pointer-events-none z-10 animate-drive-auto">
-            <div
-              className="transform scale-75 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
-              dangerouslySetInnerHTML={{ __html: mascots.autoRickshaw ? mascots.autoRickshaw(75) : '' }}
-            />
-          </div>
-
-          {/* Animated Kolkata Cycle Rickshaw crossing Topsia Road */}
-          <div className="absolute top-[48%] right-0 pointer-events-none z-10 animate-drive-rickshaw">
-            <div
-              className="transform scale-75 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
-              dangerouslySetInnerHTML={{ __html: mascots.cycleRickshaw ? mascots.cycleRickshaw(75) : '' }}
-            />
-          </div>
-
-          {/* Animated Kolkata Heritage Tram on Tramline */}
-          <div className="absolute bottom-4 left-1/4 pointer-events-none z-10 animate-tram-glow hidden md:block">
-            <div
-              className="transform scale-75 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
-              dangerouslySetInnerHTML={{ __html: mascots.tramCar ? mascots.tramCar(110) : '' }}
-            />
-          </div>
-
-          {/* 360° Rotating Radar Sweep Arc originating from Offbeat CCU */}
-          <div className="absolute top-[48%] left-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
-            <svg className="w-80 h-80 opacity-40 animate-radar-sweep" viewBox="0 0 200 200">
-              <defs>
-                <linearGradient id="radarArc" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FFC800" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#E11D48" stopOpacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M100 100 L100 0 A100 100 0 0 1 180 40 Z" fill="url(#radarArc)"/>
-            </svg>
-          </div>
-
-          {/* THE BOUNCING TITAN-STYLE LOCATION PIN (Pointed directly at Offbeat CCU) */}
-          <div className="absolute top-[48%] left-[54%] transform -translate-x-1/2 -translate-y-16 sm:-translate-y-24 md:-translate-y-28 flex flex-col items-center pointer-events-none z-30 animate-bounce">
-            
-            {/* Concentric Sonar Ring Waves */}
-            <div className="absolute -top-4 w-28 h-28 rounded-full border-2 border-[#E11D48] animate-sonar-ping pointer-events-none" />
-
-            {/* Glowing Map Pin Icon */}
-            <svg
-              className="w-10 h-10 sm:w-14 sm:h-14 text-[#E11D48] drop-shadow-[0_0_16px_rgba(225,29,72,1)]"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-
-            {/* Floating Title Banner */}
-            <div className="mt-1 px-4 py-1.5 bg-[#120205] border-2 border-black rounded-full shadow-[4px_4px_0px_#000] flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48]" />
-              <span className="font-bebas text-xs sm:text-base font-bold tracking-[0.2em] text-white uppercase whitespace-nowrap">
-                OFFBEAT CCU
-              </span>
-            </div>
-
-            <span className="font-mono text-[9px] sm:text-[11px] text-[#FFC800] font-bold tracking-widest mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] uppercase">
-              36F TOPSIA ROAD · KOLKATA 700039
-            </span>
           </div>
 
           {/* Bottom Satellite Telemetry Bar */}
-          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/80 pointer-events-none z-20">
-            <span className="px-3 py-1 rounded bg-[#0B0204]/90 border border-white/20 text-[#FFC800] font-bold shadow-[2px_2px_0px_#000]">
-              📍 22.5415° N, 88.3888° E · TOPSIA HQ
+          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90 pointer-events-none z-20">
+            <span className="px-3 py-1.5 rounded-full bg-[#0E061A]/95 border border-[#00F0FF]/40 text-[#00F0FF] font-bold shadow-[2px_2px_0px_#000] flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+              <span>22.5415° N, 88.3888° E · TOPSIA HQ · OFFBEAT CCU</span>
             </span>
-            <span className="hidden sm:inline-block px-3 py-1 rounded bg-[#E11D48] text-white font-extrabold shadow-[2px_2px_0px_#000]">
-              CLICK MAP TO OPEN LIVE GOOGLE NAVIGATION ↗
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E11D48] text-white font-extrabold shadow-[2px_2px_0px_#000] hover:scale-105 transition-transform">
+              <span>OPEN GOOGLE MAPS DIRECTIONS</span>
+              <span>↗</span>
             </span>
           </div>
         </a>
       </div>
 
-      {/* Character Quote at Bottom (Exact convergence1.tech Robin quote structure) */}
+      {/* Character Quote at Bottom (convergence1.tech aesthetic) */}
       <div className="mt-4 sm:mt-8 flex justify-center px-2 sm:px-4 w-full">
         <p className="font-comic text-[11px] sm:text-base md:text-xl text-[#FFC800] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center">
           "If we get lost along the EM Bypass, I'm blaming Topshe's notebook directions entirely."{" "}
