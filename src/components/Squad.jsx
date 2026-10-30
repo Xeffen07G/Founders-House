@@ -132,14 +132,6 @@ export const Squad = () => {
                 </div>
               ))}
             </div>
-
-            {/* Subtle Interactive Hint */}
-            <div className="mt-4 flex justify-center">
-              <span className="font-mono text-[10px] sm:text-xs text-white/50 tracking-wider uppercase inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10">
-                <span className="text-[#19D3F3]">✦</span>
-                <span>HOVER OVER ANY PHOTO TO PAUSE</span>
-              </span>
-            </div>
           </div>
         ) : (
           <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
