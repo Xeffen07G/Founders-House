@@ -447,6 +447,10 @@ export const content = {
           {
             name: "Nandini Kumari",
             image: "/team/nandini_kumari.webp"
+          },
+          {
+            name: "Joyjit Das",
+            image: "/team/joyjit_das.webp"
           }
         ]
       }
