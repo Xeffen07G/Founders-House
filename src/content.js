@@ -29,7 +29,7 @@ export const content = {
     { label: "ROUTE", href: "#route" },
     { label: "SCOREBOARD", href: "#scoreboard" },
     { label: "AWARDS", href: "#awards" },
-    { label: "SQUAD", href: "#squad" },
+    { label: "TEAM", href: "#team" },
     { label: "SPONSORS", href: "#sponsors" },
     { label: "ARCHIVES", href: "#archives" },
     { label: "FAQ", href: "#faq" }
@@ -378,10 +378,61 @@ export const content = {
   squad: {
     pill: "THE SQUAD",
     headingLine1: "MEET THE",
-    headingLine2: "MENTORS.",
-    desc: "Veteran operators, serial startup founders, venture capitalists, and academic luminaries ready to challenge your assumptions.",
-    tabs: ["MENTORS", "JURY", "ORGANIZERS"],
-    classifiedCount: 6
+    headingLine2: "TEAM.",
+    desc: "The minds shaping Founders' House — domain mentors challenging assumptions, venture jury evaluating investment readiness, and the core organizing squad making it all happen.",
+    tabs: ["ALL SPACES", "MENTORS", "JURY", "ORGANIZING TEAM"],
+    spaces: {
+      mentors: {
+        id: "mentors",
+        title: "MENTOR SQUAD",
+        tag: "24/7 TECHNICAL & DOMAIN GUIDES",
+        icon: "🎓",
+        desc: "Veteran tech architects, serial founders, and domain specialists stationed on-site at AIC Techno to unblock squads around the clock.",
+        color: "text-[#FFC800]",
+        borderColor: "border-[#FFC800]",
+        dossiers: [
+          { code: "DOSSIER #M1", domain: "GenAI & LLM Architecture", tag: "AI / ML" },
+          { code: "DOSSIER #M2", domain: "Full-Stack & Cloud Systems", tag: "INFRA" },
+          { code: "DOSSIER #M3", domain: "Fintech & Regulatory Ops", tag: "FINTECH" },
+          { code: "DOSSIER #M4", domain: "Product Growth & UX Grit", tag: "PRODUCT" },
+          { code: "DOSSIER #M5", domain: "DeepTech & Hardware Labs", tag: "HARDWARE" },
+          { code: "DOSSIER #M6", domain: "Venture GTM & Pitch Craft", tag: "STRATEGY" }
+        ]
+      },
+      jury: {
+        id: "jury",
+        title: "GRAND JURY",
+        tag: "VENTURE CAPITAL & ANGEL SYNDICATES",
+        icon: "⚖️",
+        desc: "Active venture partners, angel network leads, and institutional investors evaluating product-market fit, unit economics, and Demo Day pitches.",
+        color: "text-[#E11D48]",
+        borderColor: "border-[#E11D48]",
+        dossiers: [
+          { code: "DOSSIER #J1", domain: "Venture Capital Partner", tag: "EARLY STAGE VC" },
+          { code: "DOSSIER #J2", domain: "Angel Syndicate Lead", tag: "ANGEL NETWORK" },
+          { code: "DOSSIER #J3", domain: "DeepTech Fund Principal", tag: "DEEPTECH VC" },
+          { code: "DOSSIER #J4", domain: "Seed Fund Director", tag: "SEED FUND" },
+          { code: "DOSSIER #J5", domain: "Ecosystem Venture Scout", tag: "VENTURE SCOUT" }
+        ]
+      },
+      team: {
+        id: "team",
+        title: "ORGANIZING TEAM",
+        tag: "CORE HUSTLERS & SPRINT CONTROL",
+        icon: "⚡",
+        desc: "Student founders and ecosystem leads from Hult Prize TIU and AIC Techno driving logistics, dev experience, and the 72-hour Kolkata sprint.",
+        color: "text-[#19D3F3]",
+        borderColor: "border-[#19D3F3]",
+        dossiers: [
+          { code: "DOSSIER #T1", domain: "Lead Convener & Vision", tag: "LEAD" },
+          { code: "DOSSIER #T2", domain: "Tech & Platform Lead", tag: "ENGINEERING" },
+          { code: "DOSSIER #T3", domain: "Hacker Experience & Community", tag: "COMMUNITY" },
+          { code: "DOSSIER #T4", domain: "Operations & On-Ground Adda", tag: "OPERATIONS" },
+          { code: "DOSSIER #T5", domain: "Sponsorships & Venture Relations", tag: "PARTNERSHIPS" },
+          { code: "DOSSIER #T6", domain: "Creative Design & Visual Direction", tag: "CREATIVE" }
+        ]
+      }
+    }
   },
 
   sponsors: {

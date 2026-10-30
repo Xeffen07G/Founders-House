@@ -84,11 +84,11 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
             PRIZES
           </a>
           <a
-            href="#squad"
-            onClick={(e) => handleLinkClick(e, '#squad')}
+            href="#team"
+            onClick={(e) => handleLinkClick(e, '#team')}
             className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
           >
-            MENTORS
+            TEAM
           </a>
           <a
             href="#sponsors"
@@ -198,11 +198,11 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
             🏆 PRIZES & GRANTS
           </a>
           <a
-            href="#squad"
-            onClick={(e) => handleLinkClick(e, '#squad')}
+            href="#team"
+            onClick={(e) => handleLinkClick(e, '#team')}
             className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
           >
-            👥 MENTORS & SQUAD
+            👥 MEET THE TEAM & JURY
           </a>
           <a
             href="#sponsors"
