@@ -107,14 +107,14 @@ export const Squad = () => {
 
         {/* Space Cards Grid */}
         {isTeam ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {currentSpace.members.map((member, idx) => (
               <div
                 key={idx}
-                className="p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-1.5"
+                className="p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-1.5"
               >
                 {/* Photo in sharp comic container */}
-                <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-3 sm:mb-4 bg-[#120205]">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -126,7 +126,7 @@ export const Squad = () => {
 
                 {/* Member Name (No title or lead specified as requested) */}
                 <div className="w-full text-center pb-1">
-                  <h4 className="font-poppins font-extrabold text-lg sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors">
+                  <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors">
                     {member.name}
                   </h4>
                 </div>
