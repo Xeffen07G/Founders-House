@@ -547,24 +547,26 @@ export const Route = () => {
         </div>
       </div>
 
-      {/* Station Master Dispatch Box */}
+      {/* Famous Kolkata Character Dialogue Box */}
       <div className="comic-card p-5 bg-[#160408] border-2 border-black flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 shadow-[4px_4px_0px_#000]">
         <div className="flex items-center gap-3">
-          <span className="text-3xl flex-shrink-0 animate-bounce">🚊</span>
+          <span className="text-3xl flex-shrink-0">🕵️‍♂️</span>
           <div className="text-xs sm:text-sm font-poppins text-white">
             <span className="text-[#FFC800] font-bold font-mono tracking-wider">
-              TRAM STATION ANNOUNCEMENT:
+              FELUDA:
             </span>{' '}
-            "All 5 Kolkata station boards along the route are live. As you scroll, the cartoon tram glides down the curvy track. Click any station board to pop up its mission briefing and schedule of activities!"
+            <span className="italic text-white/95">
+              "মগজাস্ত্রই আসল অস্ত্র — The greatest weapon a founder possesses is pure intellect. Keep your mind razor-sharp and build relentlessly."
+            </span>
           </div>
         </div>
 
         <button
           type="button"
           onClick={() => openStationPopup(stops[0], 0)}
-          className="flex-shrink-0 px-4 py-2 rounded-lg bg-[#FFC800] hover:bg-[#FFD700] text-black font-mono text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] transition-transform hover:scale-105 active:scale-95"
+          className="flex-shrink-0 px-4 py-2 rounded-lg bg-[#FFC800] hover:bg-[#FFD700] text-black font-mono text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] transition-transform hover:scale-105 active:scale-95 whitespace-nowrap"
         >
-          OPEN APPLICATION DETAILS ✦
+          VIEW TIMELINE DETAILS ✦
         </button>
       </div>
 
