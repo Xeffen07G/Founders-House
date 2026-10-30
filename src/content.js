@@ -459,6 +459,10 @@ export const content = {
           {
             name: "Debottom Sengupta",
             image: "/team/debottam_sengupta.webp"
+          },
+          {
+            name: "Shivam Gupta",
+            image: "/team/shivam_gupta.webp"
           }
         ]
       }
