@@ -440,7 +440,8 @@ export const content = {
           },
           {
             name: "Anushka Dey",
-            image: "/team/anushka_dey.webp"
+            image: "/team/anushka_dey.webp",
+            linkedin: "https://www.linkedin.com/in/anvshqa/"
           },
           {
             name: "Prachi Mondal",
@@ -456,7 +457,8 @@ export const content = {
           },
           {
             name: "Mitashi Singh",
-            image: "/team/mitashi_singh.webp"
+            image: "/team/mitashi_singh.webp",
+            linkedin: "https://www.linkedin.com/in/mitashi-singh/"
           },
           {
             name: "Debottom Sengupta",
