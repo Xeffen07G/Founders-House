@@ -105,33 +105,63 @@ export const Squad = () => {
           </p>
         </div>
 
-        {/* Space Cards Grid */}
+        {/* Space Cards: Moving Animation Carousel for Team, Responsive Grid for Mentors & Jury */}
         {isTeam ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 w-full">
-            {currentSpace.members.map((member, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-1.5"
-              >
-                {/* Photo in sharp comic container */}
-                <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-3 sm:mb-4 bg-[#120205]">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                </div>
+          <div className="relative w-full overflow-hidden py-2 sm:py-4">
+            <style>{`
+              @keyframes teamSlideInfinite {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .anim-team-track {
+                display: flex;
+                width: max-content;
+                animation: teamSlideInfinite 24s linear infinite;
+              }
+              .anim-team-track:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
 
-                {/* Member Name (No title or lead specified as requested) */}
-                <div className="w-full text-center pb-1">
-                  <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors">
-                    {member.name}
-                  </h4>
+            {/* Edge fade gradient masks for smooth entry and exit */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#140407] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#140407] to-transparent z-10 pointer-events-none" />
+
+            {/* Continuous moving track with doubled array for seamless infinite loop */}
+            <div className="anim-team-track flex items-stretch gap-5 sm:gap-7 py-2">
+              {[...currentSpace.members, ...currentSpace.members].map((member, idx) => (
+                <div
+                  key={idx}
+                  className="w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none"
+                >
+                  {/* Photo in prominent high-impact portrait frame */}
+                  <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  </div>
+
+                  {/* Member Name */}
+                  <div className="w-full text-center pb-1">
+                    <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
+                      {member.name}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Subtle Interactive Hint */}
+            <div className="mt-4 flex justify-center">
+              <span className="font-mono text-[10px] sm:text-xs text-white/50 tracking-wider uppercase inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10">
+                <span className="text-[#19D3F3]">✦</span>
+                <span>HOVER OVER ANY PHOTO TO PAUSE</span>
+              </span>
+            </div>
           </div>
         ) : (
           <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
