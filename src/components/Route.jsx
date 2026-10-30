@@ -553,7 +553,7 @@ export const Route = () => {
           <span className="text-3xl flex-shrink-0 animate-bounce">🚊</span>
           <div className="text-xs sm:text-sm font-poppins text-white">
             <span className="text-[#FFC800] font-bold font-mono tracking-wider">
-              TRAM DIDI STATION DISPATCH:
+              TRAM STATION ANNOUNCEMENT:
             </span>{' '}
             "All 5 Kolkata station boards along the route are live. As you scroll, the cartoon tram glides down the curvy track. Click any station board to pop up its mission briefing and schedule of activities!"
           </div>
