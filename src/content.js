@@ -453,7 +453,8 @@ export const content = {
           },
           {
             name: "Joyjit Das",
-            image: "/team/joyjit_das.webp"
+            image: "/team/joyjit_das.webp",
+            linkedin: "https://www.linkedin.com/in/joyjit-das-ai/"
           },
           {
             name: "Mitashi Singh",
