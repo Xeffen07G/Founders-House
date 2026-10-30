@@ -47,43 +47,20 @@ export const Venue = () => {
           {/* CSS Animation Keyframes for 3D Isometric Map */}
           <style>{`
             /* Southbound Traffic (Lane 1: Top-Right to Bottom-Left) */
-            @keyframes taxiSouth1 {
-              0% { transform: translate(1118px, -40px) rotate(-23.2deg); opacity: 0; }
-              4% { opacity: 1; }
-              96% { opacity: 1; }
-              100% { transform: translate(818px, 660px) rotate(-23.2deg); opacity: 0; }
-            }
-            @keyframes carSouth2 {
-              0% { transform: translate(1118px, -40px) rotate(-23.2deg); opacity: 0; }
-              4% { opacity: 1; }
-              96% { opacity: 1; }
-              100% { transform: translate(818px, 660px) rotate(-23.2deg); opacity: 0; }
+            /* Southbound Traffic (Lane 1: Top-Right to Bottom-Left) - Road heading 23.2deg */
+            @keyframes trafficSouthbound {
+              0% { transform: translate(1125px, -70px) rotate(23.2deg); opacity: 0; }
+              3% { opacity: 1; }
+              97% { opacity: 1; }
+              100% { transform: translate(805px, 680px) rotate(23.2deg); opacity: 0; }
             }
 
-            /* Northbound Traffic (Lane 2: Bottom-Left to Top-Right) */
-            @keyframes cabNorth1 {
-              0% { transform: translate(782px, 650px) rotate(156.8deg); opacity: 0; }
-              4% { opacity: 1; }
-              96% { opacity: 1; }
-              100% { transform: translate(1082px, -50px) rotate(156.8deg); opacity: 0; }
-            }
-            @keyframes sedanNorth2 {
-              0% { transform: translate(782px, 650px) rotate(156.8deg); opacity: 0; }
-              4% { opacity: 1; }
-              96% { opacity: 1; }
-              100% { transform: translate(1082px, -50px) rotate(156.8deg); opacity: 0; }
-            }
-
-            /* Floating 3D Location Pin */
-            @keyframes pinFloat3D {
-              0%, 100% { transform: translateY(0px); }
-              50% { transform: translateY(-11px); }
-            }
-
-            /* Sonar Radar Wave Rings */
-            @keyframes sonarWaveRing {
-              0% { r: 10px; opacity: 0.95; stroke-width: 2.5px; }
-              100% { r: 85px; opacity: 0; stroke-width: 0.5px; }
+            /* Northbound Traffic (Lane 2: Bottom-Left to Top-Right) - Road heading 203.2deg */
+            @keyframes trafficNorthbound {
+              0% { transform: translate(785px, 680px) rotate(203.2deg); opacity: 0; }
+              3% { opacity: 1; }
+              97% { opacity: 1; }
+              100% { transform: translate(1105px, -70px) rotate(203.2deg); opacity: 0; }
             }
 
             /* Water Shimmer */
@@ -98,13 +75,12 @@ export const Venue = () => {
               50% { opacity: 0.95; }
             }
 
-            .anim-taxi-south-1 { animation: taxiSouth1 7s linear infinite; }
-            .anim-car-south-2 { animation: carSouth2 7s linear infinite; animation-delay: 3.5s; }
-            .anim-cab-north-1 { animation: cabNorth1 8s linear infinite; }
-            .anim-sedan-north-2 { animation: cabNorth1 8s linear infinite; animation-delay: 4s; }
-            .anim-pin-3d { animation: pinFloat3D 2.6s ease-in-out infinite; }
-            .anim-sonar-wave-1 { animation: sonarWaveRing 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
-            .anim-sonar-wave-2 { animation: sonarWaveRing 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite; animation-delay: 1.3s; }
+            .anim-traffic-south-1 { animation: trafficSouthbound 9s linear infinite; }
+            .anim-traffic-south-2 { animation: trafficSouthbound 9s linear infinite; animation-delay: 3s; }
+            .anim-traffic-south-3 { animation: trafficSouthbound 9s linear infinite; animation-delay: 6s; }
+            .anim-traffic-north-1 { animation: trafficNorthbound 9s linear infinite; }
+            .anim-traffic-north-2 { animation: trafficNorthbound 9s linear infinite; animation-delay: 3s; }
+            .anim-traffic-north-3 { animation: trafficNorthbound 9s linear infinite; animation-delay: 6s; }
             .anim-lake-shimmer { animation: lakeWaterShimmer 3.5s ease-in-out infinite; }
             .anim-rooftop-lights { animation: cafeRooftopBlink 2s ease-in-out infinite; }
           `}</style>
@@ -557,97 +533,94 @@ export const Venue = () => {
                     </text>
                   </g>
                 </g>
-
-                {/* 3D FLOATING HERO LOCATION PIN (Above Offbeat CCU) */}
-                <g transform="translate(665, 120)">
-                  {/* Concentric Expanding Sonar Wave Rings */}
-                  <circle cx="0" cy="0" r="10" fill="none" stroke="#00F0FF" className="anim-sonar-wave-1" />
-                  <circle cx="0" cy="0" r="10" fill="none" stroke="#FFE600" className="anim-sonar-wave-2" />
-                  <circle cx="0" cy="0" r="7" fill="#00F0FF" />
-
-                  {/* 3D Pin with Vertical Float Animation */}
-                  <g className="anim-pin-3d" transform="translate(0, -18)">
-                    {/* 3D Cyan Pin Body with Glow */}
-                    <path
-                      d="M 0 -70 
-                         C -24 -70, -40 -54, -40 -32 
-                         C -40 -10, 0 0, 0 0 
-                         C 0 0, 40 -10, 40 -32 
-                         C 40 -54, 24 -70, 0 -70 Z"
-                      fill="#00F0FF"
-                      stroke="#000000"
-                      strokeWidth="3.5"
-                      style={{ filter: 'drop-shadow(0 0 16px rgba(0, 240, 255, 0.95))' }}
-                    />
-                    <circle cx="0" cy="-35" r="13" fill="#0E061A" stroke="#FFE600" strokeWidth="2.5" />
-                    <text x="0" y="-30" textAnchor="middle" fill="#FFE600" fontSize="14" fontWeight="bold">✦</text>
-
-                    {/* Top Callout Badge */}
-                    <g transform="translate(0, -82)">
-                      <rect
-                        x="-140"
-                        y="-26"
-                        width="280"
-                        height="32"
-                        rx="8"
-                        fill="#0A0314"
-                        stroke="#00F0FF"
-                        strokeWidth="2.5"
-                        style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.95))' }}
-                      />
-                      <text
-                        x="0"
-                        y="-6"
-                        textAnchor="middle"
-                        fill="#FFFFFF"
-                        fontFamily="monospace"
-                        fontWeight="900"
-                        fontSize="12"
-                        letterSpacing="1"
-                      >
-                        AIC TECHNO @ OFFBEAT CCU
-                      </text>
-                      <polygon points="0,6 -6,0 6,0" fill="#00F0FF" />
-                    </g>
-                  </g>
-                </g>
               </g>
 
-              {/* 7. 3D ISOMETRIC TAXIS & CARS (Fitted strictly to the road lanes) */}
+              {/* 7. 3D ISOMETRIC TRAFFIC: KOLKATA TAXIS, BUSES & CARS (Aligned with EM Bypass) */}
               
-              {/* SOUTHBOUND LANE 1 (Moving from Top-Right down to Bottom-Left) */}
+              {/* SOUTHBOUND TRAFFIC (Lane 1: Top-Right to Bottom-Left) */}
               
-              {/* Car 1: Iconic Kolkata Yellow Ambassador Taxi */}
-              <g className="anim-taxi-south-1">
-                {/* 3D Isometric Taxi Graphic */}
+              {/* Southbound 1: Iconic Kolkata Yellow Ambassador Taxi */}
+              <g className="anim-traffic-south-1">
                 <g>
                   {/* Ground Shadow */}
                   <ellipse cx="0" cy="2" rx="14" ry="7" fill="#000000" opacity="0.6"/>
                   {/* Forward Headlight Beam on Asphalt */}
-                  <polygon points="-7,14 7,14 20,65 -20,65" fill="url(#headlightBeam)" opacity="0.65"/>
-                  {/* Lower Yellow Body */}
-                  <rect x="-8" y="-14" width="16" height="28" rx="4" fill="#EAB308" stroke="#000000" strokeWidth="1.5"/>
+                  <polygon points="-7,14 7,14 22,70 -22,70" fill="url(#headlightBeam)" opacity="0.7"/>
+                  {/* Yellow Body */}
+                  <rect x="-8.5" y="-15" width="17" height="30" rx="5" fill="#FACC15" stroke="#000000" strokeWidth="1.5"/>
                   {/* Wheels */}
-                  <rect x="-10" y="-11" width="2" height="6" rx="1" fill="#000"/>
-                  <rect x="8" y="-11" width="2" height="6" rx="1" fill="#000"/>
-                  <rect x="-10" y="5" width="2" height="6" rx="1" fill="#000"/>
-                  <rect x="8" y="5" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="-10.5" y="-11" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="8.5" y="-11" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="-10.5" y="6" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="8.5" y="6" width="2" height="6" rx="1" fill="#000"/>
+                  {/* Front & Rear Bumpers */}
+                  <rect x="-7" y="14" width="14" height="2" rx="1" fill="#E2E8F0"/>
+                  <rect x="-7" y="-16" width="14" height="2" rx="1" fill="#E2E8F0"/>
                   {/* Headlights */}
-                  <circle cx="-5" cy="13" r="2" fill="#FFFFFF"/>
-                  <circle cx="5" cy="13" r="2" fill="#FFFFFF"/>
-                  {/* Windshield Glass */}
-                  <polygon points="-6,-3 6,-3 5,6 -5,6" fill="#00F0FF" opacity="0.85"/>
-                  {/* Cab Roof */}
-                  <rect x="-6" y="-10" width="12" height="13" rx="2" fill="#CA8A04"/>
-                  {/* Black Checker Strip on Taxi side */}
-                  <rect x="-6" y="-5" width="12" height="2" fill="#000000"/>
-                  {/* White TAXI Roof Sign */}
-                  <rect x="-4" y="-8" width="8" height="3" rx="1" fill="#FFFFFF" stroke="#000" strokeWidth="0.5"/>
+                  <circle cx="-5" cy="14" r="2" fill="#FFFFFF"/>
+                  <circle cx="5" cy="14" r="2" fill="#FFFFFF"/>
+                  {/* Tail lights */}
+                  <rect x="-6" y="-15" width="3" height="1.5" fill="#EF4444"/>
+                  <rect x="3" y="-15" width="3" height="1.5" fill="#EF4444"/>
+                  {/* Windshield */}
+                  <polygon points="-6.5,-3 6.5,-3 5.5,6 -5.5,6" fill="#00F0FF" opacity="0.85"/>
+                  {/* Rear window */}
+                  <polygon points="-6,-8 6,-8 5.5,-12 -5.5,-12" fill="#00F0FF" opacity="0.7"/>
+                  {/* Yellow Roof */}
+                  <rect x="-6.5" y="-8" width="13" height="13" rx="2" fill="#EAB308"/>
+                  {/* Kolkata Taxi Black Waist Stripe */}
+                  <rect x="-8.5" y="-4" width="17" height="2" fill="#000000"/>
+                  {/* White TAXI Roof Light */}
+                  <rect x="-4.5" y="-7" width="9" height="3" rx="1" fill="#FFFFFF" stroke="#000" strokeWidth="0.5"/>
+                  <text x="0" y="-4.8" textAnchor="middle" fill="#000" fontSize="2.5" fontWeight="900" fontFamily="sans-serif">TAXI</text>
                 </g>
               </g>
 
-              {/* Car 2: Southbound Crimson Roadster */}
-              <g className="anim-car-south-2">
+              {/* Southbound 2: Iconic Kolkata Blue & Yellow Route Bus */}
+              <g className="anim-traffic-south-2">
+                <g>
+                  {/* Ground Shadow */}
+                  <ellipse cx="0" cy="2" rx="18" ry="10" fill="#000000" opacity="0.65"/>
+                  {/* Forward Twin Headlight Beams */}
+                  <polygon points="-9,28 9,28 26,95 -26,95" fill="url(#headlightBeam)" opacity="0.65"/>
+                  {/* Bus Main Blue Body */}
+                  <rect x="-11" y="-28" width="22" height="56" rx="4" fill="#1D4ED8" stroke="#000000" strokeWidth="1.8"/>
+                  {/* Wheels */}
+                  <rect x="-13" y="-20" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="11" y="-20" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="-13" y="14" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="11" y="14" width="2" height="9" rx="1" fill="#000"/>
+                  {/* Kolkata Bus Yellow Waist Stripe */}
+                  <rect x="-11" y="-6" width="22" height="12" fill="#FACC15"/>
+                  <rect x="-11" y="-1" width="22" height="2" fill="#DC2626"/>
+                  {/* Front Windshield (Driver + Passenger) */}
+                  <rect x="-8.5" y="18" width="17" height="7" rx="1.5" fill="#00F0FF" opacity="0.9"/>
+                  <line x1="0" y1="18" x2="0" y2="25" stroke="#000" strokeWidth="1"/>
+                  {/* Red Route Board on Front Top */}
+                  <rect x="-7.5" y="25.5" width="15" height="3" rx="0.8" fill="#DC2626"/>
+                  <text x="0" y="27.8" textAnchor="middle" fill="#FFF" fontSize="2.4" fontWeight="bold" fontFamily="monospace">42A</text>
+                  {/* Side Windows Rows */}
+                  <rect x="-9.5" y="-22" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  <rect x="-9.5" y="-14" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  <rect x="-9.5" y="8" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  <rect x="5.5" y="-22" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  <rect x="5.5" y="-14" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  <rect x="5.5" y="8" width="4" height="6" rx="1" fill="#00F0FF" opacity="0.8"/>
+                  {/* Rear Windshield */}
+                  <rect x="-7.5" y="-26.5" width="15" height="4" rx="1" fill="#00F0FF" opacity="0.75"/>
+                  {/* Rooftop Luggage Rack */}
+                  <rect x="-5" y="-18" width="10" height="20" rx="2" fill="none" stroke="#FACC15" strokeWidth="0.8" opacity="0.7"/>
+                  {/* Headlights */}
+                  <circle cx="-7" cy="27" r="2" fill="#FFFFFF"/>
+                  <circle cx="7" cy="27" r="2" fill="#FFFFFF"/>
+                  {/* Tail lights */}
+                  <rect x="-8" y="-28" width="3" height="1.5" fill="#EF4444"/>
+                  <rect x="5" y="-28" width="3" height="1.5" fill="#EF4444"/>
+                </g>
+              </g>
+
+              {/* Southbound 3: Crimson City Car */}
+              <g className="anim-traffic-south-3">
                 <g>
                   <ellipse cx="0" cy="2" rx="13" ry="6" fill="#000000" opacity="0.6"/>
                   <polygon points="-6,13 6,13 18,60 -18,60" fill="url(#headlightBeam)" opacity="0.6"/>
@@ -659,10 +632,82 @@ export const Venue = () => {
                 </g>
               </g>
 
-              {/* NORTHBOUND LANE 2 (Moving from Bottom-Left up to Top-Right) */}
+              {/* NORTHBOUND TRAFFIC (Lane 2: Bottom-Left to Top-Right) */}
               
-              {/* Car 3: Northbound Cyan Tech Cab */}
-              <g className="anim-cab-north-1">
+              {/* Northbound 1: Yellow Ambassador Taxi */}
+              <g className="anim-traffic-north-1">
+                <g>
+                  {/* Ground Shadow */}
+                  <ellipse cx="0" cy="2" rx="14" ry="7" fill="#000000" opacity="0.6"/>
+                  {/* Forward Headlight Beam on Asphalt */}
+                  <polygon points="-7,14 7,14 22,70 -22,70" fill="url(#headlightBeam)" opacity="0.7"/>
+                  {/* Yellow Body */}
+                  <rect x="-8.5" y="-15" width="17" height="30" rx="5" fill="#FACC15" stroke="#000000" strokeWidth="1.5"/>
+                  {/* Wheels */}
+                  <rect x="-10.5" y="-11" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="8.5" y="-11" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="-10.5" y="6" width="2" height="6" rx="1" fill="#000"/>
+                  <rect x="8.5" y="6" width="2" height="6" rx="1" fill="#000"/>
+                  {/* Front & Rear Bumpers */}
+                  <rect x="-7" y="14" width="14" height="2" rx="1" fill="#E2E8F0"/>
+                  <rect x="-7" y="-16" width="14" height="2" rx="1" fill="#E2E8F0"/>
+                  {/* Headlights */}
+                  <circle cx="-5" cy="14" r="2" fill="#FFFFFF"/>
+                  <circle cx="5" cy="14" r="2" fill="#FFFFFF"/>
+                  {/* Tail lights */}
+                  <rect x="-6" y="-15" width="3" height="1.5" fill="#EF4444"/>
+                  <rect x="3" y="-15" width="3" height="1.5" fill="#EF4444"/>
+                  {/* Windshield */}
+                  <polygon points="-6.5,-3 6.5,-3 5.5,6 -5.5,6" fill="#00F0FF" opacity="0.85"/>
+                  {/* Rear window */}
+                  <polygon points="-6,-8 6,-8 5.5,-12 -5.5,-12" fill="#00F0FF" opacity="0.7"/>
+                  {/* Yellow Roof */}
+                  <rect x="-6.5" y="-8" width="13" height="13" rx="2" fill="#EAB308"/>
+                  {/* Kolkata Taxi Black Waist Stripe */}
+                  <rect x="-8.5" y="-4" width="17" height="2" fill="#000000"/>
+                  {/* White TAXI Roof Light */}
+                  <rect x="-4.5" y="-7" width="9" height="3" rx="1" fill="#FFFFFF" stroke="#000" strokeWidth="0.5"/>
+                  <text x="0" y="-4.8" textAnchor="middle" fill="#000" fontSize="2.5" fontWeight="900" fontFamily="sans-serif">TAXI</text>
+                </g>
+              </g>
+
+              {/* Northbound 2: WBTC State AC Bus (Navy & White) */}
+              <g className="anim-traffic-north-2">
+                <g>
+                  {/* Ground Shadow */}
+                  <ellipse cx="0" cy="2" rx="18" ry="10" fill="#000000" opacity="0.65"/>
+                  {/* Forward Twin Headlight Beams */}
+                  <polygon points="-9,28 9,28 26,95 -26,95" fill="url(#headlightBeam)" opacity="0.65"/>
+                  {/* Main Body */}
+                  <rect x="-11" y="-28" width="22" height="56" rx="4" fill="#0284C7" stroke="#000000" strokeWidth="1.8"/>
+                  {/* Wheels */}
+                  <rect x="-13" y="-20" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="11" y="-20" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="-13" y="14" width="2" height="9" rx="1" fill="#000"/>
+                  <rect x="11" y="14" width="2" height="9" rx="1" fill="#000"/>
+                  {/* White Roof & Center Stripe */}
+                  <rect x="-11" y="-10" width="22" height="18" fill="#F8FAFC"/>
+                  {/* Windshield */}
+                  <rect x="-8.5" y="18" width="17" height="7" rx="1.5" fill="#00F0FF" opacity="0.95"/>
+                  {/* Digital LED Route Display */}
+                  <rect x="-7.5" y="25.5" width="15" height="3" rx="0.8" fill="#000000"/>
+                  <text x="0" y="27.8" textAnchor="middle" fill="#22C55E" fontSize="2.4" fontWeight="bold" fontFamily="monospace">AC-24</text>
+                  {/* Tinted Panoramic Windows */}
+                  <rect x="-9.5" y="-22" width="4" height="10" rx="1" fill="#0F172A" opacity="0.9"/>
+                  <rect x="-9.5" y="6" width="4" height="10" rx="1" fill="#0F172A" opacity="0.9"/>
+                  <rect x="5.5" y="-22" width="4" height="10" rx="1" fill="#0F172A" opacity="0.9"/>
+                  <rect x="5.5" y="6" width="4" height="10" rx="1" fill="#0F172A" opacity="0.9"/>
+                  {/* Headlights */}
+                  <circle cx="-7" cy="27" r="2" fill="#FFFFFF"/>
+                  <circle cx="7" cy="27" r="2" fill="#FFFFFF"/>
+                  {/* Tail lights */}
+                  <rect x="-8" y="-28" width="3" height="1.5" fill="#EF4444"/>
+                  <rect x="5" y="-28" width="3" height="1.5" fill="#EF4444"/>
+                </g>
+              </g>
+
+              {/* Northbound 3: Cyan Tech Sedan */}
+              <g className="anim-traffic-north-3">
                 <g>
                   <ellipse cx="0" cy="2" rx="14" ry="7" fill="#000000" opacity="0.6"/>
                   <polygon points="-7,14 7,14 20,65 -20,65" fill="url(#headlightBeam)" opacity="0.65"/>
@@ -671,19 +716,6 @@ export const Venue = () => {
                   <circle cx="5" cy="13" r="2" fill="#FFFFFF"/>
                   <polygon points="-6,-3 6,-3 5,6 -5,6" fill="#000000" opacity="0.85"/>
                   <rect x="-6" y="-10" width="12" height="13" rx="2" fill="#0284C7"/>
-                </g>
-              </g>
-
-              {/* Car 4: Northbound White Sedan */}
-              <g className="anim-sedan-north-2">
-                <g>
-                  <ellipse cx="0" cy="2" rx="13" ry="6" fill="#000000" opacity="0.6"/>
-                  <polygon points="-6,13 6,13 18,60 -18,60" fill="url(#headlightBeam)" opacity="0.6"/>
-                  <rect x="-7" y="-13" width="14" height="26" rx="4" fill="#FFFFFF" stroke="#000000" strokeWidth="1.5"/>
-                  <circle cx="-5" cy="12" r="2" fill="#FFFFFF"/>
-                  <circle cx="5" cy="12" r="2" fill="#FFFFFF"/>
-                  <polygon points="-5,-3 5,-3 4,5 -4,5" fill="#1E0E38" opacity="0.85"/>
-                  <rect x="-5" y="-9" width="10" height="11" rx="2" fill="#CBD5E1"/>
                 </g>
               </g>
 
