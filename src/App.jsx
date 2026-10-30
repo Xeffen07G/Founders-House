@@ -4,17 +4,17 @@ import { Hero } from './components/Hero';
 import { BackgroundSkyline } from './components/BackgroundSkyline';
 import { StickyMobilePill } from './components/StickyMobilePill';
 
-// Code-split below-the-fold sections to crush Total Blocking Time (TBT) and eliminate DOM bloat on initial load
-const Venue = lazy(() => import('./components/Venue').then(m => ({ default: m.Venue })));
-const About = lazy(() => import('./components/About').then(m => ({ default: m.About })));
-const Tracks = lazy(() => import('./components/Tracks').then(m => ({ default: m.Tracks })));
-const Route = lazy(() => import('./components/Route').then(m => ({ default: m.Route })));
-const Awards = lazy(() => import('./components/Awards').then(m => ({ default: m.Awards })));
-const Squad = lazy(() => import('./components/Squad').then(m => ({ default: m.Squad })));
-const Sponsors = lazy(() => import('./components/Sponsors').then(m => ({ default: m.Sponsors })));
-const Archives = lazy(() => import('./components/Archives').then(m => ({ default: m.Archives })));
-const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
-const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
+// Direct imports for instant paint, immediate functionality, and zero-delay navigation
+import { Venue } from './components/Venue';
+import { About } from './components/About';
+import { Tracks } from './components/Tracks';
+import { Route } from './components/Route';
+import { Awards } from './components/Awards';
+import { Squad } from './components/Squad';
+import { Sponsors } from './components/Sponsors';
+import { Archives } from './components/Archives';
+import { FAQ } from './components/FAQ';
+import { Footer } from './components/Footer';
 
 // Code-split dedicated Scoreboard page so it doesn't block the main landing page
 const ScoreboardPage = lazy(() =>
@@ -23,27 +23,30 @@ const ScoreboardPage = lazy(() =>
 
 export default function App() {
   const [route, setRoute] = useState(() => {
-    const hash = window.location.hash;
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
     return (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard')
       ? 'scoreboard'
       : 'home';
   });
 
-  // Zero-TBT Strategy: Defer below-the-fold component mounts so main thread is 100% idle for GTmetrix / Lighthouse
-  const [canLoadBelowFold, setCanLoadBelowFold] = useState(() => {
-    const hash = typeof window !== 'undefined' ? window.location.hash : '';
-    return Boolean(hash && hash !== '#hero' && hash !== '');
-  });
-
+  // Handle hash navigation between routes (landing page vs scoreboard) and smooth section scroll
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      setCanLoadBelowFold(true);
       if (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard') {
         setRoute('scoreboard');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setRoute('home');
+        if (hash && hash !== '#hero' && hash !== '#') {
+          const targetId = hash.replace(/^#/, '');
+          const el = document.getElementById(targetId);
+          if (el) {
+            requestAnimationFrame(() => {
+              el.scrollIntoView({ behavior: 'smooth' });
+            });
+          }
+        }
       }
     };
 
@@ -51,37 +54,20 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Smoothly scroll to target section if page is loaded/reloaded with an anchor hash
   useEffect(() => {
-    if (canLoadBelowFold) return;
-
-    // Load immediately on any user interaction (scroll, touch, click, key)
-    const handleInteract = () => {
-      setCanLoadBelowFold(true);
-    };
-
-    window.addEventListener('scroll', handleInteract, { passive: true, once: true });
-    window.addEventListener('touchstart', handleInteract, { passive: true, once: true });
-    window.addEventListener('pointerdown', handleInteract, { passive: true, once: true });
-    window.addEventListener('keydown', handleInteract, { passive: true, once: true });
-
-    // Non-interactive fallback: Defer automatic mount until after 6 seconds (well beyond the automated audit window)
-    // so Lighthouse / PageSpeed records 0ms Total Blocking Time, while a real idle user still receives the full page.
-    let timer = setTimeout(() => {
-      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-        window.requestIdleCallback(() => setCanLoadBelowFold(true), { timeout: 3000 });
-      } else {
-        setCanLoadBelowFold(true);
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    if (hash && hash !== '#hero' && hash !== '#' && !hash.startsWith('#/score')) {
+      const targetId = hash.replace(/^#/, '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        const timer = setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+        return () => clearTimeout(timer);
       }
-    }, 6000);
-
-    return () => {
-      window.removeEventListener('scroll', handleInteract);
-      window.removeEventListener('touchstart', handleInteract);
-      window.removeEventListener('pointerdown', handleInteract);
-      window.removeEventListener('keydown', handleInteract);
-      clearTimeout(timer);
-    };
-  }, [canLoadBelowFold]);
+    }
+  }, []);
 
   const handleBackToBase = () => {
     window.location.hash = '#hero';
@@ -90,7 +76,6 @@ export default function App() {
   };
 
   const handleNavigate = (targetRoute) => {
-    setCanLoadBelowFold(true);
     setRoute(targetRoute);
   };
 
@@ -111,51 +96,42 @@ export default function App() {
           <ScoreboardPage onBack={handleBackToBase} />
         </Suspense>
       ) : (
-        /* SPACIOUS LANDING PAGE (Free of heavy scoreboard clutter) */
+        /* INSTANT HIGH-PERFORMANCE LANDING PAGE (Immediately functional on load & reload) */
         <main className="relative z-10 space-y-12 sm:space-y-20">
-          {/* 1. Hero Section (Above the fold - instant paint, zero blocking, 0 TBT) */}
+          {/* 1. Hero Section */}
           <Hero />
 
-          {/* Below-the-fold sections: Deferred to guarantee Grade A (>95%) and 0ms TBT */}
-          {canLoadBelowFold && (
-            <Suspense fallback={<div className="min-h-[400px]" />}>
-              {/* 2. The Venue (The Adda at Offbeat CCU) */}
-              <Venue />
+          {/* 2. The Venue (The Adda at Offbeat CCU) */}
+          <Venue />
 
-              {/* 3. About (The Origin Story with Seated Feluda Mascot) */}
-              <About />
+          {/* 3. About (The Origin Story with Seated Feluda Mascot) */}
+          <About />
 
-              {/* 4. Tracks (Curated Problem Tracks) */}
-              <Tracks />
+          {/* 4. Tracks (Curated Problem Tracks) */}
+          <Tracks />
 
-              {/* 5. The Route (Kolkata Tram Roadmap) */}
-              <Route />
+          {/* 5. The Route (Kolkata Tram Roadmap) */}
+          <Route />
 
-              {/* 6. Awards (Awesome Prizes & Grants) */}
-              <Awards />
+          {/* 6. Awards (Awesome Prizes & Grants) */}
+          <Awards />
 
-              {/* 7. The Squad (Mentors, Jury, Organizers) */}
-              <Squad />
+          {/* 7. The Squad (Mentors, Jury, Organizers) */}
+          <Squad />
 
-              {/* 8. Sponsors (Backed By Industry Leaders) */}
-              <Sponsors />
+          {/* 8. Sponsors (Backed By Industry Leaders) */}
+          <Sponsors />
 
-              {/* 9. Archives (The Kolkata Energy) */}
-              <Archives />
+          {/* 9. Archives (The Kolkata Energy) */}
+          <Archives />
 
-              {/* 10. FAQ (Common Queries) */}
-              <FAQ />
-            </Suspense>
-          )}
+          {/* 10. FAQ (Common Queries) */}
+          <FAQ />
         </main>
       )}
 
-      {/* Footer & Floating Controls (Loaded gracefully) */}
-      {canLoadBelowFold && (
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
-      )}
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

@@ -89,6 +89,11 @@
   --white-pure: #FFFFFF;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
   background-color: var(--dark-bg);
   color: var(--cream-text);

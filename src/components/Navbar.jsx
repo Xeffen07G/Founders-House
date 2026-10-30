@@ -5,12 +5,25 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLinkClick = (e, targetHash) => {
+    setMobileOpen(false);
     if (targetHash === '#/scoreboard' || targetHash === '#scoreboard') {
       window.location.hash = '#/scoreboard';
+      return;
+    }
+    if (currentRoute === 'scoreboard') {
+      if (onNavigate) onNavigate('home');
+      window.location.hash = targetHash;
+      return;
+    }
+    const targetId = targetHash.replace(/^#/, '');
+    const el = document.getElementById(targetId);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', targetHash);
     } else {
       window.location.hash = targetHash;
     }
-    setMobileOpen(false);
   };
 
   return (
