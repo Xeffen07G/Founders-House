@@ -1,5 +1,4 @@
 import React from 'react';
-import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Awards = () => {
@@ -10,71 +9,71 @@ export const Awards = () => {
         line1="THE GRAND"
         line2="JOSH AWARDS."
         accentColor="text-[#FFC800]"
-        description="Over ₹50,00,000+ in pooled seed capital pipeline, AIC Techno incubation fast track passes, cloud compute credits, and bespoke Kolkata trophies."
+        description="Prize pool revealing soon. Stay tuned as we unveil the cash awards, incubation scholarships at AIC Techno, cloud compute grants, and trophies."
       />
 
-      {/* Convergence 1.0 Style Trophy Podiums (2nd, 1st, 3rd) */}
+      {/* Podium Style Awards (2nd, 1st, 3rd) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end my-16 pt-6">
         
-        {/* 2nd Place: Sherlock of Startups */}
+        {/* 2nd Place */}
         <div className="order-2 md:order-1">
           <div className="comic-card p-7 border-2 border-[#19D3F3] bg-[#1C0509] text-center flex flex-col justify-between h-84 shadow-[6px_6px_0px_#000]">
             <div>
               <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-[#19D3F3]/20 text-[#19D3F3] border border-[#19D3F3]">
-                RUNNER UP PRIZE
+                🥈 2ND PLACE
               </span>
               <div className="text-5xl my-4">🥈</div>
-              <h4 className="font-bebas text-2xl text-white mb-1 tracking-wide">
-                Sherlock of Startups
+              <h4 className="font-bebas text-3xl text-white mb-1 tracking-wide">
+                2nd Prize
               </h4>
-              <div className="text-sm font-mono text-[#19D3F3] font-bold mb-3">
-                ₹40,000 CASH + CLOUD PASS
+              <div className="text-sm font-mono text-[#19D3F3] font-bold mb-3 tracking-wider">
+                REVEALING SOON
               </div>
             </div>
             <p className="text-xs font-poppins text-white/75 leading-relaxed">
-              For the squad demonstrating the sharpest problem solving deductions and customer validation evidence.
+              For the runner-up squad demonstrating exceptional problem solving deductions, working prototype, and market validation.
             </p>
           </div>
         </div>
 
-        {/* 1st Place: Startup of the Sprint (Tallest Podium in Center) */}
+        {/* 1st Place (Tallest Podium in Center) */}
         <div className="order-1 md:order-2">
           <div className="comic-card p-8 border-3 border-[#FFC800] bg-[#1C0509] shadow-[8px_8px_0px_#FFC800] text-center flex flex-col justify-between h-96 -translate-y-4">
             <div>
               <span className="font-mono text-xs font-extrabold px-4 py-1.5 rounded-full bg-[#FFC800] text-black border-2 border-black">
-                🏆 GRAND CHAMPION
+                🏆 1ST PLACE
               </span>
               <div className="text-7xl my-4">🥇</div>
-              <h3 className="font-bebas text-3xl sm:text-4xl text-[#FFC800] mb-1 tracking-wide">
-                Startup of the Sprint
+              <h3 className="font-bebas text-4xl sm:text-5xl text-[#FFC800] mb-1 tracking-wide">
+                1st Prize
               </h3>
-              <div className="text-base font-mono text-[#FFC800] font-extrabold mb-3">
-                ₹1,00,000 CASH + ₹25L INCUBATION
+              <div className="text-base font-mono text-[#FFC800] font-extrabold mb-3 tracking-wider">
+                PRIZE POOL REVEALING SOON
               </div>
             </div>
             <p className="text-xs font-poppins text-white/90 leading-relaxed font-medium">
-              The supreme honor for the overall most venture ready, technically ambitious, and relentless builder squad.
+              The supreme championship honor for the overall most venture-ready, technically ambitious, and relentless builder squad.
             </p>
           </div>
         </div>
 
-        {/* 3rd Place: Best Screenplay */}
+        {/* 3rd Place */}
         <div className="order-3">
           <div className="comic-card p-7 border-2 border-[#E11D48] bg-[#1C0509] text-center flex flex-col justify-between h-84 shadow-[6px_6px_0px_#000]">
             <div>
               <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-[#E11D48]/20 text-[#E11D48] border border-[#E11D48]">
-                SPECIAL JURY AWARD
+                🥉 3RD PLACE
               </span>
-              <div className="text-5xl my-4">🎭</div>
-              <h4 className="font-bebas text-2xl text-white mb-1 tracking-wide">
-                Best Screenplay & Story
+              <div className="text-5xl my-4">🥉</div>
+              <h4 className="font-bebas text-3xl text-white mb-1 tracking-wide">
+                3rd Prize
               </h4>
-              <div className="text-sm font-mono text-[#E11D48] font-bold mb-3">
-                ₹35,000 CASH + GTM BUNDLE
+              <div className="text-sm font-mono text-[#E11D48] font-bold mb-3 tracking-wider">
+                REVEALING SOON
               </div>
             </div>
             <p className="text-xs font-poppins text-white/75 leading-relaxed">
-              For unparalleled storytelling, charismatic communication, and presentation mastery on the main stage.
+              For the second runner-up squad demonstrating outstanding creativity, execution velocity, and presentation mastery.
             </p>
           </div>
         </div>
@@ -85,7 +84,7 @@ export const Awards = () => {
         <span className="text-3xl flex-shrink-0">🥟</span>
         <div className="text-xs sm:text-sm font-poppins text-white">
           <span className="text-[#E11D48] font-bold font-mono tracking-wider">TENIDA'S CHEER: </span>
-          "Dey shingara! Win the grand trophy, grab the incubation cheque at AIC Techno, and treat the whole room to hot Darjeeling tea!"
+          "Dey shingara! The grand prize pool is unboxing soon — get your squad ready for AIC Techno and hot Darjeeling tea!"
         </div>
       </div>
     </section>
