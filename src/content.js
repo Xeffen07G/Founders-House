@@ -380,7 +380,7 @@ export const content = {
     headingLine1: "MEET THE",
     headingLine2: "TEAM.",
     desc: "The minds shaping Founders' House — domain mentors challenging assumptions, venture jury evaluating investment readiness, and the core organizing squad making it all happen.",
-    tabs: ["ALL SPACES", "MENTORS", "JURY", "ORGANIZING TEAM"],
+    tabs: ["MENTORS", "JURY", "ORGANIZING TEAM"],
     spaces: {
       mentors: {
         id: "mentors",

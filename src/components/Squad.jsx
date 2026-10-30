@@ -3,22 +3,22 @@ import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Squad = () => {
-  const [activeTab, setActiveTab] = useState("ALL SPACES");
+  const [activeTab, setActiveTab] = useState("MENTORS");
 
-  const spaces = [
-    content.squad.spaces.mentors,
-    content.squad.spaces.jury,
-    content.squad.spaces.team
-  ];
+  const currentSpace = 
+    activeTab === "JURY"
+      ? content.squad.spaces.jury
+      : activeTab === "ORGANIZING TEAM"
+        ? content.squad.spaces.team
+        : content.squad.spaces.mentors;
 
-  const visibleSpaces = activeTab === "ALL SPACES"
-    ? spaces
-    : spaces.filter((s) => {
-        if (activeTab === "MENTORS") return s.id === "mentors";
-        if (activeTab === "JURY") return s.id === "jury";
-        if (activeTab === "ORGANIZING TEAM") return s.id === "team";
-        return true;
-      });
+  const isMentors = currentSpace.id === "mentors";
+  const isJury = currentSpace.id === "jury";
+  const isTeam = currentSpace.id === "team";
+
+  // Theme accents
+  const accentColor = isMentors ? "#FFC800" : isJury ? "#E11D48" : "#19D3F3";
+  const glowBorder = isMentors ? "group-hover:border-[#FFC800]" : isJury ? "group-hover:border-[#E11D48]" : "group-hover:border-[#19D3F3]";
 
   return (
     <section id="team" className="py-24 sm:py-32 px-4 max-w-7xl mx-auto relative scroll-mt-20">
@@ -34,8 +34,8 @@ export const Squad = () => {
         description={content.squad.desc}
       />
 
-      {/* Space Filter Navigation Pills */}
-      <div className="flex items-center gap-2.5 sm:gap-3.5 mb-12 sm:mb-16 overflow-x-auto pb-2 scrollbar-none">
+      {/* Direct Space Switcher Tabs (Mentors, Jury, Organizing Team) */}
+      <div className="flex items-center gap-2.5 sm:gap-3.5 mb-10 sm:mb-12 overflow-x-auto pb-2 scrollbar-none">
         {content.squad.tabs.map((tab) => {
           const isActive = activeTab === tab;
           let activeBg = 'bg-[#FFC800] text-black border-black';
@@ -47,13 +47,12 @@ export const Squad = () => {
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`px-5 sm:px-6 py-2.5 rounded-full font-bebas text-sm sm:text-base tracking-wider border-2 shadow-[3px_3px_0px_#000] transition-all whitespace-nowrap flex items-center gap-2 select-none ${
+              className={`px-5 sm:px-7 py-3 rounded-full font-bebas text-base sm:text-lg tracking-wider border-2 shadow-[3px_3px_0px_#000] transition-all whitespace-nowrap flex items-center gap-2.5 select-none ${
                 isActive
-                  ? `${activeBg} font-extrabold -translate-y-0.5 shadow-[4px_4px_0px_#000]`
+                  ? `${activeBg} font-extrabold -translate-y-0.5 shadow-[5px_5px_0px_#000]`
                   : 'bg-[#1C0509] text-white/75 border-black hover:text-white hover:bg-[#2A080E] hover:-translate-y-0.5'
               }`}
             >
-              {tab === "ALL SPACES" && <span>✦</span>}
               {tab === "MENTORS" && <span>🎓</span>}
               {tab === "JURY" && <span>⚖️</span>}
               {tab === "ORGANIZING TEAM" && <span>⚡</span>}
@@ -63,123 +62,109 @@ export const Squad = () => {
         })}
       </div>
 
-      {/* Distinct Spaces for Mentors, Jury, and Organizing Team */}
-      <div className="space-y-16 sm:space-y-20">
-        {visibleSpaces.map((space) => {
-          const isMentors = space.id === "mentors";
-          const isJury = space.id === "jury";
-          const isTeam = space.id === "team";
+      {/* Active Space Container */}
+      <div
+        key={currentSpace.id}
+        className="p-6 sm:p-8 rounded-3xl bg-[#140407]/90 border-2 border-black shadow-[6px_6px_0px_#000] relative overflow-hidden transition-all duration-300"
+        style={{
+          background: 'linear-gradient(180deg, rgba(28, 5, 9, 0.95) 0%, rgba(18, 2, 5, 0.98) 100%)'
+        }}
+      >
+        {/* Top Accent Strip */}
+        <div
+          className="absolute top-0 left-0 right-0 h-1.5 transition-colors duration-300"
+          style={{ backgroundColor: accentColor }}
+        />
 
-          // Theme accents
-          const accentColor = isMentors ? "#FFC800" : isJury ? "#E11D48" : "#19D3F3";
-          const glowBorder = isMentors ? "group-hover:border-[#FFC800]" : isJury ? "group-hover:border-[#E11D48]" : "group-hover:border-[#19D3F3]";
-
-          return (
+        {/* Space Header Bar */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
+          <div className="flex items-start sm:items-center gap-3.5">
             <div
-              key={space.id}
-              className="p-6 sm:p-8 rounded-3xl bg-[#140407]/90 border-2 border-black shadow-[6px_6px_0px_#000] relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(180deg, rgba(28, 5, 9, 0.95) 0%, rgba(18, 2, 5, 0.98) 100%)'
-              }}
+              className="w-12 h-12 rounded-2xl border-2 border-black flex items-center justify-center text-2xl shadow-[3px_3px_0px_#000] flex-shrink-0"
+              style={{ backgroundColor: `${accentColor}20` }}
             >
-              {/* Top Accent Strip */}
-              <div
-                className="absolute top-0 left-0 right-0 h-1.5"
-                style={{ backgroundColor: accentColor }}
-              />
+              <span>{currentSpace.icon}</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-[10px] sm:text-xs font-mono font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_#000]"
+                  style={{ backgroundColor: accentColor, color: isJury ? '#FFFFFF' : '#000000' }}
+                >
+                  {currentSpace.tag}
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider mt-1">
+                {currentSpace.title}
+              </h3>
+            </div>
+          </div>
 
-              {/* Space Header Bar */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
-                <div className="flex items-start sm:items-center gap-3.5">
-                  <div
-                    className="w-12 h-12 rounded-2xl border-2 border-black flex items-center justify-center text-2xl shadow-[3px_3px_0px_#000] flex-shrink-0"
-                    style={{ backgroundColor: `${accentColor}20` }}
-                  >
-                    <span>{space.icon}</span>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="text-[10px] sm:text-xs font-mono font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_#000]"
-                        style={{ backgroundColor: accentColor, color: isJury ? '#FFFFFF' : '#000000' }}
-                      >
-                        {space.tag}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider mt-1">
-                      {space.title}
-                    </h3>
-                  </div>
-                </div>
+          <p className="max-w-xl text-xs sm:text-sm text-[#FFF9F2]/75 font-poppins leading-relaxed">
+            {currentSpace.desc}
+          </p>
+        </div>
 
-                <p className="max-w-xl text-xs sm:text-sm text-[#FFF9F2]/75 font-poppins leading-relaxed">
-                  {space.desc}
-                </p>
+        {/* Space Cards Grid */}
+        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
+          {currentSpace.dossiers.map((dossier, idx) => (
+            <div
+              key={idx}
+              className={`p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[4px_4px_0px_#000] text-center flex flex-col items-center justify-between min-h-[260px] sm:min-h-[280px] relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-1`}
+            >
+              {/* Top Stamp */}
+              <div className="w-full flex items-center justify-between mb-2">
+                <span
+                  className="font-mono text-[9px] font-extrabold px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]"
+                  style={{
+                    backgroundColor: `${accentColor}25`,
+                    color: accentColor
+                  }}
+                >
+                  {dossier.tag}
+                </span>
+                <span className="text-[10px] text-white/40 font-mono">#{idx + 1}</span>
               </div>
 
-              {/* Space Cards Grid */}
-              <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
-                {space.dossiers.map((dossier, idx) => (
-                  <div
-                    key={idx}
-                    className={`p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[4px_4px_0px_#000] text-center flex flex-col items-center justify-between min-h-[260px] sm:min-h-[280px] relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-1`}
-                  >
-                    {/* Top Stamp */}
-                    <div className="w-full flex items-center justify-between mb-2">
-                      <span
-                        className="font-mono text-[9px] font-extrabold px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]"
-                        style={{
-                          backgroundColor: `${accentColor}25`,
-                          color: accentColor
-                        }}
-                      >
-                        {dossier.tag}
-                      </span>
-                      <span className="text-[10px] text-white/40 font-mono">#{idx + 1}</span>
-                    </div>
+              {/* Silhouette Figure */}
+              <div className="my-2 relative">
+                <div
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#120205] border-2 border-dashed border-white/20 flex items-center justify-center text-3xl sm:text-4xl filter grayscale opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
+                  style={{
+                    boxShadow: `0 0 15px ${accentColor}15`
+                  }}
+                >
+                  {isMentors && "👤"}
+                  {isJury && "💼"}
+                  {isTeam && "⚡"}
+                </div>
+                {/* Subtle pulse ring on hover */}
+                <div
+                  className="absolute inset-0 rounded-full border-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                  style={{ borderColor: accentColor }}
+                />
+              </div>
 
-                    {/* Silhouette Figure */}
-                    <div className="my-2 relative">
-                      <div
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#120205] border-2 border-dashed border-white/20 flex items-center justify-center text-3xl sm:text-4xl filter grayscale opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
-                        style={{
-                          boxShadow: `0 0 15px ${accentColor}15`
-                        }}
-                      >
-                        {isMentors && "👤"}
-                        {isJury && "💼"}
-                        {isTeam && "⚡"}
-                      </div>
-                      {/* Subtle pulse ring on hover */}
-                      <div
-                        className="absolute inset-0 rounded-full border-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                        style={{ borderColor: accentColor }}
-                      />
-                    </div>
+              {/* Dossier Code & Role Domain */}
+              <div className="w-full mt-2">
+                <div className="font-bebas text-xs sm:text-sm text-white/90 tracking-wider mb-1">
+                  {dossier.code}
+                </div>
+                <div className="text-xs font-poppins font-bold text-white leading-tight min-h-[32px] flex items-center justify-center">
+                  {dossier.domain}
+                </div>
+              </div>
 
-                    {/* Dossier Code & Role Domain */}
-                    <div className="w-full mt-2">
-                      <div className="font-bebas text-xs sm:text-sm text-white/90 tracking-wider mb-1">
-                        {dossier.code}
-                      </div>
-                      <div className="text-xs font-poppins font-bold text-white leading-tight min-h-[32px] flex items-center justify-center">
-                        {dossier.domain}
-                      </div>
-                    </div>
-
-                    {/* Bottom Status */}
-                    <div className="w-full pt-3 mt-2 border-t border-white/10 flex items-center justify-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: accentColor }} />
-                      <span className="font-mono text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-wider">
-                        REVEALING SOON
-                      </span>
-                    </div>
-                  </div>
-                ))}
+              {/* Bottom Status */}
+              <div className="w-full pt-3 mt-2 border-t border-white/10 flex items-center justify-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: accentColor }} />
+                <span className="font-mono text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-wider">
+                  REVEALING SOON
+                </span>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
 
       {/* Bottom Invite Box: Join as Mentor / Jury / Organizer */}
