@@ -76,33 +76,11 @@ export const Squad = () => {
           style={{ backgroundColor: accentColor }}
         />
 
-        {/* Space Header Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
-          <div className="flex items-start sm:items-center gap-3.5">
-            <div
-              className="w-12 h-12 rounded-2xl border-2 border-black flex items-center justify-center text-2xl shadow-[3px_3px_0px_#000] flex-shrink-0"
-              style={{ backgroundColor: `${accentColor}20` }}
-            >
-              <span>{currentSpace.icon}</span>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span
-                  className="text-[10px] sm:text-xs font-mono font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_#000]"
-                  style={{ backgroundColor: accentColor, color: isJury ? '#FFFFFF' : '#000000' }}
-                >
-                  {currentSpace.tag}
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider mt-1">
-                {currentSpace.title}
-              </h3>
-            </div>
-          </div>
-
-          <p className="max-w-xl text-xs sm:text-sm text-[#FFF9F2]/75 font-poppins leading-relaxed">
-            {currentSpace.desc}
-          </p>
+        {/* Space Title Header */}
+        <div className="pb-4 mb-6 sm:mb-8 border-b border-white/10 flex items-center justify-between">
+          <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider">
+            {currentSpace.title}
+          </h3>
         </div>
 
         {/* Space Cards: Moving Animation Carousel for Team, Responsive Grid for Mentors & Jury */}
