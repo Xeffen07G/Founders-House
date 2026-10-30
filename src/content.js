@@ -460,7 +460,8 @@ export const content = {
           },
           {
             name: "Debottom Sengupta",
-            image: "/team/debottam_sengupta.webp"
+            image: "/team/debottam_sengupta.webp",
+            linkedin: "https://www.linkedin.com/in/debottom-sengupta-14b494339"
           },
           {
             name: "Shivam Gupta",
