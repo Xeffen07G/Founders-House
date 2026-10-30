@@ -430,7 +430,8 @@ export const content = {
           },
           {
             name: "Anubhab Karmakar",
-            image: "/team/anubhab_karmakar.webp"
+            image: "/team/anubhab_karmakar.webp",
+            linkedin: "https://www.linkedin.com/in/anubhab-karmakar-52959040a"
           },
           {
             name: "Aaryan Khan",
