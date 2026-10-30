@@ -47,20 +47,20 @@ export const Venue = () => {
           {/* CSS Animation Keyframes for 3D Isometric Map */}
           <style>{`
             /* Southbound Traffic (Lane 1: Top-Right to Bottom-Left) */
-            /* Southbound Traffic (Lane 1: Top-Right to Bottom-Left) - Road heading 23.2deg */
+            /* Southbound Traffic (Lane 1: Top-Right to Bottom-Left) - Center offset +18.4px */
             @keyframes trafficSouthbound {
-              0% { transform: translate(1125px, -70px) rotate(23.2deg); opacity: 0; }
-              3% { opacity: 1; }
-              97% { opacity: 1; }
-              100% { transform: translate(805px, 680px) rotate(23.2deg); opacity: 0; }
+              0% { transform: translate(1135px, -72px) rotate(23.2deg); opacity: 0; }
+              2% { opacity: 1; }
+              98% { opacity: 1; }
+              100% { transform: translate(801px, 708px) rotate(23.2deg); opacity: 0; }
             }
 
-            /* Northbound Traffic (Lane 2: Bottom-Left to Top-Right) - Road heading 203.2deg */
+            /* Northbound Traffic (Lane 2: Bottom-Left to Top-Right) - Center offset -18.4px */
             @keyframes trafficNorthbound {
-              0% { transform: translate(785px, 680px) rotate(203.2deg); opacity: 0; }
-              3% { opacity: 1; }
-              97% { opacity: 1; }
-              100% { transform: translate(1105px, -70px) rotate(203.2deg); opacity: 0; }
+              0% { transform: translate(765px, 692px) rotate(203.2deg); opacity: 0; }
+              2% { opacity: 1; }
+              98% { opacity: 1; }
+              100% { transform: translate(1099px, -88px) rotate(203.2deg); opacity: 0; }
             }
 
             /* Water Shimmer */
@@ -75,12 +75,11 @@ export const Venue = () => {
               50% { opacity: 0.95; }
             }
 
-            .anim-traffic-south-1 { animation: trafficSouthbound 9s linear infinite; }
-            .anim-traffic-south-2 { animation: trafficSouthbound 9s linear infinite; animation-delay: 3s; }
-            .anim-traffic-south-3 { animation: trafficSouthbound 9s linear infinite; animation-delay: 6s; }
-            .anim-traffic-north-1 { animation: trafficNorthbound 9s linear infinite; }
-            .anim-traffic-north-2 { animation: trafficNorthbound 9s linear infinite; animation-delay: 3s; }
-            .anim-traffic-north-3 { animation: trafficNorthbound 9s linear infinite; animation-delay: 6s; }
+            /* Staggered non-overlapping traffic (14s cycle, 3.5s phase intervals: 0%, 25%, 50%, 75%) */
+            .anim-traffic-south-1 { animation: trafficSouthbound 14s linear infinite; animation-delay: 0s; }
+            .anim-traffic-south-2 { animation: trafficSouthbound 14s linear infinite; animation-delay: -7s; }
+            .anim-traffic-north-1 { animation: trafficNorthbound 14s linear infinite; animation-delay: -3.5s; }
+            .anim-traffic-north-2 { animation: trafficNorthbound 14s linear infinite; animation-delay: -10.5s; }
             .anim-lake-shimmer { animation: lakeWaterShimmer 3.5s ease-in-out infinite; }
             .anim-rooftop-lights { animation: cafeRooftopBlink 2s ease-in-out infinite; }
           `}</style>
@@ -344,28 +343,57 @@ export const Venue = () => {
                   opacity="0.45"
                 />
 
-                {/* 3D Streetlamp Poles Standing Upright with Light Cones */}
+                {/* 3D Central Median Dual-Arm Streetlamps (Positioned exactly on the central dividing line) */}
                 <g>
-                  {/* Streetlamp 1 */}
-                  <circle cx="1060" cy="50" r="45" fill="url(#streetlightPool)" />
-                  <line x1="1040" y1="50" x2="1040" y2="20" stroke="#FFE600" strokeWidth="2.5"/>
-                  <circle cx="1040" cy="19" r="3" fill="#FFE600"/>
-                  {/* Streetlamp 2 */}
-                  <circle cx="1010" cy="170" r="45" fill="url(#streetlightPool)" />
-                  <line x1="990" y1="170" x2="990" y2="140" stroke="#FFE600" strokeWidth="2.5"/>
-                  <circle cx="990" cy="139" r="3" fill="#FFE600"/>
-                  {/* Streetlamp 3 */}
-                  <circle cx="960" cy="290" r="45" fill="url(#streetlightPool)" />
-                  <line x1="940" y1="290" x2="940" y2="260" stroke="#FFE600" strokeWidth="2.5"/>
-                  <circle cx="940" cy="259" r="3" fill="#FFE600"/>
-                  {/* Streetlamp 4 */}
-                  <circle cx="910" cy="410" r="45" fill="url(#streetlightPool)" />
-                  <line x1="890" y1="410" x2="890" y2="380" stroke="#FFE600" strokeWidth="2.5"/>
-                  <circle cx="890" cy="379" r="3" fill="#FFE600"/>
-                  {/* Streetlamp 5 */}
-                  <circle cx="860" cy="530" r="45" fill="url(#streetlightPool)" />
-                  <line x1="840" y1="530" x2="840" y2="500" stroke="#FFE600" strokeWidth="2.5"/>
-                  <circle cx="840" cy="499" r="3" fill="#FFE600"/>
+                  {/* Streetlamp 1 (x: 1061, y: 50 on centerline) */}
+                  <circle cx="1061" cy="50" r="46" fill="url(#streetlightPool)" />
+                  <ellipse cx="1061" cy="50" rx="5" ry="2.5" fill="#374151" stroke="#FFE600" strokeWidth="0.8"/>
+                  <line x1="1061" y1="50" x2="1061" y2="22" stroke="#FFE600" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="1061" y1="26" x2="1053" y2="24" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="1053" cy="24" r="2.5" fill="#FFF"/>
+                  <line x1="1061" y1="26" x2="1069" y2="24" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="1069" cy="24" r="2.5" fill="#FFF"/>
+                  <circle cx="1061" cy="21" r="2" fill="#FFE600"/>
+
+                  {/* Streetlamp 2 (x: 1010, y: 170 on centerline) */}
+                  <circle cx="1010" cy="170" r="46" fill="url(#streetlightPool)" />
+                  <ellipse cx="1010" cy="170" rx="5" ry="2.5" fill="#374151" stroke="#FFE600" strokeWidth="0.8"/>
+                  <line x1="1010" y1="170" x2="1010" y2="142" stroke="#FFE600" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="1010" y1="146" x2="1002" y2="144" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="1002" cy="144" r="2.5" fill="#FFF"/>
+                  <line x1="1010" y1="146" x2="1018" y2="144" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="1018" cy="144" r="2.5" fill="#FFF"/>
+                  <circle cx="1010" cy="141" r="2" fill="#FFE600"/>
+
+                  {/* Streetlamp 3 (x: 959, y: 290 on centerline) */}
+                  <circle cx="959" cy="290" r="46" fill="url(#streetlightPool)" />
+                  <ellipse cx="959" cy="290" rx="5" ry="2.5" fill="#374151" stroke="#FFE600" strokeWidth="0.8"/>
+                  <line x1="959" y1="290" x2="959" y2="262" stroke="#FFE600" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="959" y1="266" x2="951" y2="264" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="951" cy="264" r="2.5" fill="#FFF"/>
+                  <line x1="959" y1="266" x2="967" y2="264" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="967" cy="264" r="2.5" fill="#FFF"/>
+                  <circle cx="959" cy="261" r="2" fill="#FFE600"/>
+
+                  {/* Streetlamp 4 (x: 907, y: 410 on centerline) */}
+                  <circle cx="907" cy="410" r="46" fill="url(#streetlightPool)" />
+                  <ellipse cx="907" cy="410" rx="5" ry="2.5" fill="#374151" stroke="#FFE600" strokeWidth="0.8"/>
+                  <line x1="907" y1="410" x2="907" y2="382" stroke="#FFE600" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="907" y1="386" x2="899" y2="384" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="899" cy="384" r="2.5" fill="#FFF"/>
+                  <line x1="907" y1="386" x2="915" y2="384" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="915" cy="384" r="2.5" fill="#FFF"/>
+                  <circle cx="907" cy="381" r="2" fill="#FFE600"/>
+
+                  {/* Streetlamp 5 (x: 856, y: 530 on centerline) */}
+                  <circle cx="856" cy="530" r="46" fill="url(#streetlightPool)" />
+                  <ellipse cx="856" cy="530" rx="5" ry="2.5" fill="#374151" stroke="#FFE600" strokeWidth="0.8"/>
+                  <line x1="856" y1="530" x2="856" y2="502" stroke="#FFE600" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="856" y1="506" x2="848" y2="504" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="848" cy="504" r="2.5" fill="#FFF"/>
+                  <line x1="856" y1="506" x2="864" y2="504" stroke="#FFE600" strokeWidth="1.8"/>
+                  <circle cx="864" cy="504" r="2.5" fill="#FFF"/>
+                  <circle cx="856" cy="501" r="2" fill="#FFE600"/>
                 </g>
               </g>
 
@@ -535,7 +563,7 @@ export const Venue = () => {
                 </g>
               </g>
 
-              {/* 7. 3D ISOMETRIC TRAFFIC: KOLKATA TAXIS, BUSES & CARS (Aligned with EM Bypass) */}
+              {/* 7. 3D ISOMETRIC TRAFFIC: KOLKATA TAXIS & BUSES (Aligned along EM Bypass) */}
               
               {/* SOUTHBOUND TRAFFIC (Lane 1: Top-Right to Bottom-Left) */}
               
@@ -619,19 +647,6 @@ export const Venue = () => {
                 </g>
               </g>
 
-              {/* Southbound 3: Crimson City Car */}
-              <g className="anim-traffic-south-3">
-                <g>
-                  <ellipse cx="0" cy="2" rx="13" ry="6" fill="#000000" opacity="0.6"/>
-                  <polygon points="-6,13 6,13 18,60 -18,60" fill="url(#headlightBeam)" opacity="0.6"/>
-                  <rect x="-7" y="-13" width="14" height="26" rx="4" fill="#E11D48" stroke="#000000" strokeWidth="1.5"/>
-                  <circle cx="-5" cy="12" r="2" fill="#FFFFFF"/>
-                  <circle cx="5" cy="12" r="2" fill="#FFFFFF"/>
-                  <polygon points="-5,-3 5,-3 4,5 -4,5" fill="#FFFFFF" opacity="0.85"/>
-                  <rect x="-5" y="-9" width="10" height="11" rx="2" fill="#9F1239"/>
-                </g>
-              </g>
-
               {/* NORTHBOUND TRAFFIC (Lane 2: Bottom-Left to Top-Right) */}
               
               {/* Northbound 1: Yellow Ambassador Taxi */}
@@ -706,19 +721,6 @@ export const Venue = () => {
                 </g>
               </g>
 
-              {/* Northbound 3: Cyan Tech Sedan */}
-              <g className="anim-traffic-north-3">
-                <g>
-                  <ellipse cx="0" cy="2" rx="14" ry="7" fill="#000000" opacity="0.6"/>
-                  <polygon points="-7,14 7,14 20,65 -20,65" fill="url(#headlightBeam)" opacity="0.65"/>
-                  <rect x="-8" y="-14" width="16" height="28" rx="4" fill="#00F0FF" stroke="#000000" strokeWidth="1.5"/>
-                  <circle cx="-5" cy="13" r="2" fill="#FFFFFF"/>
-                  <circle cx="5" cy="13" r="2" fill="#FFFFFF"/>
-                  <polygon points="-6,-3 6,-3 5,6 -5,6" fill="#000000" opacity="0.85"/>
-                  <rect x="-6" y="-10" width="12" height="13" rx="2" fill="#0284C7"/>
-                </g>
-              </g>
-
               {/* 8. GOOGLE MAPS STYLE LANDMARK CALLOUT PILLS (Convergence 1.0 exact look) */}
               
               {/* Landmark 1: Dhopar Pukur Lake */}
@@ -742,7 +744,7 @@ export const Venue = () => {
               </g>
 
               {/* Landmark 3: Biswa Bangla Sarani (EM Bypass) */}
-              <g transform="translate(980, 80) rotate(-23.2)">
+              <g transform="translate(995, 30)">
                 <rect x="0" y="0" width="190" height="26" rx="13" fill="#140A26" stroke="#FFE600" strokeWidth="1.5" />
                 <circle cx="13" cy="13" r="7" fill="#FFE600" />
                 <text x="13" y="17" textAnchor="middle" fontSize="9">🛣️</text>
