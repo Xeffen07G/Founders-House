@@ -106,65 +106,93 @@ export const Squad = () => {
         </div>
 
         {/* Space Cards Grid */}
-        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
-          {currentSpace.dossiers.map((dossier, idx) => (
-            <div
-              key={idx}
-              className={`p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[4px_4px_0px_#000] text-center flex flex-col items-center justify-between min-h-[260px] sm:min-h-[280px] relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-1`}
-            >
-              {/* Top Stamp */}
-              <div className="w-full flex items-center justify-between mb-2">
-                <span
-                  className="font-mono text-[9px] font-extrabold px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]"
-                  style={{
-                    backgroundColor: `${accentColor}25`,
-                    color: accentColor
-                  }}
-                >
-                  {dossier.tag}
-                </span>
-                <span className="text-[10px] text-white/40 font-mono">#{idx + 1}</span>
-              </div>
-
-              {/* Silhouette Figure */}
-              <div className="my-2 relative">
-                <div
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#120205] border-2 border-dashed border-white/20 flex items-center justify-center text-3xl sm:text-4xl filter grayscale opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
-                  style={{
-                    boxShadow: `0 0 15px ${accentColor}15`
-                  }}
-                >
-                  {isMentors && "👤"}
-                  {isJury && "💼"}
-                  {isTeam && "⚡"}
+        {isTeam ? (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            {currentSpace.members.map((member, idx) => (
+              <div
+                key={idx}
+                className="p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-1.5"
+              >
+                {/* Photo in sharp comic container */}
+                <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
-                {/* Subtle pulse ring on hover */}
-                <div
-                  className="absolute inset-0 rounded-full border-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                  style={{ borderColor: accentColor }}
-                />
-              </div>
 
-              {/* Dossier Code & Role Domain */}
-              <div className="w-full mt-2">
-                <div className="font-bebas text-xs sm:text-sm text-white/90 tracking-wider mb-1">
-                  {dossier.code}
-                </div>
-                <div className="text-xs font-poppins font-bold text-white leading-tight min-h-[32px] flex items-center justify-center">
-                  {dossier.domain}
+                {/* Member Name (No title or lead specified as requested) */}
+                <div className="w-full text-center pb-1">
+                  <h4 className="font-poppins font-extrabold text-lg sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors">
+                    {member.name}
+                  </h4>
                 </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
+            {currentSpace.dossiers.map((dossier, idx) => (
+              <div
+                key={idx}
+                className={`p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[4px_4px_0px_#000] text-center flex flex-col items-center justify-between min-h-[260px] sm:min-h-[280px] relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-1`}
+              >
+                {/* Top Stamp */}
+                <div className="w-full flex items-center justify-between mb-2">
+                  <span
+                    className="font-mono text-[9px] font-extrabold px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]"
+                    style={{
+                      backgroundColor: `${accentColor}25`,
+                      color: accentColor
+                    }}
+                  >
+                    {dossier.tag}
+                  </span>
+                  <span className="text-[10px] text-white/40 font-mono">#{idx + 1}</span>
+                </div>
 
-              {/* Bottom Status */}
-              <div className="w-full pt-3 mt-2 border-t border-white/10 flex items-center justify-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: accentColor }} />
-                <span className="font-mono text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-wider">
-                  REVEALING SOON
-                </span>
+                {/* Silhouette Figure */}
+                <div className="my-2 relative">
+                  <div
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#120205] border-2 border-dashed border-white/20 flex items-center justify-center text-3xl sm:text-4xl filter grayscale opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
+                    style={{
+                      boxShadow: `0 0 15px ${accentColor}15`
+                    }}
+                  >
+                    {isMentors && "👤"}
+                    {isJury && "💼"}
+                  </div>
+                  {/* Subtle pulse ring on hover */}
+                  <div
+                    className="absolute inset-0 rounded-full border-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                    style={{ borderColor: accentColor }}
+                  />
+                </div>
+
+                {/* Dossier Code & Role Domain */}
+                <div className="w-full mt-2">
+                  <div className="font-bebas text-xs sm:text-sm text-white/90 tracking-wider mb-1">
+                    {dossier.code}
+                  </div>
+                  <div className="text-xs font-poppins font-bold text-white leading-tight min-h-[32px] flex items-center justify-center">
+                    {dossier.domain}
+                  </div>
+                </div>
+
+                {/* Bottom Status */}
+                <div className="w-full pt-3 mt-2 border-t border-white/10 flex items-center justify-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: accentColor }} />
+                  <span className="font-mono text-[9px] sm:text-[10px] text-white/60 font-semibold tracking-wider">
+                    REVEALING SOON
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Bottom Invite Box: Join as Mentor / Jury / Organizer */}

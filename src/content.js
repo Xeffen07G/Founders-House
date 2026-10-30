@@ -420,16 +420,22 @@ export const content = {
         title: "ORGANIZING TEAM",
         tag: "CORE HUSTLERS & SPRINT CONTROL",
         icon: "⚡",
-        desc: "Student founders and ecosystem leads from Hult Prize TIU and AIC Techno driving logistics, dev experience, and the 72-hour Kolkata sprint.",
+        desc: "The organizing squad behind Founders' House, driving the 72-hour residential startup sprint from Hult Prize TIU and AIC Techno.",
         color: "text-[#19D3F3]",
         borderColor: "border-[#19D3F3]",
-        dossiers: [
-          { code: "DOSSIER #T1", domain: "Lead Convener & Vision", tag: "LEAD" },
-          { code: "DOSSIER #T2", domain: "Tech & Platform Lead", tag: "ENGINEERING" },
-          { code: "DOSSIER #T3", domain: "Hacker Experience & Community", tag: "COMMUNITY" },
-          { code: "DOSSIER #T4", domain: "Operations & On-Ground Adda", tag: "OPERATIONS" },
-          { code: "DOSSIER #T5", domain: "Sponsorships & Venture Relations", tag: "PARTNERSHIPS" },
-          { code: "DOSSIER #T6", domain: "Creative Design & Visual Direction", tag: "CREATIVE" }
+        members: [
+          {
+            name: "Prince Shaw",
+            image: "/team/prince_shaw.webp"
+          },
+          {
+            name: "Anubhab Karmakar",
+            image: "/team/anubhab_karmakar.webp"
+          },
+          {
+            name: "Aaryan Khan",
+            image: "/team/aaryan_khan.webp"
+          }
         ]
       }
     }
