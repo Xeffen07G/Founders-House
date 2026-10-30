@@ -40,7 +40,7 @@ export const Archives = () => {
               <img
                 src={photo.src}
                 alt={photo.alt}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 className="h-64 sm:h-72 md:h-80 lg:h-[340px] xl:h-[370px] w-auto max-w-none object-contain block pointer-events-none"
               />

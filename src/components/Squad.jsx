@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Squad = () => {
   const [activeTab, setActiveTab] = useState("MENTORS");
+
+  // Preload team member photos so they render instantly with zero network delay or flashing
+  useEffect(() => {
+    if (content.squad?.spaces?.team?.members) {
+      content.squad.spaces.team.members.forEach((m) => {
+        if (m.image) {
+          const img = new Image();
+          img.src = m.image;
+        }
+      });
+    }
+  }, []);
 
   const currentSpace = 
     activeTab === "JURY"
@@ -129,8 +141,11 @@ export const Squad = () => {
                       <img
                         src={member.image}
                         alt={member.name}
+                        width="270"
+                        height="360"
                         className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
-                        loading="lazy"
+                        loading="eager"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                       {member.linkedin && (
