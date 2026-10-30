@@ -449,7 +449,8 @@ export const content = {
           },
           {
             name: "Nandini Kumari",
-            image: "/team/nandini_kumari.webp"
+            image: "/team/nandini_kumari.webp",
+            linkedin: "https://www.linkedin.com/in/nandini-kumari-14082537b/"
           },
           {
             name: "Joyjit Das",
