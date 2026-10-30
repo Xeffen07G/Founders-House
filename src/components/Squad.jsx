@@ -157,10 +157,6 @@ export const Squad = () => {
               }
             `}</style>
 
-            {/* Edge fade gradient masks for smooth entry and exit */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#140407] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#140407] to-transparent z-10 pointer-events-none" />
-
             {/* Continuous moving track with tripled array: Set 2 Card 0 (Prince Shaw) starts centered */}
             <div ref={trackRef} className="anim-team-track flex items-stretch gap-5 sm:gap-7 py-2">
               {[...currentSpace.members, ...currentSpace.members, ...currentSpace.members].map((member, idx) => {
