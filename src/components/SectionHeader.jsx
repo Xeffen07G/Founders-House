@@ -25,12 +25,6 @@ export const SectionHeader = ({
           </span>
         </h2>
       </div>
-
-      {description && (
-        <div className="max-w-md p-4 rounded-xl bg-[#1C0509]/90 border-l-4 border-l-[#E11D48] border-y border-r border-black text-sm text-[#FFF9F2]/90 leading-relaxed font-poppins shadow-[3px_3px_0px_#000]">
-          {description}
-        </div>
-      )}
     </div>
   );
 };
