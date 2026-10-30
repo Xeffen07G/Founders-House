@@ -464,7 +464,8 @@ export const content = {
           },
           {
             name: "Shivam Gupta",
-            image: "/team/shivam_gupta.webp"
+            image: "/team/shivam_gupta.webp",
+            linkedin: "https://www.linkedin.com/in/shivam-gupta-693790367"
           }
         ]
       }
