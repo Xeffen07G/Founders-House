@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Squad = () => {
   const [activeTab, setActiveTab] = useState("MENTORS");
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+
+  const [trackStyles, setTrackStyles] = useState({
+    startOffset: 0,
+    loopWidth: 0,
+    isReady: false
+  });
 
   // Preload team member photos so they render instantly with zero network delay or flashing
   useEffect(() => {
@@ -27,6 +35,40 @@ export const Squad = () => {
   const isMentors = currentSpace.id === "mentors";
   const isJury = currentSpace.id === "jury";
   const isTeam = currentSpace.id === "team";
+
+  // Center the 1st photo directly in the middle of the screen when Organizing Team is clicked/viewed
+  useEffect(() => {
+    if (!isTeam) return;
+
+    const measureAndCenter = () => {
+      if (!containerRef.current || !trackRef.current) return;
+      const containerW = containerRef.current.clientWidth;
+      const firstCard = trackRef.current.querySelector('.team-card');
+      if (!firstCard) return;
+
+      const cardW = firstCard.offsetWidth;
+      // Total track has 3 identical copies: L is the width of exactly 1 copy
+      const totalW = trackRef.current.scrollWidth;
+      const L = totalW / 3;
+
+      // Target: Center Card 0 of the middle set (Set 2) directly at (containerW / 2)
+      // Since Card 0 of Set 2 sits at offset L from track start, the required start translation is:
+      const startX = (containerW / 2) - (cardW / 2) - L;
+
+      setTrackStyles({
+        startOffset: startX,
+        loopWidth: L,
+        isReady: true
+      });
+    };
+
+    const rafId = requestAnimationFrame(measureAndCenter);
+    window.addEventListener('resize', measureAndCenter);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', measureAndCenter);
+    };
+  }, [isTeam, activeTab]);
 
   // Theme accents
   const accentColor = isMentors ? "#FFC800" : isJury ? "#E11D48" : "#19D3F3";
@@ -97,16 +139,18 @@ export const Squad = () => {
 
         {/* Space Cards: Moving Animation Carousel for Team, Responsive Grid for Mentors & Jury */}
         {isTeam ? (
-          <div className="relative w-full overflow-hidden py-2 sm:py-4">
+          <div ref={containerRef} key={activeTab} className="relative w-full overflow-hidden py-2 sm:py-4">
             <style>{`
               @keyframes teamSlideInfinite {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
+                0% { transform: translateX(${trackStyles.startOffset}px); }
+                100% { transform: translateX(${trackStyles.startOffset - trackStyles.loopWidth}px); }
               }
               .anim-team-track {
                 display: flex;
                 width: max-content;
-                animation: teamSlideInfinite 24s linear infinite;
+                animation: ${trackStyles.isReady ? 'teamSlideInfinite 28s linear infinite' : 'none'};
+                transform: translateX(${trackStyles.startOffset}px);
+                will-change: transform;
               }
               .anim-team-track:hover {
                 animation-play-state: paused;
@@ -117,9 +161,9 @@ export const Squad = () => {
             <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#140407] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#140407] to-transparent z-10 pointer-events-none" />
 
-            {/* Continuous moving track with doubled array for seamless infinite loop */}
-            <div className="anim-team-track flex items-stretch gap-5 sm:gap-7 py-2">
-              {[...currentSpace.members, ...currentSpace.members].map((member, idx) => {
+            {/* Continuous moving track with tripled array: Set 2 Card 0 (Prince Shaw) starts centered */}
+            <div ref={trackRef} className="anim-team-track flex items-stretch gap-5 sm:gap-7 py-2">
+              {[...currentSpace.members, ...currentSpace.members, ...currentSpace.members].map((member, idx) => {
                 const CardWrapper = member.linkedin ? 'a' : 'div';
                 return (
                   <CardWrapper
@@ -132,7 +176,7 @@ export const Squad = () => {
                           title: `Open ${member.name}'s LinkedIn profile`
                         }
                       : {})}
-                    className={`w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
+                    className={`team-card w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
                       member.linkedin ? 'cursor-pointer' : ''
                     }`}
                   >
