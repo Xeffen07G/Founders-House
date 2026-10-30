@@ -19,10 +19,7 @@ export const Awards = () => {
         <div className="order-2 md:order-1">
           <div className="comic-card p-7 border-2 border-[#19D3F3] bg-[#1C0509] text-center flex flex-col justify-between h-84 shadow-[6px_6px_0px_#000]">
             <div>
-              <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-[#19D3F3]/20 text-[#19D3F3] border border-[#19D3F3]">
-                🥈 2ND PLACE
-              </span>
-              <div className="text-5xl my-4">🥈</div>
+              <div className="text-6xl mb-4">🥈</div>
               <h4 className="font-bebas text-3xl text-white mb-1 tracking-wide">
                 2nd Prize
               </h4>
@@ -40,10 +37,7 @@ export const Awards = () => {
         <div className="order-1 md:order-2">
           <div className="comic-card p-8 border-3 border-[#FFC800] bg-[#1C0509] shadow-[8px_8px_0px_#FFC800] text-center flex flex-col justify-between h-96 -translate-y-4">
             <div>
-              <span className="font-mono text-xs font-extrabold px-4 py-1.5 rounded-full bg-[#FFC800] text-black border-2 border-black">
-                🏆 1ST PLACE
-              </span>
-              <div className="text-7xl my-4">🥇</div>
+              <div className="text-7xl mb-4">🥇</div>
               <h3 className="font-bebas text-4xl sm:text-5xl text-[#FFC800] mb-1 tracking-wide">
                 1st Prize
               </h3>
@@ -61,10 +55,7 @@ export const Awards = () => {
         <div className="order-3">
           <div className="comic-card p-7 border-2 border-[#E11D48] bg-[#1C0509] text-center flex flex-col justify-between h-84 shadow-[6px_6px_0px_#000]">
             <div>
-              <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-[#E11D48]/20 text-[#E11D48] border border-[#E11D48]">
-                🥉 3RD PLACE
-              </span>
-              <div className="text-5xl my-4">🥉</div>
+              <div className="text-6xl mb-4">🥉</div>
               <h4 className="font-bebas text-3xl text-white mb-1 tracking-wide">
                 3rd Prize
               </h4>
