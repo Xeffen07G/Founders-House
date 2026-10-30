@@ -485,13 +485,13 @@ export const content = {
             name: "AIC Techno (Atal Incubation Centre)",
             subtitle: "Incubation & Venue Partner",
             logo: "/aic_techno_logo.webp",
-            url: "#venue"
+            url: "https://www.aic-techno.com"
           },
           {
             name: "Techno India University & School of the Future",
             subtitle: "Academic & University Partner",
             logo: "/techno_india_university_logo.webp",
-            url: "https://www.technoindiauniversity.ac.in"
+            url: "https://www.technoindiauniversity.ai"
           }
         ]
       },
