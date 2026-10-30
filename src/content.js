@@ -435,7 +435,8 @@ export const content = {
           },
           {
             name: "Aaryan Khan",
-            image: "/team/aaryan_khan.webp"
+            image: "/team/aaryan_khan.webp",
+            linkedin: "https://www.linkedin.com/in/aaryan-khan-62506140a"
           },
           {
             name: "Anushka Dey",
