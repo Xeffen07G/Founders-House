@@ -524,7 +524,19 @@ export const content = {
           }
         ]
       },
-      { name: "SILVER PARTNERS", count: 4, partners: [], color: "border-neonCyan text-neonCyan" },
+      {
+        name: "SILVER PARTNERS",
+        count: 4,
+        color: "border-neonCyan text-neonCyan",
+        partners: [
+          {
+            name: "EF Hult Prize India",
+            subtitle: "National Impact & Ecosystem Partner",
+            logo: "/ef_hult_prize_india_logo.webp",
+            url: "https://www.hultprize.org"
+          }
+        ]
+      },
       { name: "BRONZE & COMMUNITY", count: 6, partners: [], color: "border-neonLime text-neonLime" }
     ],
     hud: {
