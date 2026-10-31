@@ -446,7 +446,8 @@ export const content = {
           },
           {
             name: "Prachi Mondal",
-            image: "/team/prachi_mondal.webp"
+            image: "/team/prachi_mondal.webp",
+            linkedin: "https://www.linkedin.com/in/prachi-mondal-27b4b4424"
           },
           {
             name: "Nandini Kumari",
