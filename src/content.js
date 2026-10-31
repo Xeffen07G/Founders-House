@@ -487,6 +487,11 @@ export const content = {
           {
             name: "Aitihya Dutta",
             image: "/team/aitihya_dutta.webp"
+          },
+          {
+            name: "Ishu Kumar Singh",
+            image: "/team/ishu_kumar_singh.webp",
+            linkedin: "https://www.linkedin.com/in/ishu-kumar-singh-a65b7b440/"
           }
         ]
       }
