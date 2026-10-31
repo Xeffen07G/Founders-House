@@ -181,20 +181,6 @@ export const Squad = () => {
     }, 1500);
   };
 
-  // Manual Nudge by arrow buttons
-  const handleScrollBy = (amount) => {
-    if (!containerRef.current) return;
-    isInteractingRef.current = true;
-    containerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-    resumeTimeoutRef.current = setTimeout(() => {
-      if (containerRef.current) {
-        scrollAccumulatorRef.current = containerRef.current.scrollLeft;
-      }
-      isInteractingRef.current = false;
-    }, 1800);
-  };
-
   // Theme accents
   const accentColor = isMentors ? "#FFC800" : isJury ? "#E11D48" : "#19D3F3";
   const glowBorder = isMentors ? "group-hover:border-[#FFC800]" : isJury ? "group-hover:border-[#E11D48]" : "group-hover:border-[#19D3F3]";
@@ -260,33 +246,6 @@ export const Squad = () => {
           <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider">
             {currentSpace.title}
           </h3>
-          {isTeam && (
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="hidden md:inline font-mono text-[10px] sm:text-xs text-[#19D3F3]/80 tracking-wider">
-                ⚡ AUTO-SCROLLING • DRAG OR SWIPE
-              </span>
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => handleScrollBy(-320)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1C0509] hover:bg-[#19D3F3] hover:text-black text-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center transition-all font-mono font-bold text-sm active:translate-y-0.5 select-none"
-                  title="Scroll left"
-                  aria-label="Scroll left"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleScrollBy(320)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1C0509] hover:bg-[#19D3F3] hover:text-black text-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center transition-all font-mono font-bold text-sm active:translate-y-0.5 select-none"
-                  title="Scroll right"
-                  aria-label="Scroll right"
-                >
-                  →
-                </button>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Space Cards: Interactive Moving Carousel for Team, Responsive Grid for Mentors & Jury */}
