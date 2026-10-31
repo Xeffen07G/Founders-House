@@ -477,6 +477,11 @@ export const content = {
             name: "Dipak Maji",
             image: "/team/dipak_maji.webp",
             linkedin: "https://www.linkedin.com/in/deepak-maji-673289435"
+          },
+          {
+            name: "Abhiraj Singh",
+            image: "/team/abhiraj_singh.webp",
+            linkedin: "https://www.linkedin.com/in/abhiraj-kumar-singh-009343448"
           }
         ]
       }
