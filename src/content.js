@@ -511,6 +511,12 @@ export const content = {
             subtitle: "Academic & University Partner",
             logo: "/techno_india_university_logo.webp",
             url: "https://www.technoindiauniversity.ai"
+          },
+          {
+            name: "EF Hult Prize",
+            subtitle: "Global Partner & Organizer",
+            logo: "/ef_hult_prize_logo.webp",
+            url: "https://www.hultprize.org"
           }
         ]
       },
