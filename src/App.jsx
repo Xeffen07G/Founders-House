@@ -29,7 +29,25 @@ export default function App() {
       : 'home';
   });
 
-  // Handle hash navigation between routes (landing page vs scoreboard) and smooth section scroll
+  // Always reset scroll to top on reload when on the landing page, and prevent browser restoring scroll to middle sections
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    const isScoreboard = (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard');
+
+    if (!isScoreboard) {
+      // Clear any anchor hash so reload always opens cleanly at the top (Home)
+      if (hash && hash !== '' && hash !== '#') {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, []);
+
+  // Handle hash navigation between routes (landing page vs scoreboard)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
@@ -38,14 +56,8 @@ export default function App() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setRoute('home');
-        if (hash && hash !== '#hero' && hash !== '#') {
-          const targetId = hash.replace(/^#/, '');
-          const el = document.getElementById(targetId);
-          if (el) {
-            requestAnimationFrame(() => {
-              el.scrollIntoView({ behavior: 'smooth' });
-            });
-          }
+        if (hash === '' || hash === '#' || hash === '#hero') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     };
@@ -54,23 +66,10 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Smoothly scroll to target section if page is loaded/reloaded with an anchor hash
-  useEffect(() => {
-    const hash = typeof window !== 'undefined' ? window.location.hash : '';
-    if (hash && hash !== '#hero' && hash !== '#' && !hash.startsWith('#/score')) {
-      const targetId = hash.replace(/^#/, '');
-      const el = document.getElementById(targetId);
-      if (el) {
-        const timer = setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, []);
-
   const handleBackToBase = () => {
-    window.location.hash = '#hero';
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
     setRoute('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

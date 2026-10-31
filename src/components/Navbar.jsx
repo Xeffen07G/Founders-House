@@ -5,24 +5,45 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLinkClick = (e, targetHash) => {
+    if (e && e.preventDefault) e.preventDefault();
     setMobileOpen(false);
+
+    // 1. Dedicated Scoreboard Page navigation
     if (targetHash === '#/scoreboard' || targetHash === '#scoreboard') {
       window.location.hash = '#/scoreboard';
+      if (onNavigate) onNavigate('scoreboard');
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
       return;
     }
+
+    // 2. Navigating from Scoreboard back to Landing Page
     if (currentRoute === 'scoreboard') {
       if (onNavigate) onNavigate('home');
-      window.location.hash = targetHash;
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      if (targetHash === '#hero' || targetHash === '#') {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        return;
+      }
+      const targetId = targetHash.replace(/^#/, '');
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 80);
       return;
     }
+
+    // 3. Smooth scrolling on the landing page without polluting URL hash
+    if (targetHash === '#hero' || targetHash === '#') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      return;
+    }
+
     const targetId = targetHash.replace(/^#/, '');
     const el = document.getElementById(targetId);
     if (el) {
-      e.preventDefault();
       el.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', targetHash);
-    } else {
-      window.location.hash = targetHash;
     }
   };
 
