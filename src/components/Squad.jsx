@@ -7,11 +7,15 @@ export const Squad = () => {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
 
-  const [trackStyles, setTrackStyles] = useState({
-    startOffset: 0,
-    loopWidth: 0,
-    isReady: false
-  });
+  // Interaction refs for auto & manual scrolling
+  const isInteractingRef = useRef(false);
+  const isHoveredRef = useRef(false);
+  const isMouseDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollStartRef = useRef(0);
+  const dragDistanceRef = useRef(0);
+  const scrollAccumulatorRef = useRef(0);
+  const resumeTimeoutRef = useRef(null);
 
   // Preload team member photos so they render instantly with zero network delay or flashing
   useEffect(() => {
@@ -41,25 +45,25 @@ export const Squad = () => {
     if (!isTeam) return;
 
     const measureAndCenter = () => {
-      if (!containerRef.current || !trackRef.current) return;
-      const containerW = containerRef.current.clientWidth;
-      const firstCard = trackRef.current.querySelector('.team-card');
+      const container = containerRef.current;
+      const track = trackRef.current;
+      if (!container || !track) return;
+
+      const containerW = container.clientWidth;
+      const firstCard = track.querySelector('.team-card');
       if (!firstCard) return;
 
       const cardW = firstCard.offsetWidth;
       // Total track has 3 identical copies: L is the width of exactly 1 copy
-      const totalW = trackRef.current.scrollWidth;
+      const totalW = track.scrollWidth;
       const L = totalW / 3;
 
-      // Target: Center Card 0 of the middle set (Set 2) directly at (containerW / 2)
-      // Since Card 0 of Set 2 sits at offset L from track start, the required start translation is:
-      const startX = (containerW / 2) - (cardW / 2) - L;
-
-      setTrackStyles({
-        startOffset: startX,
-        loopWidth: L,
-        isReady: true
-      });
+      if (L > 0) {
+        // Target: Center Card 0 of the middle set (Set 2) directly at (containerW / 2)
+        const targetScrollLeft = L - (containerW / 2) + (cardW / 2);
+        container.scrollLeft = targetScrollLeft;
+        scrollAccumulatorRef.current = targetScrollLeft;
+      }
     };
 
     const rafId = requestAnimationFrame(measureAndCenter);
@@ -69,6 +73,127 @@ export const Squad = () => {
       window.removeEventListener('resize', measureAndCenter);
     };
   }, [isTeam, activeTab]);
+
+  // Infinite Auto-Scroll with seamless boundary wrapping
+  useEffect(() => {
+    if (!isTeam) return;
+
+    let rafId;
+    let lastTime = performance.now();
+
+    const loop = (currentTime) => {
+      const container = containerRef.current;
+      const track = trackRef.current;
+
+      if (container && track) {
+        const totalW = track.scrollWidth;
+        const L = totalW / 3;
+
+        if (L > 0) {
+          // Boundary wrapping: seamlessly loop back into middle set (Set 2)
+          if (container.scrollLeft >= 2 * L) {
+            container.scrollLeft -= L;
+            scrollAccumulatorRef.current = container.scrollLeft;
+          } else if (container.scrollLeft < L) {
+            container.scrollLeft += L;
+            scrollAccumulatorRef.current = container.scrollLeft;
+          }
+
+          const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
+          // Silk-smooth auto-scroll speed: 38px/sec
+          const pxPerSecond = 38;
+
+          if (!isInteractingRef.current && !isHoveredRef.current && !isMouseDownRef.current) {
+            scrollAccumulatorRef.current += pxPerSecond * dt;
+            container.scrollLeft = scrollAccumulatorRef.current;
+          } else {
+            // Keep accumulator synchronized with user's manual scroll position
+            scrollAccumulatorRef.current = container.scrollLeft;
+          }
+        }
+      }
+
+      lastTime = currentTime;
+      rafId = requestAnimationFrame(loop);
+    };
+
+    rafId = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
+  }, [isTeam, activeTab]);
+
+  // Mouse Drag Handlers for manual scroll
+  const handleMouseDown = (e) => {
+    if (!containerRef.current) return;
+    isMouseDownRef.current = true;
+    isInteractingRef.current = true;
+    startXRef.current = e.pageX - containerRef.current.offsetLeft;
+    scrollStartRef.current = containerRef.current.scrollLeft;
+    dragDistanceRef.current = 0;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isMouseDownRef.current || !containerRef.current) return;
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startXRef.current);
+    dragDistanceRef.current += Math.abs(walk);
+    containerRef.current.scrollLeft = scrollStartRef.current - walk;
+    scrollAccumulatorRef.current = containerRef.current.scrollLeft;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (isMouseDownRef.current) {
+      isMouseDownRef.current = false;
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = setTimeout(() => {
+        isInteractingRef.current = false;
+      }, 1500);
+    }
+  };
+
+  // Touch Swipe Handlers for mobile manual scroll
+  const handleTouchStart = () => {
+    isInteractingRef.current = true;
+    dragDistanceRef.current = 0;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 1500);
+  };
+
+  // Wheel / Trackpad Handler
+  const handleWheel = () => {
+    isInteractingRef.current = true;
+    if (containerRef.current) {
+      scrollAccumulatorRef.current = containerRef.current.scrollLeft;
+    }
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 1500);
+  };
+
+  // Manual Nudge by arrow buttons
+  const handleScrollBy = (amount) => {
+    if (!containerRef.current) return;
+    isInteractingRef.current = true;
+    containerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      if (containerRef.current) {
+        scrollAccumulatorRef.current = containerRef.current.scrollLeft;
+      }
+      isInteractingRef.current = false;
+    }, 1800);
+  };
 
   // Theme accents
   const accentColor = isMentors ? "#FFC800" : isJury ? "#E11D48" : "#19D3F3";
@@ -135,80 +260,120 @@ export const Squad = () => {
           <h3 className="text-2xl sm:text-4xl font-bebas text-white tracking-wider">
             {currentSpace.title}
           </h3>
+          {isTeam && (
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="hidden md:inline font-mono text-[10px] sm:text-xs text-[#19D3F3]/80 tracking-wider">
+                ⚡ AUTO-SCROLLING • DRAG OR SWIPE
+              </span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handleScrollBy(-320)}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1C0509] hover:bg-[#19D3F3] hover:text-black text-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center transition-all font-mono font-bold text-sm active:translate-y-0.5 select-none"
+                  title="Scroll left"
+                  aria-label="Scroll left"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleScrollBy(320)}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1C0509] hover:bg-[#19D3F3] hover:text-black text-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center transition-all font-mono font-bold text-sm active:translate-y-0.5 select-none"
+                  title="Scroll right"
+                  aria-label="Scroll right"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Space Cards: Moving Animation Carousel for Team, Responsive Grid for Mentors & Jury */}
+        {/* Space Cards: Interactive Moving Carousel for Team, Responsive Grid for Mentors & Jury */}
         {isTeam ? (
-          <div ref={containerRef} key={activeTab} className="relative w-full overflow-hidden py-2 sm:py-4">
-            <style>{`
-              @keyframes teamSlideInfinite {
-                0% { transform: translateX(${trackStyles.startOffset}px); }
-                100% { transform: translateX(${trackStyles.startOffset - trackStyles.loopWidth}px); }
-              }
-              .anim-team-track {
-                display: flex;
-                width: max-content;
-                animation: ${trackStyles.isReady ? 'teamSlideInfinite 28s linear infinite' : 'none'};
-                transform: translateX(${trackStyles.startOffset}px);
-                will-change: transform;
-              }
-              .anim-team-track:hover {
-                animation-play-state: paused;
-              }
-            `}</style>
+          <div className="relative w-full py-2 sm:py-4">
+            {/* Subtle fade edges for cinematic marquee transition */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#140407] to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#140407] to-transparent z-10" />
 
-            {/* Continuous moving track with tripled array: Set 2 Card 0 (Prince Shaw) starts centered */}
-            <div ref={trackRef} className="anim-team-track flex items-stretch gap-5 sm:gap-7 py-2">
-              {[...currentSpace.members, ...currentSpace.members, ...currentSpace.members].map((member, idx) => {
-                const CardWrapper = member.linkedin ? 'a' : 'div';
-                return (
-                  <CardWrapper
-                    key={idx}
-                    {...(member.linkedin
-                      ? {
-                          href: member.linkedin,
-                          target: '_blank',
-                          rel: 'noopener noreferrer',
-                          title: `Open ${member.name}'s LinkedIn profile`
-                        }
-                      : {})}
-                    className={`team-card w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
-                      member.linkedin ? 'cursor-pointer' : ''
-                    }`}
-                  >
-                    {/* Photo in prominent high-impact portrait frame */}
-                    <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        width="270"
-                        height="360"
-                        className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
-                        loading="eager"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                      {member.linkedin && (
-                        <div className="absolute top-2.5 right-2.5 bg-[#0077B5] text-white p-1 rounded-md border border-black shadow-[1.5px_1.5px_0px_#000] opacity-80 group-hover:opacity-100 transition-opacity">
-                          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Member Name */}
-                    <div className="w-full text-center pb-1">
-                      <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5">
-                        <span>{member.name}</span>
+            {/* Scrollable container with mouse drag, touch swipe, trackpad wheel, and auto-scroll */}
+            <div
+              ref={containerRef}
+              key={activeTab}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUpOrLeave}
+              onMouseLeave={() => {
+                handleMouseUpOrLeave();
+                isHoveredRef.current = false;
+              }}
+              onMouseEnter={() => {
+                isHoveredRef.current = true;
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onWheel={handleWheel}
+              className="w-full overflow-x-auto select-none cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-2"
+            >
+              {/* Continuous track with tripled array: Set 2 Card 0 (Prince Shaw) starts centered */}
+              <div ref={trackRef} className="flex items-stretch gap-5 sm:gap-7 w-max py-2">
+                {[...currentSpace.members, ...currentSpace.members, ...currentSpace.members].map((member, idx) => {
+                  const CardWrapper = member.linkedin ? 'a' : 'div';
+                  return (
+                    <CardWrapper
+                      key={idx}
+                      {...(member.linkedin
+                        ? {
+                            href: member.linkedin,
+                            target: '_blank',
+                            rel: 'noopener noreferrer',
+                            title: `Open ${member.name}'s LinkedIn profile`,
+                            onClickCapture: (e) => {
+                              if (dragDistanceRef.current > 8) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }
+                            }
+                          }
+                        : {})}
+                      className={`team-card w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
+                        member.linkedin ? 'cursor-pointer' : ''
+                      }`}
+                    >
+                      {/* Photo in prominent high-impact portrait frame */}
+                      <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          width="270"
+                          height="360"
+                          className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
+                          loading="eager"
+                          decoding="async"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                         {member.linkedin && (
-                          <span className="text-[11px] text-[#19D3F3] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                          <div className="absolute top-2.5 right-2.5 bg-[#0077B5] text-white p-1 rounded-md border border-black shadow-[1.5px_1.5px_0px_#000] opacity-80 group-hover:opacity-100 transition-opacity">
+                            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                          </div>
                         )}
-                      </h4>
-                    </div>
-                  </CardWrapper>
-                );
-              })}
+                      </div>
+
+                      {/* Member Name */}
+                      <div className="w-full text-center pb-1">
+                        <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5">
+                          <span>{member.name}</span>
+                          {member.linkedin && (
+                            <span className="text-[11px] text-[#19D3F3] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                          )}
+                        </h4>
+                      </div>
+                    </CardWrapper>
+                  );
+                })}
+              </div>
             </div>
           </div>
         ) : (
