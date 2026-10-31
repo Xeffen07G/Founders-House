@@ -426,7 +426,8 @@ export const content = {
         members: [
           {
             name: "Prince Shaw",
-            image: "/team/prince_shaw.webp"
+            image: "/team/prince_shaw.webp",
+            linkedin: "https://www.linkedin.com/in/prince-shaw-6007a4433"
           },
           {
             name: "Anubhab Karmakar",
