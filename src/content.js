@@ -471,6 +471,11 @@ export const content = {
             name: "Shivam Gupta",
             image: "/team/shivam_gupta.webp",
             linkedin: "https://www.linkedin.com/in/shivam-gupta-693790367"
+          },
+          {
+            name: "Dipak Maji",
+            image: "/team/dipak_maji.webp",
+            linkedin: "https://www.linkedin.com/in/deepak-maji-673289435"
           }
         ]
       }
