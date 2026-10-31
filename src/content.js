@@ -483,6 +483,10 @@ export const content = {
             name: "Abhiraj Singh",
             image: "/team/abhiraj_singh.webp",
             linkedin: "https://www.linkedin.com/in/abhiraj-kumar-singh-009343448"
+          },
+          {
+            name: "Aitihya Dutta",
+            image: "/team/aitihya_dutta.webp"
           }
         ]
       }
