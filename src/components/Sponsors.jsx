@@ -44,7 +44,7 @@ export const Sponsors = () => {
                     >
                       <img
                         src={partner.logo}
-                        alt={partner.name}
+                        alt={partner.alt || partner.name}
                         className="max-h-20 sm:max-h-24 w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none"
                         loading="lazy"
                         decoding="async"

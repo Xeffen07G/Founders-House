@@ -24,12 +24,22 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="/howrah_bridge_mobile.webp" type="image/webp" media="(max-width: 768px)" />
     <link rel="preload" as="image" href="/howrah_bridge_bg.webp" type="image/webp" media="(min-width: 769px)" />
-
-    <!-- Devfolio SDK -->
-    <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
   </head>
   <body class="bg-[#0A0A0A] text-[#FFF9F2] selection:bg-[#E11D48] selection:text-[#FFFFFF]">
+    <!-- Static Devfolio verification fallback for automated web crawlers -->
+    <noscript>
+      <div 
+        class="apply-button" 
+        data-hackathon-slug="founders-house-kolkata" 
+        data-button-theme="light"
+        style="height: 44px; width: 312px"
+      ></div>
+      <a href="https://devfolio.co"><img src="/devfolio_logo.webp" alt="DEVFOLIO" /></a>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Devfolio SDK -->
+    <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
   </body>
 </html>
