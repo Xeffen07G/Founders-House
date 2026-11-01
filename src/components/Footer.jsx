@@ -43,7 +43,9 @@ export const Footer = () => {
           <ul className="flex flex-col gap-2.5 text-xs font-mono">
             <li>
               <a
-                href={`mailto:${content.event.email}`}
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=official.hultprize.tiu@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-[#FFC800] transition-colors flex items-center gap-1.5"
               >
                 <span>✉</span>

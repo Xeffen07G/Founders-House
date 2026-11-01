@@ -465,7 +465,7 @@ export const Squad = () => {
         </div>
 
         <a
-          href="mailto:official.hultprize.tiu@gmail.com?subject=Founders%20House%20-%20Mentor%20%2F%20Jury%20%2F%20Team%20Inquiry"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=official.hultprize.tiu@gmail.com&su=Founders%20House%20-%20Mentor%20%2F%20Jury%20%2F%20Team%20Inquiry"
           target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-3 rounded-full bg-[#FFC800] hover:bg-[#FFE600] text-black font-poppins font-extrabold text-xs sm:text-sm border-2 border-black shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 active:translate-y-0 transition-all whitespace-nowrap flex-shrink-0"
