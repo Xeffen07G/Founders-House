@@ -321,7 +321,7 @@ export const Squad = () => {
                       </div>
 
                       {/* Member Name */}
-                      <div className="w-full text-center pb-1 min-h-[50px] flex items-center justify-center px-1">
+                      <div className="w-full text-center mt-auto pt-2 pb-1.5 flex items-end justify-center px-1">
                         <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#19D3F3] transition-colors text-center">
                           <span className="inline">{member.name}</span>
                           {member.linkedin && (
@@ -336,7 +336,7 @@ export const Squad = () => {
             </div>
           </div>
         ) : currentSpace.members ? (
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 py-4">
+          <div className="flex flex-wrap justify-center items-stretch gap-6 sm:gap-8 py-4">
             {currentSpace.members.map((member, idx) => {
               const CardWrapper = member.linkedin ? 'a' : 'div';
               return (
@@ -376,7 +376,7 @@ export const Squad = () => {
                   </div>
 
                   {/* Member Name */}
-                  <div className="w-full text-center pb-1 min-h-[50px] flex items-center justify-center px-1">
+                  <div className="w-full text-center mt-auto pt-2 pb-1.5 flex items-end justify-center px-1">
                     <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#FFC800] transition-colors text-center">
                       <span className="inline">{member.name}</span>
                       {member.linkedin && (
