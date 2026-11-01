@@ -400,6 +400,11 @@ export const content = {
             name: "Saptarshi Roychowdhury",
             image: "/mentors/saptarshi_roychowdhury.webp",
             linkedin: "https://www.linkedin.com/in/saptarshi-roychowdhury-tech-innovator/"
+          },
+          {
+            name: "Tanushree Sarkar",
+            image: "/mentors/tanushree_sarkar.webp",
+            linkedin: "https://www.linkedin.com/in/tanushree-sarkar-45baa1384/"
           }
         ]
       },
