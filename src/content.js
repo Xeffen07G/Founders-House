@@ -613,10 +613,6 @@ export const content = {
         a: "Bring your laptops, chargers, extension cords, personal toiletries, and builder energy. We take care of high speed WiFi, beds, snacks, and tea."
       },
       {
-        q: "What happens if our team isn't shortlisted among the Top 10?",
-        a: "You'll still receive full access to our online mentor masterclasses, partner credit perks, and an open invite to the Sunday Demo Day audience gallery."
-      },
-      {
         q: "Which languages can our final pitch be in?",
         a: "English, Hindi, or Bengali. Your deck slides should be in English for pan India and international jury members."
       }
