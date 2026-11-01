@@ -41,29 +41,25 @@
       </section>
     </noscript>
 
-    <!-- Devfolio automated bot verification container -->
+    <!-- Devfolio automated bot verification container (off-screen so it never flashes to users on reload) -->
     <div 
-      class="apply-button" 
-      data-hackathon-slug="founders-house-kolkata" 
-      data-button-theme="light"
-      style="position: absolute; width: 312px; height: 44px; left: -9999px; top: -9999px; overflow: hidden; pointer-events: none;"
+      style="position: absolute; width: 1px; height: 1px; left: -9999px; top: -9999px; overflow: hidden; pointer-events: none;"
       aria-hidden="true"
-    ></div>
-
-    <div id="root">
-      <!-- Prerendered content for automated verification crawlers & SEO bots -->
-      <section id="sponsors" class="sponsors">
-        <div 
-          class="apply-button" 
-          data-hackathon-slug="founders-house-kolkata" 
-          data-button-theme="light"
-          style="height: 44px; width: 312px"
-        ></div>
+    >
+      <div 
+        class="apply-button" 
+        data-hackathon-slug="founders-house-kolkata" 
+        data-button-theme="light"
+        style="height: 44px; width: 312px"
+      ></div>
+      <section id="sponsors-crawler" class="sponsors">
         <a href="https://devfolio.co" target="_blank" rel="noopener noreferrer">
-          <img src="/devfolio_logo.png" alt="DEVFOLIO LOGO" width="312" height="44" />
+          <img src="/devfolio_logo.png" alt="DEVFOLIO LOGO" />
         </a>
       </section>
     </div>
+
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- Devfolio SDK -->
     <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
