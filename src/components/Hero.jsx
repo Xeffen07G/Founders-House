@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Decoupled critical links to prevent bundling the full below-the-fold content into above-the-fold JS
-const APPLY_LINK = '#apply';
+const APPLY_LINK = 'https://founders-house-kolkata.devfolio.co/';
 const INSTAGRAM_LINK = 'https://www.instagram.com/hustlers_tiu/';
 const GOOGLE_CALENDAR_LINK = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Founders%27%20House%20%7C%20Kolkata%20Hackathon&dates=20261218T033000Z/20261220T123000Z&details=Kolkata%27s%20most%20relentless%2072%20hour%20startup%20sprint%20at%20AIC%20Techno%20(Offbeat%20CCU).%20Build%20real%20products%2C%20pitch%20to%20venture%20syndicates.&location=AIC%20Techno%2C%20Offbeat%20CCU%2C%2036F%20Topsia%20Road%2C%20Kolkata%20700039";
 
@@ -34,6 +34,22 @@ export const Hero = () => {
     };
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Initialize Devfolio SDK
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      try {
+        document.body.removeChild(script);
+      } catch (e) {
+        // Ignored if already removed
+      }
+    };
   }, []);
 
   return (
@@ -113,25 +129,20 @@ export const Hero = () => {
           </span>
         </a>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href={APPLY_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[#E11D48] hover:bg-[#BE123C] text-white font-poppins font-extrabold text-sm py-3 px-8 rounded-full border-2 border-black shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
-          >
-            <span>REGISTER NOW</span>
-            <span className="text-xs bg-black text-[#FFC800] px-2 py-0.5 rounded-full font-mono">
-              ₹0 ENTRY
-            </span>
-          </a>
+        {/* CTA Buttons (Devfolio Apply Button & Community) */}
+        <div id="apply" className="flex flex-wrap items-center justify-center gap-4 scroll-mt-24">
+          <div 
+            className="apply-button shadow-[4px_4px_0px_#000] rounded-lg overflow-hidden flex-shrink-0" 
+            data-hackathon-slug="founders-house-kolkata" 
+            data-button-theme="light"
+            style={{ height: '44px', width: '312px' }}
+          ></div>
 
           <a
             href={INSTAGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white font-poppins font-bold text-sm py-3 px-8 rounded-full border-2 border-white shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
+            className="inline-flex items-center justify-center gap-2 bg-[#1C0509]/80 backdrop-blur-md hover:bg-white/10 text-white font-poppins font-bold text-sm h-[44px] px-8 rounded-lg border-2 border-white/80 shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
           >
             JOIN COMMUNITY ↗
           </a>
