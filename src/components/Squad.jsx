@@ -300,7 +300,7 @@ export const Squad = () => {
                       }`}
                     >
                       {/* Photo in prominent high-impact portrait frame */}
-                      <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                      <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-2 sm:mb-3 bg-[#120205]">
                         <img
                           src={member.image}
                           alt={member.name}
@@ -321,7 +321,7 @@ export const Squad = () => {
                       </div>
 
                       {/* Member Name */}
-                      <div className="w-full text-center mt-auto pt-2 pb-1.5 flex items-end justify-center px-1">
+                      <div className="w-full flex-1 flex items-center justify-center py-2 px-1">
                         <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#19D3F3] transition-colors text-center">
                           <span className="inline">{member.name}</span>
                           {member.linkedin && (
@@ -355,7 +355,7 @@ export const Squad = () => {
                   }`}
                 >
                   {/* Photo in prominent high-impact portrait frame */}
-                  <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                  <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-2 sm:mb-3 bg-[#120205]">
                     <img
                       src={member.image}
                       alt={member.name}
@@ -376,7 +376,7 @@ export const Squad = () => {
                   </div>
 
                   {/* Member Name */}
-                  <div className="w-full text-center mt-auto pt-2 pb-1.5 flex items-end justify-center px-1">
+                  <div className="w-full flex-1 flex items-center justify-center py-2 px-1">
                     <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#FFC800] transition-colors text-center">
                       <span className="inline">{member.name}</span>
                       {member.linkedin && (
