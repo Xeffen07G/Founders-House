@@ -548,6 +548,12 @@ export const content = {
             subtitle: "National Impact & Ecosystem Partner",
             logo: "/ef_hult_prize_india_logo.webp",
             url: "https://www.hultprize.org"
+          },
+          {
+            name: "Devfolio",
+            subtitle: "Hackathon & Platform Partner",
+            logo: "/devfolio_logo.webp",
+            url: "https://devfolio.co"
           }
         ]
       },
