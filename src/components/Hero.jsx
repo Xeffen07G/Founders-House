@@ -36,22 +36,6 @@ export const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Initialize Devfolio SDK
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      try {
-        document.body.removeChild(script);
-      } catch (e) {
-        // Ignored if already removed
-      }
-    };
-  }, []);
-
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-between items-center pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 overflow-hidden">
       {/* Invisible spacer balancing the fixed top navbar to keep the middle block dead-center */}
@@ -131,25 +115,22 @@ export const Hero = () => {
 
         {/* CTA Buttons (Devfolio Apply Button & Community) */}
         <div id="apply" className="flex flex-wrap items-center justify-center gap-4 scroll-mt-24">
-          <div 
-            className="apply-button flex-shrink-0" 
-            data-hackathon-slug="founders-house-kolkata" 
-            data-button-theme="light"
-            style={{ height: '44px', width: '312px' }}
+          <a
+            href={APPLY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Apply with Devfolio"
+            className="w-[312px] max-w-full h-[44px] bg-[#3770FF] hover:bg-[#2053D5] text-white font-poppins font-bold text-sm sm:text-base rounded-lg border-2 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center gap-2.5 transition-all hover:translate-x-0.5 hover:-translate-y-0.5 active:scale-95 select-none flex-shrink-0"
           >
-            <a
-              href="https://founders-house-kolkata.devfolio.co/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full h-full bg-white hover:bg-[#F2F4F7] text-[#273339] font-poppins font-bold text-sm sm:text-base rounded-lg border-2 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] active:scale-95 select-none"
-            >
-              <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.5 4H12C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20H4.5V4Z" fill="#3770FF"/>
-                <path d="M4.5 12.5H12C16.1421 12.5 19.5 15.8579 19.5 20H4.5V12.5Z" fill="#2053D5"/>
-              </svg>
-              <span className="font-extrabold text-[#273339] tracking-wide">Apply with Devfolio</span>
-            </a>
-          </div>
+            <img
+              src="/devfolio_white_mark@2x.png"
+              alt="Devfolio"
+              className="w-5 h-5 object-contain flex-shrink-0"
+              width="20"
+              height="20"
+            />
+            <span className="font-bold text-white tracking-wide">Apply with Devfolio</span>
+          </a>
 
           <a
             href={INSTAGRAM_LINK}
