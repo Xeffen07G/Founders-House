@@ -63,7 +63,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
               alt="Founders' House Kolkata Edition 1.0"
               width="833"
               height="833"
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
+              className="h-14 sm:h-[70px] md:h-20 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
               loading="eager"
             />
           </a>
