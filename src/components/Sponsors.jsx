@@ -84,7 +84,7 @@ export const Sponsors = () => {
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=official.hultprize.tiu@gmail.com&su=Partnership%20Inquiry%20-%20Founders%20House"
+              href="https://mail.google.com/mail/?extsrc=mailto&url=mailto:official.hultprize.tiu@gmail.com?subject=Partnership%20Inquiry%20-%20Founders%20House"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#FFC800] border-2 border-black text-black font-bebas text-base tracking-wider hover:bg-[#FFE600] shadow-[3px_3px_0px_#000] transition-all"
@@ -93,7 +93,7 @@ export const Sponsors = () => {
             </a>
 
             <a
-              href={content.sponsors.hud.brochureUrl || "https://mail.google.com/mail/?view=cm&fs=1&to=official.hultprize.tiu@gmail.com&su=Sponsorship%20Brochure%20Request%20-%20Founders%20House"}
+              href={content.sponsors.hud.brochureUrl || "https://mail.google.com/mail/?extsrc=mailto&url=mailto:official.hultprize.tiu@gmail.com?subject=Sponsorship%20Brochure%20Request%20-%20Founders%20House"}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#120205] border-2 border-white/20 text-white font-bebas text-base tracking-wider hover:border-[#E11D48] transition-all"

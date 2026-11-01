@@ -565,7 +565,7 @@ export const content = {
       desc: "Partner with Eastern India's most focused residential builder hackathon. Reach 500+ student applicants and the top 10 venture teams.",
       ctaPartner: "INITIATE PARTNERSHIP",
       ctaDeck: "SPONSORSHIP BROCHURE",
-      brochureUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=official.hultprize.tiu@gmail.com&su=Sponsorship%20Brochure%20Request%20-%20Founders%20House"
+      brochureUrl: "https://mail.google.com/mail/?extsrc=mailto&url=mailto:official.hultprize.tiu@gmail.com?subject=Sponsorship%20Brochure%20Request%20-%20Founders%20House"
     }
   },
 
