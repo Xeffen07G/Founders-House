@@ -37,12 +37,9 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between items-center pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 overflow-hidden">
-      {/* Invisible spacer balancing the fixed top navbar to keep the middle block dead-center */}
-      <div className="hidden sm:block h-6 sm:h-10" aria-hidden="true" />
-
-      {/* 1. MIDDLE BLOCK: FOUNDERS' HOUSE & KOLKATA (Placed in the exact middle of the screen) */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center my-auto">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center pt-16 sm:pt-20 pb-12 sm:pb-16 px-4 overflow-hidden">
+      {/* 1. MIDDLE BLOCK: FOUNDERS' HOUSE & KOLKATA */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center -translate-y-3 sm:-translate-y-6">
         {/* Huge Convergence-style BEBAS NEUE Title in Kolkata Red & Pure White */}
         <div className="relative mb-1 sm:mb-2 inline-block">
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-bebas uppercase tracking-wide text-[#FFFFFF] select-none drop-shadow-[5px_5px_0px_#000000] leading-[0.9]">
@@ -68,8 +65,8 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* 2. LOWER BLOCK: Countdown Timer & CTA Buttons (Brought down lower on the page) */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-end mt-8 sm:mt-12">
+      {/* 2. LOWER BLOCK: Countdown Timer & CTA Buttons */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center mt-4 sm:mt-6 -translate-y-3 sm:-translate-y-6">
         {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) - Clickable to Add to Google Calendar */}
         <a
           href={GOOGLE_CALENDAR_LINK}
