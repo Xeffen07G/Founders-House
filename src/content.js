@@ -552,9 +552,9 @@ export const content = {
           {
             name: "Devfolio",
             subtitle: "Hackathon & Platform Partner",
-            logo: "/devfolio_logo.webp",
+            logo: "/devfolio_logo.png",
             url: "https://devfolio.co",
-            alt: "DEVFOLIO"
+            alt: "Devfolio"
           }
         ]
       },

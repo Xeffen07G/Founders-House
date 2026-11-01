@@ -34,7 +34,11 @@
         data-button-theme="light"
         style="height: 44px; width: 312px"
       ></div>
-      <a href="https://devfolio.co"><img src="/devfolio_logo.webp" alt="DEVFOLIO" /></a>
+      <section id="sponsors-noscript" class="sponsors">
+        <a href="https://devfolio.co" target="_blank" rel="noopener noreferrer">
+          <img src="/devfolio_logo.png" alt="Devfolio" />
+        </a>
+      </section>
     </noscript>
 
     <!-- Devfolio automated bot verification container -->
@@ -46,7 +50,20 @@
       aria-hidden="true"
     ></div>
 
-    <div id="root"></div>
+    <div id="root">
+      <!-- Prerendered content for automated verification crawlers & SEO bots -->
+      <section id="sponsors" class="sponsors">
+        <div 
+          class="apply-button" 
+          data-hackathon-slug="founders-house-kolkata" 
+          data-button-theme="light"
+          style="height: 44px; width: 312px"
+        ></div>
+        <a href="https://devfolio.co" target="_blank" rel="noopener noreferrer">
+          <img src="/devfolio_logo.png" alt="Devfolio" width="312" height="44" />
+        </a>
+      </section>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- Devfolio SDK -->
     <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
