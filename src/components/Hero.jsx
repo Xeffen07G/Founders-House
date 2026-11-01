@@ -132,17 +132,30 @@ export const Hero = () => {
         {/* CTA Buttons (Devfolio Apply Button & Community) */}
         <div id="apply" className="flex flex-wrap items-center justify-center gap-4 scroll-mt-24">
           <div 
-            className="apply-button shadow-[4px_4px_0px_#000] rounded-lg overflow-hidden flex-shrink-0" 
+            className="apply-button flex-shrink-0" 
             data-hackathon-slug="founders-house-kolkata" 
             data-button-theme="light"
             style={{ height: '44px', width: '312px' }}
-          ></div>
+          >
+            <a
+              href="https://founders-house-kolkata.devfolio.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-full bg-white hover:bg-[#F2F4F7] text-[#273339] font-poppins font-bold text-sm sm:text-base rounded-lg border-2 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] active:scale-95 select-none"
+            >
+              <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.5 4H12C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20H4.5V4Z" fill="#3770FF"/>
+                <path d="M4.5 12.5H12C16.1421 12.5 19.5 15.8579 19.5 20H4.5V12.5Z" fill="#2053D5"/>
+              </svg>
+              <span className="font-extrabold text-[#273339] tracking-wide">Apply with Devfolio</span>
+            </a>
+          </div>
 
           <a
             href={INSTAGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[#1C0509]/80 backdrop-blur-md hover:bg-white/10 text-white font-poppins font-bold text-sm h-[44px] px-8 rounded-lg border-2 border-white/80 shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all"
+            className="inline-flex items-center justify-center gap-2 bg-[#1C0509]/80 backdrop-blur-md hover:bg-white/10 text-white font-poppins font-bold text-sm h-[44px] px-8 rounded-lg border-2 border-white/80 shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:-translate-y-0.5 transition-all flex-shrink-0"
           >
             JOIN COMMUNITY ↗
           </a>
