@@ -51,7 +51,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
       <div className="relative max-w-7xl mx-auto flex items-center justify-between">
         
         {/* 1. BRAND / LOGO (Floating Transparent, No Box) */}
-        <div className="pointer-events-auto flex items-center">
+        <div className="pointer-events-auto flex items-center translate-x-2 sm:translate-x-3 translate-y-1.5 sm:translate-y-2">
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
