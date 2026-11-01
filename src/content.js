@@ -395,6 +395,11 @@ export const content = {
             name: "Aritra Bose",
             image: "/mentors/aritra_bose.webp",
             linkedin: "https://www.linkedin.com/in/aritra-bose-/"
+          },
+          {
+            name: "Saptarshi Roychowdhury",
+            image: "/mentors/saptarshi_roychowdhury.webp",
+            linkedin: "https://www.linkedin.com/in/saptarshi-roychowdhury-tech-innovator/"
           }
         ]
       },
