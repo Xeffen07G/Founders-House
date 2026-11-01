@@ -51,11 +51,11 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
       <div className="relative max-w-7xl mx-auto flex items-center justify-between">
         
         {/* 1. BRAND / LOGO (Floating Transparent, No Box) */}
-        <div className="pointer-events-auto -my-2 sm:-my-3">
+        <div className="pointer-events-auto flex items-center">
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="inline-block transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none"
+            className="inline-flex items-center transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none"
             title="Founders' House Kolkata Edition 1.0"
           >
             <img
@@ -63,14 +63,14 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
               alt="Founders' House Kolkata Edition 1.0"
               width="833"
               height="833"
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
+              className="h-16 sm:h-20 md:h-24 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
               loading="eager"
             />
           </a>
         </div>
 
         {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
-        <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
+        <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
