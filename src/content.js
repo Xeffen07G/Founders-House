@@ -390,13 +390,12 @@ export const content = {
         desc: "Veteran tech architects, serial founders, and domain specialists stationed on-site at AIC Techno to unblock squads around the clock.",
         color: "text-[#FFC800]",
         borderColor: "border-[#FFC800]",
-        dossiers: [
-          { code: "DOSSIER #M1", domain: "GenAI & LLM Architecture", tag: "AI / ML" },
-          { code: "DOSSIER #M2", domain: "Full-Stack & Cloud Systems", tag: "INFRA" },
-          { code: "DOSSIER #M3", domain: "Fintech & Regulatory Ops", tag: "FINTECH" },
-          { code: "DOSSIER #M4", domain: "Product Growth & UX Grit", tag: "PRODUCT" },
-          { code: "DOSSIER #M5", domain: "DeepTech & Hardware Labs", tag: "HARDWARE" },
-          { code: "DOSSIER #M6", domain: "Venture GTM & Pitch Craft", tag: "STRATEGY" }
+        members: [
+          {
+            name: "Aritra Bose",
+            image: "/mentors/aritra_bose.webp",
+            linkedin: "https://www.linkedin.com/in/aritra-bose-/"
+          }
         ]
       },
       jury: {

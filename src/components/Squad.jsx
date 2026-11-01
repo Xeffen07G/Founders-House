@@ -335,9 +335,62 @@ export const Squad = () => {
               </div>
             </div>
           </div>
+        ) : currentSpace.members ? (
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 py-4">
+            {currentSpace.members.map((member, idx) => {
+              const CardWrapper = member.linkedin ? 'a' : 'div';
+              return (
+                <CardWrapper
+                  key={idx}
+                  {...(member.linkedin
+                    ? {
+                        href: member.linkedin,
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                        title: `Open ${member.name}'s LinkedIn profile`
+                      }
+                    : {})}
+                  className={`w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#FFC800] transition-all duration-300 hover:-translate-y-2 select-none ${
+                    member.linkedin ? 'cursor-pointer' : ''
+                  }`}
+                >
+                  {/* Photo in prominent high-impact portrait frame */}
+                  <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-4 bg-[#120205]">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      width="270"
+                      height="360"
+                      className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                    {member.linkedin && (
+                      <div className="absolute top-2.5 right-2.5 bg-[#0077B5] text-white p-1 rounded-md border border-black shadow-[1.5px_1.5px_0px_#000] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Member Name */}
+                  <div className="w-full text-center pb-1">
+                    <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#FFC800] transition-colors whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5">
+                      <span>{member.name}</span>
+                      {member.linkedin && (
+                        <span className="text-[11px] text-[#FFC800] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                      )}
+                    </h4>
+                  </div>
+                </CardWrapper>
+              );
+            })}
+          </div>
         ) : (
           <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
-            {currentSpace.dossiers.map((dossier, idx) => (
+            {currentSpace.dossiers?.map((dossier, idx) => (
               <div
                 key={idx}
                 className={`p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[4px_4px_0px_#000] text-center flex flex-col items-center justify-between min-h-[260px] sm:min-h-[280px] relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-1`}
