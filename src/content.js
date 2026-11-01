@@ -554,7 +554,7 @@ export const content = {
             subtitle: "Hackathon & Platform Partner",
             logo: "/devfolio_logo.png",
             url: "https://devfolio.co",
-            alt: "Devfolio"
+            alt: "DEVFOLIO LOGO"
           }
         ]
       },
