@@ -295,7 +295,7 @@ export const Squad = () => {
                             }
                           }
                         : {})}
-                      className={`team-card w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
+                      className={`team-card w-[240px] sm:w-[280px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
                         member.linkedin ? 'cursor-pointer' : ''
                       }`}
                     >
@@ -304,8 +304,8 @@ export const Squad = () => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          width="270"
-                          height="360"
+                          width="280"
+                          height="373"
                           className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
                           loading="eager"
                           decoding="async"
@@ -321,11 +321,11 @@ export const Squad = () => {
                       </div>
 
                       {/* Member Name */}
-                      <div className="w-full text-center pb-1">
-                        <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#19D3F3] transition-colors whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5">
-                          <span>{member.name}</span>
+                      <div className="w-full text-center pb-1 min-h-[50px] flex items-center justify-center px-1">
+                        <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#19D3F3] transition-colors text-center">
+                          <span className="inline">{member.name}</span>
                           {member.linkedin && (
-                            <span className="text-[11px] text-[#19D3F3] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                            <span className="text-[11px] text-[#19D3F3] opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle">↗</span>
                           )}
                         </h4>
                       </div>
@@ -350,7 +350,7 @@ export const Squad = () => {
                         title: `Open ${member.name}'s LinkedIn profile`
                       }
                     : {})}
-                  className={`w-[230px] sm:w-[270px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#FFC800] transition-all duration-300 hover:-translate-y-2 select-none ${
+                  className={`w-[240px] sm:w-[280px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#FFC800] transition-all duration-300 hover:-translate-y-2 select-none ${
                     member.linkedin ? 'cursor-pointer' : ''
                   }`}
                 >
@@ -359,8 +359,8 @@ export const Squad = () => {
                     <img
                       src={member.image}
                       alt={member.name}
-                      width="270"
-                      height="360"
+                      width="280"
+                      height="373"
                       className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
                       loading="eager"
                       decoding="async"
@@ -376,11 +376,11 @@ export const Squad = () => {
                   </div>
 
                   {/* Member Name */}
-                  <div className="w-full text-center pb-1">
-                    <h4 className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide group-hover:text-[#FFC800] transition-colors whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center gap-1.5">
-                      <span>{member.name}</span>
+                  <div className="w-full text-center pb-1 min-h-[50px] flex items-center justify-center px-1">
+                    <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#FFC800] transition-colors text-center">
+                      <span className="inline">{member.name}</span>
                       {member.linkedin && (
-                        <span className="text-[11px] text-[#FFC800] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                        <span className="text-[11px] text-[#FFC800] opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle">↗</span>
                       )}
                     </h4>
                   </div>
