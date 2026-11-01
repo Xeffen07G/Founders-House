@@ -50,20 +50,20 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
     <nav className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 pointer-events-none">
       <div className="relative max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* 1. ISOLATED BRAND / LOGO CAPSULE (Left) */}
-        <div className="pointer-events-auto">
+        {/* 1. BRAND / LOGO (Floating Transparent, No Box) */}
+        <div className="pointer-events-auto -my-2 sm:-my-3">
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="inline-flex items-center bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-3 py-1.5 shadow-[4px_4px_0px_#000] hover:border-[#FFC800] hover:shadow-[5px_5px_0px_#FFC800] transition-all group"
+            className="inline-block transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none"
             title="Founders' House Kolkata Edition 1.0"
           >
             <img
               src="/founders_house_logo.webp"
-              alt="Founders' House Kolkata"
+              alt="Founders' House Kolkata Edition 1.0"
               width="833"
               height="833"
-              className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
+              className="h-14 sm:h-16 md:h-20 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
               loading="eager"
             />
           </a>
