@@ -100,8 +100,8 @@ export const Squad = () => {
           }
 
           const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
-          // Silk-smooth auto-scroll speed: 38px/sec
-          const pxPerSecond = 38;
+          // Auto-scroll speed: 65px/sec for brisk, lively marquee movement
+          const pxPerSecond = 65;
 
           if (!isInteractingRef.current && !isHoveredRef.current && !isMouseDownRef.current) {
             scrollAccumulatorRef.current += pxPerSecond * dt;
