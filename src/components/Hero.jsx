@@ -66,7 +66,7 @@ export const Hero = () => {
       </div>
 
       {/* 2. LOWER BLOCK: Countdown Timer & CTA Buttons */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center mt-4 sm:mt-6 -translate-y-3 sm:-translate-y-6">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center flex flex-col items-center justify-center mt-6 sm:mt-8 translate-y-1 sm:translate-y-2">
         {/* Live Countdown Timer in Red, White & Gold with tabular-nums (Zero CLS) - Clickable to Add to Google Calendar */}
         <a
           href={GOOGLE_CALENDAR_LINK}
