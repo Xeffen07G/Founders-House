@@ -93,7 +93,8 @@ export const Sponsors = () => {
             </a>
 
             <a
-              href={content.sponsors.hud.brochureUrl || "https://mail.google.com/mail/?extsrc=mailto&url=mailto:official.hultprize.tiu@gmail.com?subject=Sponsorship%20Brochure%20Request%20-%20Founders%20House"}
+              href={content.sponsors.hud.brochureUrl || "/Founders_House_Sponsorship_Brochure.pdf"}
+              download="Founders_House_Sponsorship_Brochure.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#120205] border-2 border-white/20 text-white font-bebas text-base tracking-wider hover:border-[#E11D48] transition-all"
