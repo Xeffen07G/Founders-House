@@ -46,7 +46,7 @@ export const FeludaArmchairCartoon = ({
         {/* Bottom Banner inside the frame */}
         <div className="px-4 py-2.5 bg-[#120205] border-t-2 border-black flex items-center justify-center">
           <span className="font-mono text-[10px] text-white/70 font-bold uppercase tracking-wider">
-            21 RAJANI SEN ROAD · BALI
+            21 RAJANI SEN ROAD
           </span>
         </div>
       </div>
