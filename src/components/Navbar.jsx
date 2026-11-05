@@ -116,21 +116,21 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
 
   const navLinkClass = (id) => {
     const isActive = activeSection === id;
-    return `px-2 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 flex-shrink-0 whitespace-nowrap border ${
+    return `text-xs font-mono font-bold tracking-wider inline-block transition-all duration-200 flex-shrink-0 whitespace-nowrap ${
       isActive
-        ? 'text-[#FFC800] bg-[#FFC800]/15 border-[#FFC800]/40 shadow-[0_0_8px_rgba(255,200,0,0.25)]'
-        : 'text-[#FFF9F2]/75 hover:text-[#FFC800] hover:bg-white/5 border-transparent'
+        ? 'text-[#FFC800] scale-110 drop-shadow-[0_0_8px_rgba(255,200,0,0.85)]'
+        : 'text-[#FFF9F2]/65 hover:text-[#FFC800] hover:scale-105'
     }`;
   };
 
   const mobileLinkClass = (id, hasBorder = true) => {
     const isActive = activeSection === id;
-    return `text-sm font-mono font-bold py-1.5 px-3 rounded-lg transition-all flex items-center justify-between ${
+    return `text-sm font-mono font-bold py-1.5 px-1 transition-all flex items-center justify-between ${
       hasBorder ? 'border-b border-white/10' : ''
     } ${
       isActive
-        ? 'text-[#FFC800] bg-[#FFC800]/15 border-l-2 border-l-[#FFC800]'
-        : 'text-white hover:text-[#FFC800]'
+        ? 'text-[#FFC800] translate-x-1 drop-shadow-[0_0_6px_rgba(255,200,0,0.7)]'
+        : 'text-white/80 hover:text-[#FFC800]'
     }`;
   };
 
@@ -158,7 +158,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         </div>
 
         {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
-        <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center gap-3.5 xl:gap-5 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-5 xl:px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
+        <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
