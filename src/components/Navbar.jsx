@@ -153,8 +153,8 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
             <img
               src="/header_partners_light.webp"
               alt="AIC Techno, Techno India University, Hult Prize TIU"
-              width="927"
-              height="154"
+              width="748"
+              height="127"
               className="h-6 xl:h-7 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
               loading="eager"
             />
@@ -167,8 +167,8 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
             <img
               src="/header_partners_light.webp"
               alt="AIC Techno, Techno India University, Hult Prize TIU"
-              width="927"
-              height="154"
+              width="748"
+              height="127"
               className="h-5 w-auto object-contain"
             />
           </div>
@@ -264,8 +264,8 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
               <img
                 src="/header_partners_light.webp"
                 alt="AIC Techno, Techno India University, Hult Prize TIU"
-                width="927"
-                height="154"
+                width="748"
+                height="127"
                 className="h-5 w-auto object-contain"
               />
             </div>
