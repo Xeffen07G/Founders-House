@@ -1,7 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  // Scrollspy: accurately highlights the section currently in view "just a lil bit"
+  useEffect(() => {
+    if (currentRoute !== 'home') {
+      setActiveSection('');
+      return;
+    }
+
+    const sectionIds = ['venue', 'about', 'tracks', 'route', 'awards', 'team', 'sponsors', 'faq'];
+
+    const updateActiveSection = () => {
+      // If at or near top of page (hero), clear highlight
+      if (window.scrollY < 180) {
+        setActiveSection('');
+        return;
+      }
+
+      // If at bottom of page, highlight FAQ
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isAtBottom) {
+        setActiveSection('faq');
+        return;
+      }
+
+      // Check sections from top trigger offset
+      const triggerY = 220;
+      let matched = '';
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerY && rect.bottom > triggerY) {
+            matched = id;
+            break;
+          }
+        }
+      }
+
+      // Fallback: choose the last section that passed the trigger
+      if (!matched) {
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sectionIds[i]);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= triggerY) {
+              matched = sectionIds[i];
+              break;
+            }
+          }
+        }
+      }
+
+      setActiveSection(matched);
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    return () => window.removeEventListener('scroll', updateActiveSection);
+  }, [currentRoute]);
 
   const handleLinkClick = (e, targetHash) => {
     if (e && e.preventDefault) e.preventDefault();
@@ -12,7 +73,16 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
       window.location.hash = '#/scoreboard';
       if (onNavigate) onNavigate('scoreboard');
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      setActiveSection('');
       return;
+    }
+
+    // Immediate active highlight feedback for clicked section
+    const targetId = targetHash.replace(/^#/, '');
+    if (targetId && targetId !== 'hero' && targetId !== '/') {
+      setActiveSection(targetId);
+    } else {
+      setActiveSection('');
     }
 
     // 2. Navigating from Scoreboard back to Landing Page
@@ -23,7 +93,6 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         return;
       }
-      const targetId = targetHash.replace(/^#/, '');
       setTimeout(() => {
         const el = document.getElementById(targetId);
         if (el) {
@@ -39,11 +108,30 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
       return;
     }
 
-    const targetId = targetHash.replace(/^#/, '');
     const el = document.getElementById(targetId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const navLinkClass = (id) => {
+    const isActive = activeSection === id;
+    return `px-2 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 flex-shrink-0 whitespace-nowrap border ${
+      isActive
+        ? 'text-[#FFC800] bg-[#FFC800]/15 border-[#FFC800]/40 shadow-[0_0_8px_rgba(255,200,0,0.25)]'
+        : 'text-[#FFF9F2]/75 hover:text-[#FFC800] hover:bg-white/5 border-transparent'
+    }`;
+  };
+
+  const mobileLinkClass = (id, hasBorder = true) => {
+    const isActive = activeSection === id;
+    return `text-sm font-mono font-bold py-1.5 px-3 rounded-lg transition-all flex items-center justify-between ${
+      hasBorder ? 'border-b border-white/10' : ''
+    } ${
+      isActive
+        ? 'text-[#FFC800] bg-[#FFC800]/15 border-l-2 border-l-[#FFC800]'
+        : 'text-white hover:text-[#FFC800]'
+    }`;
   };
 
   return (
@@ -70,32 +158,32 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         </div>
 
         {/* 2. ISOLATED NAVIGATION OPTIONS CAPSULE (Dead-Center in the Middle) */}
-        <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center gap-5 sm:gap-6 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
+        <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center gap-3.5 xl:gap-5 bg-[#1C0509]/80 backdrop-blur-xl border-2 border-black rounded-full px-5 xl:px-6 py-2 shadow-[4px_4px_0px_#000] flex-nowrap whitespace-nowrap">
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('venue')}
           >
             VENUE
           </a>
           <a
             href="#about"
             onClick={(e) => handleLinkClick(e, '#about')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('about')}
           >
             ABOUT
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleLinkClick(e, '#tracks')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('tracks')}
           >
             TRACKS
           </a>
           <a
             href="#route"
             onClick={(e) => handleLinkClick(e, '#route')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('route')}
           >
             TIMELINE
           </a>
@@ -117,28 +205,28 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           <a
             href="#awards"
             onClick={(e) => handleLinkClick(e, '#awards')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('awards')}
           >
             PRIZES
           </a>
           <a
             href="#team"
             onClick={(e) => handleLinkClick(e, '#team')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('team')}
           >
             TEAM
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleLinkClick(e, '#sponsors')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('sponsors')}
           >
             SPONSORS
           </a>
           <a
             href="#faq"
             onClick={(e) => handleLinkClick(e, '#faq')}
-            className="text-xs font-mono font-bold tracking-wider text-[#FFF9F2]/80 hover:text-[#FFC800] transition-colors flex-shrink-0 whitespace-nowrap"
+            className={navLinkClass('faq')}
           >
             FAQ
           </a>
@@ -195,30 +283,30 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           <a
             href="#venue"
             onClick={(e) => handleLinkClick(e, '#venue')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('venue')}
           >
-            📍 VENUE (OFFBEAT CCU)
+            <span>📍 VENUE (OFFBEAT CCU)</span>
           </a>
           <a
             href="#about"
             onClick={(e) => handleLinkClick(e, '#about')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('about')}
           >
-            🕵️‍♂️ ABOUT & FELUDA ADDABAZI
+            <span>🕵️‍♂️ ABOUT & FELUDA ADDABAZI</span>
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleLinkClick(e, '#tracks')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('tracks')}
           >
-            🎯 MISSION TRACKS
+            <span>🎯 MISSION TRACKS</span>
           </a>
           <a
             href="#route"
             onClick={(e) => handleLinkClick(e, '#route')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('route')}
           >
-            🚊 TIMELINE & TRAM ROUTE
+            <span>🚊 TIMELINE & TRAM ROUTE</span>
           </a>
           <a
             href="#/scoreboard"
@@ -231,30 +319,30 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
           <a
             href="#awards"
             onClick={(e) => handleLinkClick(e, '#awards')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('awards')}
           >
-            🏆 PRIZES & GRANTS
+            <span>🏆 PRIZES & GRANTS</span>
           </a>
           <a
             href="#team"
             onClick={(e) => handleLinkClick(e, '#team')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('team')}
           >
-            👥 MEET THE TEAM & JURY
+            <span>👥 MEET THE TEAM & JURY</span>
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleLinkClick(e, '#sponsors')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1 border-b border-white/10"
+            className={mobileLinkClass('sponsors')}
           >
-            🤝 SPONSORS
+            <span>🤝 SPONSORS</span>
           </a>
           <a
             href="#faq"
             onClick={(e) => handleLinkClick(e, '#faq')}
-            className="text-sm font-mono font-bold text-white hover:text-[#FFC800] py-1"
+            className={mobileLinkClass('faq', false)}
           >
-            ❓ FAQ
+            <span>❓ FAQ</span>
           </a>
 
           {/* Official Partners Capsule inside Drawer */}

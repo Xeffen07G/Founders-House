@@ -3,7 +3,7 @@ import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const FAQ = () => {
-  const [openIdx, setOpenIdx] = useState(0);
+  const [openIdx, setOpenIdx] = useState(null);
 
   const toggle = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
