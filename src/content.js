@@ -558,7 +558,20 @@ export const content = {
           }
         ]
       },
-      { name: "BRONZE & COMMUNITY", count: 6, partners: [], color: "border-neonLime text-neonLime" }
+      {
+        name: "BRONZE & COMMUNITY",
+        count: 6,
+        color: "border-neonLime text-neonLime",
+        partners: [
+          {
+            name: "ElevenLabs",
+            subtitle: "Voice AI & Audio Partner",
+            logo: "/elevenlabs_logo.png",
+            url: "https://elevenlabs.io",
+            alt: "ELEVENLABS LOGO"
+          }
+        ]
+      }
     ],
     hud: {
       title: "WANT YOUR LOGO HERE?",

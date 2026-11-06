@@ -41,13 +41,13 @@ export const Sponsors = () => {
                       rel={partner.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       title={`Visit ${partner.name}`}
                       data-sponsor={partner.name}
-                      className="h-28 sm:h-32 rounded-xl bg-white border-2 border-black flex items-center justify-center p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden select-none"
+                      className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24 sm:h-28'} rounded-xl bg-white border-2 border-black flex items-center justify-center p-3 sm:p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden select-none`}
                     >
                       <img
                         src={partner.logo}
                         alt={partner.alt || partner.name}
                         title={partner.name}
-                        className="max-h-20 sm:max-h-24 w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none"
+                        className={`${tIdx === 0 ? 'max-h-20 sm:max-h-24' : 'max-h-14 sm:max-h-16'} w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none`}
                         loading="eager"
                         decoding="async"
                       />
@@ -57,7 +57,7 @@ export const Sponsors = () => {
                 return (
                   <div
                     key={sIdx}
-                    className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24'} rounded-xl bg-[#120205] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-[#FFC800] transition-colors`}
+                    className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24 sm:h-28'} rounded-xl bg-[#120205] border border-white/10 flex items-center justify-center p-3 text-center group hover:border-[#FFC800] transition-colors`}
                   >
                     <span className="font-mono text-[11px] text-white/50 font-bold uppercase group-hover:text-[#FFC800]">
                       PARTNER SLOT #{sIdx + 1}
