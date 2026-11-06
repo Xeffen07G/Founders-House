@@ -17,16 +17,18 @@ export const Squad = () => {
   const scrollAccumulatorRef = useRef(0);
   const resumeTimeoutRef = useRef(null);
 
-  // Preload team member photos so they render instantly with zero network delay or flashing
+  // Preload team and delegate member photos so they render instantly with zero network delay or flashing
   useEffect(() => {
-    if (content.squad?.spaces?.team?.members) {
-      content.squad.spaces.team.members.forEach((m) => {
-        if (m.image) {
-          const img = new Image();
-          img.src = m.image;
-        }
-      });
-    }
+    const allMembers = [
+      ...(content.squad?.spaces?.mentors?.members || []),
+      ...(content.squad?.spaces?.team?.members || [])
+    ];
+    allMembers.forEach((m) => {
+      if (m.image) {
+        const img = new Image();
+        img.src = m.image;
+      }
+    });
   }, []);
 
   const currentSpace = 
@@ -39,10 +41,11 @@ export const Squad = () => {
   const isMentors = currentSpace.id === "mentors";
   const isJury = currentSpace.id === "jury";
   const isTeam = currentSpace.id === "team";
+  const hasCarousel = Boolean(currentSpace.members);
 
-  // Center the 1st photo directly in the middle of the screen when Organizing Team is clicked/viewed
+  // Center the 1st photo directly in the middle of the screen when Carousel space is clicked/viewed
   useEffect(() => {
-    if (!isTeam) return;
+    if (!hasCarousel) return;
 
     const measureAndCenter = () => {
       const container = containerRef.current;
@@ -72,11 +75,11 @@ export const Squad = () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', measureAndCenter);
     };
-  }, [isTeam, activeTab]);
+  }, [hasCarousel, activeTab]);
 
   // Infinite Auto-Scroll with seamless boundary wrapping
   useEffect(() => {
-    if (!isTeam) return;
+    if (!hasCarousel) return;
 
     let rafId;
     let lastTime = performance.now();
@@ -123,7 +126,7 @@ export const Squad = () => {
       cancelAnimationFrame(rafId);
       if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     };
-  }, [isTeam, activeTab]);
+  }, [hasCarousel, activeTab]);
 
   // Mouse Drag Handlers for manual scroll
   const handleMouseDown = (e) => {
@@ -248,8 +251,8 @@ export const Squad = () => {
           </h3>
         </div>
 
-        {/* Space Cards: Interactive Moving Carousel for Team, Responsive Grid for Mentors & Jury */}
-        {isTeam ? (
+        {/* Space Cards: Interactive Moving Carousel for Delegate & Team, Responsive Grid for Jury */}
+        {hasCarousel ? (
           <div className="relative w-full py-2 sm:py-4">
             {/* Subtle fade edges for cinematic marquee transition */}
             <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#140407] to-transparent z-10" />
@@ -274,7 +277,7 @@ export const Squad = () => {
               onWheel={handleWheel}
               className="w-full overflow-x-auto select-none cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-2"
             >
-              {/* Continuous track with tripled array: Set 2 Card 0 (Prince Shaw) starts centered */}
+              {/* Continuous track with tripled array: Set 2 Card 0 starts centered */}
               <div ref={trackRef} className="flex items-stretch gap-5 sm:gap-7 w-max py-2">
                 {[...currentSpace.members, ...currentSpace.members, ...currentSpace.members].map((member, idx) => {
                   const CardWrapper = member.linkedin ? 'a' : 'div';
@@ -295,7 +298,7 @@ export const Squad = () => {
                             }
                           }
                         : {})}
-                      className={`team-card w-[240px] sm:w-[280px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#19D3F3] transition-all duration-300 hover:-translate-y-2 select-none ${
+                      className={`team-card w-[240px] sm:w-[280px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group ${glowBorder} transition-all duration-300 hover:-translate-y-2 select-none ${
                         member.linkedin ? 'cursor-pointer' : ''
                       }`}
                     >
@@ -320,78 +323,27 @@ export const Squad = () => {
                         )}
                       </div>
 
-                      {/* Member Name */}
-                      <div className="w-full flex-1 flex items-center justify-center py-2 px-1">
-                        <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#19D3F3] transition-colors text-center">
-                          <span className="inline">{member.name}</span>
+                      {/* Member Name & Role */}
+                      <div className="w-full flex-1 flex flex-col items-center justify-center py-2 px-1">
+                        <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight transition-colors text-center">
+                          <span className={`inline ${isMentors ? 'group-hover:text-[#FFC800]' : 'group-hover:text-[#19D3F3]'}`}>
+                            {member.name}
+                          </span>
                           {member.linkedin && (
-                            <span className="text-[11px] text-[#19D3F3] opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle">↗</span>
+                            <span className={`text-[11px] ${isMentors ? 'text-[#FFC800]' : 'text-[#19D3F3]'} opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle`}>↗</span>
                           )}
                         </h4>
+                        {member.role && (
+                          <p className="font-mono text-xs sm:text-sm font-bold text-[#FFC800] tracking-wider uppercase mt-1">
+                            {member.role}
+                          </p>
+                        )}
                       </div>
                     </CardWrapper>
                   );
                 })}
               </div>
             </div>
-          </div>
-        ) : currentSpace.members ? (
-          <div className="flex flex-wrap justify-center items-stretch gap-6 sm:gap-8 py-4">
-            {currentSpace.members.map((member, idx) => {
-              const CardWrapper = member.linkedin ? 'a' : 'div';
-              return (
-                <CardWrapper
-                  key={idx}
-                  {...(member.linkedin
-                    ? {
-                        href: member.linkedin,
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                        title: `Open ${member.name}'s LinkedIn profile`
-                      }
-                    : {})}
-                  className={`w-[240px] sm:w-[280px] flex-shrink-0 p-4 sm:p-5 rounded-2xl bg-[#1C0509] border-2 border-black shadow-[5px_5px_0px_#000] text-center flex flex-col items-center justify-between relative overflow-hidden group hover:border-[#FFC800] transition-all duration-300 hover:-translate-y-2 select-none ${
-                    member.linkedin ? 'cursor-pointer' : ''
-                  }`}
-                >
-                  {/* Photo in prominent high-impact portrait frame */}
-                  <div className="w-full relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-black shadow-[3px_3px_0px_#000] mb-2 sm:mb-3 bg-[#120205]">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      width="280"
-                      height="373"
-                      className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
-                      loading="eager"
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                    {member.linkedin && (
-                      <div className="absolute top-2.5 right-2.5 bg-[#0077B5] text-white p-1 rounded-md border border-black shadow-[1.5px_1.5px_0px_#000] opacity-80 group-hover:opacity-100 transition-opacity">
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Member Name & Role */}
-                  <div className="w-full flex-1 flex flex-col items-center justify-center py-2 px-1">
-                    <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#FFC800] transition-colors text-center">
-                      <span className="inline">{member.name}</span>
-                      {member.linkedin && (
-                        <span className="text-[11px] text-[#FFC800] opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle">↗</span>
-                      )}
-                    </h4>
-                    {member.role && (
-                      <p className="font-mono text-xs sm:text-sm font-bold text-[#FFC800] tracking-wider uppercase mt-1">
-                        {member.role}
-                      </p>
-                    )}
-                  </div>
-                </CardWrapper>
-              );
-            })}
           </div>
         ) : (
           <div className={`grid grid-cols-2 sm:grid-cols-3 ${isJury ? 'lg:grid-cols-5' : 'lg:grid-cols-6'} gap-4 sm:gap-6`}>
