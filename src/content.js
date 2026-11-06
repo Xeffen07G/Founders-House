@@ -586,7 +586,7 @@ export const content = {
         partners: [
           {
             name: "ElevenLabs",
-            subtitle: "CREDITS PARTNER",
+            subtitle: "INNOVATION PARTNER",
             displaySubtitle: true,
             logo: "/elevenlabs_logo.png",
             url: "https://elevenlabs.io/?utm_source=google&utm_medium=cpc&utm_campaign=india_brandsearch_brand_english&utm_id=23815345372&utm_term=11labs&utm_content=brand_-_11labs&gad_source=1&gad_campaignid=23815345372&gclid=CjwKCAiAkrbXBhB2EiwA2y1E3rzX8PvmAvFhJDm6GYBOqgGjzo725vY6ko3fVdMIorotCmMCA440NxoC4SkQAvD_BwE",
