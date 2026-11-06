@@ -380,11 +380,11 @@ export const content = {
     headingLine1: "MEET THE",
     headingLine2: "TEAM.",
     desc: "The minds shaping Founders' House — domain mentors challenging assumptions, venture jury evaluating investment readiness, and the core organizing squad making it all happen.",
-    tabs: ["MENTORS", "JURY", "ORGANIZING TEAM"],
+    tabs: ["DELEGATE", "JURY", "ORGANIZING TEAM"],
     spaces: {
       mentors: {
         id: "mentors",
-        title: "MENTOR SQUAD",
+        title: "DELEGATE",
         tag: "24/7 TECHNICAL & DOMAIN GUIDES",
         icon: "🎓",
         desc: "Veteran tech architects, serial founders, and domain specialists stationed on-site at AIC Techno to unblock squads around the clock.",
@@ -393,16 +393,19 @@ export const content = {
         members: [
           {
             name: "Aritra Bose",
+            role: "Mentor",
             image: "/mentors/aritra_bose.webp",
             linkedin: "https://www.linkedin.com/in/aritra-bose-/"
           },
           {
             name: "Saptarshi Roychowdhury",
+            role: "Mentor",
             image: "/mentors/saptarshi_roychowdhury.webp",
             linkedin: "https://www.linkedin.com/in/saptarshi-roychowdhury-tech-innovator/"
           },
           {
             name: "Tanushree Sarkar",
+            role: "Mentor",
             image: "/mentors/tanushree_sarkar.webp",
             linkedin: "https://www.linkedin.com/in/tanushree-sarkar-45baa1384/"
           }

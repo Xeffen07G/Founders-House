@@ -3,7 +3,7 @@ import { content } from '../content';
 import { SectionHeader } from './SectionHeader';
 
 export const Squad = () => {
-  const [activeTab, setActiveTab] = useState("MENTORS");
+  const [activeTab, setActiveTab] = useState(content.squad?.tabs?.[0] || "DELEGATE");
   const containerRef = useRef(null);
   const trackRef = useRef(null);
 
@@ -218,7 +218,7 @@ export const Squad = () => {
                   : 'bg-[#1C0509] text-white/75 border-black hover:text-white hover:bg-[#2A080E] hover:-translate-y-0.5'
               }`}
             >
-              {tab === "MENTORS" && <span>🎓</span>}
+              {(tab === "DELEGATE" || tab === "DELEGATES" || tab === "MENTORS") && <span>🎓</span>}
               {tab === "JURY" && <span>⚖️</span>}
               {tab === "ORGANIZING TEAM" && <span>⚡</span>}
               <span>{tab}</span>
@@ -375,14 +375,19 @@ export const Squad = () => {
                     )}
                   </div>
 
-                  {/* Member Name */}
-                  <div className="w-full flex-1 flex items-center justify-center py-2 px-1">
+                  {/* Member Name & Role */}
+                  <div className="w-full flex-1 flex flex-col items-center justify-center py-2 px-1">
                     <h4 className="font-poppins font-extrabold text-sm sm:text-lg text-white leading-snug tracking-tight group-hover:text-[#FFC800] transition-colors text-center">
                       <span className="inline">{member.name}</span>
                       {member.linkedin && (
                         <span className="text-[11px] text-[#FFC800] opacity-0 group-hover:opacity-100 transition-opacity ml-1 inline-block align-middle">↗</span>
                       )}
                     </h4>
+                    {member.role && (
+                      <p className="font-mono text-xs sm:text-sm font-bold text-[#FFC800] tracking-wider uppercase mt-1">
+                        {member.role}
+                      </p>
+                    )}
                   </div>
                 </CardWrapper>
               );
