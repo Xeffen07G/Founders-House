@@ -41,16 +41,21 @@ export const Sponsors = () => {
                       rel={partner.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       title={`Visit ${partner.name}`}
                       data-sponsor={partner.name}
-                      className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24 sm:h-28'} rounded-xl bg-white border-2 border-black flex items-center justify-center p-3 sm:p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden select-none`}
+                      className={`${tIdx === 0 ? 'h-28 sm:h-32' : 'h-24 sm:h-28'} rounded-xl bg-white border-2 border-black flex flex-col items-center justify-center p-3 sm:p-4 text-center group hover:border-[#FFC800] hover:scale-[1.02] shadow-[4px_4px_0px_#000] hover:shadow-[5px_5px_0px_#FFC800] transition-all cursor-pointer overflow-hidden select-none`}
                     >
                       <img
                         src={partner.logo}
                         alt={partner.alt || partner.name}
                         title={partner.name}
-                        className={`${tIdx === 0 ? 'max-h-20 sm:max-h-24' : 'max-h-14 sm:max-h-16'} w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none`}
+                        className={`${tIdx === 0 ? 'max-h-20 sm:max-h-24' : partner.displaySubtitle ? 'max-h-9 sm:max-h-11' : 'max-h-14 sm:max-h-16'} w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none`}
                         loading="eager"
                         decoding="async"
                       />
+                      {partner.displaySubtitle && partner.subtitle && (
+                        <span className="mt-1.5 text-[10px] sm:text-[11px] font-mono font-extrabold uppercase tracking-wider text-black/75 group-hover:text-black transition-colors leading-none">
+                          {partner.subtitle}
+                        </span>
+                      )}
                     </a>
                   );
                 }
