@@ -392,6 +392,12 @@ export const content = {
         borderColor: "border-[#FFC800]",
         members: [
           {
+            name: "Ishan Ghosh",
+            role: "Advisor",
+            image: "/mentors/ishan_ghosh.webp",
+            linkedin: "https://www.linkedin.com/in/ishan-ghosh-a78732220/"
+          },
+          {
             name: "Aritra Bose",
             role: "Mentor",
             image: "/mentors/aritra_bose.webp",
