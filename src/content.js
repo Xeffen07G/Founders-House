@@ -392,6 +392,18 @@ export const content = {
         borderColor: "border-[#FFC800]",
         members: [
           {
+            name: "Meghdut RoyChowdhury",
+            role: "Chief Patron",
+            image: "/mentors/meghdut_roychowdhury.webp",
+            linkedin: "https://www.linkedin.com/in/meghdutroychowdhury/"
+          },
+          {
+            name: "Pauline Laravoire",
+            role: "Chief Patron",
+            image: "/mentors/pauline_laravoire.webp",
+            linkedin: "https://www.linkedin.com/in/paulinelaravoire/"
+          },
+          {
             name: "Ishan Ghosh",
             role: "Advisor",
             image: "/mentors/ishan_ghosh.webp",
