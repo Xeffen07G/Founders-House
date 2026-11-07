@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://founders-house-neon.vercel.app/sitemap.xml
