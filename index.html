@@ -27,6 +27,48 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="/howrah_bridge_mobile.webp" type="image/webp" media="(max-width: 768px)" />
     <link rel="preload" as="image" href="/howrah_bridge_bg.webp" type="image/webp" media="(min-width: 769px)" />
+
+    <!-- Event Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Founders' House Kolkata",
+      "description": "A 72-hour residential startup hackathon where 10 elite student teams build production MVPs, validate with real users, and pitch live to top investors and mentors. Free to apply.",
+      "startDate": "2026-12-18",
+      "endDate": "2026-12-20",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "AIC Techno (Atal Incubation Centre), OFFBeat CCU",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "36F Topsia Road",
+          "addressLocality": "Kolkata",
+          "addressRegion": "West Bengal",
+          "postalCode": "700039",
+          "addressCountry": "IN"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Hult Prize at Techno India University",
+        "url": "https://www.technoindiauniversity.ai"
+      },
+      "url": "https://founders-house-neon.vercel.app/",
+      "image": "https://founders-house-neon.vercel.app/howrah_bridge_bg.webp",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2026-11-01",
+        "url": "https://founders-house-neon.vercel.app/#apply"
+      }
+    }
+    </script>
   </head>
   <body class="bg-[#0A0A0A] text-[#FFF9F2] selection:bg-[#E11D48] selection:text-[#FFFFFF]">
     <!-- Static Devfolio verification fallback for automated web crawlers -->
@@ -62,7 +104,42 @@
       </section>
     </div>
 
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static SEO fallback: real text for crawlers. React replaces this on load. -->
+      <header style="max-width:800px;margin:0 auto;padding:40px 20px;font-family:system-ui,sans-serif;color:#FFF9F2;">
+        <h1>Founders' House Kolkata: 72-Hour Residential Startup Hackathon</h1>
+        <p><strong>18 to 20 December 2026</strong> · AIC Techno (Atal Incubation Centre), OFFBeat CCU, 36F Topsia Road, Kolkata, West Bengal 700039</p>
+        <p>Founders' House is a 72-hour residential startup hackathon where 10 elite student teams build production MVPs, validate with real users, and pitch live to top investors and mentors. Free to apply. Open to students across India. Teams of 3 to 5 members.</p>
+        <p>Organised by Hult Prize at Techno India University, in collaboration with AIC Techno (supported by Atal Innovation Mission, NITI Aayog).</p>
+
+        <h2>Mission Tracks</h2>
+        <ul>
+          <li><strong>Social Innovation &amp; Social Business</strong> — Circular economy, water security, healthcare accessibility, rural supply chains, and green urban mobility.</li>
+          <li><strong>Emerging Tech: AI, CS &amp; IT, Cyber &amp; EdTech</strong> — Agentic workflows, voice synthesis, decentralized security, and next-gen developer tooling.</li>
+          <li><strong>Media, Entertainment &amp; Creative Design</strong> — Spatial audio, generative storytelling, creator monetization, gaming universes, and Indic content.</li>
+        </ul>
+
+        <h2>Prize Pool</h2>
+        <p>₹50,00,000+ in Seed Access, Incubation &amp; Cloud Credits</p>
+
+        <h2>Timeline</h2>
+        <ul>
+          <li>Applications open now — Deadline: 30 November 2026</li>
+          <li>Day 1 (18 Dec): Opening Ceremony, Founder Talks, Classified Problem Reveal, Sprint Kickoff</li>
+          <li>Day 2 (19 Dec): Business Model Canvas Sprint, MVP Deep Build, Mentor Office Hours, Investor Deck Workshop</li>
+          <li>Day 3 (20 Dec): Final Presentations, Investor Pitch Panel, Awards Ceremony</li>
+        </ul>
+
+        <h2>Sponsors &amp; Partners</h2>
+        <p>Gold Partners: AIC Techno, Techno India University &amp; School of the Future, EF Hult Prize</p>
+        <p>Silver Partners: EF Hult Prize India, Devfolio</p>
+        <p>Bronze &amp; Community: ElevenLabs (Innovation Partner), Eventopia (Media Partner)</p>
+
+        <h2>Contact</h2>
+        <p>Email: official.hultprize.tiu@gmail.com</p>
+        <p><a href="https://founders-house-neon.vercel.app/">Visit Founders' House Kolkata</a></p>
+      </header>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- Devfolio SDK -->
     <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
