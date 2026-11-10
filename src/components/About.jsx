@@ -33,7 +33,7 @@ export const About = () => {
             </h3>
 
             <p className="font-poppins text-sm sm:text-base text-white/90 leading-relaxed mb-4">
-              Eastern India's most relentless <strong className="text-[#FFC800]">national-level</strong> 72-hour startup sprint. 10 elite founder squads selected from universities across India live on site at <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, crack raw mentor problems, build production MVPs, and pitch live to venture syndicates.
+              Kolkata's most relentless <strong className="text-[#FFC800]">national-level</strong> 72-hour startup sprint. 10 elite founder squads selected from universities across India live on site at <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, crack raw mentor problems, build production MVPs, and pitch live to venture syndicates.
             </p>
 
             <p className="font-poppins text-xs sm:text-sm text-white/70 leading-relaxed">
