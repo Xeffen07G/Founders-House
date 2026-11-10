@@ -58,10 +58,10 @@ export const content = {
     pill: "THE ORIGIN STORY",
     headingLine1: "MORE THAN A HACKATHON.",
     headingLine2: "KOLKATA LEVEL HUSTLE.",
-    desc: "Most hackathons end with slides that gather dust. Founders' House is an undercover startup incubator disguised as a 72 hour sprint, born from the same restless adda spirit that powered the Bengal Renaissance. Teams live on site, receive raw mystery problem statements directly from domain mentors, validate with real users on the street, and pitch to active venture syndicates. This is Kolkata's builder energy, the city that gave the world Bose's radio, Ray's cinema, and Tagore's verse, channeled into venture grade code.",
+    desc: "Most hackathons end with slides that gather dust. Founders' House is a national-level undercover startup incubator disguised as a 72 hour sprint, born from the same restless adda spirit that powered the Bengal Renaissance. Elite student squads selected from across India live on site, receive raw mystery problem statements directly from domain mentors, validate with real users on the street, and pitch to active venture syndicates. This is Kolkata's builder energy, the city that gave the world Bose's radio, Ray's cinema, and Tagore's verse, channeled into venture grade code.",
     stats: [
       { val: "3", label: "DAYS LOCKED IN" },
-      { val: "10", label: "ELITE TEAMS" },
+      { val: "10", label: "NATIONAL FINALISTS" },
       { val: "3", label: "MISSION TRACKS" },
       { val: "₹0", label: "TO APPLY & LIVE" }
     ],

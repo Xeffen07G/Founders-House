@@ -21,10 +21,15 @@ export const About = () => {
           
           {/* Narrative Comic Card */}
           <div className="comic-card p-6 sm:p-8 bg-[#1C0509] border-2 border-black shadow-[6px_6px_0px_#000]">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-xl">☕</span>
-              <span className="font-bebas text-sm sm:text-base tracking-[0.2em] text-[#FFC800] uppercase">
-                THE 72 HOUR RESIDENTIAL PHILOSOPHY
+            <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">☕</span>
+                <span className="font-bebas text-sm sm:text-base tracking-[0.2em] text-[#FFC800] uppercase">
+                  THE 72 HOUR RESIDENTIAL PHILOSOPHY
+                </span>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-[#E11D48]/25 border border-[#E11D48] text-[#FFC800] font-mono text-[10px] sm:text-xs font-black tracking-widest uppercase shadow-[2px_2px_0px_#000]">
+                ✦ NATIONAL LEVEL SPRINT
               </span>
             </div>
             
@@ -33,11 +38,11 @@ export const About = () => {
             </h3>
 
             <p className="font-poppins text-sm sm:text-base text-white/90 leading-relaxed mb-4">
-              Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, crack raw mentor problems, build real products, and pitch live to venture syndicates.
+              Eastern India's most relentless <strong className="text-[#FFC800]">national-level</strong> 72-hour startup sprint. 10 elite founder squads selected from universities across India live on site at <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, crack raw mentor problems, build production MVPs, and pitch live to venture syndicates.
             </p>
 
             <p className="font-poppins text-xs sm:text-sm text-white/70 leading-relaxed">
-              Organized by <strong className="text-[#FFC800]">Hult Prize at TIU</strong> and hosted at the state of the art incubation hub <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, this is not a sleep deprived gimmick. It is an incubator grade gauntlet for founders who want to build companies that last.
+              Organized by <strong className="text-[#FFC800]">Hult Prize at TIU</strong> and hosted at the state of the art incubation hub <strong className="text-[#E11D48]">AIC Techno (Offbeat CCU)</strong>, this is not a sleep deprived gimmick. It is a national incubator-grade gauntlet for founders who want to build companies that last.
             </p>
           </div>
 
