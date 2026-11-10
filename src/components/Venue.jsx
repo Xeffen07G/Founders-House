@@ -76,12 +76,12 @@ export const Venue = () => {
             }
 
             /* Staggered non-overlapping traffic (14s cycle, 3.5s phase intervals: 0%, 25%, 50%, 75%) */
-            .anim-traffic-south-1 { animation: trafficSouthbound 14s linear infinite; animation-delay: 0s; }
-            .anim-traffic-south-2 { animation: trafficSouthbound 14s linear infinite; animation-delay: -7s; }
-            .anim-traffic-north-1 { animation: trafficNorthbound 14s linear infinite; animation-delay: -3.5s; }
-            .anim-traffic-north-2 { animation: trafficNorthbound 14s linear infinite; animation-delay: -10.5s; }
-            .anim-lake-shimmer { animation: lakeWaterShimmer 3.5s ease-in-out infinite; }
-            .anim-rooftop-lights { animation: cafeRooftopBlink 2s ease-in-out infinite; }
+            .anim-traffic-south-1 { animation: trafficSouthbound 14s linear infinite; animation-delay: 0s; will-change: transform; }
+            .anim-traffic-south-2 { animation: trafficSouthbound 14s linear infinite; animation-delay: -7s; will-change: transform; }
+            .anim-traffic-north-1 { animation: trafficNorthbound 14s linear infinite; animation-delay: -3.5s; will-change: transform; }
+            .anim-traffic-north-2 { animation: trafficNorthbound 14s linear infinite; animation-delay: -10.5s; will-change: transform; }
+            .anim-lake-shimmer { animation: lakeWaterShimmer 3.5s ease-in-out infinite; will-change: opacity; }
+            .anim-rooftop-lights { animation: cafeRooftopBlink 2s ease-in-out infinite; will-change: opacity; }
           `}</style>
 
           {/* 3D Isometric SVG Canvas */}

@@ -52,7 +52,7 @@ export const Sponsors = () => {
                           alt={partner.alt || partner.name}
                           title={partner.name}
                           className={`${tIdx === 0 ? 'max-h-20 sm:max-h-24' : 'max-h-14 sm:max-h-16'} w-auto max-w-full object-contain filter group-hover:contrast-115 transition-all pointer-events-none`}
-                          loading="eager"
+                          loading="lazy"
                           decoding="async"
                         />
                       </div>

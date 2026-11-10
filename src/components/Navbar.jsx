@@ -4,7 +4,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  // Scrollspy: accurately highlights the section currently in view "just a lil bit"
+  // Scrollspy: accurately highlights the section currently in view with zero lag
   useEffect(() => {
     if (currentRoute !== 'home') {
       setActiveSection('');
@@ -12,18 +12,26 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
     }
 
     const sectionIds = ['venue', 'about', 'tracks', 'route', 'awards', 'team', 'sponsors', 'faq'];
+    let ticking = false;
+    let lastMatched = '';
 
     const updateActiveSection = () => {
       // If at or near top of page (hero), clear highlight
       if (window.scrollY < 180) {
-        setActiveSection('');
+        if (lastMatched !== '') {
+          lastMatched = '';
+          setActiveSection('');
+        }
         return;
       }
 
       // If at bottom of page, highlight FAQ
       const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
       if (isAtBottom) {
-        setActiveSection('faq');
+        if (lastMatched !== 'faq') {
+          lastMatched = 'faq';
+          setActiveSection('faq');
+        }
         return;
       }
 
@@ -56,12 +64,25 @@ export const Navbar = ({ currentRoute = 'home', onNavigate }) => {
         }
       }
 
-      setActiveSection(matched);
+      if (matched !== lastMatched) {
+        lastMatched = matched;
+        setActiveSection(matched);
+      }
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     updateActiveSection();
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
-    return () => window.removeEventListener('scroll', updateActiveSection);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [currentRoute]);
 
   const handleLinkClick = (e, targetHash) => {

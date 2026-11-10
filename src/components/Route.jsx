@@ -166,37 +166,61 @@ export const Route = () => {
     };
   }, []);
 
-  // Scroll listener to drive the cartoon tram/train along the curvy track
+  // Scroll listener to drive the cartoon tram/train along the curvy track with high-efficiency rAF
   useEffect(() => {
+    let ticking = false;
+    let prevProgress = -1;
+    let cachedTotalLength = null;
+
     const handleScroll = () => {
-      if (!containerRef.current || !pathRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          ticking = false;
+          if (!containerRef.current || !pathRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
 
-      // Start when route section enters middle of screen, finish as it exits
-      const totalTravel = rect.height;
-      const currentScroll = windowHeight * 0.65 - rect.top;
-      const progress = Math.max(0, Math.min(1, currentScroll / totalTravel));
+          // If completely off-screen, skip expensive SVG path computations
+          if (rect.bottom < -100 || rect.top > windowHeight + 100) {
+            return;
+          }
 
-      const totalLength = pathRef.current.getTotalLength();
-      if (!totalLength || isNaN(totalLength) || totalLength <= 0) return;
+          // Start when route section enters middle of screen, finish as it exits
+          const totalTravel = rect.height;
+          const currentScroll = windowHeight * 0.65 - rect.top;
+          const progress = Math.max(0, Math.min(1, currentScroll / totalTravel));
 
-      const currentDist = progress * totalLength;
-      const pt = pathRef.current.getPointAtLength(currentDist);
+          // If progress delta is negligible, skip re-rendering
+          if (Math.abs(progress - prevProgress) < 0.002) {
+            return;
+          }
+          prevProgress = progress;
 
-      // Tangent for rotation angle
-      const delta = 4;
-      const ptAhead = pathRef.current.getPointAtLength(Math.min(currentDist + delta, totalLength));
-      const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
+          if (cachedTotalLength === null) {
+            const tl = pathRef.current.getTotalLength();
+            if (!tl || isNaN(tl) || tl <= 0) return;
+            cachedTotalLength = tl;
+          }
 
-      setTrainState({ x: pt.x, y: pt.y, angle, progress });
+          const currentDist = progress * cachedTotalLength;
+          const pt = pathRef.current.getPointAtLength(currentDist);
 
-      // Automatically highlight active station based on train progress
-      const stationIndex = Math.min(
-        stops.length - 1,
-        Math.floor(progress * stops.length * 1.05)
-      );
-      setActiveStopIdx(stationIndex);
+          // Tangent for rotation angle
+          const delta = 4;
+          const ptAhead = pathRef.current.getPointAtLength(Math.min(currentDist + delta, cachedTotalLength));
+          const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
+
+          setTrainState({ x: pt.x, y: pt.y, angle, progress });
+
+          // Automatically highlight active station based on train progress
+          const stationIndex = Math.min(
+            stops.length - 1,
+            Math.floor(progress * stops.length * 1.05)
+          );
+          setActiveStopIdx((curr) => curr !== stationIndex ? stationIndex : curr);
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

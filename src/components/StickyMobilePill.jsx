@@ -7,12 +7,20 @@ export const StickyMobilePill = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    let isVisible = false;
+
     const handleScroll = () => {
-      // Reveal once user scrolls past the main hero title (~320px)
-      if (window.scrollY > 320) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const shouldBeVisible = window.scrollY > 320;
+          if (shouldBeVisible !== isVisible) {
+            isVisible = shouldBeVisible;
+            setVisible(shouldBeVisible);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

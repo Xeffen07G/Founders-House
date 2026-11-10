@@ -17,20 +17,6 @@ export const Squad = () => {
   const scrollAccumulatorRef = useRef(0);
   const resumeTimeoutRef = useRef(null);
 
-  // Preload team and delegate member photos so they render instantly with zero network delay or flashing
-  useEffect(() => {
-    const allMembers = [
-      ...(content.squad?.spaces?.mentors?.members || []),
-      ...(content.squad?.spaces?.team?.members || [])
-    ];
-    allMembers.forEach((m) => {
-      if (m.image) {
-        const img = new Image();
-        img.src = m.image;
-      }
-    });
-  }, []);
-
   const currentSpace = 
     activeTab === "JURY"
       ? content.squad.spaces.jury
@@ -77,14 +63,37 @@ export const Squad = () => {
     };
   }, [hasCarousel, activeTab]);
 
-  // Infinite Auto-Scroll with seamless boundary wrapping
+  // Infinite Auto-Scroll with seamless boundary wrapping, pausing when off-screen for maximum performance
   useEffect(() => {
     if (!hasCarousel) return;
 
     let rafId;
     let lastTime = performance.now();
+    let isVisibleOnScreen = false;
+
+    // Only run animation loop when Squad section is visible in viewport
+    let observer;
+    if (typeof IntersectionObserver !== 'undefined' && containerRef.current) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isVisibleOnScreen = entry.isIntersecting;
+          });
+        },
+        { rootMargin: '100px' }
+      );
+      observer.observe(containerRef.current);
+    } else {
+      isVisibleOnScreen = true;
+    }
 
     const loop = (currentTime) => {
+      if (!isVisibleOnScreen) {
+        lastTime = currentTime;
+        rafId = requestAnimationFrame(loop);
+        return;
+      }
+
       const container = containerRef.current;
       const track = trackRef.current;
 
@@ -124,6 +133,7 @@ export const Squad = () => {
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (observer) observer.disconnect();
       if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     };
   }, [hasCarousel, activeTab]);
@@ -310,7 +320,7 @@ export const Squad = () => {
                           width="280"
                           height="373"
                           className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-300 pointer-events-none"
-                          loading="eager"
+                          loading="lazy"
                           decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
