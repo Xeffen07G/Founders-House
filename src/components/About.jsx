@@ -21,15 +21,10 @@ export const About = () => {
           
           {/* Narrative Comic Card */}
           <div className="comic-card p-6 sm:p-8 bg-[#1C0509] border-2 border-black shadow-[6px_6px_0px_#000]">
-            <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">☕</span>
-                <span className="font-bebas text-sm sm:text-base tracking-[0.2em] text-[#FFC800] uppercase">
-                  THE 72 HOUR RESIDENTIAL PHILOSOPHY
-                </span>
-              </div>
-              <span className="px-3 py-1 rounded-full bg-[#E11D48]/25 border border-[#E11D48] text-[#FFC800] font-mono text-[10px] sm:text-xs font-black tracking-widest uppercase shadow-[2px_2px_0px_#000]">
-                ✦ NATIONAL LEVEL SPRINT
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl">☕</span>
+              <span className="font-bebas text-sm sm:text-base tracking-[0.2em] text-[#FFC800] uppercase">
+                THE 72 HOUR RESIDENTIAL PHILOSOPHY
               </span>
             </div>
             
