@@ -30,7 +30,7 @@ export const FeludaArmchairCartoon = ({
             <source type="image/webp" srcSet="/feluda_cartoon_armchair.webp" />
             <img
               src="/feluda_cartoon_armchair.jpg"
-              alt="Cartoon Feluda sitting in vintage armchair with smoking cigarette"
+              alt="Cartoon Feluda sitting in vintage armchair with a steaming cup of Kolkata chai"
               width="896"
               height="1200"
               loading="lazy"
