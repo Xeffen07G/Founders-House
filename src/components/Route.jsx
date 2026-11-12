@@ -209,9 +209,10 @@ export const Route = () => {
       }
       const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
 
+      const isFlipped = Math.abs(angle) > 90;
       tramRef.current.setAttribute(
         'transform',
-        `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)}) rotate(${angle.toFixed(2)})`
+        `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)}) rotate(${angle.toFixed(2)}) scale(1, ${isFlipped ? -1 : 1})`
       );
 
       // Automatically highlight active station based on train progress (only triggers state when index changes)
@@ -453,71 +454,60 @@ export const Route = () => {
             >
               {/* Headlight Beam spreading forward onto the curvy track */}
               <polygon
-                points="20,-4 65,-18 65,18 20,4"
+                points="20,-3 50,-13 50,13 20,3"
                 fill="url(#tramHeadlight)"
-                opacity="0.85"
               />
 
               {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
-              <circle cx="-24" cy="0" r="3.5" fill="#FFFFFF" opacity="0.75" />
-              <circle cx="-33" cy="0" r="4.8" fill="#FFFFFF" opacity="0.5" />
-              <circle cx="-44" cy="0" r="6" fill="#FFFFFF" opacity="0.25" />
+              <circle cx="-22" cy="-6" r="3" fill="#FFFFFF" opacity="0.85" />
+              <circle cx="-30" cy="-10" r="4.2" fill="#FFFFFF" opacity="0.6" />
+              <circle cx="-39" cy="-14" r="5.5" fill="#FFFFFF" opacity="0.35" />
 
               {/* Tram Drop Shadow */}
               <rect
                 x="-20"
-                y="-11"
-                width="41"
-                height="22"
-                rx="5"
+                y="-10"
+                width="40"
+                height="20"
+                rx="4"
                 fill="#000000"
-                opacity="0.55"
+                opacity="0.5"
               />
 
-              {/* Steel Rail Wheels (On twin rails, perfectly hugging the track) */}
-              <circle cx="-12" cy="-9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
-              <circle cx="12" cy="-9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
-              <circle cx="-12" cy="9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
-              <circle cx="12" cy="9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
-
-              {/* Tram Main Chassis (Iconic Kolkata Streetcar Green) */}
+              {/* Tram Main Chassis (Iconic Kolkata Streetcar Green & Crimson) */}
               <rect
                 x="-19"
                 y="-10"
                 width="38"
                 height="20"
-                rx="4.5"
+                rx="4"
                 fill="#1B5E3F"
                 stroke="#000000"
-                strokeWidth="1.8"
+                strokeWidth="2"
               />
 
-              {/* Crimson Heritage Side Accent Stripes */}
-              <rect x="-18" y="-8.5" width="36" height="1.8" fill="#991B1B" />
-              <rect x="-18" y="6.7" width="36" height="1.8" fill="#991B1B" />
-
-              {/* Cream Top Vintage Carriage Roof */}
+              {/* Cream Top Vintage Carriage Half */}
               <rect
-                x="-16"
-                y="-6"
-                width="31"
-                height="12"
+                x="-19"
+                y="-10"
+                width="38"
+                height="10"
                 rx="3"
                 fill="#FFF9F2"
                 stroke="#000000"
-                strokeWidth="1.2"
+                strokeWidth="1.5"
               />
 
-              {/* Conductor Windows & Clerestory Skylights */}
-              <rect x="-13" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
-              <rect x="-6" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
-              <rect x="1" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
-              <rect x="8" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
+              {/* Overhead Trolley Pantograph Pole (reaching up to the overhead cable) */}
+              <line x1="-8" y1="-10" x2="-2" y2="-17" stroke="#000000" strokeWidth="1.5" />
+              <line x1="-2" y1="-17" x2="6" y2="-10" stroke="#000000" strokeWidth="1.5" />
+              <line x1="-6" y1="-17" x2="4" y2="-17" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
 
-              {/* Centered Overhead Trolley Pantograph Pole */}
-              <line x1="-5" y1="0" x2="-1" y2="0" stroke="#000000" strokeWidth="1.5" />
-              <circle cx="-1" cy="0" r="1.5" fill="#FFC800" />
-              <line x1="-1" y1="0" x2="-8" y2="0" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
+              {/* Conductor Windows */}
+              <rect x="-14" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="-5" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="4" y="-8" width="6" height="6" rx="1" fill="#14192C" />
+              <rect x="11" y="-8" width="5" height="6" rx="1" fill="#14192C" />
 
               {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
               <polygon
@@ -527,11 +517,14 @@ export const Route = () => {
                 strokeWidth="1.5"
               />
 
-              {/* Front Glowing Twin Headlights */}
-              <circle cx="19" cy="-3" r="2" fill="#FFC800" stroke="#000000" strokeWidth="0.8" />
-              <circle cx="19" cy="-3" r="0.8" fill="#FFFFFF" />
-              <circle cx="19" cy="3" r="2" fill="#FFC800" stroke="#000000" strokeWidth="0.8" />
-              <circle cx="19" cy="3" r="0.8" fill="#FFFFFF" />
+              {/* Front Glowing Headlight */}
+              <circle cx="19" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
+              <circle cx="19" cy="0" r="1" fill="#FFFFFF" />
+
+              {/* Steel Rail Wheels (At bottom on the rails, never on the roof) */}
+              <circle cx="-12" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="2" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
+              <circle cx="13" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
             </g>
           )}
         </svg>
