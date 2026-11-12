@@ -23,8 +23,10 @@ const ScoreboardPage = lazy(() =>
 
 export default function App() {
   const [route, setRoute] = useState(() => {
-    const hash = typeof window !== 'undefined' ? window.location.hash : '';
-    return (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard')
+    if (typeof window === 'undefined') return 'home';
+    const hash = window.location.hash;
+    const path = window.location.pathname;
+    return (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard' || path === '/scoreboard' || path === '/scoreboard/')
       ? 'scoreboard'
       : 'home';
   });
@@ -36,7 +38,8 @@ export default function App() {
     }
 
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
-    const isScoreboard = (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard');
+    const path = typeof window !== 'undefined' ? window.location.pathname : '';
+    const isScoreboard = (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard' || path === '/scoreboard' || path === '/scoreboard/');
 
     if (!isScoreboard) {
       // Clear any anchor hash so reload always opens cleanly at the top (Home)
@@ -47,11 +50,12 @@ export default function App() {
     }
   }, []);
 
-  // Handle hash navigation between routes (landing page vs scoreboard)
+  // Handle hash and popstate navigation between routes (landing page vs scoreboard)
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleRouteChange = () => {
       const hash = window.location.hash;
-      if (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard') {
+      const path = window.location.pathname;
+      if (hash === '#/scoreboard' || hash === '#/score' || hash === '#scoreboard' || path === '/scoreboard' || path === '/scoreboard/') {
         setRoute('scoreboard');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
@@ -62,8 +66,12 @@ export default function App() {
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleRouteChange);
+    window.addEventListener('popstate', handleRouteChange);
+    return () => {
+      window.removeEventListener('hashchange', handleRouteChange);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   const handleBackToBase = () => {
