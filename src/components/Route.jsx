@@ -7,11 +7,20 @@ export const Route = () => {
   const [popupStop, setPopupStop] = useState(null);
   const [pathD, setPathD] = useState('');
   const [trackPoints, setTrackPoints] = useState([]);
-  const [trainState, setTrainState] = useState({ x: 0, y: 0, angle: 90, progress: 0 });
 
   const containerRef = useRef(null);
   const pathRef = useRef(null);
+  const tramRef = useRef(null);
   const cardRefs = useRef([]);
+  const animStateRef = useRef({
+    currentProgress: 0,
+    targetProgress: 0,
+    isAnimating: false,
+    rafId: null,
+    cachedTotalLength: 0,
+    initialized: false,
+  });
+  const lastActiveStopRef = useRef(0);
 
   const stops = content.route.stops;
 
@@ -166,67 +175,117 @@ export const Route = () => {
     };
   }, []);
 
-  // Scroll listener to drive the cartoon tram/train along the curvy track with high-efficiency rAF
+  // Silky-smooth hardware-accelerated tram animation along the curvy track
+  // Programmatic damped lerp ensures that even during violent/fast scroll, the tram stays 100% on track
   useEffect(() => {
-    let ticking = false;
-    let prevProgress = -1;
-    let cachedTotalLength = null;
+    if (!pathRef.current || !containerRef.current) return;
+
+    let tl = 0;
+    try {
+      tl = pathRef.current.getTotalLength();
+    } catch {
+      tl = 0;
+    }
+    if (!tl || isNaN(tl) || tl <= 0) return;
+    animStateRef.current.cachedTotalLength = tl;
+
+    const applyTramPosition = (progress) => {
+      if (!pathRef.current || !tramRef.current) return;
+      const totalLen = animStateRef.current.cachedTotalLength;
+      if (!totalLen) return;
+
+      const currentDist = Math.max(0, Math.min(totalLen, progress * totalLen));
+      const pt = pathRef.current.getPointAtLength(currentDist);
+
+      // Smooth tangent angle calculation using 6px lookahead/behind to simulate bogie orientation
+      const delta = 6;
+      let p1, p2;
+      if (currentDist >= totalLen - delta) {
+        p1 = pathRef.current.getPointAtLength(Math.max(0, totalLen - delta));
+        p2 = pathRef.current.getPointAtLength(totalLen);
+      } else {
+        p1 = pt;
+        p2 = pathRef.current.getPointAtLength(currentDist + delta);
+      }
+      const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+
+      tramRef.current.setAttribute(
+        'transform',
+        `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)}) rotate(${angle.toFixed(2)})`
+      );
+
+      // Automatically highlight active station based on train progress (only triggers state when index changes)
+      const stationIndex = Math.min(
+        stops.length - 1,
+        Math.floor(progress * stops.length * 1.05)
+      );
+      if (stationIndex !== lastActiveStopRef.current) {
+        lastActiveStopRef.current = stationIndex;
+        setActiveStopIdx(stationIndex);
+      }
+    };
+
+    const runAnimation = () => {
+      const state = animStateRef.current;
+      const diff = state.targetProgress - state.currentProgress;
+
+      if (Math.abs(diff) < 0.0004) {
+        state.currentProgress = state.targetProgress;
+        applyTramPosition(state.currentProgress);
+        state.isAnimating = false;
+        state.rafId = null;
+        return;
+      }
+
+      // Adaptive lerp factor:
+      // When scrolling very fast (large diff), swiftly glide along the track (up to 0.28)
+      // When scrolling slowly (small diff), smooth responsive tracking (0.16)
+      const absDiff = Math.abs(diff);
+      const lerpFactor = Math.min(0.28, 0.16 + absDiff * 0.18);
+      state.currentProgress += diff * lerpFactor;
+
+      applyTramPosition(state.currentProgress);
+      state.rafId = requestAnimationFrame(runAnimation);
+    };
 
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          ticking = false;
-          if (!containerRef.current || !pathRef.current) return;
-          const rect = containerRef.current.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-          // If completely off-screen, skip expensive SVG path computations
-          if (rect.bottom < -100 || rect.top > windowHeight + 100) {
-            return;
-          }
+      // Start when route section enters middle of screen, finish as it exits
+      const totalTravel = rect.height;
+      const currentScroll = windowHeight * 0.65 - rect.top;
+      const target = Math.max(0, Math.min(1, currentScroll / totalTravel));
 
-          // Start when route section enters middle of screen, finish as it exits
-          const totalTravel = rect.height;
-          const currentScroll = windowHeight * 0.65 - rect.top;
-          const progress = Math.max(0, Math.min(1, currentScroll / totalTravel));
+      animStateRef.current.targetProgress = target;
 
-          // If progress delta is negligible, skip re-rendering
-          if (Math.abs(progress - prevProgress) < 0.002) {
-            return;
-          }
-          prevProgress = progress;
+      // On first run or mount, place tram immediately on track without animation lag
+      if (!animStateRef.current.initialized) {
+        animStateRef.current.initialized = true;
+        animStateRef.current.currentProgress = target;
+        applyTramPosition(target);
+        return;
+      }
 
-          if (cachedTotalLength === null) {
-            const tl = pathRef.current.getTotalLength();
-            if (!tl || isNaN(tl) || tl <= 0) return;
-            cachedTotalLength = tl;
-          }
-
-          const currentDist = progress * cachedTotalLength;
-          const pt = pathRef.current.getPointAtLength(currentDist);
-
-          // Tangent for rotation angle
-          const delta = 4;
-          const ptAhead = pathRef.current.getPointAtLength(Math.min(currentDist + delta, cachedTotalLength));
-          const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI);
-
-          setTrainState({ x: pt.x, y: pt.y, angle, progress });
-
-          // Automatically highlight active station based on train progress
-          const stationIndex = Math.min(
-            stops.length - 1,
-            Math.floor(progress * stops.length * 1.05)
-          );
-          setActiveStopIdx((curr) => curr !== stationIndex ? stationIndex : curr);
-        });
-        ticking = true;
+      // If animation loop is not currently running, trigger it
+      if (!animStateRef.current.isAnimating) {
+        animStateRef.current.isAnimating = true;
+        animStateRef.current.rafId = requestAnimationFrame(runAnimation);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animStateRef.current.rafId) {
+        cancelAnimationFrame(animStateRef.current.rafId);
+        animStateRef.current.rafId = null;
+      }
+      animStateRef.current.isAnimating = false;
+    };
   }, [pathD]);
 
   const openStationPopup = (stop, idx) => {
@@ -387,89 +446,94 @@ export const Route = () => {
           {/* ============================================================== */}
           {/* CARTOON KOLKATA HERITAGE TRAM / STREETCAR                      */}
           {/* ============================================================== */}
-          {pathD && (() => {
-            const isFlipped = Math.abs(trainState.angle) > 90;
-            return (
-              <g
-                transform={`translate(${trainState.x}, ${trainState.y}) rotate(${trainState.angle}) scale(1, ${isFlipped ? -1 : 1})`}
-                className="transition-transform duration-75 ease-out"
-              >
-                {/* Headlight Beam spreading forward onto the curvy track */}
-                <polygon
-                  points="20,-3 50,-13 50,13 20,3"
-                  fill="url(#tramHeadlight)"
-                />
+          {pathD && (
+            <g
+              ref={tramRef}
+              style={{ willChange: 'transform' }}
+            >
+              {/* Headlight Beam spreading forward onto the curvy track */}
+              <polygon
+                points="20,-4 65,-18 65,18 20,4"
+                fill="url(#tramHeadlight)"
+                opacity="0.85"
+              />
 
-                {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
-                <circle cx="-22" cy="-6" r="3" fill="#FFFFFF" opacity="0.85" />
-                <circle cx="-30" cy="-10" r="4.2" fill="#FFFFFF" opacity="0.6" />
-                <circle cx="-39" cy="-14" r="5.5" fill="#FFFFFF" opacity="0.35" />
+              {/* Cartoon Steam Puffs Drifting from Locomotive Exhaust */}
+              <circle cx="-24" cy="0" r="3.5" fill="#FFFFFF" opacity="0.75" />
+              <circle cx="-33" cy="0" r="4.8" fill="#FFFFFF" opacity="0.5" />
+              <circle cx="-44" cy="0" r="6" fill="#FFFFFF" opacity="0.25" />
 
-                {/* Tram Drop Shadow */}
-                <rect
-                  x="-20"
-                  y="-10"
-                  width="40"
-                  height="20"
-                  rx="4"
-                  fill="#000000"
-                  opacity="0.5"
-                />
+              {/* Tram Drop Shadow */}
+              <rect
+                x="-20"
+                y="-11"
+                width="41"
+                height="22"
+                rx="5"
+                fill="#000000"
+                opacity="0.55"
+              />
 
-                {/* Tram Main Chassis (Iconic Kolkata Streetcar Green & Crimson) */}
-                <rect
-                  x="-19"
-                  y="-10"
-                  width="38"
-                  height="20"
-                  rx="4"
-                  fill="#1B5E3F"
-                  stroke="#000000"
-                  strokeWidth="2"
-                />
+              {/* Steel Rail Wheels (On twin rails, perfectly hugging the track) */}
+              <circle cx="-12" cy="-9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
+              <circle cx="12" cy="-9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
+              <circle cx="-12" cy="9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
+              <circle cx="12" cy="9.5" r="2" fill="#0F172A" stroke="#000000" strokeWidth="0.8" />
 
-                {/* Cream Top Vintage Carriage Half */}
-                <rect
-                  x="-19"
-                  y="-10"
-                  width="38"
-                  height="10"
-                  rx="3"
-                  fill="#FFF9F2"
-                  stroke="#000000"
-                  strokeWidth="1.5"
-                />
+              {/* Tram Main Chassis (Iconic Kolkata Streetcar Green) */}
+              <rect
+                x="-19"
+                y="-10"
+                width="38"
+                height="20"
+                rx="4.5"
+                fill="#1B5E3F"
+                stroke="#000000"
+                strokeWidth="1.8"
+              />
 
-                {/* Overhead Trolley Pantograph Pole (reaching up to the overhead cable) */}
-                <line x1="-8" y1="-10" x2="-2" y2="-17" stroke="#000000" strokeWidth="1.5" />
-                <line x1="-2" y1="-17" x2="6" y2="-10" stroke="#000000" strokeWidth="1.5" />
-                <line x1="-6" y1="-17" x2="4" y2="-17" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
+              {/* Crimson Heritage Side Accent Stripes */}
+              <rect x="-18" y="-8.5" width="36" height="1.8" fill="#991B1B" />
+              <rect x="-18" y="6.7" width="36" height="1.8" fill="#991B1B" />
 
-                {/* Conductor Windows */}
-                <rect x="-14" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-                <rect x="-5" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-                <rect x="4" y="-8" width="6" height="6" rx="1" fill="#14192C" />
-                <rect x="11" y="-8" width="5" height="6" rx="1" fill="#14192C" />
+              {/* Cream Top Vintage Carriage Roof */}
+              <rect
+                x="-16"
+                y="-6"
+                width="31"
+                height="12"
+                rx="3"
+                fill="#FFF9F2"
+                stroke="#000000"
+                strokeWidth="1.2"
+              />
 
-                {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
-                <polygon
-                  points="19,-7 24,-4 24,4 19,7"
-                  fill="#FFC800"
-                  stroke="#000000"
-                  strokeWidth="1.5"
-                />
+              {/* Conductor Windows & Clerestory Skylights */}
+              <rect x="-13" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
+              <rect x="-6" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
+              <rect x="1" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
+              <rect x="8" y="-4" width="4.5" height="8" rx="1" fill="#14192C" />
 
-                {/* Front Glowing Headlight */}
-                <circle cx="19" cy="0" r="2.5" fill="#FFC800" stroke="#000000" strokeWidth="1" />
-                <circle cx="19" cy="0" r="1" fill="#FFFFFF" />
+              {/* Centered Overhead Trolley Pantograph Pole */}
+              <line x1="-5" y1="0" x2="-1" y2="0" stroke="#000000" strokeWidth="1.5" />
+              <circle cx="-1" cy="0" r="1.5" fill="#FFC800" />
+              <line x1="-1" y1="0" x2="-8" y2="0" stroke="#FFC800" strokeWidth="2" strokeLinecap="round" />
 
-                {/* Steel Rail Wheels (At bottom on the rails, never on the roof) */}
-                <circle cx="-12" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-                <circle cx="2" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-                <circle cx="13" cy="10" r="2.2" fill="#0F172A" stroke="#000" strokeWidth="0.8" />
-              </g>
-            );
-          })()}
+              {/* Front Cowcatcher / Bumper (Kolkata Taxi Yellow) */}
+              <polygon
+                points="19,-7 24,-4 24,4 19,7"
+                fill="#FFC800"
+                stroke="#000000"
+                strokeWidth="1.5"
+              />
+
+              {/* Front Glowing Twin Headlights */}
+              <circle cx="19" cy="-3" r="2" fill="#FFC800" stroke="#000000" strokeWidth="0.8" />
+              <circle cx="19" cy="-3" r="0.8" fill="#FFFFFF" />
+              <circle cx="19" cy="3" r="2" fill="#FFC800" stroke="#000000" strokeWidth="0.8" />
+              <circle cx="19" cy="3" r="0.8" fill="#FFFFFF" />
+            </g>
+          )}
         </svg>
 
         {/* ============================================================== */}
